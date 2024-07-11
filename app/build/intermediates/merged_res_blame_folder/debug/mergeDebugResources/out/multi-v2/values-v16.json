@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "ru.ushell.app-mergeDebugResources-58:/values-v16/values-v16.xml",
+            "outputFile": "ru.ushell.app-mergeDebugResources-53:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/transforms-3/5aca97af0c32c66159db7b69ff0d0b84/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "source": "/home/roman/.gradle/caches/transforms-4/3eaedf7498c18fc8345360e06065723b/transformed/appcompat-1.7.0/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -12,24 +12,6 @@
                         "endLines": "5",
                         "endColumns": "12",
                         "endOffsets": "223"
-                    },
-                    "to": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "121",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "/home/roman/.gradle/caches/transforms-3/163431063fc7fce9ca2cbb450af04d88/transformed/core-1.12.0/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
                     }
                 }
             ]

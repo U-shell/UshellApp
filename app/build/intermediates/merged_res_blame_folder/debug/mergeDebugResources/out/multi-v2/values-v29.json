@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "ru.ushell.app-mergeDebugResources-58:/values-v29/values-v29.xml",
+            "outputFile": "ru.ushell.app-mergeDebugResources-53:/values-v29/values-v29.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/transforms-3/c361597157b53297263735bbdf7b2972/transformed/jetified-core-splashscreen-1.0.1/res/values-v29/values-v29.xml",
+                    "source": "/home/roman/.gradle/caches/transforms-4/cfc3a2a437a204a6498556475bb3175e/transformed/jetified-core-splashscreen-1.0.1/res/values-v29/values-v29.xml",
                     "from": {
                         "startLines": "2,7",
                         "startColumns": "4,4",

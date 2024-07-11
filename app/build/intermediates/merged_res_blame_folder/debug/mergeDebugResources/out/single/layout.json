@@ -1,58 +1,66 @@
 [
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/activity_profile.xml",
-        "source": "ru.ushell.app-main-62:/layout/activity_profile.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/activity_start.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_start.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/activity_timetable.xml",
-        "source": "ru.ushell.app-main-62:/layout/activity_timetable.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/message.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/message.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/person_info_item.xml",
-        "source": "ru.ushell.app-main-62:/layout/person_info_item.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/activity_splash_screen.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_splash_screen.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/lesson_cell.xml",
-        "source": "ru.ushell.app-main-62:/layout/lesson_cell.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/sing_in_window.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/sing_in_window.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/lesson_item.xml",
-        "source": "ru.ushell.app-main-62:/layout/lesson_item.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/calendar_cell.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/calendar_cell.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/register_window.xml",
-        "source": "ru.ushell.app-main-62:/layout/register_window.xml"
+        "merged": "ru.ushell.app-mergeDebugResources-54:/layout/activity_splash_screen.xml",
+        "source": "ru.ushell.app-main-57:/layout/activity_splash_screen.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/sing_in_window.xml",
-        "source": "ru.ushell.app-main-62:/layout/sing_in_window.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/lesson_item.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/lesson_item.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/message.xml",
-        "source": "ru.ushell.app-main-62:/layout/message.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/activity_timetable.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_timetable.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/activity_table_list.xml",
-        "source": "ru.ushell.app-main-62:/layout/activity_table_list.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/table_cell.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/table_cell.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/person_info_detail.xml",
-        "source": "ru.ushell.app-main-62:/layout/person_info_detail.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/person_info_detail.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/person_info_detail.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/activity_start.xml",
-        "source": "ru.ushell.app-main-62:/layout/activity_start.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/activity_table_list.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_table_list.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/calendar_cell.xml",
-        "source": "ru.ushell.app-main-62:/layout/calendar_cell.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/lesson_cell.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/lesson_cell.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/table_cell.xml",
-        "source": "ru.ushell.app-main-62:/layout/table_cell.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/person_info_item.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/person_info_item.xml"
     },
     {
-        "merged": "ru.ushell.app-mergeDebugResources-59:/layout/progress_bar.xml",
-        "source": "ru.ushell.app-main-62:/layout/progress_bar.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/progress_bar.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/progress_bar.xml"
+    },
+    {
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/activity_profile.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/register_window.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/register_window.xml"
     }
 ]

@@ -7,6 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
+
     private Retrofit retrofit;
 
     public RetrofitService() {
@@ -16,6 +17,7 @@ public class RetrofitService {
     private void initializeRetrofit() {
         Gson gson = new GsonBuilder()
                 .create();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(Config.getUrl())
                 .addConverterFactory(GsonConverterFactory.create(gson))

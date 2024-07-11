@@ -1,41 +1,104 @@
 [versions]
 agp = "8.3.0"
+androidsvg = "1.2.1"
+androidxJunit = "1.2.1"
 annotation = "1.7.1"
+annotationVersion = "1.7.0"
+appcompatResources = "1.7.0"
+appcompatVersion = "1.7.0"
+calligraphy = "2.3.0"
 circleimageview = "3.1.0"
 constraintlayout = "2.1.4"
+converterGson = "2.1.0"
+coreKtx = "1.13.1"
+coreSplashscreen = "1.0.1"
+design = "28.0.0"
+espressoCoreVersion = "3.6.1"
+filamentAndroid = "1.17.1"
+fragmentKtx = "1.8.1"
+fragmentKtxVersion = "1.6.2"
+glide = "4.15.1"
 googleServices = "4.4.1"
+gson = "2.10.1"
 junit = "4.13.2"
 junitJunitVersion = "4.12"
+junitJupiterApi = "5.10.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
+jwtdecode = "2.0.2"
+kotlinBom = "1.8.0"
+kotlinxCoroutinesCore = "1.6.4"
 legacySupportV4 = "1.0.0"
+library = "2.1.4"
 lifecycleLivedataKtx = "2.7.0"
+lifecycleLivedataKtxVersion = "2.6.2"
+lifecycleViewmodelKtx = "2.8.3"
 material = "1.11.0"
+materialVersion = "1.12.0"
+navigationFragmentVersion = "2.7.5"
+navigationUi = "2.7.5"
 places = "3.3.0"
 navigationFragment = "2.7.7"
+placesVersion = "3.5.0"
 retrofit = "2.9.0"
+retrofitVersion = "2.1.0"
+springBootDependencies = "3.2.3"
+swiperefreshlayout = "1.1.0"
 threetenabp = "1.4.4"
 
 [libraries]
+androidsvg = { module = "com.caverock:androidsvg", version.ref = "androidsvg" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+androidx-annotation-v170 = { module = "androidx.annotation:annotation", version.ref = "annotationVersion" }
+androidx-appcompat-resources-v170 = { module = "androidx.appcompat:appcompat-resources", version.ref = "appcompatResources" }
+androidx-appcompat-v170 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-espresso-core-v361 = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-fragment-ktx-v162 = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtxVersion" }
+androidx-junit-v121 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+androidx-lifecycle-livedata-ktx-v262 = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtxVersion" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentVersion" }
+androidx-navigation-fragment-v275 = { module = "androidx.navigation:navigation-fragment", version.ref = "navigationFragmentVersion" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentVersion" }
+androidx-navigation-ui-v275 = { module = "androidx.navigation:navigation-ui", version.ref = "navigationUi" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 appcompat-resources = { module = "androidx.appcompat:appcompat-resources", version.ref = "appcompat" }
+calligraphy = { module = "uk.co.chrisjenx:calligraphy", version.ref = "calligraphy" }
+cardview-v7 = { module = "com.android.support:cardview-v7", version.ref = "design" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+converter-gson-v210 = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+design = { module = "com.android.support:design", version.ref = "design" }
+filament-android = { module = "com.google.ar.sceneform:filament-android", version.ref = "filamentAndroid" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 junit-junit-v412 = { module = "junit:junit", version.ref = "junitJunitVersion" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiterApi" }
+jwtdecode = { module = "com.auth0.android:jwtdecode", version.ref = "jwtdecode" }
+kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlinBom" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
+library = { module = "com.rengwuxian.materialedittext:library", version.ref = "library" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+material-v1120 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "navigationFragment" }
 places = { module = "com.google.android.libraries.places:places", version.ref = "places" }
 navigation-fragment = { module = "androidx.navigation:navigation-fragment", version.ref = "navigationFragment" }
+places-v350 = { module = "com.google.android.libraries.places:places", version.ref = "placesVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-v210 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBootDependencies" }
 threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "threetenabp" }
 
 [plugins]

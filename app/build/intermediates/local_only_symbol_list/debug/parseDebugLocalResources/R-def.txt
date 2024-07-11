@@ -2,8 +2,10 @@ R_DEF: Internal format may change without notice
 local
 anim anim_fade_in
 anim anim_fade_out
+anim bottom_animation
 anim slide_in
 anim slide_out
+anim top_animation
 color SplashScreen
 color VishBlue
 color VishOreng
@@ -16,6 +18,7 @@ color bottom_panel_background
 color gray
 color ic_launcher_background
 color light
+color logo_app_background
 color navigationBarColor_background
 color purple_200
 color purple_500
@@ -43,8 +46,12 @@ drawable icon_profile
 drawable icon_profile_pressed
 drawable icon_tablelist
 drawable icon_tablelist_pressed
+drawable logo_app
+drawable logo_app_1
+drawable logo_app_foreground
 drawable logo_mini
 drawable logo_rut_miit
+drawable logo_splash
 drawable new_logo
 drawable new_logo_app
 drawable profile_icon_group
@@ -82,6 +89,7 @@ id SecondFragment
 id Visit_student
 id action_FirstFragment_to_SecondFragment
 id action_SecondFragment_to_FirstFragment
+id app_name
 id arrow
 id background_image
 id bottom_panel
@@ -125,6 +133,7 @@ id recTitle
 id refreshLayout
 id root_element
 id selection_type
+id slogan
 id ssss
 id subgroup
 id subgroup_layout
@@ -133,8 +142,10 @@ id table_layoutc
 id teacher_name
 id time_start_end_lesson
 id title
+id useLogo
 id welcome_text
 layout activity_profile
+layout activity_splash_screen
 layout activity_start
 layout activity_table_list
 layout activity_timetable
@@ -148,9 +159,8 @@ layout progress_bar
 layout register_window
 layout sing_in_window
 layout table_cell
-mipmap ic_launcher
-mipmap ic_launcher_foreground
-mipmap ic_launcher_round
+mipmap logo_app
+mipmap logo_app_round
 navigation nav_graph
 raw blure
 string Attend

@@ -13,6 +13,7 @@ anim abc_tooltip_enter
 anim abc_tooltip_exit
 anim anim_fade_in
 anim anim_fade_out
+anim bottom_animation
 anim btn_checkbox_to_checked_box_inner_merged_animation
 anim btn_checkbox_to_checked_box_outer_merged_animation
 anim btn_checkbox_to_checked_icon_null_animation
@@ -51,6 +52,7 @@ anim nav_default_pop_enter_anim
 anim nav_default_pop_exit_anim
 anim slide_in
 anim slide_out
+anim top_animation
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -1561,6 +1563,7 @@ color highlighted_text_material_dark
 color highlighted_text_material_light
 color ic_launcher_background
 color light
+color logo_app_background
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -3590,8 +3593,12 @@ drawable icon_profile
 drawable icon_profile_pressed
 drawable icon_tablelist
 drawable icon_tablelist_pressed
+drawable logo_app
+drawable logo_app_1
+drawable logo_app_foreground
 drawable logo_mini
 drawable logo_rut_miit
+drawable logo_splash
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3796,6 +3803,7 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
+id app_name
 id arc
 id arrow
 id asConfigured
@@ -4192,6 +4200,7 @@ id skipped
 id slide
 id sliding_pane_detail_container
 id sliding_pane_layout
+id slogan
 id snackbar_action
 id snackbar_text
 id snap
@@ -4419,6 +4428,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_profile
+layout activity_splash_screen
 layout activity_start
 layout activity_table_list
 layout activity_timetable
@@ -4529,9 +4539,8 @@ layout sing_in_window
 layout splash_screen_view
 layout support_simple_spinner_dropdown_item
 layout table_cell
-mipmap ic_launcher
-mipmap ic_launcher_foreground
-mipmap ic_launcher_round
+mipmap logo_app
+mipmap logo_app_round
 navigation nav_graph
 plurals mtrl_badge_content_description
 raw blure

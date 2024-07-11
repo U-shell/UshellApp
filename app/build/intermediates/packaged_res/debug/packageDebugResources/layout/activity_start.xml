@@ -27,6 +27,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
+        android:transitionName="logo_images"
         android:background="@drawable/new_logo"
         android:importantForAccessibility="no"/>
 

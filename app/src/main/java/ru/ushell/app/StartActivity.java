@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.net.HttpURLConnection;
 import java.util.HashSet;
@@ -213,8 +214,8 @@ public class StartActivity extends AppCompatActivity {
         dialog.setView(sine_in_window); // шаблон для всплываюшего окна
 
         // ID полей входа
-        final MaterialEditText email = sine_in_window.findViewById(R.id.EmailField);
-        final MaterialEditText password = sine_in_window.findViewById(R.id.PasswordField);
+        final TextInputEditText email = sine_in_window.findViewById(R.id.EmailField);
+        final TextInputEditText password = sine_in_window.findViewById(R.id.PasswordField);
 
         // кнопка отмены
         dialog.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {

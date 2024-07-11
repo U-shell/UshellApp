@@ -1,326 +1,338 @@
 [
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_icon_calendar_pressed.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/icon_calendar_pressed.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_icon_tablelist.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/icon_tablelist.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/anim_anim_fade_out.xml.flat",
-        "source": "ru.ushell.app-main-62:/anim/anim_fade_out.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-anydpi-v26_logo_app.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-anydpi-v26/logo_app.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_montserrat_bold.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/montserrat_bold.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_activity_timetable.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_timetable.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_logo_mini.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/logo_mini.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_montserrat_black.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/montserrat_black.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_montserrat_regular.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/montserrat_regular.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_button_attendance_none.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/button_attendance_none.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_montserrat_semibold.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/montserrat_semibold.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_rounded_button.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/rounded_button.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_shape_upper.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/shape_upper.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-xhdpi_logo_app_round.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-xhdpi/logo_app_round.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_calendar_cell.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/calendar_cell.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_arrow_left.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/arrow_left.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_round_dialog_bg.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/round_dialog_bg.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_arrow_right.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/arrow_right.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_rectangle_roundcorner.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/rectangle_roundcorner.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/anim_slide_in.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/anim/slide_in.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_profile_icon_line.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/profile_icon_line.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-anydpi-v26_logo_app_round.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-anydpi-v26/logo_app_round.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_person_info_detail.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/person_info_detail.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_shape_background_singin.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/shape_background_singin.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_activity_profile.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_profile.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-mdpi/ic_launcher_foreground.png"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_background_start.jpg.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/background_start.jpg"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_person_info_detail.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/person_info_detail.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_shape_background_singin.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/shape_background_singin.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_shape_dialog_bg.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/shape_dialog_bg.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_activity_profile.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/activity_profile.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/xml_backup_rules.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/xml/backup_rules.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_profile_icon_notify.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/profile_icon_notify.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_logo_splash.png.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/logo_splash.png"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_montserrat_black.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/montserrat_black.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_profile_icon_group.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/profile_icon_group.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_shape_dialog_bg.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/shape_dialog_bg.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_montserrat_bold.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/montserrat_bold.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_message.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/message.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_rectangle_roundcorner.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/rectangle_roundcorner.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_profile_icon_news.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/profile_icon_news.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/anim_bottom_animation.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/anim/bottom_animation.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_icon_tablelist_pressed.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/icon_tablelist_pressed.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_new_logo_app.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/new_logo_app.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-mdpi_logo_app.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-mdpi/logo_app.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_profile_icon_news.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/profile_icon_news.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/xml_data_extraction_rules.xml.flat",
-        "source": "ru.ushell.app-main-62:/xml/data_extraction_rules.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_shape_titel.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/shape_titel.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/anim_slide_in.xml.flat",
-        "source": "ru.ushell.app-main-62:/anim/slide_in.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_person_info_item.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/person_info_item.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_icon_calendar.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/icon_calendar.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_sing_in_window.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/sing_in_window.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_icon_tablelist_pressed.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/icon_tablelist_pressed.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_montserrat_extralight.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/montserrat_extralight.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_button_attendance_none.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/button_attendance_none.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_profile_icon_notify.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/profile_icon_notify.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_rounded_button.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/rounded_button.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_lato_bold.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/lato_bold.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_montserrat_semibold.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/montserrat_semibold.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xhdpi/ic_launcher_foreground.png"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_shape_lower.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/shape_lower.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-xhdpi_logo_app.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-xhdpi/logo_app.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_shape_upper.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/shape_upper.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_new_logo.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/new_logo.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_icon_profile.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/icon_profile.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/anim_slide_out.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/anim/slide_out.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_activity_start.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/activity_start.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_profile_icon_line.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/profile_icon_line.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_union.png.flat",
-        "source": "ru.ushell.app-main-62:/drawable/union.png"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_montserrat_thin.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/montserrat_thin.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_button_attendance_true.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/button_attendance_true.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/navigation_nav_graph.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/navigation/nav_graph.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_background_splashscreen.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/background_splashscreen.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xxhdpi/ic_launcher_foreground.png"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_calendar_cell.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/calendar_cell.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-hdpi/ic_launcher_foreground.png"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_progress_bar.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/progress_bar.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_icon_profile_pressed.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/icon_profile_pressed.xml"
+        "merged": "ru.ushell.app-debug-55:/layout_activity_splash_screen.xml.flat",
+        "source": "ru.ushell.app-main-57:/layout/activity_splash_screen.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_bottom_panel.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/bottom_panel.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_background_start.jpg.flat",
-        "source": "ru.ushell.app-main-62:/drawable/background_start.jpg"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_icon_calendar.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/icon_calendar.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_new_logo.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/new_logo.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-xxxhdpi_logo_app_round.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-xxxhdpi/logo_app_round.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/navigation_nav_graph.xml.flat",
-        "source": "ru.ushell.app-main-62:/navigation/nav_graph.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_register_window.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/register_window.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_table_cell.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/table_cell.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_lesson_cell.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/lesson_cell.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_progress_bar.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/progress_bar.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/anim_top_animation.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/anim/top_animation.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_arrow_left.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/arrow_left.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-xxxhdpi_logo_app.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-xxxhdpi/logo_app.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/raw_blure.rs.flat",
-        "source": "ru.ushell.app-main-62:/raw/blure.rs"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_button_attendance_false.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/button_attendance_false.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/xml_backup_rules.xml.flat",
-        "source": "ru.ushell.app-main-62:/xml/backup_rules.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_round_dialog_bg.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/round_dialog_bg.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_shape_lower.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/shape_lower.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_activity_table_list.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_table_list.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_message.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/message.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_button_attendance_true.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/button_attendance_true.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_montserrat_thin.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/montserrat_thin.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_table_cell.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/table_cell.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_logo_rut_miit.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/logo_rut_miit.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_icon_calendar_pressed.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/icon_calendar_pressed.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_activity_timetable.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/activity_timetable.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_icon_profile_pressed.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/icon_profile_pressed.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_register_window.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/register_window.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_lesson_item.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/lesson_item.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_shape_titel.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/shape_titel.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/raw_blure.rs.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/raw/blure.rs"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_lesson_item.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/lesson_item.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_activity_splash_screen.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_splash_screen.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_bottom_panel.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/bottom_panel.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-hdpi_logo_app_round.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-hdpi/logo_app_round.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_profile_icon_group.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/profile_icon_group.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_sss.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/sss.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_background_splashscreen.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/background_splashscreen.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_logo_mini.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/logo_mini.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_lesson_cell.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/lesson_cell.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-xxhdpi_logo_app_round.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-xxhdpi/logo_app_round.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_montserrat_medium.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/montserrat_medium.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/anim_anim_fade_out.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/anim/anim_fade_out.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_button_attendance_false.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/button_attendance_false.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_logo_app_1.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/logo_app_1.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/anim_anim_fade_in.xml.flat",
-        "source": "ru.ushell.app-main-62:/anim/anim_fade_in.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/xml_data_extraction_rules.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_person_info_item.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/person_info_item.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-xxhdpi_logo_app.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-xxhdpi/logo_app.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/anim_slide_out.xml.flat",
-        "source": "ru.ushell.app-main-62:/anim/slide_out.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_montserrat_regular.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/montserrat_regular.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "ru.ushell.app-main-62:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_rectangle_background.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/rectangle_background.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_sss.webp.flat",
-        "source": "ru.ushell.app-main-62:/drawable/sss.webp"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_rectangle_arrow.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/rectangle_arrow.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_arrow_right.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/arrow_right.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_new_logo_app.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/new_logo_app.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_icon_tablelist.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/icon_tablelist.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/anim_anim_fade_in.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/anim/anim_fade_in.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_sing_in_window.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/sing_in_window.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-hdpi_logo_app.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-hdpi/logo_app.webp"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_rectangle_background.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/rectangle_background.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/font_montserrat_medium.ttf.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/font/montserrat_medium.ttf"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_montserrat_extralight.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/montserrat_extralight.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_logo_rut_miit.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/logo_rut_miit.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/font_lato_bold.ttf.flat",
-        "source": "ru.ushell.app-main-62:/font/lato_bold.ttf"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/layout_activity_start.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_start.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/drawable_rectangle_arrow.xml.flat",
-        "source": "ru.ushell.app-main-62:/drawable/rectangle_arrow.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_logo_app.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/logo_app.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-60:/layout_activity_table_list.xml.flat",
-        "source": "ru.ushell.app-main-62:/layout/activity_table_list.xml"
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_union.png.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/union.png"
+    },
+    {
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-mdpi_logo_app_round.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/mipmap-mdpi/logo_app_round.webp"
+    },
+    {
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_logo_app_foreground.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/logo_app_foreground.xml"
+    },
+    {
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_icon_profile.xml.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/icon_profile.xml"
     }
 ]

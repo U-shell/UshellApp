@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "ru.ushell.app-mergeDebugResources-58:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "ru.ushell.app-mergeDebugResources-53:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/transforms-3/c361597157b53297263735bbdf7b2972/transformed/jetified-core-splashscreen-1.0.1/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "/home/roman/.gradle/caches/transforms-4/cfc3a2a437a204a6498556475bb3175e/transformed/jetified-core-splashscreen-1.0.1/res/values-watch-v20/values-watch-v20.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/roman/.gradle/caches/transforms-3/5aca97af0c32c66159db7b69ff0d0b84/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "/home/roman/.gradle/caches/transforms-4/3eaedf7498c18fc8345360e06065723b/transformed/appcompat-1.7.0/res/values-watch-v20/values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

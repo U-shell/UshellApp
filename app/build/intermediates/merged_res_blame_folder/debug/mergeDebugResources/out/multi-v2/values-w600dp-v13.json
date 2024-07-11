@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "ru.ushell.app-mergeDebugResources-58:/values-w600dp-v13/values-w600dp-v13.xml",
+            "outputFile": "ru.ushell.app-mergeDebugResources-53:/values-w600dp-v13/values-w600dp-v13.xml",
             "map": [
                 {
-                    "source": "/home/roman/Ushell/Uni_journal/app/src/main/res/values-w600dp/dimens.xml",
+                    "source": "/home/roman/Ushell/UshellApp/app/src/main/res/values-w600dp/dimens.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",

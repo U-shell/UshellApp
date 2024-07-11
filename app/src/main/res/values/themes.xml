@@ -42,7 +42,6 @@
     </style>
 
     <style name="SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splashscreen</item>
         <item name="android:statusBarColor">@color/SplashScreen</item>
         <item name="android:isLightTheme" tools:targetApi="q">true</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>

@@ -2,10 +2,13 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:forceDarkAllowed="false"
     android:backgroundTint="@android:color/transparent"
-    app:cardElevation="10dp">
+    app:cardElevation="10dp"
+    tools:ignore="UnusedAttribute">
 
     <LinearLayout
         android:id="@+id/layout_sing_in_window"
@@ -14,37 +17,48 @@
         android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/EmailField"
             android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress"
-            android:text=""
-            android:textColor="@color/cardview_dark_background"
-            android:textColorHint="@color/cardview_shadow_end_color"
-            android:textSize="20sp"
-            android:fontFamily="@font/lato_bold"
-            app:met_floatingLabel="highlight"
-            app:met_baseColor="#FFFFFF"
-            app:met_primaryColor="#F48B96"
-            app:met_singleLineEllipsis="true"/>
+            android:textColorHint="@color/cardview_dark_background"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/EmailField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/lato_bold"
+                android:textSize="20sp"
+                app:met_baseColor="#FFFFFF"
+                app:met_primaryColor="#F48B96"
+                app:met_floatingLabel="highlight"
+                app:met_singleLineEllipsis="true">
+            </com.google.android.material.textfield.TextInputEditText>
+        
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/PasswordField"
             android:hint="@string/prompt_password"
-            android:inputType="textPassword"
-            android:text=""
-            android:textColor="@color/cardview_dark_background"
-            android:textColorHint="@color/cardview_shadow_end_color"
-            android:fontFamily="@font/lato_bold"
-            android:textSize="20sp"
-            app:met_floatingLabel="highlight"
-            app:met_baseColor="#FFFFFF"
-            app:met_primaryColor="#F48B96"
-            app:met_singleLineEllipsis="true"/>
+            android:textColorHint="@color/cardview_dark_background"
+            app:passwordToggleEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/PasswordField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:fontFamily="@font/lato_bold"
+                android:textSize="20sp"
+                app:met_floatingLabel="highlight"
+                app:met_baseColor="#FFFFFF"
+                app:met_primaryColor="#F48B96"
+                app:met_singleLineEllipsis="true">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

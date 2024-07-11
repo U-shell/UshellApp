@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.rengwuxian.materialedittext.MaterialEditText;
+import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -21,16 +21,16 @@ public final class SingInWindowBinding implements ViewBinding {
   private final CardView rootView;
 
   @NonNull
-  public final MaterialEditText EmailField;
+  public final TextInputEditText EmailField;
 
   @NonNull
-  public final MaterialEditText PasswordField;
+  public final TextInputEditText PasswordField;
 
   @NonNull
   public final LinearLayout layoutSingInWindow;
 
-  private SingInWindowBinding(@NonNull CardView rootView, @NonNull MaterialEditText EmailField,
-      @NonNull MaterialEditText PasswordField, @NonNull LinearLayout layoutSingInWindow) {
+  private SingInWindowBinding(@NonNull CardView rootView, @NonNull TextInputEditText EmailField,
+      @NonNull TextInputEditText PasswordField, @NonNull LinearLayout layoutSingInWindow) {
     this.rootView = rootView;
     this.EmailField = EmailField;
     this.PasswordField = PasswordField;
@@ -65,13 +65,13 @@ public final class SingInWindowBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.EmailField;
-      MaterialEditText EmailField = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText EmailField = ViewBindings.findChildViewById(rootView, id);
       if (EmailField == null) {
         break missingId;
       }
 
       id = R.id.PasswordField;
-      MaterialEditText PasswordField = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText PasswordField = ViewBindings.findChildViewById(rootView, id);
       if (PasswordField == null) {
         break missingId;
       }
