@@ -172,10 +172,6 @@
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/progress_bar.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-55:/layout_activity_splash_screen.xml.flat",
-        "source": "ru.ushell.app-main-57:/layout/activity_splash_screen.xml"
-    },
-    {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_bottom_panel.xml.flat",
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/bottom_panel.xml"
     },
@@ -198,6 +194,10 @@
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/anim_top_animation.xml.flat",
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/anim/top_animation.xml"
+    },
+    {
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_logo_splash.webp.flat",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/logo_splash.webp"
     },
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/mipmap-xxxhdpi_logo_app.webp.flat",
@@ -334,5 +334,9 @@
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-debug-55:/drawable_icon_profile.xml.flat",
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/drawable/icon_profile.xml"
+    },
+    {
+        "merged": "ru.ushell.app-debug-55:/drawable_background_splashscreen.xml.flat",
+        "source": "ru.ushell.app-main-57:/drawable/background_splashscreen.xml"
     }
 ]

@@ -4,12 +4,12 @@
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_start.xml"
     },
     {
-        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/message.xml",
-        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/message.xml"
-    },
-    {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/activity_splash_screen.xml",
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/activity_splash_screen.xml"
+    },
+    {
+        "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/message.xml",
+        "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/message.xml"
     },
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/sing_in_window.xml",
@@ -18,10 +18,6 @@
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/calendar_cell.xml",
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/calendar_cell.xml"
-    },
-    {
-        "merged": "ru.ushell.app-mergeDebugResources-54:/layout/activity_splash_screen.xml",
-        "source": "ru.ushell.app-main-57:/layout/activity_splash_screen.xml"
     },
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/lesson_item.xml",
@@ -46,6 +42,10 @@
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/lesson_cell.xml",
         "source": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-main-57:/layout/lesson_cell.xml"
+    },
+    {
+        "merged": "ru.ushell.app-mergeDebugResources-54:/layout/sing_in_window.xml",
+        "source": "ru.ushell.app-main-57:/layout/sing_in_window.xml"
     },
     {
         "merged": "/home/roman/.gradle/daemon/8.7/ru.ushell.app-mergeDebugResources-54:/layout/person_info_item.xml",

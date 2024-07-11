@@ -3803,7 +3803,6 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
-id app_name
 id arc
 id arrow
 id asConfigured
@@ -4200,7 +4199,6 @@ id skipped
 id slide
 id sliding_pane_detail_container
 id sliding_pane_layout
-id slogan
 id snackbar_action
 id snackbar_text
 id snap
@@ -4428,7 +4426,6 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_profile
-layout activity_splash_screen
 layout activity_start
 layout activity_table_list
 layout activity_timetable
@@ -5100,7 +5097,6 @@ style CardView
 style CardView_Dark
 style CardView_Light
 style CustomDialogs
-style Fulr
 style List
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation
@@ -5457,9 +5453,6 @@ style Theme_SplashScreen
 style Theme_SplashScreen_Common
 style Theme_SplashScreen_IconBackground
 style Theme_Vish_journal
-style Theme_Vish_journal_AppBarOverlay
-style Theme_Vish_journal_NoActionBar
-style Theme_Vish_journal_PopupO_verlay
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar
 style ThemeOverlay_AppCompat_Dark

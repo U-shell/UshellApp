@@ -30,7 +30,7 @@
                 android:inputType="textEmailAddress"
                 android:fontFamily="@font/lato_bold"
                 android:textSize="20sp"
-                app:met_baseColor="#FFFFFF"
+                android:textColor="#FFFFFF"
                 app:met_primaryColor="#F48B96"
                 app:met_floatingLabel="highlight"
                 app:met_singleLineEllipsis="true">
@@ -43,17 +43,17 @@
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
             android:textColorHint="@color/cardview_dark_background"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/cardview_dark_background">
             <com.google.android.material.textfield.TextInputEditText
-
                 android:id="@+id/PasswordField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:fontFamily="@font/lato_bold"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
                 app:met_floatingLabel="highlight"
-                app:met_baseColor="#FFFFFF"
                 app:met_primaryColor="#F48B96"
                 app:met_singleLineEllipsis="true">
 

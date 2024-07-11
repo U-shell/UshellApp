@@ -3802,7 +3802,6 @@ int id animateToEnd 0x7f09005b
 int id animateToStart 0x7f09005c
 int id antiClockwise 0x7f09005d
 int id anticipate 0x7f09005e
-int id app_name 0x7f09005f
 int id arc 0x7f090060
 int id arrow 0x7f090061
 int id asConfigured 0x7f090062
@@ -4199,7 +4198,6 @@ int id skipped 0x7f0901e8
 int id slide 0x7f0901e9
 int id sliding_pane_detail_container 0x7f0901ea
 int id sliding_pane_layout 0x7f0901eb
-int id slogan 0x7f0901ec
 int id snackbar_action 0x7f0901ed
 int id snackbar_text 0x7f0901ee
 int id snap 0x7f0901ef
@@ -4427,7 +4425,6 @@ int layout abc_search_view 0x7f0c0019
 int layout abc_select_dialog_material 0x7f0c001a
 int layout abc_tooltip 0x7f0c001b
 int layout activity_profile 0x7f0c001c
-int layout activity_splash_screen 0x7f0c001d
 int layout activity_start 0x7f0c001e
 int layout activity_table_list 0x7f0c001f
 int layout activity_timetable 0x7f0c0020
@@ -5099,7 +5096,6 @@ int style CardView 0x7f13012c
 int style CardView_Dark 0x7f13012d
 int style CardView_Light 0x7f13012e
 int style CustomDialogs 0x7f13012f
-int style Fulr 0x7f130130
 int style List 0x7f130131
 int style MaterialAlertDialog_Material3 0x7f130132
 int style MaterialAlertDialog_Material3_Animation 0x7f130133
@@ -5456,9 +5452,6 @@ int style Theme_SplashScreen 0x7f130291
 int style Theme_SplashScreen_Common 0x7f130292
 int style Theme_SplashScreen_IconBackground 0x7f130293
 int style Theme_Vish_journal 0x7f130294
-int style Theme_Vish_journal_AppBarOverlay 0x7f130295
-int style Theme_Vish_journal_NoActionBar 0x7f130296
-int style Theme_Vish_journal_PopupO_verlay 0x7f130297
 int style ThemeOverlay_AppCompat 0x7f130298
 int style ThemeOverlay_AppCompat_ActionBar 0x7f130299
 int style ThemeOverlay_AppCompat_Dark 0x7f13029a

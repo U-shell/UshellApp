@@ -89,7 +89,6 @@ id SecondFragment
 id Visit_student
 id action_FirstFragment_to_SecondFragment
 id action_SecondFragment_to_FirstFragment
-id app_name
 id arrow
 id background_image
 id bottom_panel
@@ -133,7 +132,6 @@ id recTitle
 id refreshLayout
 id root_element
 id selection_type
-id slogan
 id ssss
 id subgroup
 id subgroup_layout
@@ -142,10 +140,8 @@ id table_layoutc
 id teacher_name
 id time_start_end_lesson
 id title
-id useLogo
 id welcome_text
 layout activity_profile
-layout activity_splash_screen
 layout activity_start
 layout activity_table_list
 layout activity_timetable
@@ -225,7 +221,6 @@ style ButtonStyle
 style Button.White
 style Button.lsw
 style CustomDialogs
-style Fulr
 style List
 style MyAlertTheme
 style Profile_text
@@ -234,9 +229,6 @@ style StartActivity
 style TextDataForTimeTable
 style Theme.AppCompat.Light.NoActionBar.FullScreen
 style Theme.Vish_journal
-style Theme.Vish_journal.AppBarOverlay
-style Theme.Vish_journal.NoActionBar
-style Theme.Vish_journal.PopupO.verlay
 style TimeTable
 style UserActivity
 style White

@@ -17,14 +17,7 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="Theme.Vish_journal.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 
-    <style name="Theme.Vish_journal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.Vish_journal.PopupO.verlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Button.lsw" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@android:color/background_dark</item>
@@ -37,11 +30,8 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="Fulr" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/VishBlue</item>
-    </style>
-
     <style name="SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splashscreen</item>
         <item name="android:statusBarColor">@color/SplashScreen</item>
         <item name="android:isLightTheme" tools:targetApi="q">true</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>

@@ -12,6 +12,7 @@
     <color name="gray">#E6EDF1</color>
     <color name="ic_launcher_background">#FFFFFF</color>
     <color name="light">#9ebef0</color>
+    <color name="logo_app_background">#FFFFFF</color>
     <color name="navigationBarColor_background">#31094D</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -102,9 +103,6 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/tit_black</item>
     </style>
-    <style name="Fulr" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/VishBlue</item>
-    </style>
     <style name="List">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#FFFFFF</item>
@@ -167,12 +165,6 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
-    <style name="Theme.Vish_journal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="Theme.Vish_journal.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="Theme.Vish_journal.PopupO.verlay" parent="ThemeOverlay.AppCompat.Light"/>
     <style name="TimeTable">
         <item name="android:textSize">26dp</item>
         <item name="android:textColor">#E6F4B625</item>
