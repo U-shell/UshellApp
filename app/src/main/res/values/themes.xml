@@ -1,0 +1,72 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Vish_journal" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/black_blue</item>
+        <item name="colorPrimaryVariant">@color/black_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/VishBlue</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/VishBlue</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="Theme.Vish_journal.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Vish_journal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Vish_journal.PopupO.verlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Button.lsw" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@android:color/background_dark</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Fulr" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/VishBlue</item>
+    </style>
+
+    <style name="SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splashscreen</item>
+        <item name="android:statusBarColor">@color/SplashScreen</item>
+        <item name="android:isLightTheme" tools:targetApi="q">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <style name="StartActivity" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="UserActivity" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:isLightTheme" tools:targetApi="q">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor_background</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme" />
+
+
+</resources>

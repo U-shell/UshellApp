@@ -1,0 +1,6 @@
+ru.ushell.app.test.app-annotation-experimental-1.3.0-0 /home/roman/.gradle/caches/transforms-3/18bdb2577631d5a3b42c9ad32a88e8b4/transformed/annotation-experimental-1.3.0/res
+ru.ushell.app.test.app-core-1.5.0-1 /home/roman/.gradle/caches/transforms-3/3b7e10e747119065d69aabd2c24ca43c/transformed/core-1.5.0/res
+ru.ushell.app.test.app-androidTest-2 /home/roman/AndroidStudioProjects/Uni_journal/app/build/generated/res/resValues/androidTest/debug
+ru.ushell.app.test.app-mergeDebugAndroidTestResources-3 /home/roman/AndroidStudioProjects/Uni_journal/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+ru.ushell.app.test.app-mergeDebugAndroidTestResources-4 /home/roman/AndroidStudioProjects/Uni_journal/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+ru.ushell.app.test.app-debugAndroidTest-5 /home/roman/AndroidStudioProjects/Uni_journal/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

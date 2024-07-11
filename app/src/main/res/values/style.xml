@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextDataForTimeTable">
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+
+
+    </style>
+    <style name="TimeTable">
+        <item name="android:textSize">26dp</item>
+        <item name="android:textColor">#E6F4B625</item>
+        <item name="android:shadowColor">#40000000</item>
+    </style>
+    <style name="some_id">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#E6F4B625</item>
+        <item name="android:shadowColor">#40000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">4</item>
+    </style>
+
+    <style name="Profile_text" parent="@style/CardView.Dark">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHighlight">#000000</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:colorAccent">#000000</item>
+        <item name="android:colorBackground">#000000</item>
+        <item name="android:textColorHint">#000000</item>
+    </style>
+
+
+    <style name="text" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorHighlight">#000000</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:colorAccent">#000000</item>
+        <item name="android:colorBackground">#000000</item>
+        <item name="android:textColorHint">#000000</item>
+    </style>
+
+    <style name="List">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:shadowColor">#40000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">4</item>
+    </style>
+    <style name="Button.White" parent="ThemeOverlay.AppCompat">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="White">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:shadowColor">#FFFFFF</item>
+        <item name="android:colorAccent">#FFFFFF</item>
+        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="android:textColorHint">#FFFFFF</item>
+    </style>
+
+    <style name="some_id_welcon">
+        <item name="android:textSize">23sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="some_id_Registri">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="some_id_aute">
+        <item name="android:textSize">23sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
+
+    <style name="CustomDialogs" parent="android:Theme.Material.Dialog.MinWidth">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/tit_black</item>
+    </style>
+
+    <style name="MyAlertTheme" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/shape_dialog_bg</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+
+
+
+
+
+</resources>
