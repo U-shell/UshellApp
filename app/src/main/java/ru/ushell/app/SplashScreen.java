@@ -1,28 +1,17 @@
 package ru.ushell.app;
 
 
-import static ru.ushell.app.ui.Sudentset.StudentDataRiteDb.VisitingStudent;
-import static ru.ushell.app.ui.TableListStudent.Table.TableListReadDb.NamesStudentsGroup;
-
 import android.annotation.SuppressLint;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Pair;
-import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
 
 /**
  * <p>
@@ -30,13 +19,32 @@ import androidx.appcompat.app.AppCompatActivity;
  * </p>
  * Сцена небольщой загрзки даннвых в котором появляеться лого и при необходимости подкачиваютьсмя данные
  */
+
 @SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
+
+    private static final int SPLASH_SCREEN = 3000;
     boolean flag = true;
+
+    ImageView LogoApp;
+    TextView NameApp, SloganApp;
+
+    Animation topAnime, bottomAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        setContentView(R.layout.splash_screen_activity);
+
+        LogoApp = findViewById(R.id.LogoApp);
+        NameApp = findViewById(R.id.NameApp);
+        SloganApp = findViewById(R.id.slogan);
+
+        topAnime = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -50,7 +58,7 @@ public class SplashScreen extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
             }
-        }, 1);
+        }, SPLASH_SCREEN);
     }
 
 

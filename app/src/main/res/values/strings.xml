@@ -1,7 +1,7 @@
 <resources>
     <!-- BASIC -->
-    <string name="server">http://77.105.142.31:8081/</string>
     <string name="app_name">Uni</string>
+    <string name="slogan">One entry point and a sea of possibilities</string>
     <!-- TITLE -->
     <string name="profile">Профиль</string>
     <string name="welcome">Добро пожаловать!</string>
@@ -9,7 +9,7 @@
 
     <string name="todo">TODO</string>
     <string name="exit">Выход</string>
-    <!-- Lesson Iten -->
+        <!-- Lesson Iten -->
     <string name="title">Title</string>
     <string name="subgroup">Subgroup</string>
     <string name="type_lesson">Type_lesson</string>
@@ -29,9 +29,8 @@
     <string name="Attend">Посещение</string>
 
 
-    <string name="name">ВИШ</string>
     <string name="SingIn">Авторизоваться</string>
-    <string name="Registri">Зарегистрироваться</string>
+    <string name="Registration">Зарегистрироваться</string>
     <string name="maintext">Основая Информация</string>
     <string name="dopinfo">Дополнительная информация:</string>
     <string name="userinfo">О группе</string>
@@ -51,6 +50,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_table_adapter">TableAdapter</string>
     <string name="Data">mount year</string>
+
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
