@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "ru.ushell.app-mergeReleaseResources-62:/values-v29/values-v29.xml",
+            "map": [
+                {
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/dbf972bf9c84bed9fdb2900d8edda052/transformed/core-splashscreen-1.0.1/res/values-v29/values-v29.xml",
+                    "from": {
+                        "startLines": "2,7",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,374",
+                        "endLines": "6,8",
+                        "endColumns": "12,12",
+                        "endOffsets": "369,464"
+                    }
+                }
+            ]
+        }
+    ]
+}

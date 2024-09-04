@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="logo_app_al_background">#FFFFFF</color>
+    <color name="logo_app_background">#FFFFFF</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="splash_screen_background">#461576</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="Attend">Посещение</string>
+    <string name="FLMname">ФИО</string>
+    <string name="Search">Поиск...</string>
+    <string name="app_name">Ushell</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_enter">Войти</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_set_data">Введите свои данные</string>
+    <string name="cancellation">Отмена</string>
+    <string name="chat">Месенджер</string>
+    <string name="drawer_exit">Выход</string>
+    <string name="elected">Избраные</string>
+    <string name="group">Группы</string>
+    <string name="menu">Меню</string>
+    <string name="profile_user_info">user_info</string>
+    <string name="profile_user_name">user_name</string>
+    <string name="room">Комнаты</string>
+    <string name="start_auth">Авторизоваться</string>
+    <string name="start_auth_button">Authorization</string>
+    <string name="start_sing_in">Singin</string>
+    <string name="start_welcome">Welcome</string>
+    <string name="start_welcome_text">Добро\nпожаловать</string>
+    <string name="timetable">Расписание</string>
+    <string name="timetable_no_lesson">В этот день занятий нет</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="your">Личное</string>
+    <style name="Theme.UshellApp" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>
