@@ -107,58 +107,47 @@ public class Request_TT {
                 Map<String, Object> lessonSchedule = (Map<String, Object>) dayEntry.getValue();
 
                 for (Map.Entry<String, Object> lessonEntry : lessonSchedule.entrySet()) {
-                    Integer numLesson  = Integer.parseInt(lessonEntry.getKey());
-                    JSONObject specifications = convertLogDataToJson(lessonEntry.getValue().toString());
+                    try {
+                        int numLesson = Integer.parseInt(lessonEntry.getKey());
 
-                    if (specifications != null) {
-                        String timeStartStr = null;
-                        String timeEndStr = null;
-                        try {
-                            timeStartStr = specifications.getString(COLUMN_TIME_START);
-                            timeEndStr = specifications.getString(COLUMN_TIME_END);
-
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
+                        JSONObject specifications = convertLogDataToJson(lessonEntry.getValue().toString());
+                        if (specifications == null) {
+                            System.out.println("Failed to convert log data to JSON.");
+                            continue; // Переход к следующему уроку
                         }
 
+                        // Пересмотреть вывод рассписания если нет часть данных
+                        Time timeStart = convertTime(specifications.getString(COLUMN_TIME_START));
+                        Time timeEnd = convertTime(specifications.getString(COLUMN_TIME_END));
+                        String lessonType = specifications.getString(COLUMN_TYPE_LESSON);
+                        String subject = specifications.getString(COLUMN_SUBJECT);
+                        int subgroup = specifications.getInt(COLUMN_SUBGROUP);
+                        String withWhom = specifications.getString(COLUMN_WITH_WHOM);
+                        int id_group = specifications.has(COLUMN_ID_GROUP) ? specifications.getInt(COLUMN_ID_GROUP) : -1;
+                        String classroom = specifications.getString(COLUMN_CLASSROOM);
 
-                        Time timeStart = convertTime(timeStartStr);
-                        Time timeEnd = convertTime(timeEndStr);
+                        withWhom = withWhom.equals("null") ? " " : withWhom;
 
-                        String lessonType, subject, withWhom, classroom;
-                        int subgroup, id_group;
-
-                        try {
-                            lessonType = specifications.getString(COLUMN_TYPE_LESSON);
-                            subject = specifications.getString(COLUMN_SUBJECT);
-                            subgroup = (int) Double.parseDouble(specifications.getString(COLUMN_SUBGROUP));
-                            withWhom = specifications.getString(COLUMN_WITH_WHOM);
-                            if (specifications.has(COLUMN_ID_GROUP)) {
-                                id_group = specifications.getInt(COLUMN_ID_GROUP);
-                            }
-                            else id_group = -1;
-                            classroom = specifications.getString(COLUMN_CLASSROOM);
-
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                        if(NameSchedule.equals("mainSchedule")) {
-
+                        // Добавление данных в базу данных
+                        if (NameSchedule.equals("mainSchedule")) {
                             databaseHelper.addMainSchedule(
                                     week, dayWeek, numLesson,
                                     timeStart, timeEnd,
                                     lessonType, subject, subgroup,
-                                    withWhom,
-                                    id_group,
-                                    classroom
+                                    withWhom, id_group, classroom
                             );
-                        }else{
-                            databaseHelper.addSecondarySchedule(dateLesson, dayWeek, numLesson,
+                        } else {
+                            databaseHelper.addSecondarySchedule(
+                                    dateLesson, dayWeek, numLesson,
                                     timeStart, timeEnd,
-                                    lessonType, subject, subgroup, withWhom,id_group, classroom);
+                                    lessonType, subject, subgroup,
+                                    withWhom, id_group, classroom
+                            );
                         }
-                    } else {
-                        System.out.println("Failed to convert log data to JSON.");
+                    } catch (JSONException e) {
+                        System.err.println("Error parsing JSON: " + e.getMessage());
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error parsing numLesson: " + e.getMessage());
                     }
                 }
             }

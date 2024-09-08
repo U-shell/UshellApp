@@ -12,8 +12,8 @@ android {
         applicationId = "ru.ushell.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "4.4.1"
+        versionCode = 4
+        versionName = "4.3.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

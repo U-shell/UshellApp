@@ -30,7 +30,7 @@ public class Service {
     public static DatabaseHelper databaseHelperMain;
     private final Context context;
 
-    private interface OnData {
+    public interface OnData {
         void onSuccess();
     }
 
@@ -94,19 +94,23 @@ public class Service {
     }
 
     public void getAttendanceGroup(LocalDate date, Integer idGroup, OnData onLoginSuccess) {
-        RequestAttendance.getGroupAttendance(
-                this.context,
-                CalendarUtils.formattedDateDayAttendance(date),
-                idGroup,
-                infoAttendanceGroup -> {
-                    try {
-                        readAttendanceGroupDay(this.context);
-                        onLoginSuccess.onSuccess();
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
+        try {
+            RequestAttendance.getGroupAttendance(
+                    this.context,
+                    CalendarUtils.formattedDateDayAttendance(date),
+                    idGroup,
+                    infoAttendanceGroup -> {
+                        try {
+                            readAttendanceGroupDay(this.context);
+                            onLoginSuccess.onSuccess();
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                }
-        );
+            );
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     static class student{
@@ -132,6 +136,7 @@ public class Service {
     }
 
     static class teacher{
+
         static void requestTimetableTeacher() {
             if (databaseHelperMain.readAllDataMain().getCount() == 0) {
                 updateTimetableTeacher();

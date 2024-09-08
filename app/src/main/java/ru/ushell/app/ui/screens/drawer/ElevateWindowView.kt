@@ -127,7 +127,7 @@ fun Exit() {
     AttendanceStudentList.clear()
     AttendanceGroupList.clear()
     Log.i(" databaseHelperMain.deleteTable()"," databaseHelperMain.deleteTable()")
-    databaseHelperMain.deleteTable()
+    databaseHelperMain.deleteAllData()
     User.clear()
     SaveUser.userLogOut(LocalContext.current)
 }

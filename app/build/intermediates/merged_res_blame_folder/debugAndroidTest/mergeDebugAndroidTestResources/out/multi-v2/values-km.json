@@ -4,24 +4,7 @@
             "outputFile": "ru.ushell.app.test.app-mergeDebugAndroidTestResources-32:/values-km/values-km.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/res/values-km/values-km.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,253,351,451,552,664,776",
-                        "endColumns": "94,102,97,99,100,111,111,100",
-                        "endOffsets": "145,248,346,446,547,659,771,872"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,23",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,200,303,401,501,602,714,1991",
-                        "endColumns": "94,102,97,99,100,111,111,100",
-                        "endOffsets": "195,298,396,496,597,709,821,2087"
-                    }
-                },
-                {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/c833dd55b9d6e422657a638e4f0eef87/transformed/ui-release/res/values-km/values-km.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/305511bcb7d1d493f71de030a1e5e958/transformed/ui-release/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "826,911,991,1095,1193,1281,1365,1448,1533,1620,1685,1750,1830,1915,2092,2176,2242",
                         "endColumns": "84,79,103,97,87,83,82,84,86,64,64,79,84,75,83,65,117",
                         "endOffsets": "906,986,1090,1188,1276,1360,1443,1528,1615,1680,1745,1825,1910,1986,2171,2237,2355"
+                    }
+                },
+                {
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/res/values-km/values-km.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,253,351,451,552,664,776",
+                        "endColumns": "94,102,97,99,100,111,111,100",
+                        "endOffsets": "145,248,346,446,547,659,771,872"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,23",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,200,303,401,501,602,714,1991",
+                        "endColumns": "94,102,97,99,100,111,111,100",
+                        "endOffsets": "195,298,396,496,597,709,821,2087"
                     }
                 }
             ]

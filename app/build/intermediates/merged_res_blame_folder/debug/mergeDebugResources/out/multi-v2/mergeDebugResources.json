@@ -3647,6 +3647,23 @@
             "outputFile": "ru.ushell.app-debug-69:/values_values.arsc.flat",
             "map": [
                 {
+                    "source": "/home/roman/Ushell/UshellApp/app/src/main/res/values/themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "85",
+                        "endOffsets": "136"
+                    },
+                    "to": {
+                        "startLines": "6094",
+                        "startColumns": "4",
+                        "startOffsets": "416859",
+                        "endColumns": "85",
+                        "endOffsets": "416940"
+                    }
+                },
+                {
                     "source": "/home/roman/.gradle/caches/8.9/transforms/433d0272ac19689a337bb08d7ec881e7/transformed/material3-release/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,14,15,16,17,18,19,20,21,22,23,24,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
@@ -3742,24 +3759,7 @@
                     }
                 },
                 {
-                    "source": "/home/roman/AndroidStudioProjects/UshellApp/app/src/main/res/values/colors.xml",
-                    "from": {
-                        "startLines": "8,3,4,5,2,6,7,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "345,114,161,208,55,255,300,387",
-                        "endColumns": "41,46,46,46,58,44,44,41",
-                        "endOffsets": "382,156,203,250,109,295,340,424"
-                    },
-                    "to": {
-                        "startLines": "545,773,774,775,782,787,788,791",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "28185,44485,44532,44579,45037,45382,45427,45593",
-                        "endColumns": "41,46,46,46,58,44,44,41",
-                        "endOffsets": "28222,44527,44574,44621,45091,45422,45467,45630"
-                    }
-                },
-                {
-                    "source": "/home/roman/AndroidStudioProjects/UshellApp/app/src/main/res/values/strings.xml",
+                    "source": "/home/roman/Ushell/UshellApp/app/src/main/res/values/strings.xml",
                     "from": {
                         "startLines": "21,20,24,1,14,10,15,9,12,23,11,26,27,13,17,16,22,8,7,5,4,6,18,19,2,25",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -3792,6 +3792,23 @@
                         "endLines": "2,8,10,18,19,26,32,70,71,72,77,78,79,80,90,98,101,129,134,135,140,145,146,147,152,153,158,159,164,165,166,172,173,174,179,184,185,198,202,203,204,205,208,209,212,215,216,217,218,219,222,225,226,227,228,233,236,239,240,241,246,247,248,251,254,255,258,261,264,267,268,269,272,275,276,281,282,287,290,293,294,295,296,297,298,299,300,301,302,314,385,386,387,388,398,399,400,403,408,429,445,485,494,501,502,508,509,510,511,520,524,1475,9744,9745,9746,9747,9838,10043,10054,10055,10056,10057,10058,10063,10064,10065,10066,10632,10633,10634,10640,10641,10647,10831,10843,10854,11114,11135,11712,11729,11730",
                         "endColumns": "56,11,60,11,51,47,50,51,60,45,11,51,49,50,11,11,44,58,11,56,11,11,53,56,11,57,11,55,11,56,50,11,51,54,11,11,49,55,11,60,59,69,11,67,11,11,61,64,67,66,11,11,66,64,64,11,11,11,65,66,11,68,65,11,11,66,11,11,11,11,55,64,11,11,64,11,66,11,11,11,64,61,61,61,58,59,60,60,58,11,50,48,47,57,11,46,59,11,11,45,46,51,11,11,54,11,45,54,44,11,11,40,4218,3604,143,4305,502,419,630,651,40,53,49,382,652,497,2876,345,231,139,35,129,133,35,35,231,126,105,483,35,302",
                         "endOffsets": "202,444,554,845,897,1294,1604,3714,3775,3821,4015,4067,4117,4168,4587,4899,5055,7011,7208,7265,7460,7642,7696,7753,7945,8003,8199,8255,8449,8506,8557,8779,8831,8886,9076,9252,9302,10000,10160,10221,10281,10351,10484,10552,10681,10807,10869,10934,11002,11069,11192,11317,11384,11449,11514,11695,11816,11937,12003,12070,12280,12349,12415,12540,12666,12733,12859,12986,13111,13238,13294,13359,13485,13608,13673,13881,13948,14128,14248,14368,14433,14495,14557,14619,14678,14738,14799,14860,14919,15387,19800,19849,19897,19955,20414,20461,20521,20627,20807,21963,22706,25191,25521,25804,25859,26121,26167,26222,26267,26608,26745,93355,618664,622269,622413,626719,631949,638891,640049,640701,640742,640796,640846,641468,642121,642619,645496,666381,666613,666753,667258,667388,667815,674151,675183,675795,684226,684870,706930,708052,708355"
+                    }
+                },
+                {
+                    "source": "/home/roman/Ushell/UshellApp/app/src/main/res/values/logo_app_al_background.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "56",
+                        "endOffsets": "107"
+                    },
+                    "to": {
+                        "startLines": "605",
+                        "startColumns": "4",
+                        "startOffsets": "32352",
+                        "endColumns": "56",
+                        "endOffsets": "32404"
                     }
                 },
                 {
@@ -3852,6 +3869,23 @@
                     }
                 },
                 {
+                    "source": "/home/roman/Ushell/UshellApp/app/src/main/res/values/logo_app_background.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "53",
+                        "endOffsets": "104"
+                    },
+                    "to": {
+                        "startLines": "606",
+                        "startColumns": "4",
+                        "startOffsets": "32409",
+                        "endColumns": "53",
+                        "endOffsets": "32458"
+                    }
+                },
+                {
                     "source": "/home/roman/.gradle/caches/8.9/transforms/46ce16aa45c41f980b12c9b731a60a71/transformed/recyclerview-1.1.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
@@ -3868,23 +3902,6 @@
                         "endLines": "411,936,937,938,946,947,948,1470,10892",
                         "endColumns": "55,58,47,55,74,75,71,65,24",
                         "endOffsets": "20981,55241,55289,55345,56031,56107,56179,93145,677135"
-                    }
-                },
-                {
-                    "source": "/home/roman/AndroidStudioProjects/UshellApp/app/src/main/res/values/logo_app_background.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "53",
-                        "endOffsets": "104"
-                    },
-                    "to": {
-                        "startLines": "606",
-                        "startColumns": "4",
-                        "startOffsets": "32409",
-                        "endColumns": "53",
-                        "endOffsets": "32458"
                     }
                 },
                 {
@@ -4087,23 +4104,6 @@
                     }
                 },
                 {
-                    "source": "/home/roman/AndroidStudioProjects/UshellApp/app/src/main/res/values/themes.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "85",
-                        "endOffsets": "136"
-                    },
-                    "to": {
-                        "startLines": "6094",
-                        "startColumns": "4",
-                        "startOffsets": "416859",
-                        "endColumns": "85",
-                        "endOffsets": "416940"
-                    }
-                },
-                {
                     "source": "/home/roman/.gradle/caches/8.9/transforms/047ce9c50e4e68d4e32a05f08e8cd79c/transformed/activity-1.9.1/res/values/values.xml",
                     "from": {
                         "startLines": "2,3",
@@ -4159,20 +4159,20 @@
                     }
                 },
                 {
-                    "source": "/home/roman/AndroidStudioProjects/UshellApp/app/src/main/res/values/logo_app_al_background.xml",
+                    "source": "/home/roman/Ushell/UshellApp/app/src/main/res/values/colors.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "56",
-                        "endOffsets": "107"
+                        "startLines": "8,3,4,5,2,6,7,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "345,114,161,208,55,255,300,387",
+                        "endColumns": "41,46,46,46,58,44,44,41",
+                        "endOffsets": "382,156,203,250,109,295,340,424"
                     },
                     "to": {
-                        "startLines": "605",
-                        "startColumns": "4",
-                        "startOffsets": "32352",
-                        "endColumns": "56",
-                        "endOffsets": "32404"
+                        "startLines": "545,773,774,775,782,787,788,791",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "28185,44485,44532,44579,45037,45382,45427,45593",
+                        "endColumns": "41,46,46,46,58,44,44,41",
+                        "endOffsets": "28222,44527,44574,44621,45091,45422,45467,45630"
                     }
                 },
                 {

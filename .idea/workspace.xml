@@ -24,7 +24,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/home/roman/.android/avd/Pixel_3a_API_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=3c8b3b80)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -81,7 +81,6 @@
     <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../android.jks" />
     <option name="KEY_ALIAS" value="key1" />
     <option name="REMEMBER_PASSWORDS" value="true" />
-    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,12 +91,12 @@
     &quot;assignee&quot;: &quot;Torfiks&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/U-shell/UshellDocs.git",
-    "accountId": "6daac79e-4a49-43dc-ac4c-3ff83c08f3b3"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/U-shell/UshellDocs.git&quot;,
+    &quot;accountId&quot;: &quot;6daac79e-4a49-43dc-ac4c-3ff83c08f3b3&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -110,40 +109,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "ApkExportedModule": "UshellApp.app",
-    "BundleExportedModule": "UshellApp.app",
-    "Compose Preview.CalendarMonthPreview.executor": "Run",
-    "Compose Preview.CraneHomeContent.executor": "Run",
-    "Compose Preview.ProfileScreenPreview.executor": "Run",
-    "ExportApk.ApkPathForUshellApp.app": "/home/roman/AndroidStudioProjects/UshellApp/app",
-    "ExportBundle.BundlePathForUshellApp.app": "/home/roman/AndroidStudioProjects/UshellApp/app",
-    "PROJECT_TRUSTED_KEY": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "/home/roman/AndroidStudioProjects/UshellApp/app/src/main/res/drawable",
-    "last_opened_file_path": "/home/roman/Ushell/UshellApp",
-    "project.structure.last.edited": "Dependencies",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;ApkExportedModule&quot;: &quot;UshellApp.app&quot;,
+    &quot;BundleExportedModule&quot;: &quot;UshellApp.app&quot;,
+    &quot;Compose Preview.CalendarMonthPreview.executor&quot;: &quot;Run&quot;,
+    &quot;Compose Preview.CraneHomeContent.executor&quot;: &quot;Run&quot;,
+    &quot;Compose Preview.ProfileScreenPreview.executor&quot;: &quot;Run&quot;,
+    &quot;ExportApk.ApkPathForUshellApp.app&quot;: &quot;/home/roman/Ushell/UshellApp/app&quot;,
+    &quot;ExportBundle.BundlePathForUshellApp.app&quot;: &quot;/home/roman/Ushell/UshellApp/app&quot;,
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/home/roman/AndroidStudioProjects/UshellApp/app/src/main/res/drawable&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/roman/Ushell/UshellApp/app&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Dependencies&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   },
-  "keyToStringList": {
-    "ExportApk.BuildVariants": [
-      "release"
+  &quot;keyToStringList&quot;: {
+    &quot;ExportApk.BuildVariants&quot;: [
+      &quot;release&quot;
     ],
-    "kotlin-gradle-user-dirs": [
-      "/home/roman/.gradle"
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/home/roman/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="PsdUISettings">
     <option name="MODULE_TAB" value="Properties" />
   </component>

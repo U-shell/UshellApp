@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -24,50 +25,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.context = context;
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create main timetable table
-        db.execSQL(
-                "CREATE TABLE " + TABLE_NAME_MAIN + " (" +
+        try {
+            db.execSQL(
+                    "CREATE TABLE " + TABLE_NAME_MAIN + " (" +
 //                        COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_WEEK + " INTEGER, " +
-                        COLUMN_DAY_WEEK + " TEXT, " +
-                        COLUMN_NUM_LESSON + " INTEGER, " +
-                        COLUMN_TIME_START + " TIME, " +
-                        COLUMN_TIME_END + " TIME, " +
-                        COLUMN_TYPE_LESSON + " TEXT, " +
-                        COLUMN_SUBJECT + " TEXT, " +
-                        COLUMN_SUBGROUP + " INTEGER, " +
-                        COLUMN_WITH_WHOM + " TEXT, " +
-                        COLUMN_ID_GROUP + " INTEGER, " +
-                        COLUMN_CLASSROOM + " VARCHAR(150)" +
-                        ")"
-        );
+                            COLUMN_WEEK + " INTEGER, " +
+                            COLUMN_DAY_WEEK + " TEXT, " +
+                            COLUMN_NUM_LESSON + " INTEGER, " +
+                            COLUMN_TIME_START + " TIME, " +
+                            COLUMN_TIME_END + " TIME, " +
+                            COLUMN_TYPE_LESSON + " TEXT, " +
+                            COLUMN_SUBJECT + " TEXT, " +
+                            COLUMN_SUBGROUP + " INTEGER, " +
+                            COLUMN_WITH_WHOM + " TEXT, " +
+                            COLUMN_ID_GROUP + " INTEGER, " +
+                            COLUMN_CLASSROOM + " VARCHAR(150)" +
+                            ")"
+            );
 
-        // Create secondary timetable table
-        db.execSQL(
-                "CREATE TABLE " + TABLE_NAME_SECONDARY + " (" +
+            // Create secondary timetable table
+            db.execSQL(
+                    "CREATE TABLE " + TABLE_NAME_SECONDARY + " (" +
 //                        COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_DATE_LESSON + " VARCHAR(50), " +
-                        COLUMN_DAY_WEEK + " TEXT, " +
-                        COLUMN_NUM_LESSON + " INTEGER, " +
-                        COLUMN_TIME_START + " TIME, " +
-                        COLUMN_TIME_END + " TIME, " +
-                        COLUMN_TYPE_LESSON + " TEXT, " +
-                        COLUMN_SUBJECT + " TEXT, " +
-                        COLUMN_SUBGROUP + " INTEGER, " +
-                        COLUMN_WITH_WHOM + " TEXT, " +
-                        COLUMN_ID_GROUP + " INTEGER, " +
-                        COLUMN_CLASSROOM + " VARCHAR(150)" +
-                        ")"
-        );
+                            COLUMN_DATE_LESSON + " VARCHAR(50), " +
+                            COLUMN_DAY_WEEK + " TEXT, " +
+                            COLUMN_NUM_LESSON + " INTEGER, " +
+                            COLUMN_TIME_START + " TIME, " +
+                            COLUMN_TIME_END + " TIME, " +
+                            COLUMN_TYPE_LESSON + " TEXT, " +
+                            COLUMN_SUBJECT + " TEXT, " +
+                            COLUMN_SUBGROUP + " INTEGER, " +
+                            COLUMN_WITH_WHOM + " TEXT, " +
+                            COLUMN_ID_GROUP + " INTEGER, " +
+                            COLUMN_CLASSROOM + " VARCHAR(150)" +
+                            ")"
+            );
+        }catch (SQLiteException e) {
+            // Handle any errors creating the tables
+            Log.e("DatabaseHelper", "Error creating tables", e);
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_MAIN);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SECONDARY);
-
         onCreate(db);
     }
 
@@ -81,11 +85,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteTable(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS  " + TABLE_NAME_MAIN);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SECONDARY);
-    }
+//    public void deleteTable(){
+//        try {
+//            SQLiteDatabase db = this.getWritableDatabase();
+//            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_MAIN);
+//            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SECONDARY);
+//        }catch (NullPointerException e){
+//            System.out.println(e);
+//            System.out.println("deleteTable");
+//        }
+//    }
 
 
     public void addMainSchedule(
@@ -140,6 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor readAllDataMain(){
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(TABLE_NAME_MAIN, null, null, null, null, null, null);
+
     }
 
     public Cursor readAllDataSecondary(){

@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "ru.ushell.app-mergeReleaseResources-62:/values-night-v8/values-night-v8.xml",
+            "outputFile": "ru.ushell.app-mergeReleaseResources-64:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/4f8335b732bcacde237c3589794a3871/transformed/material-1.7.0/res/values-night-v8/values-night-v8.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/ea0a2f1b3f98d8180961ed1eac784f6b/transformed/core-splashscreen-1.0.1/res/values-night-v8/values-night-v8.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "85",
+                        "endOffsets": "136"
+                    }
+                },
+                {
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/f41cd9ff0204d6628f827ac5045fc137/transformed/material-1.7.0/res/values-night-v8/values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,17 +31,7 @@
                     }
                 },
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/dbf972bf9c84bed9fdb2900d8edda052/transformed/core-splashscreen-1.0.1/res/values-night-v8/values-night-v8.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "85",
-                        "endOffsets": "136"
-                    }
-                },
-                {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/53d4d395b46dc0ce3a98245021924367/transformed/appcompat-1.7.0/res/values-night-v8/values-night-v8.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/e11aa93b17bfe1d9d8ef2bf4a80dfa5a/transformed/appcompat-1.7.0/res/values-night-v8/values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

@@ -1,5 +1,6 @@
 package ru.ushell.app.ui.screens.timeTable.attendance
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -7,15 +8,22 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +43,7 @@ fun AttendanceDialog(
     lesson: Lesson,
     idGroup: Int,
     date: LocalDate,
+    status: MutableState<Boolean>,
     onDismiss: () -> Unit,
 ){
     Dialog(onDismissRequest = onDismiss) {
@@ -47,6 +56,7 @@ fun AttendanceDialog(
                 lesson=lesson,
                 idGroup=idGroup,
                 date=date,
+                status=status
             )
         }
     }
@@ -57,12 +67,14 @@ fun AttendanceDialogContext(
     lesson: Lesson,
     idGroup: Int,
     date: LocalDate,
+    status: MutableState<Boolean>,
 ){
 
     Box{
         Column {
             TopPanel(
                 lesson=lesson,
+                status=status
             )
             BodyDialog(
                 numLesson = lesson.numLesson,
@@ -77,6 +89,7 @@ fun AttendanceDialogContext(
 @Composable
 fun TopPanel(
     lesson: Lesson,
+    status: MutableState<Boolean>,
 ){
     val shape = 10.dp
     Box(
@@ -89,32 +102,58 @@ fun TopPanel(
                 shape = RoundedCornerShape(shape)
             )
     ){
-        Column(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
                     start = 25.dp,
+                    end = 25.dp,
                     top = 25.dp,
                     bottom = 20.dp
-                )
-        ) {
-            Box {
-                Text(
-                    text = lesson.subject,
-                    style = AttendanceDialogTitle
-                )
-            }
-            Box(Modifier.padding(top=5.dp)){
-                Text(
-                    text = lesson.timeLesson,
-                    style = AttendanceDialogDes
-                )
-            }
-            Box(Modifier.padding(top=5.dp)){
-                Text(
-                    text = lesson.typeLesson,
-                    style = AttendanceDialogDes
-                )
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Column(
+                verticalArrangement = Arrangement.Center
+            ){
+                Box {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+                        Text(
+                            text = lesson.subject,
+                            style = AttendanceDialogTitle
+                        )
+                        IconButton(
+                            onClick = { status.value = false },
+                            modifier = Modifier
+                                .size(20.dp),
+                        ){
+                            Icon(
+                                painterResource(id = R.drawable.dialog_clouse),
+                                contentDescription = null,
+                                tint = Color.White,
+                                modifier = Modifier
+                            )
+                        }
+                    }
+                }
+                Box(Modifier.padding(top=5.dp)){
+                    Text(
+                        text = lesson.timeLesson,
+                        style = AttendanceDialogDes
+                    )
+                }
+                Box(Modifier.padding(top=5.dp)){
+                    Text(
+                        text = lesson.typeLesson,
+                        style = AttendanceDialogDes
+                    )
+                }
             }
         }
     }
@@ -127,11 +166,14 @@ fun BodyDialog(
     subgroup: Int,
     date: LocalDate,
 ){
+    Log.d("attendanceGroupList","r")
+
     val attendanceGroupList: ArrayList<AttendanceGroup> =
         AttendanceGroup.AttendanceGroupForData(
             numLesson,
             subgroup
         )
+    Log.d("attendanceGroupList",attendanceGroupList.size.toString())
 
     Box(modifier = Modifier
         .fillMaxWidth()
@@ -213,10 +255,14 @@ fun AttendanceDialogPreview(){
         1,
         999,
         )
+    val status = remember {
+        mutableStateOf(false)
+    }
     AttendanceDialog(
         lesson=lesson,
         idGroup=1,
+        date = CalendarUtils.DataNow(),
         onDismiss = {true},
-        date = CalendarUtils.DataNow()
+        status = status
     )
 }

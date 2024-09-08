@@ -1,22 +1,22 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="ru.ushell.app"
-4    android:versionCode="2"
-5    android:versionName="4.4.1" >
+4    android:versionCode="4"
+5    android:versionName="4.3.2" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:10:5-67
-11-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:10:22-64
+11-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:10:5-67
+11-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:10:22-64
 12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-12-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:11:5-75
-12-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:11:22-73
+12-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:11:5-75
+12-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:11:22-73
 13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:12:5-79
-13-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:12:22-76
+13-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:12:5-79
+13-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:12:22-76
 14
 15    <permission
 15-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
@@ -30,63 +30,63 @@
 19-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
 20
 21    <application
-21-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:14:5-43:19
+21-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:14:5-43:19
 22        android:allowBackup="true"
-22-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:15:9-35
+22-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:15:9-35
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 23-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 24        android:dataExtractionRules="@xml/data_extraction_rules"
-24-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:16:9-65
+24-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:16:9-65
 25        android:debuggable="true"
 26        android:extractNativeLibs="false"
 27        android:fullBackupContent="@xml/backup_rules"
-27-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:17:9-54
+27-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:17:9-54
 28        android:icon="@mipmap/logo_app_al"
-28-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:20:9-43
+28-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:20:9-43
 29        android:label="@string/app_name"
-29-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:18:9-41
+29-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:18:9-41
 30        android:logo="@mipmap/logo_app_al"
-30-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:19:9-43
+30-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:19:9-43
 31        android:roundIcon="@mipmap/logo_app_al_round"
-31-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:21:9-54
+31-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:21:9-54
 32        android:screenOrientation="portrait"
-32-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:22:9-45
+32-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:22:9-45
 33        android:supportsRtl="true"
-33-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:23:9-35
+33-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:23:9-35
 34        android:testOnly="true"
 35        android:theme="@style/Theme.UshellApp"
-35-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:25:9-47
+35-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:25:9-47
 36        android:usesCleartextTraffic="true" >
-36-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:24:9-44
+36-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:24:9-44
 37        <activity
-37-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:28:9-42:20
+37-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:28:9-42:20
 38            android:name="ru.ushell.app.MainActivity"
-38-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:29:13-41
+38-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:29:13-41
 39            android:exported="true"
-39-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:30:13-36
+39-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:30:13-36
 40            android:forceDarkAllowed="false"
-40-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:32:13-45
+40-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:32:13-45
 41            android:screenOrientation="portrait"
-41-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:31:13-49
+41-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:31:13-49
 42            android:theme="@style/Theme.UshellApp" >
-42-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:33:13-51
+42-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:33:13-51
 43            <intent-filter>
-43-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:35:13-38:29
+43-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:35:13-38:29
 44                <action android:name="android.intent.action.MAIN" />
-44-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:36:17-69
-44-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:36:25-66
+44-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:36:17-69
+44-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:36:25-66
 45
 46                <category android:name="android.intent.category.LAUNCHER" />
-46-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:37:17-77
-46-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:37:27-74
+46-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:37:17-77
+46-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:37:27-74
 47            </intent-filter>
 48
 49            <meta-data
-49-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:39:13-41:35
+49-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:39:13-41:35
 50                android:name="android.app.lib_name"
-50-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:40:17-52
+50-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:40:17-52
 51                android:value="" />
-51-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:41:17-33
+51-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:41:17-33
 52        </activity>
 53        <activity
 53-->[androidx.compose.ui:ui-tooling-android:1.6.8] /home/roman/.gradle/caches/8.9/transforms/6f953737d48ceb43bcc31a4724ce8ddd/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39

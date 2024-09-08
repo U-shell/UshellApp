@@ -60,9 +60,8 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         User.getInstance(this)
-        if (containsValueGroup()) {
-            Service(this).updateData()
-        }
+        Service(this).updateData()
+
 //        TODO("подумать какие функции необходимо вызывать при первом заходе пользователя")
     }
 

@@ -90,7 +90,6 @@ public class RequestAttendance {
     }
 
     public static void getGroupAttendance(Context context, String DataLesson, Integer IdGroup, AttendanceGroupDayCallback callback){
-
         RetrofitService retrofitService = new RetrofitService();
         BodyRequestTokenIdentifier tokenIdentifier = new BodyRequestTokenIdentifier();
 

@@ -4,24 +4,7 @@
             "outputFile": "ru.ushell.app.test.app-mergeDebugAndroidTestResources-32:/values-ja/values-ja.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/res/values-ja/values-ja.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,147,247,341,437,530,623,724",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "142,242,336,432,525,618,719,820"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,23",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,297,391,487,580,673,1870",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "192,292,386,482,575,668,769,1966"
-                    }
-                },
-                {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/c833dd55b9d6e422657a638e4f0eef87/transformed/ui-release/res/values-ja/values-ja.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/305511bcb7d1d493f71de030a1e5e958/transformed/ui-release/res/values-ja/values-ja.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "774,860,938,1027,1124,1207,1285,1363,1448,1523,1587,1651,1725,1801,1971,2047,2112",
                         "endColumns": "85,77,88,96,82,77,77,84,74,63,63,73,75,68,75,64,116",
                         "endOffsets": "855,933,1022,1119,1202,1280,1358,1443,1518,1582,1646,1720,1796,1865,2042,2107,2224"
+                    }
+                },
+                {
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/res/values-ja/values-ja.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,147,247,341,437,530,623,724",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "142,242,336,432,525,618,719,820"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,23",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,197,297,391,487,580,673,1870",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "192,292,386,482,575,668,769,1966"
                     }
                 }
             ]

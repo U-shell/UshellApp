@@ -33,6 +33,7 @@ drawable calendar_border
 drawable calendar_month_arrow_botton
 drawable calendar_month_arrow_left
 drawable calendar_month_arrow_right
+drawable dialog_clouse
 drawable drawer_arrow
 drawable drawer_close
 drawable drawer_edit_profile
@@ -43,6 +44,8 @@ drawable drawer_setting
 drawable drawer_theme
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable icon_cercal_menu
+drawable icon_search
 drawable logo_app
 drawable logo_app_action
 drawable logo_app_foreground
@@ -69,15 +72,21 @@ mipmap logo_app_al
 mipmap logo_app_al_round
 string Attend
 string FLMname
+string Search
 string app_name
 string auth_email
 string auth_enter
 string auth_password
 string auth_set_data
 string cancellation
+string chat
 string drawer_exit
+string elected
+string group
+string menu
 string profile_user_info
 string profile_user_name
+string room
 string start_auth
 string start_auth_button
 string start_sing_in
@@ -86,6 +95,7 @@ string start_welcome_text
 string timetable
 string timetable_no_lesson
 string title_activity_splash_screen
+string your
 style Theme.UshellApp
 xml backup_rules
 xml data_extraction_rules

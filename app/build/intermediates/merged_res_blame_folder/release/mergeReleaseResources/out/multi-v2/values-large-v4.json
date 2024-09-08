@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "ru.ushell.app-mergeReleaseResources-62:/values-large-v4/values-large-v4.xml",
+            "outputFile": "ru.ushell.app-mergeReleaseResources-64:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/53d4d395b46dc0ce3a98245021924367/transformed/appcompat-1.7.0/res/values-large-v4/values-large-v4.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/e11aa93b17bfe1d9d8ef2bf4a80dfa5a/transformed/appcompat-1.7.0/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/4f8335b732bcacde237c3589794a3871/transformed/material-1.7.0/res/values-large-v4/values-large-v4.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/f41cd9ff0204d6628f827ac5045fc137/transformed/material-1.7.0/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,10",
                         "startColumns": "4,4,4,4",

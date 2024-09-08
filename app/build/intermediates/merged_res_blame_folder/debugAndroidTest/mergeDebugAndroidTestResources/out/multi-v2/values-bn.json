@@ -4,7 +4,7 @@
             "outputFile": "ru.ushell.app.test.app-mergeDebugAndroidTestResources-32:/values-bn/values-bn.xml",
             "map": [
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/res/values-bn/values-bn.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/res/values-bn/values-bn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/roman/.gradle/caches/8.9/transforms/c833dd55b9d6e422657a638e4f0eef87/transformed/ui-release/res/values-bn/values-bn.xml",
+                    "source": "/home/roman/.gradle/caches/8.9/transforms/305511bcb7d1d493f71de030a1e5e958/transformed/ui-release/res/values-bn/values-bn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

@@ -33,6 +33,7 @@ drawable calendar_border
 drawable calendar_month_arrow_botton
 drawable calendar_month_arrow_left
 drawable calendar_month_arrow_right
+drawable dialog_clouse
 drawable drawer_arrow
 drawable drawer_close
 drawable drawer_edit_profile

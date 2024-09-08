@@ -96,6 +96,7 @@ fun LessonItem(
                     lesson = lesson,
                     date = date,
                     idGroup = idGroup,
+                    status = showAttendance,
                     onDismiss = {
                         showAttendance.value = false
                     },

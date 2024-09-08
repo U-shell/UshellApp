@@ -1,154 +1,170 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="ru.ushell.app"
-4    android:versionCode="2"
-5    android:versionName="4.4.1" >
+4    android:versionCode="4"
+5    android:versionName="4.3.2" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:10:5-67
-11-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:10:22-64
-12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:11:5-79
-12-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:11:22-76
-13
-14    <permission
-14-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
-15        android:name="ru.ushell.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-15-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
-16        android:protectionLevel="signature" />
-16-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
-17
-18    <uses-permission android:name="ru.ushell.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-18-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
-18-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
-19
-20    <application
-20-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:13:5-42:19
-21        android:allowBackup="true"
-21-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:14:9-35
-22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-22-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/436d4a094baeefabda7e25391aed9c0f/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
-23        android:dataExtractionRules="@xml/data_extraction_rules"
-23-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:15:9-65
-24        android:extractNativeLibs="false"
-25        android:fullBackupContent="@xml/backup_rules"
-25-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:16:9-54
-26        android:icon="@mipmap/logo_app_al"
-26-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:19:9-43
-27        android:label="@string/app_name"
-27-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:17:9-41
-28        android:logo="@mipmap/logo_app_al"
-28-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:18:9-43
-29        android:roundIcon="@mipmap/logo_app_al_round"
-29-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:20:9-54
-30        android:screenOrientation="portrait"
-30-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:21:9-45
-31        android:supportsRtl="true"
-31-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:22:9-35
-32        android:theme="@style/Theme.UshellApp"
-32-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:24:9-47
-33        android:usesCleartextTraffic="true" >
-33-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:23:9-44
-34        <activity
-34-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:27:9-41:20
-35            android:name="ru.ushell.app.MainActivity"
-35-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:28:13-41
-36            android:exported="true"
-36-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:29:13-36
-37            android:forceDarkAllowed="false"
-37-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:31:13-45
-38            android:screenOrientation="portrait"
-38-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:30:13-49
-39            android:theme="@style/Theme.UshellApp" >
-39-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:32:13-51
-40            <intent-filter>
-40-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:34:13-37:29
-41                <action android:name="android.intent.action.MAIN" />
-41-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:35:17-69
-41-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:35:25-66
-42
-43                <category android:name="android.intent.category.LAUNCHER" />
-43-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:36:17-77
-43-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:36:27-74
-44            </intent-filter>
-45
-46            <meta-data
-46-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:38:13-40:35
-47                android:name="android.app.lib_name"
-47-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:39:17-52
-48                android:value="" />
-48-->/home/roman/AndroidStudioProjects/UshellApp/app/src/main/AndroidManifest.xml:40:17-33
-49        </activity>
-50
-51        <provider
-51-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ea69b216de1c748e94316fa258ae9fab/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-52            android:name="androidx.startup.InitializationProvider"
-52-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ea69b216de1c748e94316fa258ae9fab/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-53            android:authorities="ru.ushell.app.androidx-startup"
-53-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ea69b216de1c748e94316fa258ae9fab/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-54            android:exported="false" >
-54-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ea69b216de1c748e94316fa258ae9fab/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-55            <meta-data
-55-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ea69b216de1c748e94316fa258ae9fab/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-56                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-56-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ea69b216de1c748e94316fa258ae9fab/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-57                android:value="androidx.startup" />
-57-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ea69b216de1c748e94316fa258ae9fab/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-58            <meta-data
-58-->[androidx.lifecycle:lifecycle-process:2.8.4] /home/roman/.gradle/caches/8.9/transforms/87fe72282a902d1b76e138fe4d1df453/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:29:13-31:52
-59                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-59-->[androidx.lifecycle:lifecycle-process:2.8.4] /home/roman/.gradle/caches/8.9/transforms/87fe72282a902d1b76e138fe4d1df453/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:30:17-78
-60                android:value="androidx.startup" />
-60-->[androidx.lifecycle:lifecycle-process:2.8.4] /home/roman/.gradle/caches/8.9/transforms/87fe72282a902d1b76e138fe4d1df453/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:31:17-49
-61            <meta-data
-61-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-62                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-62-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-63                android:value="androidx.startup" />
-63-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-64        </provider>
-65
-66        <receiver
-66-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-67            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-67-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-68            android:directBootAware="false"
-68-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-69            android:enabled="true"
-69-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-70            android:exported="true"
-70-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-71            android:permission="android.permission.DUMP" >
-71-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-72            <intent-filter>
-72-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-73                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-73-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-73-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-74            </intent-filter>
-75            <intent-filter>
-75-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-76                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-76-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-76-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-77            </intent-filter>
-78            <intent-filter>
-78-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-79                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-79-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-79-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-80            </intent-filter>
-81            <intent-filter>
-81-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-82                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-82-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-82-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/316732785c661cb1005551b443d167f9/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-83            </intent-filter>
-84        </receiver>
-85    </application>
-86
-87</manifest>
+11-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:10:5-67
+11-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:10:22-64
+12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+12-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:11:5-75
+12-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:11:22-73
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:12:5-79
+13-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:12:22-76
+14
+15    <permission
+15-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+16        android:name="ru.ushell.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+16-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+17        android:protectionLevel="signature" />
+17-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+18
+19    <uses-permission android:name="ru.ushell.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+19-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+19-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+20
+21    <application
+21-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:14:5-43:19
+22        android:allowBackup="true"
+22-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:15:9-35
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.13.1] /home/roman/.gradle/caches/8.9/transforms/65c66b56a47f01a212e8bed263d54009/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+24        android:dataExtractionRules="@xml/data_extraction_rules"
+24-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:16:9-65
+25        android:extractNativeLibs="false"
+26        android:fullBackupContent="@xml/backup_rules"
+26-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:17:9-54
+27        android:icon="@mipmap/logo_app_al"
+27-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:20:9-43
+28        android:label="@string/app_name"
+28-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:18:9-41
+29        android:logo="@mipmap/logo_app_al"
+29-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:19:9-43
+30        android:roundIcon="@mipmap/logo_app_al_round"
+30-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:21:9-54
+31        android:screenOrientation="portrait"
+31-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:22:9-45
+32        android:supportsRtl="true"
+32-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:23:9-35
+33        android:theme="@style/Theme.UshellApp"
+33-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:25:9-47
+34        android:usesCleartextTraffic="true" >
+34-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:24:9-44
+35        <activity
+35-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:28:9-42:20
+36            android:name="ru.ushell.app.MainActivity"
+36-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:29:13-41
+37            android:exported="true"
+37-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:30:13-36
+38            android:forceDarkAllowed="false"
+38-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:32:13-45
+39            android:screenOrientation="portrait"
+39-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:31:13-49
+40            android:theme="@style/Theme.UshellApp" >
+40-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:33:13-51
+41            <intent-filter>
+41-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:35:13-38:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:36:17-69
+42-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:36:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:37:17-77
+44-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:37:27-74
+45            </intent-filter>
+46
+47            <meta-data
+47-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:39:13-41:35
+48                android:name="android.app.lib_name"
+48-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:40:17-52
+49                android:value="" />
+49-->/home/roman/Ushell/UshellApp/app/src/main/AndroidManifest.xml:41:17-33
+50        </activity>
+51
+52        <provider
+52-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ee692541317096004e4c697b2353220b/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+53            android:name="androidx.startup.InitializationProvider"
+53-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ee692541317096004e4c697b2353220b/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+54            android:authorities="ru.ushell.app.androidx-startup"
+54-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ee692541317096004e4c697b2353220b/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+55            android:exported="false" >
+55-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ee692541317096004e4c697b2353220b/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+56            <meta-data
+56-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ee692541317096004e4c697b2353220b/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+57                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+57-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ee692541317096004e4c697b2353220b/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+58                android:value="androidx.startup" />
+58-->[androidx.emoji2:emoji2:1.3.0] /home/roman/.gradle/caches/8.9/transforms/ee692541317096004e4c697b2353220b/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+59            <meta-data
+59-->[androidx.lifecycle:lifecycle-process:2.8.4] /home/roman/.gradle/caches/8.9/transforms/e06ae28069fef882de0fd92fd99dc31c/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:29:13-31:52
+60                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+60-->[androidx.lifecycle:lifecycle-process:2.8.4] /home/roman/.gradle/caches/8.9/transforms/e06ae28069fef882de0fd92fd99dc31c/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:30:17-78
+61                android:value="androidx.startup" />
+61-->[androidx.lifecycle:lifecycle-process:2.8.4] /home/roman/.gradle/caches/8.9/transforms/e06ae28069fef882de0fd92fd99dc31c/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:31:17-49
+62            <meta-data
+62-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+63                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+63-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+64                android:value="androidx.startup" />
+64-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+65        </provider>
+66
+67        <uses-library
+67-->[androidx.window:window:1.0.0] /home/roman/.gradle/caches/8.9/transforms/039390edb38840f5e4cb3325a0cbbee7/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+68            android:name="androidx.window.extensions"
+68-->[androidx.window:window:1.0.0] /home/roman/.gradle/caches/8.9/transforms/039390edb38840f5e4cb3325a0cbbee7/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+69            android:required="false" />
+69-->[androidx.window:window:1.0.0] /home/roman/.gradle/caches/8.9/transforms/039390edb38840f5e4cb3325a0cbbee7/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+70        <uses-library
+70-->[androidx.window:window:1.0.0] /home/roman/.gradle/caches/8.9/transforms/039390edb38840f5e4cb3325a0cbbee7/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+71            android:name="androidx.window.sidecar"
+71-->[androidx.window:window:1.0.0] /home/roman/.gradle/caches/8.9/transforms/039390edb38840f5e4cb3325a0cbbee7/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+72            android:required="false" />
+72-->[androidx.window:window:1.0.0] /home/roman/.gradle/caches/8.9/transforms/039390edb38840f5e4cb3325a0cbbee7/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+73
+74        <receiver
+74-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+75            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+75-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+76            android:directBootAware="false"
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+77            android:enabled="true"
+77-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+78            android:exported="true"
+78-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+79            android:permission="android.permission.DUMP" >
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+80            <intent-filter>
+80-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+81                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+82            </intent-filter>
+83            <intent-filter>
+83-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+84                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+84-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+84-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+85            </intent-filter>
+86            <intent-filter>
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+87                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+88            </intent-filter>
+89            <intent-filter>
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+90                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/roman/.gradle/caches/8.9/transforms/626b40c61dae06444f3dd0c7266907fd/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+91            </intent-filter>
+92        </receiver>
+93    </application>
+94
+95</manifest>
