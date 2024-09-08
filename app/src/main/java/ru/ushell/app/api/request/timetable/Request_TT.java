@@ -176,7 +176,8 @@ public class Request_TT {
     private static Time convertTime(String TimeLesson){
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
-        Time timeLess = null;
+        Time timeLess;
+
         try {
             timeLess = new Time(Objects.requireNonNull(sdf.parse(TimeLesson)).getTime());
             return timeLess;
@@ -190,7 +191,7 @@ public class Request_TT {
     private static Date convertDate(String DateLesson){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date dateLesson = null;
+        Date dateLesson;
         try {
             dateLesson = new Date(Objects.requireNonNull(format.parse(DateLesson)).getTime());
             return dateLesson;
