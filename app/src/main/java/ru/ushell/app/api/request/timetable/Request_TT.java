@@ -90,6 +90,7 @@ public class Request_TT {
     }
 
     private static void RequestProcessing(Map<String, Object> Schedule, String NameSchedule , DatabaseHelper databaseHelper){
+
         int week = -1;
         Date dateLesson = null;
         for (Map.Entry<String, Object> entry : Schedule.entrySet()) {
