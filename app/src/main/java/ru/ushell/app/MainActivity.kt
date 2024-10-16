@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
         User.getInstance(this)
         Service(this).updateData()
 
-//        TODO("подумать какие функции необходимо вызывать при первом заходе пользователя")
+//        TODO("подумать какие функции необходимо вызывать при первом заходе пользователя ")
     }
 
     override fun onDestroy() {
