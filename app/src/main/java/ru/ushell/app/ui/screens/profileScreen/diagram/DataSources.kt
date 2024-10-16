@@ -8,7 +8,7 @@ object DataSources {
 
     val allLearnedProgresss = listOf(
         Progress(
-            name = "просмотренные \nлекций",
+            name = "Просмотренные\nлекций",
             allClasses = 20,
             finishedClasses = 0,
             level = Level.Easy,
@@ -17,7 +17,7 @@ object DataSources {
             baseColor = Color(0xFFF2F4FF)
         ),
         Progress(
-            name = "Spanish\nLanguage",
+            name = "Посещаемость\nзанятий",
             allClasses = 30,
             finishedClasses = 0,
             level = Level.Medium,
@@ -27,7 +27,7 @@ object DataSources {
             baseColor = Color(0xFFFEEAD9)
         ),
         Progress(
-            name = "Vietnamese\nLanguage",
+            name = "Рейтинг\n ",
             allClasses = 20,
             finishedClasses = 0,
             level = Level.Hard,

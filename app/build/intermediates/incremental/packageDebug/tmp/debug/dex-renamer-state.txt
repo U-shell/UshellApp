@@ -1,4 +1,4 @@
-#Sun Sep 08 22:20:49 MSK 2024
+#Wed Sep 11 00:51:08 MSK 2024
 base.0=/home/roman/Ushell/UshellApp/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/home/roman/Ushell/UshellApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.10=/home/roman/Ushell/UshellApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex

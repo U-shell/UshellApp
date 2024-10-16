@@ -1,4 +1,4 @@
-#Thu Sep 05 20:09:32 MSK 2024
+#Wed Sep 11 00:51:20 MSK 2024
 base.0=/home/roman/Ushell/UshellApp/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
 base.1=/home/roman/Ushell/UshellApp/app/build/intermediates/dex/release/mergeDexRelease/classes2.dex
 path.0=classes.dex

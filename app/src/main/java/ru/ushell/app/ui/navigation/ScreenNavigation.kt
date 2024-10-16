@@ -5,14 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Badge
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -86,17 +82,26 @@ fun BottomBar(navController: NavHostController) {
 
     Row(
         modifier = Modifier
-            .clip(shape = RoundedCornerShape(shapes))
+            .clip(
+                shape = RoundedCornerShape(
+                    topStart = shapes,
+                    topEnd = shapes
+                )
+            )
             .border(
                 width = 1.5f.dp,
                 color = Color.White,
-                shape = RoundedCornerShape(shapes)
+                shape = RoundedCornerShape(
+                    topStart = shapes,
+                    topEnd = shapes
+                )
             )
+            .height(70.dp)
             .background(UshellBackground)
             .fillMaxWidth()
         ,
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         screens.forEach { screen ->
             AddItem(
@@ -126,8 +131,7 @@ fun AddItem(
 
     Box(
         modifier = Modifier
-            .height(70.dp)
-            .clip(CircleShape)
+            .clip(RoundedCornerShape(10.dp))
             .background(background)
             .clickable(
                 onClick = {
@@ -140,23 +144,19 @@ fun AddItem(
     ) {
         Row(
             modifier = Modifier
-                .padding(
-                    start = 10.dp,
-                    end = 10.dp,
-                    top = 23.dp,
-                    bottom = 23.dp
-                ),
+                .padding(5.dp)
+            ,
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             if(screen.title == "Report"){
-                BadgedBox(badge = { Badge { Text("6") } }) {
+//                BadgedBox(badge = { Badge { Text("6") } }) {
                     Icon(
                         painter = painterResource(id = if (selected) screen.iconFocused else screen.icon),
                         contentDescription = "icon",
                         tint = contentColor
                     )
-                }
+//                }
             }else{
                 Icon(
                     painter = painterResource(id = if (selected) screen.iconFocused else screen.icon),

@@ -180,7 +180,7 @@ fun LessonItemContext(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ){
                             Text(
-                                text = lesson.timeLesson,
+                                text = lesson.typeLesson,
                                 style = TimeTableTextLessonItem
                             )
                             Text(

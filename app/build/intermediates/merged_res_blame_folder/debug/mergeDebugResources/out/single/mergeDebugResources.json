@@ -12,10 +12,6 @@
         "source": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-main-71:/anim/anim_fade_out.xml"
     },
     {
-        "merged": "ru.ushell.app-debug-69:/drawable_dialog_clouse.xml.flat",
-        "source": "ru.ushell.app-main-71:/drawable/dialog_clouse.xml"
-    },
-    {
         "merged": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-debug-69:/drawable_profile_info_group.xml.flat",
         "source": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-main-71:/drawable/profile_info_group.xml"
     },
@@ -320,6 +316,10 @@
         "source": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-main-71:/drawable/calendar_border.xml"
     },
     {
+        "merged": "ru.ushell.app-debug-69:/drawable_bottom_ic_timetable.xml.flat",
+        "source": "ru.ushell.app-main-71:/drawable/bottom_ic_timetable.xml"
+    },
+    {
         "merged": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-debug-69:/font_montserrat_black.ttf.flat",
         "source": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-main-71:/font/montserrat_black.ttf"
     },
@@ -330,6 +330,10 @@
     {
         "merged": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-debug-69:/drawable_bottom_ic_timetable.xml.flat",
         "source": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-main-71:/drawable/bottom_ic_timetable.xml"
+    },
+    {
+        "merged": "ru.ushell.app-debug-69:/drawable_bottom_ic_timetable_focused.xml.flat",
+        "source": "ru.ushell.app-main-71:/drawable/bottom_ic_timetable_focused.xml"
     },
     {
         "merged": "/home/roman/.gradle/daemon/8.9/ru.ushell.app-debug-69:/mipmap-xhdpi_logo_app_al.webp.flat",

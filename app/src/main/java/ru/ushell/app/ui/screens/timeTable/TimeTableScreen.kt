@@ -25,8 +25,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -317,8 +319,12 @@ fun CalendarButton(
         ),
         shape = RoundedCornerShape(10.dp),
         border = BorderStroke(
-            width = 1.dp,
-            brush = Brush.horizontalGradient(ListColorButton)
+            width = (0.5).dp,
+            brush = Brush.linearGradient(
+                colors = ListColorButton,
+                start = Offset(0f,Float.POSITIVE_INFINITY),
+                end = Offset(Float.POSITIVE_INFINITY,0f)
+            )
         ),
     ){
         Row(

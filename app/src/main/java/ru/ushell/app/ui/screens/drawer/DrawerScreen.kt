@@ -23,7 +23,7 @@ sealed class DrawerScreen (
     data object Gadget: DrawerScreen(
         route = "Gadget",
         icon = R.drawable.drawer_gadget,
-        title = "Устройста"
+        title = "Устройства"
     )
 
     data object Setting: DrawerScreen(
