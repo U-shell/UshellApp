@@ -24,7 +24,7 @@ import ru.ushell.app.api.API;
 import ru.ushell.app.api.RetrofitService;
 import ru.ushell.app.api.response.ResponseTimeTable;
 
-public class Request_TT {
+public class RequestTT {
 
     public interface TimeTableGroupCallback {
         void onTimeTableGroupReceived(boolean infoGroupData);

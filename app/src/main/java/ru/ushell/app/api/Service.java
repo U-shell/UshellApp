@@ -3,11 +3,11 @@ package ru.ushell.app.api;
 import static ru.ushell.app.api.Service.student.updateTimetableGroup;
 import static ru.ushell.app.api.Service.teacher.requestTimetableTeacher;
 import static ru.ushell.app.api.Service.teacher.updateTimetableTeacher;
-import static ru.ushell.app.models.ModelTimeTable.attendance.Attendance.readAttendanceGroupDay;
-import static ru.ushell.app.models.ModelTimeTable.attendance.Attendance.readAttendanceStudent;
-import static ru.ushell.app.models.ModelTimeTable.lesson.Lesson.LessonsList;
 import static ru.ushell.app.models.e_class.ERoleClass.containsValueGroup;
 import static ru.ushell.app.models.e_class.ERoleClass.containsValueTeacher;
+import static ru.ushell.app.models.modelTimeTable.attendance.Attendance.readAttendanceGroupDay;
+import static ru.ushell.app.models.modelTimeTable.attendance.Attendance.readAttendanceStudent;
+import static ru.ushell.app.models.modelTimeTable.lesson.Lesson.LessonsList;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,26 +19,31 @@ import java.util.concurrent.TimeUnit;
 
 import ru.ushell.app.SQLite.DatabaseHelper;
 import ru.ushell.app.api.request.attendance.RequestAttendance;
-import ru.ushell.app.api.request.timetable.Request_TT;
-import ru.ushell.app.models.ModelTimeTable.lesson.LessonReadDb;
+import ru.ushell.app.api.request.chat.RequestMessageChat;
+import ru.ushell.app.api.request.chat.RequestUserChat;
+import ru.ushell.app.api.request.timetable.RequestTT;
 import ru.ushell.app.models.User;
+import ru.ushell.app.models.modelTimeTable.lesson.LessonReadDb;
 import ru.ushell.app.ui.utils.calendar.CalendarUtils;
 
 public class Service {
 
     @SuppressLint("StaticFieldLeak")
     public static DatabaseHelper databaseHelperMain;
-    private final Context context;
+    @SuppressLint("StaticFieldLeak")
+    private static Context context;
 
     public interface OnData {
         void onSuccess();
     }
 
+    public Service(){}
+
     public Service(Context c) {
         if (databaseHelperMain == null) {
             databaseHelperMain = new DatabaseHelper(c);
         }
-        this.context = c;
+        context = c;
     }
 
     /**
@@ -83,9 +88,9 @@ public class Service {
 
     private void requestStudentAttendance() {
         if (containsValueGroup()) {
-            RequestAttendance.getStudentAttendance(this.context, infoAttendanceStudent -> {
+            RequestAttendance.getStudentAttendance(context, infoAttendanceStudent -> {
                 try {
-                    readAttendanceStudent(this.context);
+                    readAttendanceStudent(context);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -96,12 +101,12 @@ public class Service {
     public void getAttendanceGroup(LocalDate date, Integer idGroup, OnData onLoginSuccess) {
         try {
             RequestAttendance.getGroupAttendance(
-                    this.context,
+                    context,
                     CalendarUtils.formattedDateDayAttendance(date),
                     idGroup,
                     infoAttendanceGroup -> {
                         try {
-                            readAttendanceGroupDay(this.context);
+                            readAttendanceGroupDay(context);
                             onLoginSuccess.onSuccess();
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
@@ -121,7 +126,7 @@ public class Service {
         }
 
         static void updateTimetableGroup() {
-            Request_TT.getTimeTableGroup(
+            RequestTT.getTimeTableGroup(
                     User.getIDGroup(),
                     databaseHelperMain,
                     infoGroupData -> {
@@ -144,7 +149,7 @@ public class Service {
         }
 
         static void updateTimetableTeacher(){
-            Request_TT.getTimeTableTeacher(
+            RequestTT.getTimeTableTeacher(
                     User.getIdUser(),
                     databaseHelperMain,
                     infoGroupData -> {
@@ -158,4 +163,11 @@ public class Service {
         }
     }
 
+    public void getChatUser(){
+        RequestUserChat.getAllUser();
+    }
+
+    public void getMessageChat(String senderId, String recipientId){
+        RequestMessageChat.getMessageChat(senderId,recipientId);
+    }
 }

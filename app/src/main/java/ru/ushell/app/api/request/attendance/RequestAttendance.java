@@ -22,7 +22,7 @@ import ru.ushell.app.api.response.attendance.Attendance;
 import ru.ushell.app.api.response.attendance.AttendanceGroupResponse;
 import ru.ushell.app.api.response.attendance.AttendanceStudentResponse;
 import ru.ushell.app.api.response.attendance.GroupTreeMap;
-import ru.ushell.app.models.ModelTimeTable.attendance.AttendanceAdapter;
+import ru.ushell.app.models.modelTimeTable.attendance.AttendanceAdapter;
 import ru.ushell.app.models.User;
 
 public class RequestAttendance {
