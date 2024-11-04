@@ -73,8 +73,7 @@ fun ProfileContent(
 ){
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
+            .fillMaxSize()
             .clip(RoundedCornerShape(0.dp))
             .navigationBarsPadding()
             .background(color = Color(0xFFE7E7E7))

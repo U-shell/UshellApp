@@ -75,6 +75,14 @@ dependencies {
     implementation(libs.androidx.compose.materialWindow)
 
     implementation(libs.accompanist.swiperefresh)
+    implementation(libs.androidx.constraintlayout.core)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.core)
+
+    implementation(libs.core)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.espresso.core)
 
     testImplementation(libs.junit)
 

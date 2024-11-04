@@ -1,6 +1,7 @@
 package ru.ushell.app.ui.screens.drawer
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,28 +25,35 @@ import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import ru.ushell.app.R
 
 @Composable
-fun DrawerBody(){
-    RowButton()
+fun DrawerBody(
+    navController: NavHostController
+){
+    RowButton(navController = navController)
 }
 
 @Composable
-fun RowButton(){
+fun RowButton(
+    navController: NavHostController
+){
     Column(
         modifier = Modifier
             .fillMaxWidth(),
     ) {
         Column{
             val screens = listOf(
-                DrawerScreen.EditProfile,
-                DrawerScreen.Noise,
-                DrawerScreen.Gadget
+                Drawer.EditProfile,
+                Drawer.Noise,
+                Drawer.Device,
             )
             screens.forEach { screen ->
                 ButtonDesign(
                     screen = screen,
+                    navController = navController
                 )
             }
         }
@@ -61,12 +69,13 @@ fun RowButton(){
         }
         Column{
             val screens = listOf(
-                DrawerScreen.Setting,
-                DrawerScreen.Info
+                Drawer.Setting,
+                Drawer.Info
             )
             screens.forEach { screen ->
                 ButtonDesign(
                     screen = screen,
+                    navController = navController
                 )
             }
         }
@@ -75,7 +84,10 @@ fun RowButton(){
 }
 
 @Composable
-fun ButtonDesign(screen: DrawerScreen){
+fun ButtonDesign(
+    screen: Drawer,
+    navController: NavHostController
+){
     Box(
         modifier = Modifier
             .padding(
@@ -86,6 +98,14 @@ fun ButtonDesign(screen: DrawerScreen){
                 elevation = 5.dp,
                 spotColor = Color.Transparent,
                 shape = RoundedCornerShape(10.dp)
+            )
+            .clickable(
+                onClick = {
+                    navController.navigate(screen.route) {
+                        popUpTo(navController.graph.findStartDestination().id)
+                        launchSingleTop = true
+                    }
+                }
             )
             .drawWithContent {
                 val padding = 10.dp.toPx()
@@ -128,13 +148,13 @@ fun ButtonDesign(screen: DrawerScreen){
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         Icon(
-                            painter = painterResource(id=screen.icon),
+                            painter = painterResource(id=screen.icon!!),
                             contentDescription = null
                         )
                     }
                 }
                 Text(
-                    text = screen.title,
+                    text = screen.title!!,
                     color = Color.Black,
                     fontSize = 20.sp,
                     modifier = Modifier

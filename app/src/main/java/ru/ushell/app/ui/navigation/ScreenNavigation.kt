@@ -40,24 +40,31 @@ fun ScreenNav() {
     val navControllerDrawer = rememberNavController()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val gesturesEnabled = remember { mutableStateOf(false) }
-
+    val bottomBarEnabled = remember { mutableStateOf(true) }
+//TODO: сделать переход по свайту в стороны
     DrawerNavController(
         navController = navControllerDrawer,
         drawerState = drawerState,
-        gesturesEnabled = gesturesEnabled
+        gesturesEnabled = gesturesEnabled,
+        bottomBarEnabled = bottomBarEnabled
     ) {
         Scaffold(
             modifier = Modifier
                 .navigationBarsPadding(),
             bottomBar = {
-                BottomBar(navController = navController)
+                if (bottomBarEnabled.value) {
+                    BottomBar(
+                        navController = navController
+                    )
+                }
             },
             content = {
                 Box {
                     BottomNavGraph(
                         navController = navController,
                         drawerState = drawerState,
-                        gesturesEnabled = gesturesEnabled
+                        gesturesEnabled = gesturesEnabled,
+                        bottomBarEnabled = bottomBarEnabled
                     )
                 }
             }
@@ -66,14 +73,15 @@ fun ScreenNav() {
 }
 
 @Composable
-fun BottomBar(navController: NavHostController) {
-
+fun BottomBar(
+    navController: NavHostController
+) {
     val screens = listOf(
-        BottomBarScreen.Profile,
-        BottomBarScreen.Room,
-        BottomBarScreen.TimeTable,
-        BottomBarScreen.Chat,
-        BottomBarScreen.Analytic
+        NavigationBottomBar.Profile,
+        NavigationBottomBar.Room,
+        NavigationBottomBar.TimeTable,
+        NavigationBottomBar.Chat,
+        NavigationBottomBar.Analytic
     )
 
     val navStackBackEntry by navController.currentBackStackEntryAsState()
@@ -116,7 +124,7 @@ fun BottomBar(navController: NavHostController) {
 
 @Composable
 fun AddItem(
-    screen: BottomBarScreen,
+    screen: NavigationBottomBar,
     currentDestination: NavDestination?,
     navController: NavHostController
 ) {
@@ -177,7 +185,7 @@ fun AddItem(
 
 @Composable
 @Preview
-fun BottomNavsPreview() {
+fun ScreenNavPreview() {
     User.getInstance(LocalContext.current)
     ScreenNav()
 }

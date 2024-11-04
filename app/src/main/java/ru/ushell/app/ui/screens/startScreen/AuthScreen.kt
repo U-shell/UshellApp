@@ -62,7 +62,9 @@ import ru.ushell.app.ui.theme.ListColorButton
 fun AuthorizeScreen(
     navController: NavHostController
 ){
-    AuthorizeContext(navController=navController)
+    AuthorizeContext(
+        navController=navController
+    )
 }
 
 @Composable

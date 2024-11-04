@@ -53,6 +53,7 @@ fun UshellAppTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
+            window.statusBarColor = Color.Transparent.toArgb()
             window.navigationBarColor = SplashScreenBackground.toArgb()
             WindowCompat.setDecorFitsSystemWindows(window,false)
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
@@ -99,7 +100,74 @@ fun NoNavigationBarColorTheme(
         content = content
     )
 }
+@Composable
+fun NoSystemBarColorTheme(
+//    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = false,
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit,
+) {
+    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.navigationBarColor = Color.Transparent.toArgb()
+            window.statusBarColor = Color.Transparent.toArgb()
+            WindowCompat.setDecorFitsSystemWindows(window,false)
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+        }
+    }
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = ushellTypography,
+        content = content
+    )
+}
+@Composable
+fun SystemBarColorTheme(
+//    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = false,
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit,
+) {
+    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.navigationBarColor = SplashScreenBackground.toArgb()
+            window.statusBarColor = UshellBackground.toArgb()
+            WindowCompat.setDecorFitsSystemWindows(window,false)
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+        }
+    }
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = ushellTypography,
+        content = content
+    )
+}
 @Composable
 fun Darkteam(
 //    darkTheme: Boolean = isSystemInDarkTheme(),

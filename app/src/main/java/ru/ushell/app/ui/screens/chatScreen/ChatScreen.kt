@@ -12,6 +12,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,19 +26,74 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 import ru.ushell.app.R
+import ru.ushell.app.api.Service
 import ru.ushell.app.ui.screens.SearchPanel
 import ru.ushell.app.ui.screens.TopPanelScreen
 import ru.ushell.app.ui.screens.backgroundImagesSmall
+import ru.ushell.app.ui.screens.chatScreen.chat.MessengerBodyContext
+import ru.ushell.app.ui.screens.chatScreen.dialog.DialogScreen
+import ru.ushell.app.ui.theme.NoSystemBarColorTheme
+import ru.ushell.app.ui.theme.SystemBarColorTheme
 import ru.ushell.app.ui.theme.TimeTableText
+import ru.ushell.app.ui.theme.UshellAppTheme
 
 @Composable
-fun ChatScreen() {
-    ChatScreenContext()
+fun ChatScreen(
+    bottomBarEnabled: MutableState<Boolean>,
+) {
+    var isRefreshing by remember { mutableStateOf(true) }
+    val navController = rememberNavController()
+
+    LaunchedEffect(isRefreshing){
+        if (isRefreshing) {
+
+            Service().getChatUser()
+            delay(2000)
+            isRefreshing = false
+        }
+    }
+
+    ChatNav(
+        navController=navController,
+        bottomBarEnabled=bottomBarEnabled
+    )
 }
 
 @Composable
-fun ChatScreenContext(){
+fun ChatNav(
+    navController: NavHostController,
+    bottomBarEnabled: MutableState<Boolean>,
+){
+    NavHost(
+        navController = navController,
+        startDestination = RoutesChat.ScreenChat.route
+    ) {
+        composable(RoutesChat.ScreenChat.route) {
+            bottomBarEnabled.value = true
+            UshellAppTheme {
+                ChatContext(navController)
+            }
+        }
+        composable(RoutesChat.ScreenDialog.route) {
+            bottomBarEnabled.value = false
+
+            SystemBarColorTheme{
+                DialogScreen(navController)
+            }
+        }
+    }
+}
+
+@Composable
+fun ChatContext(
+    navController: NavHostController
+) {
     Column(
         modifier = Modifier
             .fillMaxHeight()
@@ -80,7 +141,7 @@ fun ChatScreenContext(){
                     }
                     .navigationBarsPadding()
             ) {
-                MessengerBodyContext()
+                MessengerBodyContext(navController)
             }
         }
     }
@@ -127,8 +188,18 @@ fun TT_Chat() {
     }
 }
 
+sealed class RoutesChat(
+    val route: String,
+) {
+    data object ScreenChat : RoutesChat("chat_chat")
+    data object ScreenDialog : RoutesChat("chat_dialog")
+}
+
 @Preview
 @Composable
 fun ChatScreenPreview(){
-    ChatScreen()
+    val bottomBarEnabled = remember { mutableStateOf(true) }
+    ChatScreen(
+        bottomBarEnabled=bottomBarEnabled
+    )
 }

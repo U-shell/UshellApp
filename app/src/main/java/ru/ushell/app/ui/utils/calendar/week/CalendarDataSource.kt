@@ -1,6 +1,6 @@
 package ru.ushell.app.ui.utils.calendar.week
 
-import ru.ushell.app.models.ModelTimeTable.lesson.Lesson.LessonIsDate
+import ru.ushell.app.models.modelTimeTable.lesson.Lesson.LessonIsDate
 import java.time.LocalDate
 import ru.ushell.app.ui.utils.calendar.CalendarUtils.daysInWeekArray
 

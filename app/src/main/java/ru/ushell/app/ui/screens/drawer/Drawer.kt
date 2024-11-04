@@ -1,164 +1,44 @@
 package ru.ushell.app.ui.screens.drawer
 
-import android.annotation.SuppressLint
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDrawerState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.launch
 import ru.ushell.app.R
-import ru.ushell.app.models.User
-import ru.ushell.app.ui.navigation.RoutesExit
-import ru.ushell.app.ui.theme.DrawerExitButtonBackgroundColor
-import ru.ushell.app.ui.theme.DrawerExitButtonText
-import ru.ushell.app.ui.theme.UshellAppTheme
 
-@Composable
-fun ModalDrawer(
-    drawerState: DrawerState,
-    navController: NavHostController,
-    content: @Composable () -> Unit,
-    gesturesEnabled: MutableState<Boolean>,
+sealed class Drawer (
+    val route: String,
+    val icon: Int? = 0,
+    val title: String? = " ",
+    val checkState: Boolean? = false
 ){
-
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        scrimColor = Color.Black.copy(alpha = 0.3f),
-        gesturesEnabled = gesturesEnabled.value,
-        content = content,
-        drawerContent = {
-            ModalDrawerSheet(
-                modifier = Modifier
-                    .width(320.dp)
-                    .navigationBarsPadding(),
-            ) {
-                Drawer(
-                    drawerState = drawerState,
-                    navController=navController,
-                )
-            }
-        },
+    data object DrawerContext: Drawer(
+        route = "DrawerContext"
     )
-}
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Composable
-fun Drawer(
-    navController: NavHostController,
-    drawerState: DrawerState = rememberDrawerState(DrawerValue.Open),
-) {
-    Scaffold(
-        bottomBar = {
-            ButtonExit(
-                navController=navController,
-                drawerState=drawerState
-            )
-        },
-    ){
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White)
-        ) {
-            DrawerHeader(drawerState)
-            DrawerBody()
-        }
-    }
-}
-
-@Composable
-fun ButtonExit(
-    drawerState: DrawerState,
-    navController: NavHostController,
-) {
-    val showExit = remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
-
-    Box {
-        Button(
-            onClick = {
-                scope.launch { drawerState.close() }
-                navController.navigate(RoutesExit.StartScreen.route){
-                    popUpTo(RoutesExit.DialogExit.route)
-                    launchSingleTop = true
-                }
-                showExit.value = true
-            },
-            shape = RoundedCornerShape(15.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = DrawerExitButtonBackgroundColor
-            ),
-            modifier = Modifier
-                .padding(start = 20.dp, end = 20.dp, bottom = 50.dp)
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(id = R.string.drawer_exit),
-                style = DrawerExitButtonText
-            )
-        }
-    }
-    if (showExit.value) {
-        Exit()
-//        ElevateWindowDialog(
-//            scope=scope,
-//            showExit=showExit,
-//            drawerState=drawerState,
-//            navController=navController,
-//            onDismiss = {
-//                showExit.value = false
-//            },
-//        )
-    }
-}
-
-@Preview
-@Composable
-fun TopNavPreview(){
-    val navController = rememberNavController()
-
-    ButtonExit(
-        drawerState=rememberDrawerState(DrawerValue.Open),
-        navController=navController
+    data object EditProfile: Drawer(
+        route = "EditProfile",
+        icon = R.drawable.drawer_edit_profile,
+        title = "Профиль"
     )
-}
+    data object Noise: Drawer(
+        route = "Noise",
+        icon = R.drawable.drawer_noise,
+        title = "Уведомления",
+        checkState = true
+    )
 
-@Preview
-@Composable
-fun CraneDrawerPreview() {
-    User.getInstance(LocalContext.current)
-    val showExit = remember { mutableStateOf(false) }
-    val navController = rememberNavController()
-    UshellAppTheme {
-        Drawer(
-            navController=navController
-        )
-    }
+    data object Device: Drawer(
+        route = "Gadget",
+        icon = R.drawable.drawer_gadget,
+        title = "Устройства"
+    )
+
+    data object Setting: Drawer(
+        route = "Setting",
+        icon = R.drawable.drawer_setting,
+        title = "Настройка"
+    )
+
+    data object Info: Drawer(
+        route = "info",
+        icon = R.drawable.drawer_info,
+        title = "Поддержка"
+    )
 }

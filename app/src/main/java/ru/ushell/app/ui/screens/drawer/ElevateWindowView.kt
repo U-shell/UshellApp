@@ -36,10 +36,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
 import ru.ushell.app.api.Service.databaseHelperMain
-import ru.ushell.app.models.ModelTimeTable.attendance.AttendanceGroup.AttendanceGroupList
-import ru.ushell.app.models.ModelTimeTable.attendance.AttendanceStudent.AttendanceStudentList
-import ru.ushell.app.models.ModelTimeTable.lesson.Lesson.LessonsList
-import ru.ushell.app.models.ModelTimeTable.lesson.Lesson.Secondary
+import ru.ushell.app.models.modelTimeTable.attendance.AttendanceGroup.AttendanceGroupList
+import ru.ushell.app.models.modelTimeTable.attendance.AttendanceStudent.AttendanceStudentList
+import ru.ushell.app.models.modelTimeTable.lesson.Lesson.LessonsList
+import ru.ushell.app.models.modelTimeTable.lesson.Lesson.Secondary
 import ru.ushell.app.models.User
 import ru.ushell.app.ui.theme.LightBackgroundColor
 import ru.ushell.app.utils.SavingSession.SaveUser

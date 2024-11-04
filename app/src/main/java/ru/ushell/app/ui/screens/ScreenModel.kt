@@ -187,7 +187,6 @@ fun TopPanelScreen(
 @Composable
 fun SearchPanel(
     logsState: LogsState = rememberLogsUser(),
-
 ){
     Box(modifier = Modifier
         .fillMaxWidth()

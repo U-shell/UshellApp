@@ -16,8 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.api.Service
+import ru.ushell.app.api.websocket.chat.ChatConnect
 import ru.ushell.app.models.User
-import ru.ushell.app.models.e_class.ERoleClass.containsValueGroup
 import ru.ushell.app.ui.navigation.ScreenNav
 import ru.ushell.app.ui.screens.startScreen.StartScreen
 import ru.ushell.app.ui.theme.UshellAppTheme
@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
         super.onStart()
         User.getInstance(this)
         Service(this).updateData()
-
+//        ChatConnect().connect()
 //        TODO("подумать какие функции необходимо вызывать при первом заходе пользователя ")
     }
 

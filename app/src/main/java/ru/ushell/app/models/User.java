@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import ru.ushell.app.api.request.chat.RequestUserChat;
 import ru.ushell.app.api.request.info.RequestInfoGroup;
 import ru.ushell.app.api.request.info.RequestInfoTeacher;
 import ru.ushell.app.api.response.ResponseSingIn;
@@ -36,6 +37,9 @@ public class User {
     private static final String KEY_ID_GROUP = "idGroup";
     private static final String KEY_ID_SUBGROUP = "idSubgroup";
 
+    private static final String KEY_ID_USER_CHAT = "idUserChat";
+    private static final String KEY_USERNAME = "username";
+
 
     private static final String KEY_STATUS = "status";
     private static final String KEY_ACCESS_TOKEN = "accessToken";
@@ -55,39 +59,34 @@ public class User {
         }
         return instance;
     }
-
     public static void clear() {
         sharedPreferences.edit().clear().apply();
     }
-
-   public void SaveUserDara(
-           ResponseSingIn userData,
-           OnDataSavedListener onDataSavedListener
-   ){
-
-       Set<String> roles = new HashSet<>(userData.getRoles());
+    public void SaveUserDara(
+            ResponseSingIn userData,
+            OnDataSavedListener onDataSavedListener
+    ){
+        Set<String> roles = new HashSet<>(userData.getRoles());
        
-       SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-       editor.putInt(ID_USER, userData.getId());
+        editor.putInt(ID_USER, userData.getId());
 
-       editor.putString(KEY_FULL_NAME, userData.getFullName());
+        editor.putString(KEY_FULL_NAME, userData.getFullName());
 
-       editor.putString(KEY_FIRST_NAME, userData.getFirstname());
-       editor.putString(KEY_LAST_NAME, userData.getLastname());
-       editor.putString(KEY_MIDDLE_NAME, userData.getMiddlename());
+        editor.putString(KEY_FIRST_NAME, userData.getFirstname());
+        editor.putString(KEY_LAST_NAME, userData.getLastname());
+        editor.putString(KEY_MIDDLE_NAME, userData.getMiddlename());
 
-               
-       editor.putString(KEY_ACCESS_TOKEN, userData.getAccessToken());
-       editor.putString(KEY_TYPE_TOKEN, userData.getTypeToken());
+        editor.putString(KEY_ACCESS_TOKEN, userData.getAccessToken());
+        editor.putString(KEY_TYPE_TOKEN, userData.getTypeToken());
                                                                                  
-       editor.putStringSet(KEY_ROLES, roles);
-       editor.putString(KEY_EMAIL, userData.getEmail());
+        editor.putStringSet(KEY_ROLES, roles);
+        editor.putString(KEY_EMAIL, userData.getEmail());
 
-       getInfoUser(roles, editor, userData.getAccessToken(), userData.getTypeToken(), onDataSavedListener);
+        getInfoUser(roles, editor, userData.getEmail(), userData.getAccessToken(), userData.getTypeToken(), onDataSavedListener);
 
-
-       editor.apply();
+        editor.apply();
    }
 
     @SuppressLint("CommitPrefEdits")
@@ -95,9 +94,11 @@ public class User {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt(KEY_ID_SUBGROUP, Subgroup);
+        editor.apply();
     }
 
     private void getInfoUser(Set<String> roles, SharedPreferences.Editor editor,
+                             String email,
                              String accessToken, String tokenType,
                              OnDataSavedListener onDataSavedListener) {
 
@@ -132,7 +133,7 @@ public class User {
                 RequestInfoTeacher.getInfoTeacher(accessToken, tokenType, infoTeacherData->{
 
                    if(infoTeacherData != null){
-                       String nameGroup = String.format("%s %s",infoTeacherData.get(0),infoTeacherData.get(1));
+                       String nameGroup = String.format("%s %s",infoTeacherData.get(0), infoTeacherData.get(1));
                        editor.putString(KEY_DES_USER, nameGroup);
                        editor.apply();
 
@@ -145,8 +146,19 @@ public class User {
             }
             else{
                 editor.putString(KEY_ID_GROUP, "");
+                editor.apply();
             }
         }
+
+        RequestUserChat.getCurrentUser(
+                String.format("@%s",email.split("@")[0]),
+                infoUserData -> {
+                    editor.putString(KEY_ID_USER_CHAT, infoUserData);
+                    editor.putString(KEY_USERNAME, String.format("@%s",email.split("@")[0]));
+                    editor.apply();
+                }
+        );
+
         if (!hasStudentRole) {
             onDataSavedListener.onDataSaved();  // Уведомить об окончании сохранения данных, если роль студента не найдена
         }
@@ -191,5 +203,12 @@ public class User {
 
     public static Set<String> getRoles(){
         return sharedPreferences.getStringSet(KEY_ROLES, Collections.singleton("error getRoles"));
+    }
+
+    public static String getUsername(){
+        return sharedPreferences.getString(KEY_USERNAME, "err");
+    }
+    public static String getKeyIdUserChat(){
+        return sharedPreferences.getString(KEY_ID_USER_CHAT, "err");
     }
 }

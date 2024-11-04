@@ -143,3 +143,13 @@ val NameChatElected = TextStyle(
     color = Color.White.copy(alpha = 0.50f),
     fontFamily = medium
 )
+val TitleDialog = TextStyle(
+    fontSize = 14.sp,
+    color = Color.White,
+    fontFamily = medium
+)
+val BrefDialog  = TextStyle(
+    fontSize = 12.sp,
+    color = Color.White.copy(alpha = 0.50f),
+    fontFamily = medium
+)
