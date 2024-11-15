@@ -29,7 +29,6 @@ public class Lesson {
                 secondaries.add(secondary);
             }
         }
-
         for (Lesson lesson : LessonsList) {
             if(lesson.Week.equals(week)){
                 if (lesson.DayOfWeek.toLowerCase().equals(DayOfWeek)) {

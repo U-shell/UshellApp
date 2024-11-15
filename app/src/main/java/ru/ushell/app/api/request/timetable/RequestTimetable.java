@@ -24,7 +24,7 @@ import ru.ushell.app.api.API;
 import ru.ushell.app.api.RetrofitService;
 import ru.ushell.app.api.response.ResponseTimeTable;
 
-public class RequestTT {
+public class RequestTimetable {
 
     public interface TimeTableGroupCallback {
         void onTimeTableGroupReceived(boolean infoGroupData);
@@ -36,7 +36,7 @@ public class RequestTT {
 
         API api = retrofitService.getRetrofit().create(API.class);
         Call<ResponseTimeTable> timeTableResponseCall = api.getTimeTableGroup(IdGroup);
-
+        System.out.println(IdGroup);
         getTimeTable(
                 timeTableResponseCall,
                 databaseHelper,
@@ -68,7 +68,6 @@ public class RequestTT {
             public void onResponse(@NonNull Call<ResponseTimeTable> call, @NonNull Response<ResponseTimeTable> response) {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
                     ResponseTimeTable timeTableResponse = response.body();
-
                     assert timeTableResponse != null;
 
                     databaseHelper.deleteAllData();

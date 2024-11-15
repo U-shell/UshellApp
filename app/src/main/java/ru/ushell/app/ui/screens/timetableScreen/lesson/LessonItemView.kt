@@ -32,9 +32,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import ru.ushell.app.api.Service
 import ru.ushell.app.models.modelTimeTable.lesson.Lesson
 import ru.ushell.app.models.User
-import ru.ushell.app.models.e_class.ERoleClass.AccessControl
-import ru.ushell.app.models.e_class.ERoleClass.containsValueHead
-import ru.ushell.app.models.e_class.ERoleClass.containsValueTeacher
+import ru.ushell.app.models.eClass.ERoleClass.AccessControl
+import ru.ushell.app.models.eClass.ERoleClass.containsValueHead
+import ru.ushell.app.models.eClass.ERoleClass.containsValueTeacher
 import ru.ushell.app.ui.screens.timetableScreen.attendance.AttendanceDialog
 import ru.ushell.app.ui.theme.ColorItemGray
 import ru.ushell.app.ui.theme.ColorItemGreen
@@ -53,6 +53,7 @@ fun LessonItem(
     date: LocalDate
 ){
     val showAttendance = remember { mutableStateOf(false) }
+    
     Card(
         modifier = Modifier
             .wrapContentSize()

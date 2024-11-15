@@ -61,12 +61,14 @@ import java.time.OffsetDateTime
 @Composable
 fun DialogScreen(
     navController: NavHostController,
+    nameSenderUser: String,
 ) {
     val message = MessageList()
 
     DialogScreenContext(
         navController=navController,
-        messageList=message
+        messageList=message,
+        nameSenderUser=nameSenderUser
     )
 }
 
@@ -75,6 +77,7 @@ fun DialogScreen(
 fun DialogScreenContext(
     navController: NavHostController,
     messageList: MessageList,
+    nameSenderUser: String,
 ){
 
     val scope = rememberCoroutineScope()
@@ -91,7 +94,7 @@ fun DialogScreenContext(
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TopPanelDialog(
-                chatName = if(messageList.channelName != null) messageList.channelName.toString() else " ",
+                chatName = nameSenderUser,
                 navController = navController
             )
         },
@@ -135,7 +138,7 @@ fun DialogScreenContext(
                 },
                 modifier = Modifier
                     .navigationBarsPadding()
-                    .imePadding()
+//                    .imePadding()
             )
         }
     }
@@ -338,6 +341,7 @@ fun DialogScreenPreview(){
 
     DialogScreen(
         navController=navController,
+        nameSenderUser="nameSenderUser"
     )
 }
 

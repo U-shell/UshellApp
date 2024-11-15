@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,8 +38,8 @@ import ru.ushell.app.ui.screens.SearchPanel
 import ru.ushell.app.ui.screens.TopPanelScreen
 import ru.ushell.app.ui.screens.backgroundImagesSmall
 import ru.ushell.app.ui.screens.chatScreen.chat.MessengerBodyContext
+import ru.ushell.app.ui.screens.chatScreen.chat.TopPanelBat
 import ru.ushell.app.ui.screens.chatScreen.dialog.DialogScreen
-import ru.ushell.app.ui.theme.NoSystemBarColorTheme
 import ru.ushell.app.ui.theme.SystemBarColorTheme
 import ru.ushell.app.ui.theme.TimeTableText
 import ru.ushell.app.ui.theme.UshellAppTheme
@@ -49,6 +50,7 @@ fun ChatScreen(
 ) {
     var isRefreshing by remember { mutableStateOf(true) }
     val navController = rememberNavController()
+    val nameSenderUser = remember { mutableStateOf("") }
 
     LaunchedEffect(isRefreshing){
         if (isRefreshing) {
@@ -58,10 +60,10 @@ fun ChatScreen(
             isRefreshing = false
         }
     }
-
     ChatNav(
         navController=navController,
-        bottomBarEnabled=bottomBarEnabled
+        bottomBarEnabled=bottomBarEnabled,
+        nameSenderUser=nameSenderUser
     )
 }
 
@@ -69,6 +71,7 @@ fun ChatScreen(
 fun ChatNav(
     navController: NavHostController,
     bottomBarEnabled: MutableState<Boolean>,
+    nameSenderUser: MutableState<String>,
 ){
     NavHost(
         navController = navController,
@@ -77,14 +80,20 @@ fun ChatNav(
         composable(RoutesChat.ScreenChat.route) {
             bottomBarEnabled.value = true
             UshellAppTheme {
-                ChatContext(navController)
+                ChatContext(
+                    navController=navController,
+                    nameSenderUser=nameSenderUser
+                )
             }
         }
         composable(RoutesChat.ScreenDialog.route) {
             bottomBarEnabled.value = false
 
             SystemBarColorTheme{
-                DialogScreen(navController)
+                DialogScreen(
+                    navController=navController,
+                    nameSenderUser=nameSenderUser.value
+                )
             }
         }
     }
@@ -92,7 +101,8 @@ fun ChatNav(
 
 @Composable
 fun ChatContext(
-    navController: NavHostController
+    navController: NavHostController,
+    nameSenderUser: MutableState<String>,
 ) {
     Column(
         modifier = Modifier
@@ -141,7 +151,12 @@ fun ChatContext(
                     }
                     .navigationBarsPadding()
             ) {
-                MessengerBodyContext(navController)
+                Column(){
+                    MessengerBodyContext(
+                        navController=navController,
+                        nameSenderUser=nameSenderUser,
+                    )
+                }
             }
         }
     }
@@ -150,13 +165,13 @@ fun ChatContext(
 @Composable
 fun TopPanel() {
     TopPanelScreen(
-        titleContext = { TT_Chat() }
+        titleContext = { TitleChat() }
     ) {
     }
 }
 
 @Composable
-fun TT_Chat() {
+fun TitleChat() {
     Column {
         Row(
             modifier = Modifier

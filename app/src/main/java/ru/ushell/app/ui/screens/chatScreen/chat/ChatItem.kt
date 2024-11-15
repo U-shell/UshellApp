@@ -1,7 +1,11 @@
 package ru.ushell.app.ui.screens.chatScreen.chat
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.Interaction
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,12 +20,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,7 +36,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,26 +47,39 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import ru.ushell.app.R
 import ru.ushell.app.api.Service
 import ru.ushell.app.models.User
-import ru.ushell.app.models.e_class.ERoleClass.AccessControl
 import ru.ushell.app.ui.screens.chatScreen.RoutesChat
-import ru.ushell.app.ui.screens.timetableScreen.lesson.LessonItemContext
 import ru.ushell.app.ui.theme.ChatNotingBackground
 import ru.ushell.app.ui.theme.NameChatDes
 import ru.ushell.app.ui.theme.NameChatElected
 import ru.ushell.app.ui.theme.NameChatTitle
 import ru.ushell.app.ui.theme.UshellBackground
 
+//TODO:переделать в card
 @Composable
 fun ChatItemElected(
     nameChat: String = "Name",
     noise: String = "88",
     status: Int = 1,
 ){
+    val context = LocalContext.current
     Column(
         modifier = Modifier
+            .timedClick(
+                timeInMillis = 1000,
+            ) { passed: Boolean ->
+                Toast
+                    .makeText(
+                        context,
+                        "Pressed longer than 1000 $passed",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
             .padding(
                 start = 10.dp)
             .clip(RoundedCornerShape(15.dp))
@@ -156,6 +177,7 @@ fun ImageItem(
 @Composable
 fun ChatItemList(
     navController: NavHostController,
+    nameSenderUser: MutableState<String>,
     titleChat: String = "ChatTitle",
     lastUser: String = "User",
     lastMessage: String = "MessageMessageMessageMessag",
@@ -197,7 +219,7 @@ fun ChatItemList(
         }
 
         navController.navigate(RoutesChat.ScreenDialog.route)
-
+        nameSenderUser.value = titleChat
         status = false
     }
 }
@@ -316,12 +338,49 @@ fun ChatItemListContext(
         }
     }
 }
+// TODO: длительное зажатие
+@Composable
+fun Modifier.timedClick(
+    timeInMillis: Long,
+    interactionSource: MutableInteractionSource = remember {MutableInteractionSource()},
+    onClick: (Boolean) -> Unit
+) = composed {
 
+    var timeOfTouch = -1L
+    LaunchedEffect(key1 = timeInMillis, key2 = interactionSource) {
+        interactionSource.interactions
+            .onEach { interaction: Interaction ->
+                when (interaction) {
+                    is PressInteraction.Press -> {
+                        timeOfTouch = System.currentTimeMillis()
+                    }
+                    is PressInteraction.Release -> {
+                        val currentTime = System.currentTimeMillis()
+                        onClick(currentTime - timeOfTouch > timeInMillis)
+                    }
+                    is PressInteraction.Cancel -> {
+                        onClick(false)
+                    }
+                }
+
+            }
+            .launchIn(this)
+    }
+
+    Modifier.clickable(
+        interactionSource = interactionSource,
+        indication = rememberRipple(),
+        onClick = {}
+    )
+}
 @Preview
 @Composable
 fun ChatItemListPreview(){
     val navController = rememberNavController()
-    ChatItemList(navController=navController)
+    ChatItemList(
+        navController = navController,
+        nameSenderUser = remember { mutableStateOf("") }
+    )
 }
 @Preview
 @Composable

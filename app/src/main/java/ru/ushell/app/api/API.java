@@ -71,31 +71,29 @@ public interface API {
 
 //--------------------------------------------------------------------------------------------------
     /**
-     * CHAT
+     * Chat
      */
 
-    @POST("users/me")
+    @POST("/chat/users/me")
     Call<ResponseInfoUserChat> getInfoUserChat(@Body RequestBody requestBody);
 
-    @POST("users/summaries")
+    @POST("/chat/users/summaries")
     Call<ResponseAllUserChat> getAllUserSummaries(@Body BodyRequestUserDetails bodyRequestUserDetails);
 
-    @POST("message/count")
+    @POST("/chat/message/count")
     Call<String> getCountNewMessage(@Body BodyRequestMessageChat body);
 
-    @POST("message/messages")
+    @POST("/chat/message/messages")
     Call<List<ResponseMessageChat>> getMessageChat(@Body BodyRequestMessageChat body);
 
 
-
-
-    @GET("message/messages/{id}")
+    @GET("/chat/message/messages/{id}")
     Call<Void> findMessages();
 
-    @GET("users/")
+    @GET("/chat/users/")
     Call<Void> getAllUsersChat();
 
-    @GET("users/summary/{username}")
+    @GET("/chat/users/summary/{username}")
     Call<Void> getUserSummary();
 
 //--------------------------------------------------------------------------------------------------

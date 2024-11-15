@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import ru.ushell.app.models.modelTimeTable.attendance.AttendanceStudent
 import ru.ushell.app.models.modelTimeTable.lesson.Lesson
-import ru.ushell.app.models.e_class.ERoleClass.containsValueGroup
+import ru.ushell.app.models.eClass.ERoleClass.containsValueGroup
 import ru.ushell.app.ui.utils.calendar.CalendarUtils
 import java.time.LocalDate
 import kotlin.Int

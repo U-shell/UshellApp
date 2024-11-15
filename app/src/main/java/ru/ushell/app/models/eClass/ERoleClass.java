@@ -1,4 +1,4 @@
-package ru.ushell.app.models.e_class;
+package ru.ushell.app.models.eClass;
 
 import java.util.HashSet;
 import java.util.Set;

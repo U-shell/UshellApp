@@ -1,7 +1,7 @@
 package ru.ushell.app.models;
 
-import static ru.ushell.app.models.e_class.ERole.ROLE_STUDENT;
-import static ru.ushell.app.models.e_class.ERole.ROLE_TEACHER;
+import static ru.ushell.app.models.eClass.ERole.ROLE_STUDENT;
+import static ru.ushell.app.models.eClass.ERole.ROLE_TEACHER;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import ru.ushell.app.api.request.chat.RequestUserChat;
 import ru.ushell.app.api.request.info.RequestInfoGroup;
 import ru.ushell.app.api.request.info.RequestInfoTeacher;
 import ru.ushell.app.api.response.ResponseSingIn;
-import ru.ushell.app.models.e_class.ERole;
+import ru.ushell.app.models.eClass.ERole;
 import ru.ushell.app.utils.interfaces.OnDataSavedListener;
 
 

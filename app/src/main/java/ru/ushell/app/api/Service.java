@@ -3,8 +3,9 @@ package ru.ushell.app.api;
 import static ru.ushell.app.api.Service.student.updateTimetableGroup;
 import static ru.ushell.app.api.Service.teacher.requestTimetableTeacher;
 import static ru.ushell.app.api.Service.teacher.updateTimetableTeacher;
-import static ru.ushell.app.models.e_class.ERoleClass.containsValueGroup;
-import static ru.ushell.app.models.e_class.ERoleClass.containsValueTeacher;
+import static ru.ushell.app.models.eClass.ERoleClass.containsValueGroup;
+import static ru.ushell.app.models.eClass.ERoleClass.containsValueTeacher;
+import static ru.ushell.app.models.modelChat.chat.Chat.ChatList;
 import static ru.ushell.app.models.modelTimeTable.attendance.Attendance.readAttendanceGroupDay;
 import static ru.ushell.app.models.modelTimeTable.attendance.Attendance.readAttendanceStudent;
 import static ru.ushell.app.models.modelTimeTable.lesson.Lesson.LessonsList;
@@ -21,7 +22,7 @@ import ru.ushell.app.SQLite.DatabaseHelper;
 import ru.ushell.app.api.request.attendance.RequestAttendance;
 import ru.ushell.app.api.request.chat.RequestMessageChat;
 import ru.ushell.app.api.request.chat.RequestUserChat;
-import ru.ushell.app.api.request.timetable.RequestTT;
+import ru.ushell.app.api.request.timetable.RequestTimetable;
 import ru.ushell.app.models.User;
 import ru.ushell.app.models.modelTimeTable.lesson.LessonReadDb;
 import ru.ushell.app.ui.utils.calendar.CalendarUtils;
@@ -61,7 +62,8 @@ public class Service {
     public void updateData() {
         if (containsValueGroup()) {
             updateTimetableGroup();
-        } else if (containsValueTeacher()) {
+        }
+        if (containsValueTeacher()) {
             updateTimetableTeacher();
         }
         requestStudentAttendance();
@@ -126,7 +128,7 @@ public class Service {
         }
 
         static void updateTimetableGroup() {
-            RequestTT.getTimeTableGroup(
+            RequestTimetable.getTimeTableGroup(
                     User.getIDGroup(),
                     databaseHelperMain,
                     infoGroupData -> {
@@ -149,7 +151,7 @@ public class Service {
         }
 
         static void updateTimetableTeacher(){
-            RequestTT.getTimeTableTeacher(
+            RequestTimetable.getTimeTableTeacher(
                     User.getIdUser(),
                     databaseHelperMain,
                     infoGroupData -> {
@@ -164,7 +166,9 @@ public class Service {
     }
 
     public void getChatUser(){
-        RequestUserChat.getAllUser();
+        if(ChatList.isEmpty()) {
+            RequestUserChat.getAllUser();
+        }
     }
 
     public void getMessageChat(String senderId, String recipientId){

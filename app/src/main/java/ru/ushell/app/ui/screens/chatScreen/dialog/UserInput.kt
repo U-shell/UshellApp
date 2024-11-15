@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
@@ -124,18 +125,25 @@ fun UserInput(
     var textFieldFocusState by remember { mutableStateOf(false) }
 
     Surface(
+        modifier = Modifier
+            .navigationBarsPadding()
+            .fillMaxWidth(),
         tonalElevation = 2.dp,
         contentColor = MaterialTheme.colorScheme.secondary
     ) {
         Column {
             Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                ,
+//                modifier = modifier
+//                    .navigationBarsPadding()
+//                    .fillMaxWidth()
+//                ,
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Box(){
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.Bottom)
+                ){
                     InputSelectorButton(
                         onClick = {currentInputSelector = InputSelector.EMOJI },
                         icon = Icons.Outlined.Face,
@@ -332,13 +340,14 @@ private fun UserInputText(
     focusState: Boolean
 ) {
     val swipeOffset = remember { mutableStateOf(0f) }
-    var isRecordingMessage by remember { mutableStateOf(false) }
+    val isRecordingMessage by remember { mutableStateOf(false) }
     val a11ylabel = "stringResource(id = R.string.textfield_desc)"
     Row(
         modifier = Modifier
             .fillMaxWidth()
                 ,
 //            .height(64.dp),
+        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.End
     ) {
         AnimatedContent(
@@ -597,9 +606,7 @@ private fun InputSelectorButton(
         Icon(
             icon,
             tint = tint,
-            modifier = Modifier
-
-            ,
+            modifier = Modifier,
             contentDescription = description
         )
     }

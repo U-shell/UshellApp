@@ -1,4 +1,4 @@
-package ru.ushell.app.models.e_class;
+package ru.ushell.app.models.eClass;
 
 public enum ERole {
     ROLE_ADMIN,

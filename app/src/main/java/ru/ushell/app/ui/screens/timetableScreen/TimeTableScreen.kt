@@ -359,6 +359,6 @@ fun CalendarButton(
 fun TopPanelCalendarPreview(){
     User.getInstance(LocalContext.current)
     val dataSource = CalendarDataSource()
-    var currantData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today)) }
+    val currantData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today)) }
     TimeTableContext(dataSource=dataSource,initialData=currantData)
 }

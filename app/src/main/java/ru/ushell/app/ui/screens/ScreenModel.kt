@@ -190,7 +190,6 @@ fun SearchPanel(
 ){
     Box(modifier = Modifier
         .fillMaxWidth()
-        .height(35.dp)
         .border(
             BorderStroke(
                 width = 1.dp,
@@ -207,52 +206,57 @@ fun SearchPanel(
         )
         .clip(RoundedCornerShape(5.dp))
     ) {
-        TextField(
-            value = logsState.email.value,
-            onValueChange = {logsState.email.value = it},
-            placeholder = {
-                LabelText()
-            },
-            label = {
-                LabelText()
-            },
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                focusedPlaceholderColor = Color.Transparent,
-                focusedContainerColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedLabelColor = Color.DarkGray,
-                cursorColor = Color.White,
-                focusedTextColor = Color.White,
-                unfocusedTextColor = Color.White.copy(alpha = 0.8f)
-            ),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email
-            ),
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+            ,
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Box(
+                modifier = Modifier
+                    .padding(start = 10.dp)
+            ){
+                Icon(
+                    painter = painterResource(id = R.drawable.icon_search),
+                    contentDescription = null,
+                    tint = Color.DarkGray
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+            ){
+                TextField(
+                    value = logsState.email.value,
+                    onValueChange = {logsState.email.value = it},
+                    placeholder = {
+                        Text(
+                            text = stringResource(R.string.Search)
+                        )
+                    },
+                    singleLine = true,
+                    colors = TextFieldDefaults.colors(
+                        focusedPlaceholderColor = Color.Transparent,
+                        focusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        focusedLabelColor = Color.DarkGray,
+                        cursorColor = Color.White,
+                        focusedTextColor = Color.White,
+                        unfocusedTextColor = Color.White.copy(alpha = 0.8f)
+                    ),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Email
+                    ),
+                )
+            }
+        }
     }
 }
 
-@Composable
-fun LabelText(){
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
-    ){
-        Box(
-            modifier = Modifier
-                .padding(end = 10.dp)
-        ){
-            Icon(painter = painterResource(id = R.drawable.icon_search), contentDescription = null)
-        }
-        Text(
-            text = stringResource(R.string.Search)
-        )
-    }
-}
 
 @Preview
 @Composable

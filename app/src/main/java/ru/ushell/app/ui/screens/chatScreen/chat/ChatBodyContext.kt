@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,16 +21,22 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onPlaced
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -41,29 +48,34 @@ import ru.ushell.app.ui.theme.UshellBackground
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MessengerBodyContext(
-    navController: NavHostController
+    navController: NavHostController,
+    nameSenderUser: MutableState<String>,
 ){
     Column(
         modifier = Modifier
-            .clip(RoundedCornerShape(
-                topStart = 20.dp,
-                topEnd = 20.dp
-            ))
+            .clip(
+                RoundedCornerShape(
+                    topStart = 20.dp,
+                    topEnd = 20.dp
+                )
+            )
             .navigationBarsPadding()
             .background(UshellBackground)
-    ){
-        TopPanelBat()
+    ) {
+//        TopPanelBat()
         BodyContext(
-            navController=navController
+            navController = navController,
+            nameSenderUser = nameSenderUser,
         )
     }
 }
 
 @Composable
-fun TopPanelBat() {
+fun TopPanelBat(
+) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
+        .fillMaxWidth()
             .padding(
                 start = 30.dp,
                 end = 30.dp,
@@ -103,41 +115,66 @@ fun TopPanelBat() {
 @Composable
 fun BodyContext(
     navController: NavHostController,
+    nameSenderUser: MutableState<String>,
 ) {
-    val scaffoldState = rememberBottomSheetScaffoldState()
-    var size by remember { mutableStateOf(1.dp) }
+    val scope = rememberCoroutineScope()
+    val scaffoldState = rememberBottomSheetScaffoldState(
+//        bottomSheetState = rememberStandardBottomSheetState(initialValue = SheetValue.Expanded)
+    )
+    val density = LocalDensity.current
+    var sheetPeekHeight by remember { mutableStateOf(0.dp) }
+    var bottomSheetHeight by remember { mutableStateOf(0.dp) }
+
     // TODO(пересмотерть построение, почему черный меняеться на белый)
     BottomSheetScaffold(
         modifier = Modifier
             .fillMaxWidth()
-//            .clip(
-//                RoundedCornerShape(
-//                    topStart = 20.dp,
-//                    topEnd = 20.dp
-//                )
-//            )
-        ,
-        sheetPeekHeight = 350.dp,
-        sheetContent = {
-            Scaffold(
-                contentColor = Color.Black,
-                containerColor = Color.Transparent,
-                modifier = Modifier
-//                    .padding(bottom = 140.dp)
-                    .navigationBarsPadding()
-
-            ){
-                innerPaddingModifier ->
-                ListChats(
-                    modifier = Modifier
-                        .padding(innerPaddingModifier)
-                        .background(Color.White)
-                        .fillMaxSize(),
-                    navController = navController
+            .clip(
+                RoundedCornerShape(
+                    topStart = 20.dp,
+                    topEnd = 20.dp
                 )
+            )
+            .navigationBarsPadding()
+        ,
+        sheetContent = {
+            Box(
+                modifier = Modifier
+                    .onPlaced {
+                        if (bottomSheetHeight == 0.dp) {
+                            bottomSheetHeight = with(density) {
+                                    it.size.height.toDp()
+                            }
+                        }
+                    }
+                    .fillMaxWidth()
+            ){
+                Scaffold(
+                    contentColor = Color.Black,
+                    containerColor = Color.Transparent,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(bottom = 100.dp)
+                        .navigationBarsPadding()
+                ){ innerPaddingModifier ->
+                    ListChats(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(innerPaddingModifier)
+                            .navigationBarsPadding()
+                        ,
+                        navController = navController,
+                        nameSenderUser=nameSenderUser
+
+                    )
+                }
             }
         },
+        topBar={TopPanelBat()},
+        sheetPeekHeight = (bottomSheetHeight - sheetPeekHeight),
         scaffoldState = scaffoldState,
+//        sheetTonalElevation = 0.dp,
         containerColor = ChatIFBackground,
         contentColor = Color.Black,
         sheetContainerColor=Color.White
@@ -145,11 +182,20 @@ fun BodyContext(
         innerPadding ->
         LazyRow(
             modifier = Modifier
-                .padding(top=20.dp)
-                .padding(innerPadding),
-            verticalAlignment = Alignment.CenterVertically,
+                .onPlaced {
+                    if (sheetPeekHeight == 0.dp) {
+                        sheetPeekHeight = with(density) {
+                            it.size.height.toDp()
+                        }
+                    }
+                }
+                .padding(top=10.dp, bottom = 10.dp)
+                .padding(innerPadding)
+            ,
+            verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.Center
         ) {
+//            TODO: сделать pin
             items(1) {
                 index ->
                     ChatItemElected()
@@ -162,20 +208,24 @@ fun BodyContext(
 fun ListChats(
     modifier: Modifier = Modifier,
     navController: NavHostController,
+    nameSenderUser: MutableState<String>,
 ){
     val chats = ChatList
 
     if(chats.isNotEmpty()){
         LazyColumn(
             modifier = modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .navigationBarsPadding()
+            ,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            items(chats.size){ index ->
-                Box(){
+            items(chats.size) { index ->
+                Box() {
                     //TODO: написать функцию нажатия на элемент
                     ChatItemList(
-                        navController,
+                        navController = navController,
+                        nameSenderUser = nameSenderUser,
                         titleChat = chats[index].name,
                         noise = chats[index].countNewMessage.toString(),
                         statusNoise = chats[index].countNewMessage != 0,
@@ -191,5 +241,10 @@ fun ListChats(
 @Composable
 fun MessengerBodyContextPreview(){
     val navController = rememberNavController()
-    MessengerBodyContext(navController)
+    val density = LocalDensity.current
+
+    MessengerBodyContext(
+        navController = navController,
+        nameSenderUser = remember { mutableStateOf("") },
+    )
 }

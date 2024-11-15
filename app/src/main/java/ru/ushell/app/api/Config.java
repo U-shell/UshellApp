@@ -5,7 +5,7 @@ public class Config {
 //      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
 //        Torfiks
     private final static String protocol = "http";
-    private final static String domain = "192.168.1.78";
+    private final static String domain = "ushell.ru";
     private final static String port = "8082";
 
     //TODO сделать подключние по gate-way
