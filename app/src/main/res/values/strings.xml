@@ -26,4 +26,7 @@
     <string name="your">Личное</string>
     <string name="elected">Избраные</string>
     <string name="group">Группы</string>
+    <string name="channel_name">channel_name</string>
+    <string name="channel_description">channel_description</string>
+    <string name="message">Сообщение</string>
 </resources>

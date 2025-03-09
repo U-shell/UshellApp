@@ -128,7 +128,7 @@ fun DialogScreenContext(
                             content
                         )
                     chatDeliver.connect(Config.webSocketAddress)
-                    chatDeliver.disconnect()
+//                    chatDeliver.disconnect()
                 },
 
                 resetScroll = {

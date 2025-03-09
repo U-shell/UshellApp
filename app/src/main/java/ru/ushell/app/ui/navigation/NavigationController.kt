@@ -30,7 +30,7 @@ fun BottomNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavigationBottomBar.Profile.route
+        startDestination = NavigationBottomBar.TimeTable.route
     ) {
 
         composable(route = NavigationBottomBar.Profile.route) {
@@ -55,7 +55,6 @@ fun BottomNavGraph(
                 gesturesEnabled.value = false
             }
         }
-
         composable(route = NavigationBottomBar.Chat.route) {
             UshellAppTheme {
                 ChatScreen(

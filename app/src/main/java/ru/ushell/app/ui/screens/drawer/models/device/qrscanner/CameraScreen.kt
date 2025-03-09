@@ -42,7 +42,6 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import com.google.zxing.ResultPoint
 import ru.ushell.app.api.Config
-import ru.ushell.app.api.websocket.chat.ChatDeliver
 import ru.ushell.app.api.websocket.qr.QRCodeConnect
 import ru.ushell.app.api.websocket.qr.QRCodeDeliver
 import ru.ushell.app.models.User

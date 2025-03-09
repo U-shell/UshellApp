@@ -4,20 +4,15 @@ public class Config {
 
 //      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
 //        Torfiks
-    private final static String protocol = "http";
-    private final static String domain = "ushell.ru";
-    private final static String port = "8082";
-
+    private final static String protocol = "https";
+    private final static String domain = "api.ushell.ru";
     //TODO сделать подключние по gate-way
-    public static final String webSocketAddress = String.format("ws://%s:%s/ws/websocket", domain, port);
-    public static final String webSocketAddressQR = String.format("ws://%s:%s/loginListener/websocket", domain, port);
+    public static final String webSocketAddress = String.format("ws://%s/ws/websocket", domain);
+    public static final String webSocketAddressQR = String.format("ws://%s/loginListener/websocket", domain);
 
     public static String getUrl(){
-        return String.format("%s://%s:%s",protocol,domain,port);
+        return String.format("%s://%s",protocol,domain);
     }
 
-    public static String getHost(){
-        return String.format("%s:%s",domain,port);
-    }
 
 }

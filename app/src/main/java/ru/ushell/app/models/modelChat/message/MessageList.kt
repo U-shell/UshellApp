@@ -40,7 +40,9 @@ class MessageList() {
 
         @JvmStatic
         fun addMessages(message: Message) {
-            _messages.add(0, message)
+            if (_messages.none { it.timestamp == message.timestamp }) {
+                _messages.add(0, message)
+            }
         }
     }
 }

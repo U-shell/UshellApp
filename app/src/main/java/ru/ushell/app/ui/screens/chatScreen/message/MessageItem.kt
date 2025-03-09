@@ -1,5 +1,6 @@
 package ru.ushell.app.ui.screens.chatScreen.message
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -82,17 +84,17 @@ fun ChatItemBubble(
             shape =
                 if (message.author) {
                     RoundedCornerShape(
-                    topStart = 10.dp,
-                    topEnd = 10.dp,
-                    bottomStart = 10.dp,
-                    bottomEnd = 4.dp
+                        topStart = 10.dp,
+                        topEnd = 10.dp,
+                        bottomStart = 10.dp,
+                        bottomEnd = 4.dp
                     )
                 }else{
                     RoundedCornerShape(
-                    topStart = 10.dp,
-                    topEnd = 10.dp,
-                    bottomStart = 4.dp,
-                    bottomEnd = 10.dp
+                        topStart = 10.dp,
+                        topEnd = 10.dp,
+                        bottomStart = 4.dp,
+                        bottomEnd = 10.dp
                     )
                 }
         ) {
@@ -169,7 +171,7 @@ fun BodyMessage(
         primary = isUserMe
     )
 
-    ClickableText(
+    Text(
         text = styledMessage,
         style = MaterialTheme.typography.bodyLarge.copy(color = LocalContentColor.current),
         modifier = Modifier.padding(
@@ -177,17 +179,17 @@ fun BodyMessage(
             end = 5.dp,
             top = 5.dp
         ),
-        onClick = {
-            styledMessage
-                .getStringAnnotations(start = it, end = it)
-                .firstOrNull()
-                ?.let { annotation ->
-                    when (annotation.tag) {
-                        SymbolAnnotationType.LINK.name -> uriHandler.openUri(annotation.item)
-                        else -> Unit
-                    }
-                }
-        }
+//        onClick = {
+//            styledMessage
+//                .getStringAnnotations(start = it, end = it)
+//                .firstOrNull()
+//                ?.let { annotation ->
+//                    when (annotation.tag) {
+//                        SymbolAnnotationType.LINK.name -> uriHandler.openUri(annotation.item)
+//                        else -> Unit
+//                    }
+//                }
+//        }
     )
 }
 
@@ -195,9 +197,24 @@ fun BodyMessage(
 fun TimeMessage(
     message: Message
 ){
+    val minute = if(message.timestamp.minute.toString().length == 1){
+        "0"+message.timestamp.minute.toString()
+    }
+    else{
+        message.timestamp.minute.toString()
+    }
+    val hour = if(message.timestamp.hour.toString().length == 1){
+        "0"+message.timestamp.hour.toString()
+    }
+    else{
+        message.timestamp.hour.toString()
+    }
 
-    val timeMessage = "${message.timestamp.hour}:${message.timestamp.minute}"
-    Box(){
+    val timeMessage = "${hour}:${minute}"
+    Box(
+        modifier = Modifier
+            .padding(end = 1.dp)
+    ){
         Text(
             text = timeMessage,
             style = MaterialTheme.typography.bodyLarge.copy(color = LocalContentColor.current),
@@ -211,7 +228,7 @@ fun ChatItemBubblePreview(){
     ChatItemBubble(
         message = Message(
             author = true,
-            content = "Привет, друг",
+            content = "hi",
             timestamp = OffsetDateTime.now()
         ),
     )

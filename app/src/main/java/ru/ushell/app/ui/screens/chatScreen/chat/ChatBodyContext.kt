@@ -42,6 +42,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
 import ru.ushell.app.models.modelChat.chat.Chat.ChatList
+import ru.ushell.app.models.modelChat.chat.Chat.getChatPopulation
 import ru.ushell.app.ui.theme.ChatIFBackground
 import ru.ushell.app.ui.theme.UshellBackground
 
@@ -118,9 +119,7 @@ fun BodyContext(
     nameSenderUser: MutableState<String>,
 ) {
     val scope = rememberCoroutineScope()
-    val scaffoldState = rememberBottomSheetScaffoldState(
-//        bottomSheetState = rememberStandardBottomSheetState(initialValue = SheetValue.Expanded)
-    )
+    val scaffoldState = rememberBottomSheetScaffoldState()
     val density = LocalDensity.current
     var sheetPeekHeight by remember { mutableStateOf(0.dp) }
     var bottomSheetHeight by remember { mutableStateOf(0.dp) }
@@ -134,9 +133,8 @@ fun BodyContext(
                     topStart = 20.dp,
                     topEnd = 20.dp
                 )
-            )
-            .navigationBarsPadding()
-        ,
+            ),
+        scaffoldState = scaffoldState,
         sheetContent = {
             Box(
                 modifier = Modifier
@@ -147,34 +145,34 @@ fun BodyContext(
                             }
                         }
                     }
-                    .fillMaxWidth()
+                    .padding(bottom = 200.dp)
+                    .fillMaxSize()
+                    .navigationBarsPadding()
             ){
-                Scaffold(
-                    contentColor = Color.Black,
-                    containerColor = Color.Transparent,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.White)
-                        .padding(bottom = 100.dp)
-                        .navigationBarsPadding()
-                ){ innerPaddingModifier ->
+//                Scaffold(
+//                    contentColor = Color.Black,
+//                    containerColor = Color.Transparent,
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .background(Color.White)
+////                        .padding(bottom = 100.dp)
+//                        .navigationBarsPadding()
+//                ){ innerPaddingModifier ->
                     ListChats(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(innerPaddingModifier)
+                            .fillMaxSize()
+//                            .padding(innerPaddingModifier)
                             .navigationBarsPadding()
                         ,
                         navController = navController,
                         nameSenderUser=nameSenderUser
 
                     )
-                }
+//                }
             }
         },
         topBar={TopPanelBat()},
         sheetPeekHeight = (bottomSheetHeight - sheetPeekHeight),
-        scaffoldState = scaffoldState,
-//        sheetTonalElevation = 0.dp,
         containerColor = ChatIFBackground,
         contentColor = Color.Black,
         sheetContainerColor=Color.White
@@ -189,14 +187,14 @@ fun BodyContext(
                         }
                     }
                 }
-                .padding(top=10.dp, bottom = 10.dp)
+                .fillMaxWidth()
                 .padding(innerPadding)
-            ,
+                .padding(top=10.dp, bottom = 10.dp),
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.Center
         ) {
 //            TODO: сделать pin
-            items(1) {
+            items(0) {
                 index ->
                     ChatItemElected()
             }
@@ -204,13 +202,14 @@ fun BodyContext(
     }
 }
 
+
 @Composable
 fun ListChats(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     nameSenderUser: MutableState<String>,
 ){
-    val chats = ChatList
+    val chats = getChatPopulation()
 
     if(chats.isNotEmpty()){
         LazyColumn(

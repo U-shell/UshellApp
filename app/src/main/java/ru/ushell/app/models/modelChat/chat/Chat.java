@@ -1,10 +1,28 @@
 package ru.ushell.app.models.modelChat.chat;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Chat {
 
     public static ArrayList<Chat> ChatList = new ArrayList<>();
+
+    public static ArrayList<Chat> getChatPopulation(){
+        ArrayList<Chat> populationChat = new ArrayList<>();
+        ArrayList<Chat> somChat = new ArrayList<>();
+        for(Chat chat: ChatList){
+            if (chat.countNewMessage>0){
+                populationChat.add(chat);
+            }
+            else{
+                somChat.add(chat);
+            }
+        }
+        populationChat.sort(Comparator.comparing(o -> o.countNewMessage));
+        populationChat.addAll(somChat);
+        return populationChat;
+    }
+
 
     private String username;
     private String name;

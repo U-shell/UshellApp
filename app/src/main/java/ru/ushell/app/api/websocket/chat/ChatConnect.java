@@ -48,4 +48,7 @@ public class ChatConnect {
         });
         chatListener.connect(Config.webSocketAddress);
     }
+    public void disconnect(){
+        chatListener.disconnect();
+    }
 }

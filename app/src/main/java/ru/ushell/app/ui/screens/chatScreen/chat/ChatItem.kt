@@ -368,8 +368,8 @@ fun Modifier.timedClick(
     }
 
     Modifier.clickable(
-        interactionSource = interactionSource,
-        indication = rememberRipple(),
+//        interactionSource = interactionSource,
+//        indication = rememberRipple(),
         onClick = {}
     )
 }

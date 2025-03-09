@@ -69,6 +69,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
@@ -83,10 +84,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
+import ru.ushell.app.R
 import kotlin.math.absoluteValue
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-
 
 enum class InputSelector {
     NONE,
@@ -96,10 +97,15 @@ enum class InputSelector {
     PHONE,
     PICTURE
 }
+
 enum class EmojiStickerSelector {
     EMOJI,
     STICKER
 }
+
+val KeyboardShownKey = SemanticsPropertyKey<Boolean>("KeyboardShownKey")
+var SemanticsPropertyReceiver.keyboardShownProperty by KeyboardShownKey
+
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -112,7 +118,6 @@ fun UserInput(
     var currentInputSelector by rememberSaveable { mutableStateOf(InputSelector.NONE) }
     val dismissKeyboard = { currentInputSelector = InputSelector.NONE }
 
-    // Intercept back navigation if there's a InputSelector visible
     if (currentInputSelector != InputSelector.NONE) {
         BackHandler(onBack = dismissKeyboard)
     }
@@ -121,7 +126,6 @@ fun UserInput(
         mutableStateOf(TextFieldValue())
     }
 
-    // Used to decide if the keyboard should be shown
     var textFieldFocusState by remember { mutableStateOf(false) }
 
     Surface(
@@ -151,6 +155,7 @@ fun UserInput(
                         description = "stringResource(id = R.string.emoji_selector_bt_desc)"
                     )
                 }
+
                 Box(
                     modifier = Modifier
                         .weight(1f),
@@ -178,6 +183,7 @@ fun UserInput(
                         focusState = textFieldFocusState
                     )
                 }
+
                 Box(
                     modifier = Modifier
                         .align(Alignment.Bottom)
@@ -193,6 +199,7 @@ fun UserInput(
                     )
                 }
             }
+
             Box(){
                 SelectorExpanded(
                     onTextAdded = { textState = textState.addText(it) },
@@ -253,38 +260,38 @@ private fun UserInputSelector(
     sendMessageEnabled: Boolean,
     onMessageSent: () -> Unit,
 ) {
-        val border = if (!sendMessageEnabled) {
-            BorderStroke(
-                width = 1.dp,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
-            )
-        } else {
-            null
-        }
-
-        val disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
-
-        val buttonColors = ButtonDefaults.buttonColors(
-            disabledContainerColor = Color.Transparent,
-            disabledContentColor = disabledContentColor
+    val border = if (!sendMessageEnabled) {
+        BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
         )
+    } else {
+        null
+    }
 
-        // TODO: заменить на иконку
-        // Send button
-        Button(
-//            modifier = Modifier.height(36.dp),
-            enabled = sendMessageEnabled,
-            onClick = onMessageSent,
-            colors = buttonColors,
-            border = border,
-            contentPadding = PaddingValues(0.dp)
-        ) {
-            Text(
-                "send",
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-        }
-//    }
+    val disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+
+    val buttonColors = ButtonDefaults.buttonColors(
+        disabledContainerColor = Color.Transparent,
+        disabledContentColor = disabledContentColor
+    )
+
+    // TODO: заменить на иконку
+    // Send button
+    IconButton(
+        enabled = sendMessageEnabled,
+        onClick = onMessageSent,
+//        colors = buttonColors,
+//        border = border,
+//        contentPadding = PaddingValues(0.dp)
+    ) {
+        Icon(
+            painterResource(id = R.drawable.profile_drawer),
+            contentDescription =null,
+            tint = Color.Black
+        )
+    }
+
 }
 
 //@Composable
@@ -324,10 +331,6 @@ private fun UserInputSelector(
 //}
 //
 
-val KeyboardShownKey = SemanticsPropertyKey<Boolean>("KeyboardShownKey")
-var SemanticsPropertyReceiver.keyboardShownProperty by KeyboardShownKey
-
-@OptIn(ExperimentalAnimationApi::class)
 @ExperimentalFoundationApi
 @Composable
 private fun UserInputText(
@@ -443,7 +446,7 @@ private fun BoxScope.UserInputTextField(
                 .align(Alignment.CenterStart)
 //                .padding(start = 32.dp),
                 ,
-            text = "ssssss",
+            text = stringResource(R.string.message),
             style = MaterialTheme.typography.bodyLarge.copy(color = disableContentColor)
         )
     }

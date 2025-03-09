@@ -156,6 +156,7 @@ fun SystemBarColorTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
+
             window.navigationBarColor = SplashScreenBackground.toArgb()
             window.statusBarColor = UshellBackground.toArgb()
             WindowCompat.setDecorFitsSystemWindows(window,false)

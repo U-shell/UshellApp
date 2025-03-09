@@ -36,7 +36,6 @@ public class RequestTimetable {
 
         API api = retrofitService.getRetrofit().create(API.class);
         Call<ResponseTimeTable> timeTableResponseCall = api.getTimeTableGroup(IdGroup);
-        System.out.println(IdGroup);
         getTimeTable(
                 timeTableResponseCall,
                 databaseHelper,

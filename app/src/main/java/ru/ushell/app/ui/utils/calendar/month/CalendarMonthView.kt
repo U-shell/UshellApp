@@ -3,6 +3,8 @@ package ru.ushell.app.ui.utils.calendar.month
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.SnapPosition
+import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -17,20 +19,19 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.Saver
@@ -42,10 +43,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.zIndex
+import androidx.constraintlayout.compose.ConstraintLayout
 import ru.ushell.app.R
 import ru.ushell.app.models.modelTimeTable.lesson.Lesson.LessonIsDate
 import ru.ushell.app.ui.theme.CalendarMonthText
@@ -59,8 +61,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month
 import java.time.YearMonth
-import java.time.format.TextStyle
-import java.time.format.TextStyle.FULL
+import java.time.format.TextStyle.FULL_STANDALONE
 import java.time.temporal.WeekFields
 import java.util.Locale
 
@@ -135,41 +136,97 @@ fun CalendarMonthContent(
                 bottom = 5.dp
             )
     ) {
-        TopPanel(monthState = calendarState.monthState)
-        Spacer(modifier = Modifier.height(8.dp))
-        Column {
-            NameDayCell()
-            Calendar(
-                firstDayOfWeek = firstDayOfWeek,
-                today = today,
-                calendarState = calendarState,
-                dayContent = dayContent,
-                monthContainer = monthContainer
-            )
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        BottomPanel(
-            showCalendar = showCalendar,
-            onClick = {
-                onDataMonth()
-                onDateClickListener(data.selectedDate)
+        ConstraintLayout(){
+            val (topPanel, calendarContext, bottomPanel) = createRefs()
+            Box(
+                modifier = Modifier
+                    .constrainAs(topPanel){
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
+                    .zIndex(1f)
+
+            ){
+                TopPanelCalendar(monthState = calendarState.monthState)
             }
-        )
+            Box(
+                modifier = Modifier
+                    .constrainAs(calendarContext){
+                        top.linkTo(topPanel.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
+            ){
+                Column {
+                    NameDayCell()
+                    Calendar(
+                        firstDayOfWeek = firstDayOfWeek,
+                        today = today,
+                        calendarState = calendarState,
+                        dayContent = dayContent,
+                        monthContainer = monthContainer
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .constrainAs(bottomPanel){
+                        top.linkTo(calendarContext.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
+            ){
+                BottomPanelCalendar(
+                    showCalendar = showCalendar,
+                    onClick = {
+                        onDataMonth()
+                        onDateClickListener(data.selectedDate)
+                    }
+                )
+            }
+        }
+//        TopPanelCalendar(monthState = calendarState.monthState)
+
+//        Spacer(modifier = Modifier.height(8.dp))
+
+//        Column {
+//            NameDayCell()
+//            Calendar(
+//                firstDayOfWeek = firstDayOfWeek,
+//                today = today,
+//                calendarState = calendarState,
+//                dayContent = dayContent,
+//                monthContainer = monthContainer
+//            )
+//        }
+
+//        Spacer(modifier = Modifier.height(8.dp))
+
+//        BottomPanelCalendar(
+//            showCalendar = showCalendar,
+//            onClick = {
+//                onDataMonth()
+//                onDateClickListener(data.selectedDate)
+//            }
+//        )
     }
 }
 
 @Composable
-fun TopPanel(
+fun TopPanelCalendar(
     monthState: MonthState
 ) {
     var showMonthYearPicker by remember { mutableStateOf(false) }
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .zIndex(2f)
         ,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
+
         Row(
             modifier = Modifier
                 .padding(start = 10.dp)
@@ -180,37 +237,44 @@ fun TopPanel(
             Spacer(modifier = Modifier.width(8.dp))
 
             if (showMonthYearPicker) {
-                MonthYearPickerDialog(
-                    initialMonth = monthState.currentMonth.month.value - 1,
-                    initialYear = monthState.currentMonth.year,
-                    onConfirm = { month, year ->
-//                        onMonthYearSelected(1, 1)
-                        showMonthYearPicker = false
-                    },
-                    onDismiss = { showMonthYearPicker = false }
-                )
-            } else {
-                Text(
-                    modifier = Modifier.testTag("MonthLabel"),
-                    text = monthState.currentMonth.month
-                        .getDisplayName(FULL, Locale.getDefault())
-                        .lowercase()
-                        .replaceFirstChar {
-                            it.titlecase()
+                Box() {
+                    MonthYearPickerDialog(
+                        initialMonth = monthState.currentMonth.month.value - 1,
+                        initialYear = monthState.currentMonth.year,
+                        onConfirm = { month, year ->
+                            monthState.currentMonth = YearMonth.of(year,month)
+//                            showMonthYearPicker = false
                         },
-                    style = CalendarMonthText
-                )
+                    )
+                }
 
-                Spacer(modifier = Modifier.width(8.dp))
+            }
+            else {
+                Box() {
+                    Row() {
+                        Text(
+                            modifier = Modifier.testTag("MonthLabel"),
+                            text = monthState.currentMonth.month
+                                .getDisplayName(FULL_STANDALONE, Locale.getDefault())
+                                .lowercase()
+                                .replaceFirstChar {
+                                    it.titlecase()
+                                },
+                            style = CalendarMonthText
+                        )
 
-                Text(
-                    text = monthState.currentMonth.year.toString(),
-                    style = CalendarMonthText
-                )
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Text(
+                            text = monthState.currentMonth.year.toString(),
+                            style = CalendarMonthText
+                        )
+                    }
+                }
             }
 
             IconButton(
-                onClick = {showMonthYearPicker = true },
+                onClick = {showMonthYearPicker = !showMonthYearPicker },
                 modifier = Modifier
                     .size(35.dp)
             ) {
@@ -221,6 +285,7 @@ fun TopPanel(
                 )
             }
         }
+
         Box {
             Row {
                 DecrementButton(monthState = monthState)
@@ -229,153 +294,7 @@ fun TopPanel(
         }
     }
 }
-@Preview
-@Composable
-fun f(
-    today: LocalDate = LocalDate.now(),
-    calendarState: CalendarState<DynamicSelectionState> = rememberSelectableCalendarState(
-        initialMonth = YearMonth.of(today.year, today.month) ,
-        initialSelection = today
-    ),
-){
-    var showMonthYearPicker by remember { mutableStateOf(false) }
 
-    var monthState =calendarState.monthState
-    MonthYearPickerDialog(
-        initialMonth = monthState.currentMonth.month.value - 1,
-        initialYear = monthState.currentMonth.year,
-        onConfirm = { month, year ->
-//                        onMonthYearSelectяed(1, 1)
-            showMonthYearPicker = false
-        },
-        onDismiss = { showMonthYearPicker = false }
-    )
-}
-
-@Composable
-fun MonthYearPickerDialog(
-    initialMonth: Int,
-    initialYear: Int,
-    onConfirm: (Int, Int) -> Unit,
-    onDismiss: () -> Unit
-) {
-    var selectedMonth by remember { mutableStateOf(initialMonth) }
-    var selectedYear by remember { mutableStateOf(initialYear) }
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        modifier = Modifier
-            .height(170.dp),
-        text = {
-            Row(
-            ){
-                MonthPicker(
-                    initialSelectedMonth = selectedMonth,
-                    onMonthSelected = { month ->
-                        selectedMonth = month
-                    }
-                )
-//                YearPicker(
-//                    initialSelectedYear = selectedYear,
-//                    onYearSelected = { year ->
-//                        selectedYear = year
-//                    }
-//                )
-            }
-        },
-        confirmButton = {
-            Button(onClick = { onConfirm(selectedMonth + 1, selectedYear) }) {
-                Text("Подтвердить")
-            }
-        }
-    )
-}
-
-@Composable
-fun MonthPicker(
-    initialSelectedMonth: Int,
-    onMonthSelected: (Int) -> Unit
-) {
-    var selectedMonth by remember { mutableStateOf(initialSelectedMonth) }
-    val months = Month.values().toList()
-    val monthCount = months.size
-
-    LazyColumn(
-        modifier = Modifier.padding(vertical = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        reverseLayout = true // Обратная прокрутка для зацикливания
-    ) {
-        items(Int.MAX_VALUE) { index ->
-            val adjustedIndex = (index + monthCount) % monthCount // Правильная формула зацикливания
-            val month = months[adjustedIndex]
-
-            Button(
-                onClick = { selectedMonth = adjustedIndex; onMonthSelected(adjustedIndex) },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = if (adjustedIndex == selectedMonth) Color.LightGray else Color.Transparent,
-                    contentColor = Color.Black
-                ),
-            ) {
-                Text(
-                    text = month.getDisplayName(TextStyle.FULL, Locale.getDefault()),
-                    textAlign = TextAlign.Center,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun YearPicker(
-    initialSelectedYear: Int,
-    onYearSelected: (Int) -> Unit
-) {
-    var selectedYear by remember { mutableStateOf(initialSelectedYear) }
-    var yearRange by remember { mutableStateOf(
-        Pair(selectedYear - 10, selectedYear + 10)
-    )}
-
-//    Column(
-//        modifier = Modifier.fillMaxWidth(),
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        Row(
-//            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-//            horizontalArrangement = Arrangement.SpaceBetween
-//        ) {
-//            Button(onClick = {
-//                yearRange = Pair(yearRange.first - 10, yearRange.second - 10)
-//            }) {
-//                Text("<<")
-//            }
-//            Button(onClick = {
-//                yearRange = Pair(yearRange.first + 10, yearRange.second + 10)
-//            }) {
-//                Text(">>")
-//            }
-//        }
-        LazyColumn(
-            modifier = Modifier
-//                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-        ) {
-            items((yearRange.first..yearRange.second).toList()) { year ->
-                Button(
-                    onClick = { selectedYear = year; onYearSelected(year) },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (year == selectedYear) Color.LightGray else Color.Transparent,
-                        contentColor = Color.Black
-                    ),
-                ) {
-                    Text(
-                        text = year.toString(),
-                        textAlign = TextAlign.Center,
-                    )
-                }
-//            }
-        }
-    }
-}
 @Composable
 private fun DecrementButton(
     monthState: MonthState,
@@ -416,7 +335,7 @@ private fun IncrementButton(
 }
 
 @Composable
-fun BottomPanel(
+fun BottomPanelCalendar(
     showCalendar: MutableState<Boolean>,
     onClick: () -> Unit
 ){
@@ -440,6 +359,187 @@ fun BottomPanel(
                 text = "Ок",
                 color = Color.White
             )
+        }
+    }
+}
+
+@Composable
+fun MonthYearPickerDialog(
+    initialMonth: Int,
+    initialYear: Int,
+    onConfirm: (Int, Int) -> Unit,
+) {
+    var selectedMonth by remember { mutableIntStateOf(initialMonth) }
+    var selectedYear by remember { mutableIntStateOf(initialYear) }
+
+    Box(
+        modifier = Modifier
+            .height(100.dp)
+    ){
+        Row(
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+        ){
+            Box() {
+                MonthPicker(
+                    initialSelectedMonth = selectedMonth,
+                    onSelectedMonth = { month ->
+                        selectedMonth = month
+                    }
+                )
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Box() {
+                YearPicker(
+                    initialSelectedYear = selectedYear,
+                    onSelectedYear = { year ->
+                        selectedYear = year
+                    }
+                )
+            }
+        }
+    }
+    onConfirm(selectedMonth,selectedYear)
+
+//    AlertDialog(
+//        onDismissRequest = onDismiss,
+//        containerColor = Color.Transparent,
+//        modifier = Modifier
+//            .height(300.dp),
+//        text = {
+//            Row(
+//                verticalAlignment = Alignment.CenterVertically,
+//                horizontalArrangement = Arrangement.Center
+//            ){
+//                MonthPicker(
+//                    initialSelectedMonth = selectedMonth,
+//                    onSelectedMonth = { month ->
+//                        selectedMonth = month
+//                    }
+//                )
+//                YearPicker(
+//                    initialSelectedYear = selectedYear,
+//                    onSelectedYear = { year ->
+//                        selectedYear = year
+//                    }
+//                )
+//            }
+//        },
+//        confirmButton = {
+//            Button(onClick = { onConfirm(selectedMonth + 1, selectedYear) }) {
+//                Text("Подтвердить")
+//            }
+//        }
+//    )
+}
+
+@SuppressLint("FrequentlyChangedStateReadInComposition")
+@Composable
+fun MonthPicker(
+    initialSelectedMonth: Int,
+    isEndless: Boolean = true,
+    onSelectedMonth: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val months = Month.entries
+    val monthCount = months.size
+
+    val stateMonth =  rememberLazyListState(
+        if (isEndless) initialSelectedMonth else 0
+    )
+
+    LazyColumn(
+        state = stateMonth,
+        flingBehavior = rememberSnapFlingBehavior(
+            lazyListState = stateMonth, snapPosition = SnapPosition.Center),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start,
+        modifier = modifier
+    ) {
+        items(
+            count = if (isEndless) Int.MAX_VALUE else monthCount,
+            key = { it % monthCount}
+        ){
+            val index = (it % monthCount)
+
+            val isSelected = if (isEndless) {
+                stateMonth.firstVisibleItemIndex % monthCount == index
+            } else {
+                stateMonth.firstVisibleItemIndex == index
+            }
+            Box(
+                modifier = Modifier
+//                    .fillMaxWidth(0f)
+
+            ){
+                Text(
+                    text = months[index]
+                        .getDisplayName(FULL_STANDALONE, Locale.getDefault())
+                        .lowercase()
+                        .replaceFirstChar {
+                            it.titlecase()
+                        }
+                    ,
+                    color = if (isSelected) Color.White else Color.LightGray.copy(alpha = 0.7f),
+                    style = CalendarMonthText,
+                )
+            }
+            LaunchedEffect(isSelected) {
+                onSelectedMonth(index)
+            }
+        }
+    }
+}
+
+@SuppressLint("AutoboxingStateCreation", "FrequentlyChangedStateReadInComposition")
+@Composable
+fun YearPicker(
+    initialSelectedYear: Int,
+    isEndless: Boolean = true,
+    onSelectedYear: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+
+    val selectedYear by remember { mutableStateOf(initialSelectedYear + 1) }
+    val yearRange by remember { mutableStateOf(
+        Pair(selectedYear - 10, selectedYear + 10)
+    )}
+
+    val year = (yearRange.first..yearRange.second).toList()
+    val yearCont = year.size
+
+    val stateMonth =  rememberLazyListState(
+        if (isEndless) initialSelectedYear  else 0
+    )
+
+    LazyColumn(
+        state = stateMonth,
+        flingBehavior = rememberSnapFlingBehavior(
+            lazyListState = stateMonth, snapPosition = SnapPosition.Center),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        items(
+            count = if (isEndless) Int.MAX_VALUE else yearCont,
+            key = { it % yearCont}
+        ){
+            val index = (it % yearCont)
+            val isSelected = if (isEndless) {
+                stateMonth.firstVisibleItemIndex % yearCont == index
+            } else {
+                stateMonth.firstVisibleItemIndex == index
+            }
+
+            Text(
+                text =  year[index].toString(),
+                color = if (isSelected) Color.White else Color.LightGray.copy(alpha = 0.7f),
+                style = CalendarMonthText
+            )
+            LaunchedEffect(isSelected) {
+                onSelectedYear(index)
+            }
         }
     }
 }
@@ -661,4 +761,26 @@ fun CalendarMonthPreview(){
                 isSelected = it.date.isEqual(date.date)
             ) })
     }
+}
+
+@Preview
+@Composable
+fun MonthYearPreview(
+    today: LocalDate = LocalDate.now(),
+    calendarState: CalendarState<DynamicSelectionState> = rememberSelectableCalendarState(
+        initialMonth = YearMonth.of(today.year, today.month) ,
+        initialSelection = today
+    ),
+){
+    var showMonthYearPicker by remember { mutableStateOf(false) }
+
+    val monthState = calendarState.monthState
+    MonthYearPickerDialog(
+        initialMonth = monthState.currentMonth.month.value - 1,
+        initialYear = monthState.currentMonth.year,
+        onConfirm = { month, year ->
+//                        onMonthYearSelectяed(1, 1)
+            showMonthYearPicker = false
+        },
+    )
 }
