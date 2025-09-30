@@ -20,38 +20,57 @@ import ru.ushell.app.api.response.chat.ResponseInfoUserChat;
 import ru.ushell.app.api.response.chat.ResponseMessageChat;
 import ru.ushell.app.api.response.info.ResponseInfoGroup;
 import ru.ushell.app.api.response.info.ResponseInfoTeacher;
+import ru.ushell.app.api.response.info.ResponseInfoUser;
+import ru.ushell.app.api.template.TimetableResponse;
 
 public interface API {
-//--------------------------------------------------------------------------------------------------
-    /**
-     * Info user
-     */
 
-    @POST("auth/login")
-    Call<ResponseSingIn> postSingIn(@Body RequestBody body);
+    RetrofitService retrofitService = new RetrofitService();
+    API api = retrofitService.getRetrofit().create(API.class);
 
-    @GET("info/group")
-    Call<ResponseInfoGroup> getInfoGroup(@Header("Authorization") String token);
 
-    @GET("info/teacher")
-    Call<ResponseInfoTeacher> getInfoTeacher(@Header("Authorization") String token);
-//--------------------------------------------------------------------------------------------------
-    /**
-     * Timetable
-     */
+    @GET("auth/login")
+    Call<ResponseLogin> login(@Header("Authorization") String token);
 
-    @GET("timetable/group")
-    Call<ResponseTimeTable> getTimeTableGroup(@Query("id") Integer id);
+    @GET("auth/logout")
+    Call<ResponseLogin> logout(@Header("Authorization") String token);
 
-    @GET("timetable/teacher")
-    Call<ResponseTimeTable> getTimeTableTeacher(@Query("id") Integer id);
+    @PUT("auth/refresh")
+    Call<ResponseInfoUser> refreshToken(@Header("Authorization") String token);
 
+    @GET("info/groups/group")
+    Call<ResponseInfoGroup> infoGroup(@Header("Authorization") String token);
+
+    @GET("info/users/me")
+    Call<ResponseInfoTeacher> infoMe(@Header("Authorization") String token);
+
+    @GET("info/users/me")
+    Call<ResponseInfoTeacher> infoTeacher(@Header("Authorization") String token);
+
+    @GET("/timetable/groups/group")
+    Call<TimetableResponse> timetableGroup(@Query("id") Integer id);
+
+    @GET("/timetable/teachers/me")
+    Call<TimetableResponse> timetableTeacher(@Header("Authorization") String token);
+
+
+    @GET("attendance/students/me")
+    // TODO: изменить AttendanceStudentResponse
+    Call<AttendanceStudentResponse> attendanceMe(@Header("Authorization") String token);
+
+    @GET("statistic/attendance/me")
+    Call<?> statisticAttendanceMe(@Header("Authorization") String token);
+
+    @GET("attendance/groups/day")
+    Call<?> attendanceMeGroupDay(@Header("Authorization") String token,
+                                 @Query("id") Integer groupId,
+                                 @Query("date") String date);
 //--------------------------------------------------------------------------------------------------
     /**
      * Attendance
      */
 
-    @GET("attendance/student")
+    @GET("attendance/students")
     Call<AttendanceStudentResponse> getAttendanceStudent(@Query("id") Integer id,
                                                          @Query("id_group") Integer IdGroup,
                                                          @Header("Authorization") String token);
