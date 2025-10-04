@@ -1,30 +1,45 @@
 [versions]
-accompanistThemeadapterMaterial3 = "0.28.0"
-agp = "8.8.0"
-constraintlayoutComposeVersion = "1.1.0"
-converterGson = "2.9.0"
-core = "3.3.3"
+daggerCompiler = "2.57.2"
+hiltAndroid = "2.57.2"
+hiltAndroidCompiler = "2.57.2"
+loggingInterceptor = "5.1.0"
+roomRuntime = "2.8.1"
+runtimeLivedata = "1.9.2"
+ksp = "2.2.10-2.0.2"
+accompanistThemeadapterMaterial3 = "0.36.0"
+agp = "8.13.0"
+constraintlayoutComposeVersion = "1.1.1"
+converterGson = "3.0.0"
+core = "3.5.3"
 coreSplashscreen = "1.0.1"
-gson = "2.10.1"
-kotlin = "2.0.0"
-coreKtx = "1.15.0"
+gson = "2.13.2"
+kotlin = "2.2.20"
+coreKtx = "1.17.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-kotlinxDatetime = "0.6.0"
-lifecycleRuntimeKtx = "2.8.7"
-navigation = "2.8.4"
-activityCompose = "1.9.3"
-composeBom = "2024.11.00"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+kotlinxDatetime = "0.7.1"
+lifecycleRuntimeKtx = "2.9.4"
+navigation = "2.9.5"
+activityCompose = "1.11.0"
+composeBom = "2025.09.01"
 drawerlayout = "1.2.0"
-retrofit = "2.9.0"
-appcompat = "1.7.0"
-swiperefresh = "0.24.13-rc"
-constraintlayoutCore = "1.1.0"
-cameraLifecycle = "1.4.0"
-cameraView = "1.4.0"
+retrofit = "3.0.0"
+appcompat = "1.7.1"
+swiperefresh = "0.36.0"
+constraintlayoutCore = "1.1.1"
+cameraLifecycle = "1.5.0"
+cameraView = "1.5.0"
 
 [libraries]
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomRuntime" }
+androidx-room-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "roomRuntime" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
+
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "swiperefresh" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2" }
 androidx-camera-core = { module = "androidx.camera:camera-core" }
@@ -33,7 +48,10 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutComposeVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 core = { module = "com.google.zxing:core", version.ref = "core" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -52,6 +70,7 @@ androidx-compose-materialWindow = { module = "androidx.compose.material3:materia
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-drawerlayout = { group = "androidx.drawerlayout", name = "drawerlayout", version.ref = "drawerlayout" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-constraintlayout-core = { group = "androidx.constraintlayout", name = "constraintlayout-core", version.ref = "constraintlayoutCore" }
@@ -61,4 +80,4 @@ androidx-camera-view = { group = "androidx.camera", name = "camera-view", versio
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+devtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
