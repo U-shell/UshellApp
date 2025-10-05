@@ -8,7 +8,7 @@ import ru.ushell.app.data.features.user.room.dao.UserEntity
 @Database(
     entities = [
         UserEntity::class
-    ], version = 1, exportSchema = true
+    ], version = 2, exportSchema = true
 )
 abstract class UserDatabase : RoomDatabase() {
 

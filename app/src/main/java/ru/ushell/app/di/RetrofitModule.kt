@@ -15,6 +15,7 @@ import ru.ushell.app.R
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceApi
 import ru.ushell.app.data.features.messanger.remote.MessengerApi
 import ru.ushell.app.data.features.timetabel.remote.timetable.TimetableApi
+import ru.ushell.app.data.features.user.remote.auth.AuthApi
 import javax.inject.Singleton
 
 @Module
@@ -48,16 +49,16 @@ class RetrofitModule {
         sharedPreferences: SharedPreferences
     ): OkHttpClient=
         OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .addHeader(
-                        "Authorization",
-                        "Bearer ${sharedPreferences.getString("API_KEY", "").orEmpty()}"
-                    )
-                    .build()
-
-                return@addInterceptor chain.proceed(request)
-            }
+//            .addInterceptor { chain ->
+//                val request = chain.request().newBuilder()
+//                    .addHeader(
+//                        "Authorization",
+//                        "Bearer ${sharedPreferences.getString("API_KEY", "").orEmpty()}"
+//                    )
+//                    .build()
+//
+//                return@addInterceptor chain.proceed(request)
+//            }
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
@@ -71,10 +72,10 @@ class RetrofitModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-//    @Provides
-//    @Singleton
-//    fun providesUserApi(@RetrofitClient retrofit: Retrofit): UserApi =
-//        retrofit.create(UserApi::class.java)
+    @Provides
+    @Singleton
+    fun providesAuthApi(@RetrofitClient retrofit: Retrofit): AuthApi =
+        retrofit.create(AuthApi::class.java)
 
     @Provides
     @Singleton

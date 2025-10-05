@@ -6,8 +6,8 @@ import ru.ushell.app.data.features.user.room.dao.UserEntity.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)
 data class UserEntity(
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val username: String,
     val firstName: String,
     val lastName: String,

@@ -1,19 +1,17 @@
 package ru.ushell.app.data.features.user
 
-import android.app.Application
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.internal.managers.ApplicationComponentManager
+import dagger.hilt.components.SingletonComponent
 import ru.ushell.app.base.UserDatabase
-import ru.ushell.app.data.features.user.auth.AuthRepository
-import ru.ushell.app.data.features.user.auth.retrofit.RetrofitAuthDataSource
 import ru.ushell.app.data.features.user.remote.auth.AuthApi
+import ru.ushell.app.data.features.user.retrofit.RetrofitAuthDataSource
 import ru.ushell.app.data.features.user.room.RoomUserDataSource
 import javax.inject.Singleton
 
 @Module
-//@InstallIn(ApplicationComponent)
+@InstallIn(SingletonComponent::class)
 class UserDataModule {
 
     @Provides
@@ -32,7 +30,7 @@ class UserDataModule {
     fun providesAuthRepository(
         local: UserLocalDataSource,
         remote: UserRemoteDataSource
-    ): AuthRepository =
-        AuthRepository(local, remote)
+    ): UserRepository =
+        UserRepository(local, remote)
 
 }
