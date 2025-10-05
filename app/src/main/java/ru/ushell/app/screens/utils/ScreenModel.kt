@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens
+package ru.ushell.app.screens.utils
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
