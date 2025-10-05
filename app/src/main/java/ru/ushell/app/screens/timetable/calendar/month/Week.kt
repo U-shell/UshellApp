@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.utils.calendar.month
+package ru.ushell.app.screens.timetable.calendar.month
 
 import androidx.compose.runtime.Immutable
 import java.time.LocalDate

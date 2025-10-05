@@ -1,6 +1,6 @@
-package ru.ushell.app.screens.utils.calendar.week
+package ru.ushell.app.screens.timetable.calendar.week
 
-import ru.ushell.app.screens.utils.calendar.CalendarUtils
+import ru.ushell.app.screens.timetable.calendar.CalendarUtils
 import java.time.LocalDate
 
 class CalendarDataSource {

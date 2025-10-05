@@ -16,8 +16,8 @@ import ru.ushell.app.screens.analyticScreen.AnalyticScreen
 import ru.ushell.app.screens.navigation.DrawerRoutes
 import ru.ushell.app.screens.navigation.NavigationBottomBar
 import ru.ushell.app.screens.navigation.ScreenNav
-import ru.ushell.app.screens.theme.UshellAppTheme
 import ru.ushell.app.screens.timetable.TimeTableScreen
+import ru.ushell.app.ui.theme.UshellAppTheme
 
 @Composable
 fun BottomNavGraph(

@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import ru.ushell.app.R
 import ru.ushell.app.old.ui.screens.backgroundImagesSmall
-import ru.ushell.app.screens.theme.TimeTableText
+import ru.ushell.app.ui.theme.TimeTableText
 
 @Composable
 fun RoomScreen() {

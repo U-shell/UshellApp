@@ -33,8 +33,8 @@
 //import ru.ushell.app.screens.theme.AttendanceDialogBrief
 //import ru.ushell.app.screens.theme.AttendanceDialogDes
 //import ru.ushell.app.screens.theme.UshellBackground
-//import ru.ushell.app.screens.utils.calendar.CalendarUtils.DataNow
-//import ru.ushell.app.screens.utils.calendar.CalendarUtils.formattedDateDayAttendance
+//import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
+//import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
 //import java.time.LocalDate
 //
 //@Composable

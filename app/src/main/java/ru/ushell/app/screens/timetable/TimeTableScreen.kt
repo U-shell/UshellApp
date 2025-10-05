@@ -42,14 +42,14 @@ import kotlinx.coroutines.delay
 import ru.ushell.app.R
 import ru.ushell.app.old.ui.screens.TopPanelScreen
 import ru.ushell.app.old.ui.screens.backgroundImagesSmall
-import ru.ushell.app.screens.theme.BottomBackgroundAlfa
-import ru.ushell.app.screens.theme.ListColorButton
-import ru.ushell.app.screens.theme.TimeTableText
-import ru.ushell.app.screens.utils.calendar.CalendarUtils.formattedMonthYear
-import ru.ushell.app.screens.utils.calendar.month.CalendarMonthDialog
-import ru.ushell.app.screens.utils.calendar.week.CalendarData
-import ru.ushell.app.screens.utils.calendar.week.CalendarDataSource
-import ru.ushell.app.screens.utils.calendar.week.CalendarWeek
+import ru.ushell.app.ui.theme.BottomBackgroundAlfa
+import ru.ushell.app.ui.theme.ListColorButton
+import ru.ushell.app.ui.theme.TimeTableText
+import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedMonthYear
+import ru.ushell.app.screens.timetable.calendar.month.CalendarMonthDialog
+import ru.ushell.app.screens.timetable.calendar.week.CalendarData
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDataSource
+import ru.ushell.app.screens.timetable.calendar.week.CalendarWeek
 import java.time.temporal.ChronoUnit
 
 //Когда использовать каждый из эффектов

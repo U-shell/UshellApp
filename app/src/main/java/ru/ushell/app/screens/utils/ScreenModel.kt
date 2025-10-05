@@ -43,8 +43,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import ru.ushell.app.R
 import ru.ushell.app.screens.LogsState
 import ru.ushell.app.screens.rememberLogsUser
-import ru.ushell.app.screens.theme.BottomBackgroundAlfa
-import ru.ushell.app.screens.theme.ListColorButtonBig
+import ru.ushell.app.ui.theme.BottomBackgroundAlfa
+import ru.ushell.app.ui.theme.ListColorButtonBig
 
 @Composable
 fun Further(){

@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.theme
+package ru.ushell.app.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.graphics.Color

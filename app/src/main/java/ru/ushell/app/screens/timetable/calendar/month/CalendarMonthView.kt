@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.utils.calendar.month
+package ru.ushell.app.screens.timetable.calendar.month
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -50,14 +50,14 @@ import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 
 import ru.ushell.app.R
-import ru.ushell.app.screens.theme.CalendarMonthText
-import ru.ushell.app.screens.theme.LightBackgroundColor
-import ru.ushell.app.screens.utils.calendar.CalendarUtils
-import ru.ushell.app.screens.utils.calendar.CalendarUtils.DaysInAWeek
-import ru.ushell.app.screens.utils.calendar.DayCellItem
-import ru.ushell.app.screens.utils.calendar.NameDayCell
-import ru.ushell.app.screens.utils.calendar.week.CalendarData
-import ru.ushell.app.screens.utils.calendar.week.CalendarDataSource
+import ru.ushell.app.screens.timetable.calendar.CalendarUtils
+import ru.ushell.app.screens.timetable.calendar.DayCellItem
+import ru.ushell.app.screens.timetable.calendar.NameDayCell
+import ru.ushell.app.screens.timetable.calendar.week.CalendarData
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDataSource
+import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DaysInAWeek
+import ru.ushell.app.ui.theme.CalendarMonthText
+import ru.ushell.app.ui.theme.LightBackgroundColor
 
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -559,7 +559,7 @@ fun <T : SelectionState> Calendar(
     },
 ) {
     val daysOfWeek = remember(firstDayOfWeek) {
-        DayOfWeek.entries.toTypedArray().rotateRight(CalendarUtils.DaysInAWeek - firstDayOfWeek.ordinal)
+        DayOfWeek.entries.toTypedArray().rotateRight(DaysInAWeek - firstDayOfWeek.ordinal)
     }
 
     CalendarContent(
@@ -666,7 +666,7 @@ fun <T : SelectionState> DayItem(
 
 internal const val DefaultCalendarPagerRange = 10_000L
 
-internal infix fun DayOfWeek.daysUntil(other: DayOfWeek) = (7 + (value - other.value)) % DaysInAWeek
+internal infix fun DayOfWeek.daysUntil(other: DayOfWeek) = (7 + (value - other.value)) % CalendarUtils.DaysInAWeek
 
 internal fun <T> Array<T>.rotateRight(n: Int): List<T> = takeLast(n) + dropLast(n)
 

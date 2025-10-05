@@ -15,8 +15,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.ushell.app.R
-import ru.ushell.app.screens.theme.TimeTableTextMessage
-import ru.ushell.app.screens.theme.UshellBackground
+import ru.ushell.app.ui.theme.TimeTableTextMessage
+import ru.ushell.app.ui.theme.UshellBackground
+
 
 @Composable
 fun MessageView() {

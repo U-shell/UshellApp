@@ -21,8 +21,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import ru.ushell.app.screens.theme.DiagramBaseColor
-import ru.ushell.app.screens.theme.ListColorRing
+import ru.ushell.app.ui.theme.DiagramBaseColor
+import ru.ushell.app.ui.theme.ListColorRing
 
 
 @SuppressLint("UnusedBoxWithConstraintsScope")

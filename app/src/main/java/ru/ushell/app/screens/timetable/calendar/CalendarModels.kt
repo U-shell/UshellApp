@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.utils.calendar
+package ru.ushell.app.screens.timetable.calendar
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -21,9 +21,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.ushell.app.screens.theme.DayCellItemStyle
-import ru.ushell.app.screens.utils.calendar.week.CalendarData
-import ru.ushell.app.screens.utils.calendar.week.CalendarDataSource
+import ru.ushell.app.ui.theme.DayCellItemStyle
+import ru.ushell.app.screens.timetable.calendar.week.CalendarData
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDataSource
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.TextStyle

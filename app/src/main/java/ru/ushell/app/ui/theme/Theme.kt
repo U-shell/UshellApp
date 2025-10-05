@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.theme
+package ru.ushell.app.ui.theme
 
 import android.app.Activity
 import android.content.pm.ActivityInfo

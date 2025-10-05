@@ -1,7 +1,7 @@
-package ru.ushell.app.screens.utils.calendar.month
+package ru.ushell.app.screens.timetable.calendar.month
 
 import android.annotation.SuppressLint
-import ru.ushell.app.screens.utils.calendar.CalendarUtils
+import ru.ushell.app.screens.timetable.calendar.CalendarUtils
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth

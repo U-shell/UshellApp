@@ -26,9 +26,9 @@
 //import org.json.JSONObject
 //import ru.ushell.app.screens.theme.AttendanceStudentGroupText
 //import ru.ushell.app.screens.theme.UshellBackground
-//import ru.ushell.app.screens.utils.calendar.CalendarUtils
-//import ru.ushell.app.screens.utils.calendar.CalendarUtils.DataNow
-//import ru.ushell.app.screens.utils.calendar.CalendarUtils.formattedDateDayAttendance
+//import ru.ushell.app.screens.timetable.calendar.CalendarUtils
+//import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
+//import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
 //
 //
 //@Composable

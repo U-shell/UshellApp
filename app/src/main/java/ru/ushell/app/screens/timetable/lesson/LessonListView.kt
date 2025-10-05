@@ -1,15 +1,9 @@
 package ru.ushell.app.screens.timetable.lesson
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import ru.ushell.app.screens.utils.calendar.CalendarUtils.formattedDateDayAttendance
 
 import java.time.LocalDate
-import kotlin.Int
 
 @Composable
 fun ListLesson(

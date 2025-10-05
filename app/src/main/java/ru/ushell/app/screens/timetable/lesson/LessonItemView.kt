@@ -35,7 +35,7 @@
 //import ru.ushell.app.screens.theme.TimeTableTextLessonItem
 //import ru.ushell.app.screens.theme.TimeTableTextLessonItemBold
 //import ru.ushell.app.screens.theme.UshellBackground
-//import ru.ushell.app.screens.utils.calendar.CalendarUtils.DataNow
+//import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
 //import java.time.LocalDate
 //
 //@Composable
