@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import ru.ushell.app.R
-import ru.ushell.app.screens.theme.SplashScreenBackground
+import ru.ushell.app.ui.theme.SplashScreenBackground
 
 private const val SplashWaitTime: Long = 1000
 

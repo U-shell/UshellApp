@@ -2,19 +2,27 @@ package ru.ushell.app.screens
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import ru.ushell.app.screens.auth.view.AuthViewModel
 import ru.ushell.app.screens.navigation.ScreenNav
-import ru.ushell.app.screens.theme.UshellAppTheme
+import ru.ushell.app.ui.theme.UshellAppTheme
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +33,11 @@ class MainActivity : ComponentActivity() {
             statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
         )
+        //       setContent {
+        //            UshellAppTheme {
+        //                MainApp()
+        //            }
+        //        }
 
         setContent {
 //            User.getInstance(LocalContext.current)
@@ -49,6 +62,7 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+
     }
 
 
@@ -84,6 +98,34 @@ class MainActivity : ComponentActivity() {
 //        TODO("какие функции надо вызвать при выходе их приложения")
 //    }
 //}
+
+@Composable
+fun MainApp() {
+    var isSplashShowing by remember { mutableStateOf(true) }
+    val navController = rememberNavController()
+    if (isSplashShowing) {
+        Log.d("DEBUG","isSplashShowing")
+        SplashScreen(
+            onTimeout = {
+                isSplashShowing = false
+            }
+        )
+    } else {
+        Log.d("DEBUG"," NO isSplashShowing")
+
+        NavHost(
+            navController = navController,
+            startDestination = Routes.ScreenAuth.route
+        ) {
+            composable(Routes.ScreenAuth.route) {
+                StartScreen()
+            }
+            composable(Routes.ScreenNav.route) {
+                ScreenNav()
+            }
+        }
+    }
+}
 
 @Composable
 private fun MainNavScreen(

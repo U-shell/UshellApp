@@ -47,18 +47,19 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
+import ru.ushell.app.screens.auth.view.AuthViewModel
 
 
 @Composable
 fun AuthorizeScreen(
-    navController: NavHostController
+    navController: NavHostController,
 ){
     AuthorizeContext(
-        navController=navController
+        navController=navController,
     )
 }
 
@@ -299,14 +300,17 @@ fun TransitionToNextActivity(
     statusAuth: Boolean,
     logsState: LogsState,
     navController: NavHostController,
-//    authRepository: AuthRepository
-) {
-    val context = LocalContext.current
+    viewModel: AuthViewModel = hiltViewModel()
 
+) {
     if (statusAuth) {
         val email = logsState.email.value.text
         val password = logsState.password.value.text
-//        authRepository.loginUser()
+
+        if (viewModel.loginUser(email,password)){
+            navController.navigate(RoutesStart.ScreenNav.route)
+
+        }
 //        if (email.isNotBlank() && password.isNotBlank()) {
 //            val isSuccess = _root_ide_package_.ru.ushell.app.old.api.request.loginUser(
 //                email,
@@ -340,12 +344,12 @@ fun rememberLogsUser(
     LogsState(email, password)
 }
 
-@Preview
-@Composable
-fun PreviewAuth(){
-    val navController = rememberNavController()
-    AuthorizeScreen(navController)
-}
+//@Preview
+//@Composable
+//fun PreviewAuth(){
+//    val navController = rememberNavController()
+//    AuthorizeScreen(navController)
+//}
 
 @Preview
 @Composable

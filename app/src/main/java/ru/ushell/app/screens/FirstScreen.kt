@@ -29,12 +29,12 @@ import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
 import ru.ushell.app.old.ui.screens.backgroundImage
 import ru.ushell.app.screens.navigation.ScreenNav
-import ru.ushell.app.screens.theme.BottomBackgroundAlfa
-import ru.ushell.app.screens.theme.ListColorButton
-import ru.ushell.app.screens.theme.NoNavigationBarColorTheme
-import ru.ushell.app.screens.theme.StartScreenButtonText
-import ru.ushell.app.screens.theme.StartScreenTitleText
-import ru.ushell.app.screens.theme.UshellAppTheme
+import ru.ushell.app.ui.theme.BottomBackgroundAlfa
+import ru.ushell.app.ui.theme.ListColorButton
+import ru.ushell.app.ui.theme.NoNavigationBarColorTheme
+import ru.ushell.app.ui.theme.StartScreenButtonText
+import ru.ushell.app.ui.theme.StartScreenTitleText
+import ru.ushell.app.ui.theme.UshellAppTheme
 
 
 @Composable
@@ -58,7 +58,7 @@ fun AuthNav(
         }
         composable(RoutesStart.ScreenAuth.route) {
             NoNavigationBarColorTheme {
-                AuthorizeScreen(navController)
+//                AuthorizeScreen(navController)
             }
         }
         composable(RoutesStart.ScreenNav.route){
