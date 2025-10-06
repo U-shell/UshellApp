@@ -1,5 +1,7 @@
 package ru.ushell.app.screens.auth.view
 
+import android.content.Context
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +21,7 @@ open class AuthViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<AuthUiState>(AuthUiState.Empty)
     val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String, context: Context) {
         if (email.isBlank() || password.isBlank()) {
             _uiState.value = AuthUiState.Error("Введите email и пароль")
             return
@@ -28,7 +30,7 @@ open class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.value = AuthUiState.Loading
             try {
-                userRepository.loginUser(email, password)
+                userRepository.loginUser(email, password, context)
                 _uiState.value = AuthUiState.Success
             } catch (e: Exception) {
                 _uiState.value = AuthUiState.Error(getErrorInternetMessage(e))
