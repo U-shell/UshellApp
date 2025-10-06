@@ -2,7 +2,6 @@ package ru.ushell.app.screens
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
@@ -11,61 +10,83 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import ru.ushell.app.screens.auth.view.AuthViewModel
+import ru.ushell.app.data.condition.session.Session
 import ru.ushell.app.screens.navigation.ScreenNav
+import ru.ushell.app.ui.theme.NoNavigationBarColorTheme
 import ru.ushell.app.ui.theme.UshellAppTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
         )
-        //       setContent {
-        //            UshellAppTheme {
-        //                MainApp()
-        //            }
-        //        }
 
         setContent {
-//            User.getInstance(LocalContext.current)
-
-            val navController = rememberNavController()
-//            val isLoggedIn = remember { mutableStateOf(SaveUser.isLogin(applicationContext)) }
-            val isLoggedIn = false
-
             UshellAppTheme {
-                SplashScreen(
-                    onTimeout = {
-                        setContent {
-                            val navController = rememberNavController()
+                MainApp()
+            }
+        }
+    }
+}
 
-                            AuthorizeScreen(navController)
-                            MainNavScreen(
-                                isLoggedIn = isLoggedIn,
-                                navController = navController
-                            )
-                        }
-                    }
-                )
+@Composable
+fun MainApp() {
+    val navController = rememberNavController()
+    val isLoggedIn = Session.isLogin(LocalContext.current)
+
+    NavHost(
+        navController = navController,
+        startDestination = if (isLoggedIn) Routes.Main.route else Routes.Splash.route
+    ) {
+        composable(Routes.Splash.route) {
+            SplashScreen {
+                navController.navigate(
+                    if (isLoggedIn) Routes.Main.route else Routes.Start.route
+                ) {
+                    popUpTo(Routes.Splash.route) { inclusive = true }
+                }
             }
         }
 
+        composable(Routes.Start.route) {
+            NoNavigationBarColorTheme {
+                FirstScreen( {
+                    navController.navigate(Routes.Auth.route)
+                })
+            }
+        }
+
+        composable(Routes.Auth.route) {
+            NoNavigationBarColorTheme {
+                AuthorizeScreen(navController)
+            }
+        }
+
+        composable(Routes.Main.route) {
+            UshellAppTheme {
+                ScreenNav()
+            }
+        }
     }
+}
 
-
+sealed class Routes(val route: String) {
+        data object Splash : Routes("splash")
+        data object Start : Routes("start_start")
+        data object Auth : Routes("start_auth")
+        data object Main : Routes("nav_screen")
+}
 //    override fun onStart() {
 //        super.onStart()
 //        User.getInstance(this)
@@ -90,64 +111,9 @@ class MainActivity : ComponentActivity() {
 //w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:126:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
 //w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:159:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
 //w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:160:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
-    }
-
 //    override fun onDestroy() {
 //        super.onDestroy()
 //        _root_ide_package_.ru.ushell.app.old.api.websocket.chat.ChatConnect().disconnect()
 //        TODO("какие функции надо вызвать при выходе их приложения")
 //    }
 //}
-
-@Composable
-fun MainApp() {
-    var isSplashShowing by remember { mutableStateOf(true) }
-    val navController = rememberNavController()
-    if (isSplashShowing) {
-        Log.d("DEBUG","isSplashShowing")
-        SplashScreen(
-            onTimeout = {
-                isSplashShowing = false
-            }
-        )
-    } else {
-        Log.d("DEBUG"," NO isSplashShowing")
-
-        NavHost(
-            navController = navController,
-            startDestination = Routes.ScreenAuth.route
-        ) {
-            composable(Routes.ScreenAuth.route) {
-                StartScreen()
-            }
-            composable(Routes.ScreenNav.route) {
-                ScreenNav()
-            }
-        }
-    }
-}
-
-@Composable
-private fun MainNavScreen(
-    isLoggedIn: Boolean,
-    navController: NavHostController,
-) {
-    NavHost(
-        navController = navController,
-        startDestination = if (isLoggedIn) Routes.ScreenNav.route else Routes.ScreenAuth.route) {
-        composable(Routes.ScreenAuth.route) {
-            StartScreen()
-        }
-        composable(Routes.ScreenNav.route) {
-            ScreenNav()
-        }
-    }
-}
-
-
-sealed class Routes(
-    val route: String,
-) {
-    data object ScreenAuth : Routes("auth_screen")
-    data object ScreenNav : Routes("nav_screen")
-}

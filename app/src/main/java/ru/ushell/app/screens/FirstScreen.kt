@@ -22,60 +22,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
-import ru.ushell.app.old.ui.screens.backgroundImage
-import ru.ushell.app.screens.navigation.ScreenNav
+import ru.ushell.app.screens.utils.backgroundImage
 import ru.ushell.app.ui.theme.BottomBackgroundAlfa
 import ru.ushell.app.ui.theme.ListColorButton
-import ru.ushell.app.ui.theme.NoNavigationBarColorTheme
 import ru.ushell.app.ui.theme.StartScreenButtonText
 import ru.ushell.app.ui.theme.StartScreenTitleText
-import ru.ushell.app.ui.theme.UshellAppTheme
 
 
 @Composable
-fun StartScreen(){
-    val navController = rememberNavController()
-    AuthNav(navController)
-}
-
-@Composable
-fun AuthNav(
-    navController: NavHostController
+fun FirstScreen(
+    onAuthClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    NavHost(
-        navController = navController,
-        startDestination = RoutesStart.ScreenStart.route
-    ) {
-        composable(RoutesStart.ScreenStart.route) {
-            NoNavigationBarColorTheme {
-                StartContext(navController)
-            }
-        }
-        composable(RoutesStart.ScreenAuth.route) {
-            NoNavigationBarColorTheme {
-//                AuthorizeScreen(navController)
-            }
-        }
-        composable(RoutesStart.ScreenNav.route){
-            UshellAppTheme {
-                ScreenNav()
-            }
-        }
-    }
-}
-
-@Composable
-fun StartContext(
-    navController: NavHostController
-){
-    StyleScreenBackground{
-        Box(modifier = Modifier
-        ) {
+    StyleScreenBackground(modifier) {
+        Box(modifier = Modifier) {
             Image(
                 painter = painterResource(id = R.drawable.start_activity_image),
                 contentDescription = null,
@@ -84,45 +46,39 @@ fun StartContext(
         }
         Box(
             modifier = Modifier
-                .padding(
-                    bottom = 91.dp
-                )
+                .padding(bottom = 91.dp)
         ) {
             ButtonAuth(
                 text = R.string.start_auth,
-                onClick = {
-                    navController.navigate(RoutesStart.ScreenAuth.route)
-                }
+                onClick = onAuthClick
             )
         }
     }
 }
+
 
 @Composable
 fun StyleScreenBackground(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    Box(modifier = Modifier.Companion.backgroundImage())
+    Box(modifier = Modifier.backgroundImage())
 
-    Box(
+    Column(
         modifier = modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
+        Box(
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .align(Alignment.Start)
+                .fillMaxWidth()
         ) {
-            Box(
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .fillMaxWidth()
-            ) {
-                WelcomeText(text = R.string.start_welcome_text)
-            }
-            content()
+            WelcomeText(text = R.string.start_welcome_text)
         }
+
+        content()
     }
 }
 
@@ -147,9 +103,11 @@ fun WelcomeText(text: Int){
 fun ButtonAuth(
     text: Int,
     onClick: () -> Unit = {},
+    enabled: Boolean = true
 ){
     Button(
         onClick = onClick,
+        enabled = enabled,
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = BottomBackgroundAlfa
@@ -180,18 +138,14 @@ fun ButtonAuth(
     }
 }
 
-sealed class RoutesStart(
-    val route: String,
-) {
-    data object ScreenStart : RoutesStart("start_start")
-    data object ScreenAuth : RoutesStart("start_auth")
-    data object ScreenNav : RoutesStart("start_nav")
-}
-
 @Preview
 @Composable
 fun StartScreenPreview(){
-    StartScreen()
+    val navController = rememberNavController()
+
+    FirstScreen({
+        navController.navigate(Routes.Auth.route)
+    })
 }
 
 @Preview

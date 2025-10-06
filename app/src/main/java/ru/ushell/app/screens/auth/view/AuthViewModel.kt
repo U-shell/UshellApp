@@ -4,27 +4,41 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.ushell.app.data.features.user.UserRepository
+import ru.ushell.app.screens.error.getErrorInternetMessage
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(
-    private val authRepository: UserRepository
-): ViewModel() {
+open class AuthViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
+    private val _uiState = MutableStateFlow<AuthUiState>(AuthUiState.Empty)
+    val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
 
-    fun loginUser(email: String, password: String): Boolean {
+    fun login(email: String, password: String) {
+        if (email.isBlank() || password.isBlank()) {
+            _uiState.value = AuthUiState.Error("Введите email и пароль")
+            return
+        }
+
         viewModelScope.launch {
+            _uiState.value = AuthUiState.Loading
             try {
-//                val response = authRepository.loginUser(email, password)
-//                print(response)
-                println("User loaded: ${authRepository.getInfoUser()}")
-                // обработка ответа
+                userRepository.loginUser(email, password)
+                _uiState.value = AuthUiState.Success
             } catch (e: Exception) {
-                println(e)
-                // обработка ошибки
+                _uiState.value = AuthUiState.Error(getErrorInternetMessage(e))
             }
         }
-        return false
+    }
+
+    fun clearError() {
+        if (_uiState.value is AuthUiState.Error) {
+            _uiState.value = AuthUiState.Empty
+        }
     }
 }

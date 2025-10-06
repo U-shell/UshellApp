@@ -1,11 +1,14 @@
 package ru.ushell.app.screens
 
+import android.widget.Toast
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -14,9 +17,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -24,17 +29,17 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.Stable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
@@ -49,159 +54,159 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
+import ru.ushell.app.screens.auth.view.AuthUiState
 import ru.ushell.app.screens.auth.view.AuthViewModel
+import ru.ushell.app.ui.theme.AuthHelpTextButton
+import ru.ushell.app.ui.theme.AuthScreenBodyTitle
+import ru.ushell.app.ui.theme.ListColorButton
 
 
 @Composable
 fun AuthorizeScreen(
     navController: NavHostController,
-){
-    AuthorizeContext(
-        navController=navController,
-    )
-}
+    viewModel: AuthViewModel = hiltViewModel()
+) {
+    val context = LocalContext.current
+    var showForgotPassword by rememberSaveable { mutableStateOf(false) }
 
-@Composable
-fun AuthorizeContext(
-    navController: NavHostController,
-    logsState: LogsState = rememberLogsUser(),
-){
-    var showForgotPassword by remember { mutableStateOf(false) }
-    var statusAuth by remember { mutableStateOf(false) }
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
 
-    StyleScreenBackground{
-        Box(
-            modifier = Modifier
-        ) {
-            SignInWindow(logsState=logsState)
-        }
-        Box(
-            modifier = Modifier
-                .padding(bottom = 91.dp)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Box {
-                    /*TODO*/
-                    ButtonAuth(
-                        text = R.string.auth_enter,
-                        onClick = {
-                            statusAuth=true
-                        }
-                    )
-                    TransitionToNextActivity(statusAuth, logsState, navController)
-                    statusAuth=false
-                }
-                TextButton(
-                    onClick = {
-                        showForgotPassword = true
-                    }
-                ) {
-                    Text(
-                        text = "Забыл пароль?",
-//                        style = AuthHelpTextButton
-                    )
-                }
+    val uiState by viewModel.uiState.collectAsState()
+
+    // Реакция на успешный вход
+    if (uiState is AuthUiState.Success) {
+        LaunchedEffect(Unit) {
+            navController.navigate(Routes.Main.route) {
+                popUpTo(Routes.Start.route) { inclusive = true }
             }
         }
     }
-    if(showForgotPassword) {
-        ForgotPassword(onClose = { showForgotPassword = false })
+
+    // Показ ошибки
+    if (uiState is AuthUiState.Error) {
+        LaunchedEffect(uiState) {
+            Toast.makeText(context, (uiState as AuthUiState.Error).message, Toast.LENGTH_SHORT).show()
+        }
+        viewModel.clearError()
     }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        StyleScreenBackground {
+            Box(modifier = Modifier.fillMaxWidth()) {
+                SignInWindow(
+                    email = email,
+                    onEmailChange = { email = it },
+                    password = password,
+                    onPasswordChange = { password = it }
+                )
+            }
+            Box(modifier = Modifier.padding(bottom = 91.dp)) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    ButtonAuth(
+                        text = R.string.auth_enter,
+                        onClick = {
+                            viewModel.login(email, password)
+                        },
+                        enabled = uiState !is AuthUiState.Loading // блокируем кнопку при загрузке
+                    )
+                    TextButton(onClick = { showForgotPassword = true }) {
+                        Text("Забыл пароль?", style = AuthHelpTextButton)
+                    }
+                }
+            }
+        }
+        if (uiState is AuthUiState.Loading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.4f)),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            }
+        }
+    }
+
+    if (showForgotPassword) {
+        ForgotPassword { showForgotPassword = false }
+    }
+}
+
+@Composable
+fun AuthorizeScreenContext(){
+
 }
 
 @Composable
 fun SignInWindow(
-    logsState: LogsState
+    email: String,
+    onEmailChange: (String) -> Unit,
+    password: String,
+    onPasswordChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(20.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = stringResource(R.string.auth_set_data),
-//            style = AuthScreenBodyTitle
-        )
+        Text(stringResource(R.string.auth_set_data), style = AuthScreenBodyTitle)
+
         TextField(
-            value = logsState.email.value,
-            onValueChange = {logsState.email.value = it},
-            placeholder = {
-                Text(
-                    text = stringResource(R.string.auth_email)
-                )
-            },
-            label = {
-                Text(
-                    text = stringResource(R.string.auth_email)
-                )
-            },
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                focusedPlaceholderColor = Color.Transparent,
-                focusedContainerColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Gray,
-                unfocusedIndicatorColor = Color.Gray,
-                focusedLabelColor = Color.DarkGray,
-                cursorColor = Color.White,
-                focusedTextColor = Color.White,
-                unfocusedTextColor = Color.White.copy(alpha = 0.8f)
-            ),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email
-            ),
+            value = email,
+            onValueChange = onEmailChange,
+            label = { Text(stringResource(R.string.auth_email)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            colors = textFieldColors(),
+            singleLine = true
         )
+
         TextField(
-            value = logsState.password.value,
-            onValueChange = { logsState.password.value = it },
-            placeholder = {
-                Text(text = stringResource(R.string.auth_password))
-            },
-            label = {
-                Text(text = stringResource(R.string.auth_password))
-            },
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                focusedPlaceholderColor = Color.Transparent,
-                focusedContainerColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Gray,
-                unfocusedIndicatorColor = Color.Gray,
-                focusedLabelColor = Color.DarkGray,
-                cursorColor = Color.White,
-                focusedTextColor = Color.White,
-                unfocusedTextColor = Color.White.copy(alpha = 0.8f)
-            ),
+            value = password,
+            onValueChange = onPasswordChange,
+            label = { Text(stringResource(R.string.auth_password)) },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             trailingIcon = {
-                val image =
-                    if (passwordVisible) {
-                        painterResource(id = R.drawable.auth_eye_close)
-                    }else {
-                        painterResource(id = R.drawable.auth_eye)
-                    }
-
-                val description = if (passwordVisible) "Hide password" else "Show password"
-
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(image, description)
+                    Icon(
+                        painter = painterResource(
+                            if (passwordVisible) R.drawable.auth_eye_close else R.drawable.auth_eye
+                        ),
+                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                    )
                 }
-            }
+            },
+            colors = textFieldColors(),
+            singleLine = true
         )
     }
 }
+
+@Composable
+private fun textFieldColors() = TextFieldDefaults.colors(
+    focusedContainerColor = Color.Transparent,
+    unfocusedContainerColor = Color.Transparent,
+    disabledContainerColor = Color.Transparent,
+    focusedIndicatorColor = Color.Gray,
+    unfocusedIndicatorColor = Color.Gray,
+    focusedLabelColor = Color.DarkGray,
+    cursorColor = Color.White,
+    focusedTextColor = Color.White,
+    unfocusedTextColor = Color.White.copy(alpha = 0.8f),
+    focusedPlaceholderColor = Color.Transparent
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -279,11 +284,11 @@ fun ButtonHelp(
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent
         ),
-//        border = BorderStroke(
-//            width = 1.dp,
-//            brush = Brush.Companion.horizontalGradient(
-//                ListColorButton
-//            )),
+        border = BorderStroke(
+            width = 1.dp,
+            brush = Brush.Companion.horizontalGradient(
+                ListColorButton
+            )),
         modifier = Modifier
             .clip(RoundedCornerShape(10))
             .background(color = Color(0xFF2F0342).copy(alpha = 0.45f))
@@ -295,61 +300,13 @@ fun ButtonHelp(
     }
 }
 
+@Preview
 @Composable
-fun TransitionToNextActivity(
-    statusAuth: Boolean,
-    logsState: LogsState,
-    navController: NavHostController,
-    viewModel: AuthViewModel = hiltViewModel()
+fun AuthorizeScreenPreview(){
+    val navController = rememberNavController()
 
-) {
-    if (statusAuth) {
-        val email = logsState.email.value.text
-        val password = logsState.password.value.text
-
-        if (viewModel.loginUser(email,password)){
-            navController.navigate(RoutesStart.ScreenNav.route)
-
-        }
-//        if (email.isNotBlank() && password.isNotBlank()) {
-//            val isSuccess = _root_ide_package_.ru.ushell.app.old.api.request.loginUser(
-//                email,
-//                password,
-//                context,
-//                callback = object : AuthorizationCallback {
-//                    override fun onAuthReceived(auth: Boolean) {
-//                        if (auth) {
-//                            navController.navigate(RoutesStart.ScreenNav.route)
-//                        } else {
-//                            Toast.makeText(context, "Ошибка авторизации", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-//                })
-//
-//        }
-    }
+    AuthorizeScreenContext()
 }
-
-@Stable
-class LogsState(
-    var email: MutableState<TextFieldValue>,
-    val password: MutableState<TextFieldValue>
-)
-
-@Composable
-fun rememberLogsUser(
-    email: MutableState<TextFieldValue> =  remember { mutableStateOf(TextFieldValue("")) },
-    password: MutableState<TextFieldValue> =  remember {mutableStateOf(TextFieldValue(""))}
-): LogsState = remember {
-    LogsState(email, password)
-}
-
-//@Preview
-//@Composable
-//fun PreviewAuth(){
-//    val navController = rememberNavController()
-//    AuthorizeScreen(navController)
-//}
 
 @Preview
 @Composable

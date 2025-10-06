@@ -1,13 +1,13 @@
 package ru.ushell.app.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,39 +17,34 @@ import kotlinx.coroutines.delay
 import ru.ushell.app.R
 import ru.ushell.app.ui.theme.SplashScreenBackground
 
-private const val SplashWaitTime: Long = 1000
+private const val SPLASH_DELAY_MS = 1000L
 
 @Composable
 fun SplashScreen(
-    @SuppressLint("ModifierParameter")
-    modifier: Modifier = Modifier
-    	.fillMaxSize()
-        .background(SplashScreenBackground)
-    	.wrapContentSize(),
+    modifier: Modifier = Modifier,
     onTimeout: () -> Unit
-){
+) {
     LaunchedEffect(Unit) {
-        delay(SplashWaitTime)
+        delay(SPLASH_DELAY_MS)
         onTimeout()
     }
 
-    Image(
-        painterResource(id = R.drawable.splash_screen_logo),
-        contentDescription ="splash_screen_logo",
-        modifier
-            .size(158.dp)
-    )
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(SplashScreenBackground),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.splash_screen_logo),
+            contentDescription = "App logo",
+            modifier = Modifier.size(158.dp)
+        )
+    }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-private fun ActivityPreview() {
-    val navController = rememberNavController()
-    SplashScreen(onTimeout = {
-        navController.navigate(Routes.ScreenNav.route) {
-            popUpTo(Routes.ScreenNav.route){
-                inclusive = true
-            }
-        }
-    })
+private fun SplashScreenPreview() {
+    SplashScreen(onTimeout = {})
 }
