@@ -50,11 +50,12 @@ import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 
 import ru.ushell.app.R
+import ru.ushell.app.data.features.timetabel.room.dao.lesson.lessonExistDate
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils
 import ru.ushell.app.screens.timetable.calendar.DayCellItem
 import ru.ushell.app.screens.timetable.calendar.NameDayCell
-import ru.ushell.app.screens.timetable.calendar.week.CalendarData
-import ru.ushell.app.screens.timetable.calendar.week.CalendarDataSource
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDate
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDateSource
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DaysInAWeek
 import ru.ushell.app.ui.theme.CalendarMonthText
 import ru.ushell.app.ui.theme.LightBackgroundColor
@@ -70,11 +71,11 @@ import java.util.Locale
 @Composable
 fun CalendarMonthDialog(
     today: LocalDate,
-    data: CalendarData,
+    data: CalendarDate,
     showCalendar: MutableState<Boolean>,
     onDismiss: () -> Unit,
     onDataMonth: () -> Unit,
-    onDateClickListener: (CalendarData.Date) -> Unit,
+    onDateClickListener: (CalendarDate.Date) -> Unit,
 ){
     Dialog(onDismissRequest = onDismiss) {
         Surface(color = Color.Transparent) {
@@ -91,10 +92,10 @@ fun CalendarMonthDialog(
 
 @Composable
 fun CalendarMonth(
-    data: CalendarData,
+    data: CalendarDate,
     showCalendar: MutableState<Boolean>,
     onDataMonth: () -> Unit,
-    onDateClickListener: (CalendarData.Date) -> Unit,
+    onDateClickListener: (CalendarDate.Date) -> Unit,
 ) {
     CalendarMonthContent(
         data = data,
@@ -106,7 +107,7 @@ fun CalendarMonth(
 
 @Composable
 fun CalendarMonthContent(
-    data: CalendarData,
+    data: CalendarDate,
     today: LocalDate = LocalDate.now(),
     showCalendar: MutableState<Boolean>,
     firstDayOfWeek: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
@@ -119,9 +120,9 @@ fun CalendarMonthContent(
         Box { content(PaddingValues()) }
     },
     onDataMonth: () -> Unit,
-    onDateClickListener: (CalendarData.Date) -> Unit
+    onDateClickListener: (CalendarDate.Date) -> Unit
 ){
-    data.selectedDate = CalendarData.Date(
+    data.selectedDate = CalendarDate.Date(
         date=calendarState.selectionState.selection,
         isSelected = false,
         isLesson = false
@@ -635,30 +636,27 @@ fun <T : SelectionState> DayItem(
     state: DayState<T>,
     onClick: (LocalDate) -> Unit = {},
 ) {
-    val dataState = state.date
+    val date = state.date
     val selectionState = state.selectionState
-    val isSelected = selectionState.onDaySelected(dataState)
+    val isSelected = selectionState.onDaySelected(date)
 
     if (isSelected) {
-        selectionState.onDateSelected(dataState)
+        selectionState.onDateSelected(date)
     }
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         DayCellItem(
-            data = CalendarData.Date(
-                date = dataState,
+            data = CalendarDate.Date(
+                date = date,
                 isSelected = isSelected,
-                isLesson = false
-//                isLesson = Lesson.LessonIsDate(
-//                    dataState
-//                )
+                isLesson = lessonExistDate(date)
             ),
             modifier = Modifier
                 .clickable {
-                    onClick(dataState)
-                    selectionState.onDateSelected(dataState)
+                    onClick(date)
+                    selectionState.onDateSelected(date)
                 },
         )
     }
@@ -750,7 +748,7 @@ class CalendarState<T : SelectionState>(
 @Preview
 @Composable
 fun CalendarMonthPreview(){
-    val dataSource = CalendarDataSource()
+    val dataSource = CalendarDateSource()
     var data by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today))}
     val showCalendar = remember { mutableStateOf(false) }
     showCalendar.value=true

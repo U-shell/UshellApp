@@ -17,12 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import ru.ushell.app.data.features.timetabel.room.dao.lesson.Lesson
 import ru.ushell.app.screens.timetable.view.TimetableUiState
 import ru.ushell.app.screens.timetable.view.TimetableViewModel
 
 import java.time.LocalDate
-import kotlin.collections.isNotEmpty
 
 @Composable
 fun ListLesson(
@@ -30,7 +28,7 @@ fun ListLesson(
     date: LocalDate,
     viewModel: TimetableViewModel = hiltViewModel()
 ) {
-    // Загружаем данные при первом входе или смене даты
+
     LaunchedEffect(date) {
         viewModel.loadTimetable(date)
     }

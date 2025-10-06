@@ -1,13 +1,19 @@
 package ru.ushell.app.data.features.timetabel
 
+import androidx.compose.runtime.LaunchedEffect
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import ru.ushell.app.data.features.timetabel.remote.timetable.TimetableResponse
 import ru.ushell.app.data.features.timetabel.room.dao.lesson.Lesson
+import ru.ushell.app.data.features.timetabel.room.dao.lesson.primaryListLesson
+import ru.ushell.app.data.features.timetabel.room.dao.lesson.secondaryListLesson
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetabel.room.dao.secondary.TimetableSecondaryEntity
 import ru.ushell.app.data.features.timetabel.room.toLessonItem
 import ru.ushell.app.data.features.user.UserRepository
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils
+import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DayOfWeek
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.ParityWeek
+import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateToDbWeek
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -26,13 +32,19 @@ class TimetableRepository(
         )
     }
 
-    suspend fun getTimetable(data: LocalDate): List<Lesson> {
+    suspend fun getTimetable(date: LocalDate): List<Lesson> {
+
+        primaryListLesson.addAll(timetableLocalDataSource.getPrimaryTimetable())
+        secondaryListLesson.addAll(timetableLocalDataSource.getSecondaryTimetable())
+
         return getListLesson(
             timetableLocalDataSource.getPrimaryTimetable(),
             timetableLocalDataSource.getSecondaryTimetable(),
-            data
+            date
         )
     }
+
+
 
     private suspend fun processingTimetable(response: TimetableResponse){
         response.mainSchedule.forEach { (weekStr, days) ->
@@ -97,8 +109,8 @@ class TimetableRepository(
     ): List<Lesson> {
 
         val targetWeek = ParityWeek(date)
-        val targetDay = CalendarUtils.DayOfWeek(date)
-        val targetDate = CalendarUtils.formattedDateToDbWeek(date)
+        val targetDay = DayOfWeek(date)
+        val targetDate = formattedDateToDbWeek(date)
 
         val filteredSecondary = secondaryTimetable
             .filter { it.dateLesson == targetDate && it.dayOfWeek.lowercase() == targetDay }
@@ -128,4 +140,5 @@ class TimetableRepository(
 
         return result.sortedBy { it.numLesson }
     }
+
 }

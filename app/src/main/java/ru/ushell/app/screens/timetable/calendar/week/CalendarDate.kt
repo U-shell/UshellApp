@@ -2,7 +2,7 @@ package ru.ushell.app.screens.timetable.calendar.week
 
 import java.time.LocalDate
 
-data class CalendarData(
+data class CalendarDate(
     var selectedDate: Date,
     val visibleDates: List<Date>
 ){

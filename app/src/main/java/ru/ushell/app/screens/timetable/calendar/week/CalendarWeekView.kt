@@ -30,10 +30,10 @@ import java.time.LocalDate
 
 @Composable
 fun CalendarWeek(
-    data: CalendarData,
+    data: CalendarDate,
     onNavigatePrevious: () -> Unit,
     onNavigateNext: () -> Unit,
-    onDateClickListener: (CalendarData.Date) -> Unit,
+    onDateClickListener: (CalendarDate.Date) -> Unit,
 ){
     Row(
         modifier = Modifier
@@ -77,8 +77,8 @@ fun CalendarWeek(
 
 @Composable
 fun CalendarDataWeek(
-    data: CalendarData,
-    onDateClickListener: (CalendarData.Date) -> Unit,
+    data: CalendarDate,
+    onDateClickListener: (CalendarDate.Date) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -95,8 +95,8 @@ fun CalendarDataWeek(
 
 @Composable
 fun CalendarWeekContent(
-    data: CalendarData,
-    onDateClickListener: (CalendarData.Date) -> Unit
+    data: CalendarDate,
+    onDateClickListener: (CalendarDate.Date) -> Unit
 ){
     NameDayCell()
     CalendarView(
@@ -107,8 +107,8 @@ fun CalendarWeekContent(
 
 @Composable
 fun CalendarView(
-    data: CalendarData,
-    onDateClickListener: (CalendarData.Date) -> Unit
+    data: CalendarDate,
+    onDateClickListener: (CalendarDate.Date) -> Unit
 ) {
 
     LazyVerticalGrid(
@@ -137,7 +137,7 @@ fun CalendarView(
 @Preview
 @Composable
 fun CalendarWeekPreview(){
-    val dataSource = CalendarDataSource()
+    val dataSource = CalendarDateSource()
     var data by remember { mutableStateOf(dataSource.getDataWeek(selectedDate = LocalDate.now())) }
 
     CalendarWeek(
@@ -159,7 +159,7 @@ fun CalendarWeekPreview(){
 @Preview
 @Composable
 fun CalendarDataWeekViewPreview(){
-    val dataSource = CalendarDataSource()
+    val dataSource = CalendarDateSource()
     var data by remember { mutableStateOf(dataSource.getDataWeek(selectedDate = LocalDate.now())) }
 
     CalendarDataWeek(

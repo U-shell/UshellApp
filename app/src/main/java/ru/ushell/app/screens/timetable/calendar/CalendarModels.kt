@@ -22,8 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.ushell.app.ui.theme.DayCellItemStyle
-import ru.ushell.app.screens.timetable.calendar.week.CalendarData
-import ru.ushell.app.screens.timetable.calendar.week.CalendarDataSource
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDate
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDateSource
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.TextStyle
@@ -64,7 +64,7 @@ fun NameDayCellItem(text: String) {
 
 @Composable
 fun DayCellItem(
-    data: CalendarData.Date,
+    data: CalendarDate.Date,
     modifier: Modifier = Modifier,
 ){
     Row(
@@ -111,7 +111,7 @@ fun NameDayCellPreview(){
 @Preview
 @Composable
 fun DayPreview(){
-    val data by remember { mutableStateOf(CalendarDataSource().getDataWeek(selectedDate = LocalDate.now())) }
+    val data by remember { mutableStateOf(CalendarDateSource().getDataWeek(selectedDate = LocalDate.now())) }
 
     DayCellItem(
         data = data.selectedDate,

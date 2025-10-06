@@ -46,8 +46,8 @@ import ru.ushell.app.ui.theme.ListColorButton
 import ru.ushell.app.ui.theme.TimeTableText
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedMonthYear
 import ru.ushell.app.screens.timetable.calendar.month.CalendarMonthDialog
-import ru.ushell.app.screens.timetable.calendar.week.CalendarData
-import ru.ushell.app.screens.timetable.calendar.week.CalendarDataSource
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDate
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDateSource
 import ru.ushell.app.screens.timetable.calendar.week.CalendarWeek
 import ru.ushell.app.screens.timetable.lesson.ListLesson
 import ru.ushell.app.screens.utils.TopPanelScreen
@@ -98,7 +98,7 @@ fun TimeTableScreen() {
     var isRefreshing by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
-    val dataSource = CalendarDataSource()
+    val dataSource = CalendarDateSource()
     var currantData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today)) }
 
     LaunchedEffect(isRefreshing){
@@ -130,7 +130,7 @@ fun TimeTableScreen() {
 
 
 @Composable
-fun TimeTableContext(dataSource: CalendarDataSource, initialData: CalendarData) {
+fun TimeTableContext(dataSource: CalendarDateSource, initialData: CalendarDate) {
 
     var currantData by remember { mutableStateOf(initialData) }
     var pastData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate = dataSource.today)) }
@@ -221,11 +221,11 @@ fun TimeTableContext(dataSource: CalendarDataSource, initialData: CalendarData) 
 
 @Composable
 fun TopPanelCalendar(
-    data:CalendarData,
+    data:CalendarDate,
     onDataMonth: () -> Unit,
     onNavigatePrevious: () -> Unit,
     onNavigateNext: () -> Unit,
-    onDateClickListener: (CalendarData.Date) -> Unit,
+    onDateClickListener: (CalendarDate.Date) -> Unit,
 ) {
     val showCalendar = remember { mutableStateOf(false) }
     TopPanelScreen(
@@ -264,7 +264,7 @@ fun TopPanelCalendar(
 
 @Composable
 fun TimetableTitle(
-    data: CalendarData,
+    data: CalendarDate,
     showCalendar: MutableState<Boolean>,
 ) {
     Row(
@@ -358,7 +358,7 @@ fun CalendarButton(
 @Preview
 @Composable
 fun TopPanelCalendarPreview(){
-    val dataSource = CalendarDataSource()
+    val dataSource = CalendarDateSource()
     val currantData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today)) }
     TimeTableContext(dataSource=dataSource,initialData=currantData)
 }
