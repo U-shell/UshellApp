@@ -1,28 +1,17 @@
 package ru.ushell.app.data.condition.session
 
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.core.content.edit
 
 class Session {
     companion object {
 
-        private const val CONDITION = "condition"
+        fun isLogin(context: Context): Boolean =
+            SessionRepository.get(context, SessionStaticVar.KEYLOGGER).toBoolean()
 
-        fun save(context: Context, value: String, key: String){
-            val sharedPreferences: SharedPreferences =
-                context.getSharedPreferences(CONDITION, Context.MODE_PRIVATE)
+        fun setLogin(context: Context) =
+            SessionRepository.save(context, "true", SessionStaticVar.KEYLOGGER)
 
-            sharedPreferences.edit {
-                putString(key, value)
-            }
-        }
-
-        fun get(context: Context, key: String): String? {
-            val sharedPreferences: SharedPreferences =
-                context.getSharedPreferences(CONDITION, Context.MODE_PRIVATE)
-
-            return sharedPreferences.getString(key, "false")
-        }
+        fun userLogout(context: Context) =
+            SessionRepository.save(context, "false", SessionStaticVar.KEYLOGGER)
     }
 }
