@@ -1,11 +1,11 @@
 package ru.ushell.app.data.features.timetabel.remote.timetable
 
 data class TimetableResponse(
-    val mainSchedule: Map<String, Map<String, Map<String, Lesson>>> = emptyMap(),
-    val secondarySchedule: Map<String, Map<String, Map<String, Lesson>>> = emptyMap()
+    val mainSchedule: Map<String, Map<String, Map<String, LessonResponse>>> = emptyMap(),
+    val secondarySchedule: Map<String, Map<String, Map<String, LessonResponse>>> = emptyMap()
 )
 
-data class Lesson(
+data class LessonResponse(
     val timeStart: String,
     val timeEnd: String,
     val subgroup: Int,

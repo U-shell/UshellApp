@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -40,8 +41,6 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.delay
 import ru.ushell.app.R
-import ru.ushell.app.old.ui.screens.TopPanelScreen
-import ru.ushell.app.old.ui.screens.backgroundImagesSmall
 import ru.ushell.app.ui.theme.BottomBackgroundAlfa
 import ru.ushell.app.ui.theme.ListColorButton
 import ru.ushell.app.ui.theme.TimeTableText
@@ -50,6 +49,9 @@ import ru.ushell.app.screens.timetable.calendar.month.CalendarMonthDialog
 import ru.ushell.app.screens.timetable.calendar.week.CalendarData
 import ru.ushell.app.screens.timetable.calendar.week.CalendarDataSource
 import ru.ushell.app.screens.timetable.calendar.week.CalendarWeek
+import ru.ushell.app.screens.timetable.lesson.ListLesson
+import ru.ushell.app.screens.utils.TopPanelScreen
+import ru.ushell.app.screens.utils.backgroundImagesSmall
 import java.time.temporal.ChronoUnit
 
 //Когда использовать каждый из эффектов
@@ -208,10 +210,10 @@ fun TimeTableContext(dataSource: CalendarDataSource, initialData: CalendarData) 
                     .fillMaxHeight()
                     .navigationBarsPadding()
             ) {
-//               ListLesson(
-//                    modifier = Modifier.offset(y=20.dp),
-//                    date = currantData.selectedDate.date
-//                )
+               ListLesson(
+                    modifier = Modifier.offset(y=20.dp),
+                    date = currantData.selectedDate.date
+                )
             }
         }
     }
@@ -227,7 +229,7 @@ fun TopPanelCalendar(
 ) {
     val showCalendar = remember { mutableStateOf(false) }
     TopPanelScreen(
-        titleContext = { TT_title(data = data, showCalendar) }
+        titleContext = { TimetableTitle(data = data, showCalendar) }
     ) {
         Box(
             modifier = Modifier
@@ -261,7 +263,7 @@ fun TopPanelCalendar(
 }
 
 @Composable
-fun TT_title(
+fun TimetableTitle(
     data: CalendarData,
     showCalendar: MutableState<Boolean>,
 ) {

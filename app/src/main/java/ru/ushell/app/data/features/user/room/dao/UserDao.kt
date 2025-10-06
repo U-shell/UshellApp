@@ -13,6 +13,15 @@ interface UserDao {
     @JvmSuppressWildcards
     suspend fun saveUser(userEntity: UserEntity)
 
-    @Query("SELECT * FROM $TABLE_NAME")
+    @Query("UPDATE $TABLE_NAME SET active = 1 WHERE username =:username")
+    suspend fun setStatusActive(username: String)
+
+    @Query("UPDATE $TABLE_NAME SET active = 0 WHERE username =:username")
+    suspend fun setStatusNoActive(username: String)
+
+    @Query("SELECT * FROM $TABLE_NAME WHERE active = 1")
     suspend fun getInfoUser(): UserEntity
+
+    @Query("SELECT groupId FROM $TABLE_NAME WHERE active = 1")
+    suspend fun getGroupId(): Int
 }

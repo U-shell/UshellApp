@@ -20,4 +20,6 @@ class UserRepository(
         return userLocalDataSource.getInfoUser()
     }
 
+    suspend fun getGroupId(): Int = userLocalDataSource.getGroupId()
+
 }

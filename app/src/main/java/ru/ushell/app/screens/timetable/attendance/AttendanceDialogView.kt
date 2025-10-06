@@ -30,11 +30,10 @@
 //import androidx.compose.ui.unit.dp
 //import androidx.compose.ui.window.Dialog
 //import ru.ushell.app.R
-//import ru.ushell.app.screens.theme.AttendanceDialogBrief
-//import ru.ushell.app.screens.theme.AttendanceDialogDes
-//import ru.ushell.app.screens.theme.UshellBackground
 //import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
 //import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
+//import ru.ushell.app.ui.theme.AttendanceDialogBrief
+//import ru.ushell.app.ui.theme.UshellBackground
 //import java.time.LocalDate
 //
 //@Composable
@@ -175,8 +174,7 @@
 //){
 //    Log.d("attendanceGroupList","r")
 //
-//    val attendanceGroupList: ArrayList<ru.ushell.app.old.models.modelTimeTable.attendance.AttendanceGroup> =
-//        _root_ide_package_.ru.ushell.app.old.models.modelTimeTable.attendance.AttendanceGroup.AttendanceGroupForData(
+//    val attendanceGroupList: ArrayList<AttendanceGroup> = AttendanceGroupForData(
 //            numLesson,
 //            subgroup
 //        )

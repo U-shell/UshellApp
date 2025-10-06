@@ -96,12 +96,12 @@ public class CalendarUtils {
         return daysInMonthArray;
     }
 
-    public static Long ParityWeek(LocalDate date) {
+    public static Integer ParityWeek(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("w");
         if(Long.parseLong(String.valueOf(date.format(formatter))) % 2 == 0 ){
-            return 0L;
+            return 0;
         }else{
-            return 1L;
+            return 1;
         }
     }
 

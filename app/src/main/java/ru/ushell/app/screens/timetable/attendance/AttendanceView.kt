@@ -24,11 +24,11 @@
 //import androidx.compose.ui.unit.dp
 //import androidx.compose.ui.unit.sp
 //import org.json.JSONObject
-//import ru.ushell.app.screens.theme.AttendanceStudentGroupText
-//import ru.ushell.app.screens.theme.UshellBackground
 //import ru.ushell.app.screens.timetable.calendar.CalendarUtils
 //import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
 //import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
+//import ru.ushell.app.ui.theme.AttendanceStudentGroupText
+//import ru.ushell.app.ui.theme.UshellBackground
 //
 //
 //@Composable
