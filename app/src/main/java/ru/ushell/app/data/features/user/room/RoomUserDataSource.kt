@@ -7,13 +7,13 @@ import ru.ushell.app.data.features.user.room.dao.UserEntity
 
 class RoomUserDataSource(val userDao: UserDao): UserLocalDataSource {
 
+    override suspend fun activeUser(): Boolean = userDao.activeUser()
+
     override suspend fun saveRemoteResponse(userEntity: AuthInfoUserResponse) {
         return userDao.saveUser(userEntity.toUserEntity())
     }
 
-    override suspend fun getInfoUser(): UserEntity {
-        return userDao.getInfoUser()
-    }
+    override suspend fun getInfoUser(): UserEntity = userDao.getInfoUser()
 
     override suspend fun getGroupId(): Int = userDao.getGroupId()
 
