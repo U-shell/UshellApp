@@ -27,10 +27,13 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,9 +52,12 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
+import ru.ushell.app.screens.Routes
+import ru.ushell.app.screens.auth.view.AuthUiState
 import ru.ushell.app.screens.auth.view.AuthViewModel
 import ru.ushell.app.screens.profile.diagram.DataSources
 import ru.ushell.app.screens.profile.diagram.ProgressItem
+import ru.ushell.app.screens.profile.view.ProfileUiState
 import ru.ushell.app.screens.profile.view.ProfileViewModel
 import ru.ushell.app.screens.utils.backgroundImagesSmall
 import ru.ushell.app.ui.theme.DrawerBorderColor
@@ -128,6 +134,19 @@ fun TopPanel(
     viewModel: ProfileViewModel  = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
+    var name by rememberSaveable { mutableStateOf("") }
+    var brief by rememberSaveable { mutableStateOf("") }
+
+    val uiState by viewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.getNameUser()
+    }
+
+    if (uiState is ProfileUiState.Success) {
+        name = (uiState as ProfileUiState.Success).name
+        brief = (uiState as ProfileUiState.Success).brief
+    }
 
     Column(
         modifier = Modifier
@@ -185,8 +204,9 @@ fun TopPanel(
         Box(modifier = Modifier
             .padding(top = 10.dp)
         ){
+
             Text(
-                text = viewModel.getNameUser(),
+                text = name,
                 style = ProfileTextUserInfo,
                 modifier = Modifier
                     .height(30.dp),
@@ -195,7 +215,7 @@ fun TopPanel(
 
         Box{
             Text(
-                text =viewModel.getDescriptionUser(),
+                text = brief,
                 style = ProfileTextUserInfo,
                 modifier = Modifier
                     .height(30.dp),
