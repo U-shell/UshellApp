@@ -46,7 +46,7 @@ fun ListLesson(
         is TimetableUiState.Success -> {
             val lessons = (uiState as TimetableUiState.Success).lessons
             if (lessons.isEmpty()) {
-                Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter ) {
                     MessageView()
                 }
             } else {
