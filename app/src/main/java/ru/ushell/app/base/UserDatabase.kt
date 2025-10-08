@@ -2,6 +2,8 @@ package ru.ushell.app.base
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import ru.ushell.app.data.features.attendance.room.dao.AttendanceDao
+import ru.ushell.app.data.features.attendance.room.dao.AttendanceEntity
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableDao
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetabel.room.dao.secondary.TimetableSecondaryDao
@@ -13,8 +15,9 @@ import ru.ushell.app.data.features.user.room.dao.UserEntity
     entities = [
         UserEntity::class,
         TimetableEntity::class,
-        TimetableSecondaryEntity::class
-    ], version = 11, exportSchema = true
+        TimetableSecondaryEntity::class,
+        AttendanceEntity::class
+    ], version = 14, exportSchema = true
 )
 abstract class UserDatabase : RoomDatabase() {
 
@@ -24,4 +27,5 @@ abstract class UserDatabase : RoomDatabase() {
 
     abstract fun timetableSecondaryDao(): TimetableSecondaryDao
 
+    abstract fun attendanceDao(): AttendanceDao
 }

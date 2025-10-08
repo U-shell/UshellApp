@@ -8,11 +8,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.ushell.app.data.features.attendance.AttendanceRepository
 import ru.ushell.app.data.features.user.UserRepository
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val attendanceRepository: AttendanceRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<ProfileUiState>(ProfileUiState.Empty)
@@ -22,11 +24,14 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _uiState.value = ProfileUiState.Loading
+
                 val user = userRepository.getInfoUser()
                 val name = "${user.firstName} ${user.lastName} ${user.patronymic}"
                 val brief = user.title
-                _uiState.value = ProfileUiState.Success(name,brief)
-                } catch (e: Exception) {
+
+                val presentAttendance = attendanceRepository.getStatisticAttendance()
+                _uiState.value = ProfileUiState.Success(name, brief, presentAttendance)
+            } catch (e: Exception) {
                 _uiState.value = ProfileUiState.Error(e.message ?: "Unknown error")
             }
         }

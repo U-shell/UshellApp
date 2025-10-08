@@ -30,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -41,20 +42,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
-import ru.ushell.app.screens.Routes
-import ru.ushell.app.screens.auth.view.AuthUiState
-import ru.ushell.app.screens.auth.view.AuthViewModel
 import ru.ushell.app.screens.profile.diagram.DataSources
 import ru.ushell.app.screens.profile.diagram.ProgressItem
 import ru.ushell.app.screens.profile.view.ProfileUiState
@@ -67,23 +62,47 @@ import ru.ushell.app.ui.theme.ProfileTextUserInfo
 @Composable
 fun ProfileScreen(
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
+    viewModel: ProfileViewModel  = hiltViewModel()
+
 ) {
+    var name by rememberSaveable { mutableStateOf("") }
+    var brief by rememberSaveable { mutableStateOf("") }
+    var presentAttendance by rememberSaveable { mutableIntStateOf(0) }
+
+    val uiState by viewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.getNameUser()
+    }
+
+    if (uiState is ProfileUiState.Success) {
+        name = (uiState as ProfileUiState.Success).name
+        brief = (uiState as ProfileUiState.Success).brief
+        presentAttendance = (uiState as ProfileUiState.Success).presentAttendance
+    }
     ProfileContent(
-        drawerState=drawerState
+        drawerState = drawerState,
+        name = name,
+        brief = brief,
+        presentAttendance = presentAttendance
     )
 }
 
 @Composable
 fun ProfileContent(
-    drawerState:DrawerState
-){
+    drawerState: DrawerState,
+    name: String,
+    brief: String,
+    presentAttendance: Int
+) {
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .clip(RoundedCornerShape(0.dp))
             .navigationBarsPadding()
-            .background(color = Color(0xFFE7E7E7))
-        ,
+            .background(color = Color(0xFFE7E7E7)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ConstraintLayout(
@@ -91,7 +110,7 @@ fun ProfileContent(
                 .fillMaxSize()
                 .padding(bottom = 70.dp)
                 .navigationBarsPadding()
-        ){
+        ) {
             val (topPanel, profile, backgroundImage) = createRefs()
 
             Box(
@@ -110,8 +129,8 @@ fun ProfileContent(
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                     }
-            ){
-                TopPanel(drawerState=drawerState)
+            ) {
+                TopPanel(drawerState = drawerState, name = name, brief = brief)
             }
 
             Box(
@@ -122,7 +141,7 @@ fun ProfileContent(
                         end.linkTo(parent.end)
                     }
             ) {
-                InfoPanel()
+                InfoPanel(presentAttendance)
             }
         }
     }
@@ -131,22 +150,11 @@ fun ProfileContent(
 @Composable
 fun TopPanel(
     drawerState: DrawerState,
-    viewModel: ProfileViewModel  = hiltViewModel()
+    name: String,
+    brief: String,
 ) {
     val scope = rememberCoroutineScope()
-    var name by rememberSaveable { mutableStateOf("") }
-    var brief by rememberSaveable { mutableStateOf("") }
 
-    val uiState by viewModel.uiState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.getNameUser()
-    }
-
-    if (uiState is ProfileUiState.Success) {
-        name = (uiState as ProfileUiState.Success).name
-        brief = (uiState as ProfileUiState.Success).brief
-    }
 
     Column(
         modifier = Modifier
@@ -225,7 +233,9 @@ fun TopPanel(
 }
 
 @Composable
-fun InfoPanel() {
+fun InfoPanel(
+    presentAttendance: Int
+) {
     val loc = LocalDensity.current
     var col by remember { mutableStateOf(0.dp) }
 
@@ -261,7 +271,7 @@ fun InfoPanel() {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ProgressUI()
+            ProgressUI(presentAttendance)
             Spacer(modifier = Modifier.height(10.dp))
             InfoPerson()
         }
@@ -269,8 +279,11 @@ fun InfoPanel() {
 }
 
 @Composable
-fun ProgressUI() {
-    val courses = DataSources.allLearnedProgresss
+fun ProgressUI(
+    presentAttendance:Int
+) {
+    // TODO переделать на функцию
+    val courses = DataSources(presentAttendance).allLearnedProgresss
 
     LazyRow(
         modifier = Modifier
@@ -280,7 +293,8 @@ fun ProgressUI() {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
-        items(courses.size) { index -> ProgressItem(
+        items(courses.size) { index ->
+            ProgressItem(
                 course = courses[index],
                 modifier = Modifier
                     .padding(horizontal = 5.dp)
@@ -363,11 +377,13 @@ fun InfoPersonItem(){
 @Preview
 @Composable
 fun ProfileScreenPreview() {
-    ProfileScreen()
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+
+    ProfileContent(drawerState,"Мешков Роман Константинович","ШМС-311",1)
 }
 
 @Preview
 @Composable
 fun ProfileUIPreview() {
-    ProgressUI()
+    ProgressUI(89)
 }

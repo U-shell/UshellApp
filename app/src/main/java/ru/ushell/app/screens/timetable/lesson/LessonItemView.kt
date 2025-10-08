@@ -42,7 +42,7 @@ import java.time.LocalDate
 @Composable
 fun LessonItem(
     lesson: Lesson,
-//    attendance: Int,
+    attendance: Int,
     date: LocalDate
 ){
     val showAttendance = remember { mutableStateOf(false) }
@@ -61,7 +61,7 @@ fun LessonItem(
     ) {
         LessonItemContext(
             lesson = lesson,
-//            attendance = attendance
+            attendance = attendance
         )
     }
 
@@ -104,7 +104,7 @@ fun LessonItem(
 @Composable
 fun LessonItemContext(
     lesson: Lesson,
-//    attendance: Int
+    attendance: Int
 ){
     val status = mapOf(0 to ColorItemRad, 1 to ColorItemGreen, 2 to ColorItemGray)
 
@@ -130,10 +130,10 @@ fun LessonItemContext(
                     color = Color.White,
                     shape = CircleShape
                 )
-//                .background(
-//                    color = status[attendance]!!,
-//                    shape = CircleShape
-//                ),
+                .background(
+                    color = status[attendance]!!,
+                    shape = CircleShape
+                ),
         )
         Box(
             modifier = Modifier
@@ -179,7 +179,7 @@ fun LessonItemContext(
                                 style = TimeTableTextLessonItem
                             )
                             Text(
-                                text = lesson.classroom.toString(),
+                                text = lesson.classroom,
                                 style = TimeTableTextLessonItem
                             )
                         }
@@ -246,11 +246,11 @@ fun LessonItemPreview(){
         "teacher",
         "09:08",
         "923",
-        0,
+        1,
         )
     LessonItem(
         lesson=lesson,
-//        attendance = 2,
+        attendance = 0,
         date = DataNow()
     )
 }

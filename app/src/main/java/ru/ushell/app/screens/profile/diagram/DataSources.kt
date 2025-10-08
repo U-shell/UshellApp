@@ -3,7 +3,9 @@ package ru.ushell.app.screens.profile.diagram
 
 import androidx.compose.ui.graphics.Color
 
-object DataSources {
+class DataSources(
+    presentAttendance: Int
+) {
 
     val allLearnedProgresss = listOf(
         Progress(
@@ -17,14 +19,15 @@ object DataSources {
         ),
         Progress(
             name = "Посещаемость\nзанятий",
-            allClasses = 30,
-            finishedClasses = 0,
+            allClasses = 100,
+            finishedClasses = presentAttendance,
             level = Level.Medium,
             colorMain = Color(0xFFFFF6EB),
             isLightColor = true,
             progressColor = Color(0xFFF76400),
             baseColor = Color(0xFFFEEAD9)
         ),
+
         Progress(
             name = "Рейтинг\n ",
             allClasses = 20,
