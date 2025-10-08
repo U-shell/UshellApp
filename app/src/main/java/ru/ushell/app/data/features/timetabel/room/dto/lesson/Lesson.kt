@@ -1,4 +1,4 @@
-package ru.ushell.app.data.features.timetabel.room.dao.lesson
+package ru.ushell.app.data.features.timetabel.room.dto.lesson
 
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetabel.room.dao.secondary.TimetableSecondaryEntity
@@ -20,6 +20,7 @@ data class Lesson(
     val classroom: String,
     val subgroup: Int
 )
+
 // TODO: убрать колхоз
 val primaryListLesson: ArrayList<TimetableEntity> = ArrayList()
 val secondaryListLesson: ArrayList<TimetableSecondaryEntity> = ArrayList()

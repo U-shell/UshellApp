@@ -2,7 +2,6 @@ package ru.ushell.app.screens.timetable.lesson
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,12 +27,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
-import ru.ushell.app.data.features.timetabel.room.dao.lesson.Lesson
+import ru.ushell.app.data.features.timetabel.room.dto.lesson.Lesson
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
 import ru.ushell.app.ui.theme.ColorItemGray
 import ru.ushell.app.ui.theme.ColorItemGreen
 import ru.ushell.app.ui.theme.ColorItemRad
-import ru.ushell.app.ui.theme.Darkteam
 import ru.ushell.app.ui.theme.TimeTableTextLessonItem
 import ru.ushell.app.ui.theme.TimeTableTextLessonItemBold
 import ru.ushell.app.ui.theme.UshellBackground

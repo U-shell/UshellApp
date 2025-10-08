@@ -1,22 +1,20 @@
 package ru.ushell.app.data.features.timetabel
 
-import androidx.compose.runtime.LaunchedEffect
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import ru.ushell.app.data.common.utils.DateTimeUtil.Companion.parseDate
+import ru.ushell.app.data.common.utils.DateTimeUtil.Companion.parseTime
 import ru.ushell.app.data.features.timetabel.remote.timetable.TimetableResponse
-import ru.ushell.app.data.features.timetabel.room.dao.lesson.Lesson
-import ru.ushell.app.data.features.timetabel.room.dao.lesson.primaryListLesson
-import ru.ushell.app.data.features.timetabel.room.dao.lesson.secondaryListLesson
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetabel.room.dao.secondary.TimetableSecondaryEntity
-import ru.ushell.app.data.features.timetabel.room.toLessonItem
+import ru.ushell.app.data.features.timetabel.room.dto.lesson.Lesson
+import ru.ushell.app.data.features.timetabel.room.dto.lesson.primaryListLesson
+import ru.ushell.app.data.features.timetabel.room.dto.lesson.secondaryListLesson
+import ru.ushell.app.data.features.timetabel.room.dto.timetable.toLessonItem
 import ru.ushell.app.data.features.user.UserRepository
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DayOfWeek
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.ParityWeek
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateToDbWeek
 import java.time.LocalDate
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+
 
 class TimetableRepository(
     private val timetableLocalDataSource: TimetableLocalDataSource,
@@ -44,9 +42,8 @@ class TimetableRepository(
         )
     }
 
-
-
     private suspend fun processingTimetable(response: TimetableResponse){
+        if(response.mainSchedule.isEmpty()) return
         response.mainSchedule.forEach { (weekStr, days) ->
             val week = weekStr.toIntOrNull() ?: return@forEach
             days.forEach { (daysOfWeek, lesson) ->
@@ -70,6 +67,7 @@ class TimetableRepository(
             }
         }
 
+        if(response.secondarySchedule.isEmpty()) return
         response.secondarySchedule.forEach { (dateLessonStr, days) ->
             val dateLesson = parseDate(dateLessonStr)
             days.forEach { (daysOfWeek, lesson) ->
@@ -92,14 +90,6 @@ class TimetableRepository(
                 }
             }
         }
-    }
-
-    private fun parseDate(dateLesson: String): String {
-        return LocalDate.parse(dateLesson, DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
-    }
-
-    private fun parseTime(timeLesson: String): String {
-        return LocalTime.parse(timeLesson, DateTimeFormatter.ofPattern("HH:mm:ss")).toString()
     }
 
     private fun getListLesson(

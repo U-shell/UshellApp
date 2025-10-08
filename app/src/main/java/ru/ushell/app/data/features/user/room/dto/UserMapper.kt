@@ -1,4 +1,4 @@
-package ru.ushell.app.data.features.user.room
+package ru.ushell.app.data.features.user.room.dto
 
 import ru.ushell.app.data.features.user.remote.auth.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.room.dao.UserEntity

@@ -11,9 +11,11 @@ class RoomTimetableDataSource(
     val timetableSecondaryDao: TimetableSecondaryDao
 ): TimetableLocalDataSource {
 
-    override suspend fun savePrimaryTimetable(timetableEntity: TimetableEntity) = timetableDao.saveUser(timetableEntity)
+    override suspend fun savePrimaryTimetable(timetableEntity: TimetableEntity) =
+        timetableDao.saveUser(timetableEntity)
 
-    override suspend fun saveSecondaryTimetable(timetableEntity: TimetableSecondaryEntity) = timetableSecondaryDao.saveUser(timetableEntity)
+    override suspend fun saveSecondaryTimetable(timetableEntity: TimetableSecondaryEntity) =
+        timetableSecondaryDao.saveUser(timetableEntity)
 
     override suspend fun getPrimaryTimetable(): List<TimetableEntity> = timetableDao.getTimeTable()
 
