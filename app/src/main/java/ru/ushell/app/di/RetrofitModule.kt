@@ -12,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.ushell.app.R
+import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceApi
 import ru.ushell.app.data.features.messanger.remote.MessengerApi
 import ru.ushell.app.data.features.timetabel.remote.timetable.TimetableApi
@@ -46,19 +47,20 @@ class RetrofitModule {
     @Singleton
     fun httpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        sharedPreferences: SharedPreferences
-    ): OkHttpClient=
+        tokenService: TokenService
+    ): OkHttpClient =
         OkHttpClient.Builder()
-//            .addInterceptor { chain ->
-//                val request = chain.request().newBuilder()
-//                    .addHeader(
-//                        "Authorization",
-//                        "Bearer ${sharedPreferences.getString("API_KEY", "").orEmpty()}"
-//                    )
-//                    .build()
-//
-//                return@addInterceptor chain.proceed(request)
-//            }
+            .addInterceptor { chain ->
+                val token = tokenService.getAccessToken()
+                val request = chain.request().newBuilder()
+                    .apply {
+                        if (!token.isNullOrBlank()) {
+                            addHeader("Authorization", "Bearer $token")
+                        }
+                    }
+                    .build()
+                return@addInterceptor chain.proceed(request)
+            }
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
