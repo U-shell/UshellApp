@@ -9,6 +9,7 @@ fun AuthInfoUserResponse.toUserEntity(): UserEntity {
         firstName = this.firstName,
         lastName = this.lastName,
         patronymic = this.patronymic,
+        subgroup = this.group.subgroup,
         groupId = this.group.id,
         title = this.group.title,
         specialization = this.group.specialization,

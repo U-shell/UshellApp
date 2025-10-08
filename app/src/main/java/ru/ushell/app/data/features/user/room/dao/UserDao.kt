@@ -25,6 +25,10 @@ interface UserDao {
     @Query("SELECT * FROM $TABLE_NAME WHERE active = 1")
     suspend fun getInfoUser(): UserEntity
 
+    @Query("SELECT username FROM $TABLE_NAME WHERE active = 1")
+    suspend fun getUsername(): String
+
+
     @Query("SELECT groupId FROM $TABLE_NAME WHERE active = 1")
     suspend fun getGroupId(): Int
 }

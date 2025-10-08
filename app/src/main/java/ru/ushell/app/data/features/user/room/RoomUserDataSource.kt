@@ -15,6 +15,8 @@ class RoomUserDataSource(val userDao: UserDao): UserLocalDataSource {
 
     override suspend fun getInfoUser(): UserEntity = userDao.getInfoUser()
 
+    override suspend fun getUsername(): String = userDao.getUsername()
+
     override suspend fun getGroupId(): Int = userDao.getGroupId()
 
 }

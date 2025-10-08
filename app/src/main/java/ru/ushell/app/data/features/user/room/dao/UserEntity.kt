@@ -17,6 +17,7 @@ data class UserEntity(
     val lastName: String,
     val patronymic: String,
 
+    val subgroup: Int,
     val groupId: Int,
     val title: String,
     val specialization: String,
@@ -32,13 +33,5 @@ data class UserEntity(
     companion object {
         const val TABLE_NAME = "user_entities_table"
     }
-
-    fun toUserGroup(): UserGroup = UserGroup(
-        id = groupId,
-        title = title ,
-        specialization = specialization,
-        profile = profile,
-        institute = institute
-    )
 
 }

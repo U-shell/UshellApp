@@ -11,5 +11,7 @@ interface UserLocalDataSource{
 
     suspend fun getInfoUser(): UserEntity
 
+    suspend fun getUsername(): String
+
     suspend fun getGroupId(): Int
 }
