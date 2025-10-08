@@ -3,13 +3,15 @@ package ru.ushell.app.data.features.user
 import android.content.Context
 import androidx.compose.ui.platform.LocalContext
 import okhttp3.Credentials
+import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.condition.session.Session
 import ru.ushell.app.data.features.user.remote.auth.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.room.dao.UserEntity
 
 class UserRepository(
     private val userLocalDataSource: UserLocalDataSource,
-    private val userRemoteDataSource: UserRemoteDataSource
+    private val userRemoteDataSource: UserRemoteDataSource,
+    private val tokenService: TokenService,
 ) {
     suspend fun activeUser(): Boolean {
         return userLocalDataSource.activeUser()
@@ -20,12 +22,13 @@ class UserRepository(
             .also {
                 userLocalDataSource.saveRemoteResponse(it)
                 Session.setLogin(context)
+                tokenService.saveAccessToken(it.accessToken)
             }
     }
 
-    suspend fun getInfoUser(): UserEntity{
-        return userLocalDataSource.getInfoUser()
-    }
+    suspend fun getInfoUser(): UserEntity = userLocalDataSource.getInfoUser()
+
+    suspend fun getUsername(): String = userLocalDataSource.getUsername()
 
     suspend fun getGroupId(): Int = userLocalDataSource.getGroupId()
 

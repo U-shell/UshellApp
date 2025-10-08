@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.ushell.app.base.UserDatabase
+import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.features.user.remote.auth.AuthApi
 import ru.ushell.app.data.features.user.retrofit.RetrofitAuthDataSource
 import ru.ushell.app.data.features.user.room.RoomUserDataSource
@@ -29,8 +30,11 @@ class UserDataModule {
     @Singleton
     fun providesAuthRepository(
         local: UserLocalDataSource,
-        remote: UserRemoteDataSource
+        remote: UserRemoteDataSource,
+        tokenService: TokenService
     ): UserRepository =
-        UserRepository(local, remote)
-
+        UserRepository(
+            local,
+            remote,
+            tokenService)
 }
