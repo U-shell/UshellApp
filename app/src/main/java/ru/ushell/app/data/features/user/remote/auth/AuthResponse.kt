@@ -13,6 +13,7 @@ data class AuthInfoUserResponse(
 
 data class UserGroup(
     val id: Int,
+    val subgroup: Int,
     val title: String,
     val specialization: String,
     val profile: String,
