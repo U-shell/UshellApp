@@ -20,7 +20,11 @@ data class Student(
     val username: String,
     val nameStudent: String,
     val subgroup: Int,
-    val attendance: Map<Int, Status> = emptyMap()
+    val attendance: Status
+)
+
+data class AttendanceStudent(
+    val attendance: Map<String, Status>? = null
 )
 
 enum class Status{
@@ -28,7 +32,10 @@ enum class Status{
     EXISTS,
 
     @SerializedName("NOT_EXISTS")
-    NOT_EXISTS;
+    NOT_EXISTS,
+
+    UNKNOWN;
+
 
     companion object {
         @JvmStatic

@@ -17,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import ru.ushell.app.data.features.attendance.room.dto.Attendance
-import ru.ushell.app.screens.timetable.view.TimetableUiState
-import ru.ushell.app.screens.timetable.view.TimetableViewModel
+import ru.ushell.app.screens.timetable.view.timetable.TimetableUiState
+import ru.ushell.app.screens.timetable.view.timetable.TimetableViewModel
 
 import java.time.LocalDate
 

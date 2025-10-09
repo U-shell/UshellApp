@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.view
+package ru.ushell.app.screens.timetable.view.timetable
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,7 +26,6 @@ class TimetableViewModel @Inject constructor(
     fun loadTimetable(date: LocalDate) {
         viewModelScope.launch {
             try {
-                _uiState.value = TimetableUiState.Loading
 
                 _uiState.value = TimetableUiState.Success(
                     timetableRepository.getTimetable(date),

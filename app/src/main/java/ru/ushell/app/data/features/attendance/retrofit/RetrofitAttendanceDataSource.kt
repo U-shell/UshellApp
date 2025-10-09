@@ -2,6 +2,8 @@ package ru.ushell.app.data.features.attendance.retrofit
 
 import ru.ushell.app.data.features.attendance.AttendanceRemoteDataSource
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceApi
+import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceGroupDayResponse
+import ru.ushell.app.data.features.attendance.room.dto.AttendanceGroupRequest
 
 class RetrofitAttendanceDataSource(
     val attendanceApi: AttendanceApi,
@@ -9,5 +11,11 @@ class RetrofitAttendanceDataSource(
 ): AttendanceRemoteDataSource {
 
     override suspend fun getAttendanceStudent() = attendanceApi.getAttendanceStudent()
+
+    override suspend fun getAttendanceGroupDay(groupId: Int, date: String, numLesson: Int) =
+        attendanceApi.getAttendanceGroupDay(groupId, date, numLesson)
+
+    override suspend fun putAttendanceGroup(groupId: Int, attendance: AttendanceGroupRequest) =
+        attendanceApi.putAttendanceGroup(groupId, attendance)
 
 }

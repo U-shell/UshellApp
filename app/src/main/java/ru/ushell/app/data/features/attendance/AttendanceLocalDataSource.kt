@@ -1,7 +1,8 @@
 package ru.ushell.app.data.features.attendance
 
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceResponse
-import ru.ushell.app.data.features.attendance.room.dao.Attendance
+import ru.ushell.app.data.features.attendance.room.dto.Attendance
+
 interface AttendanceLocalDataSource {
 
     suspend fun saveAttendance(username: String, attendanceResponse: AttendanceResponse)

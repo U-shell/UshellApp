@@ -1,4 +1,4 @@
-package ru.ushell.app.data.features.attendance.room.dao
+package ru.ushell.app.data.features.attendance.room.dto
 
 data class Attendance(
     val date: String,

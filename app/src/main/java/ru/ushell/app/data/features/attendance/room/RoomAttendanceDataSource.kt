@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.ushell.app.data.features.attendance.AttendanceLocalDataSource
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceResponse
-import ru.ushell.app.data.features.attendance.room.dao.Attendance
+import ru.ushell.app.data.features.attendance.room.dto.Attendance
 import ru.ushell.app.data.features.attendance.room.dao.AttendanceDao
 import ru.ushell.app.data.features.attendance.room.dao.AttendanceEntity
 

@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.view
+package ru.ushell.app.screens.timetable.view.timetable
 
 import ru.ushell.app.data.features.attendance.room.dto.Attendance
 import ru.ushell.app.data.features.timetabel.room.dto.lesson.Lesson
