@@ -5,10 +5,10 @@ import ru.ushell.app.data.common.utils.DateTimeUtil.Companion.parseTime
 import ru.ushell.app.data.features.timetabel.remote.timetable.TimetableResponse
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetabel.room.dao.secondary.TimetableSecondaryEntity
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.Lesson
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.primaryListLesson
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.secondaryListLesson
-import ru.ushell.app.data.features.timetabel.room.dto.timetable.toLessonItem
+import ru.ushell.app.data.features.timetabel.dto.lesson.Lesson
+import ru.ushell.app.data.features.timetabel.dto.lesson.primaryListLesson
+import ru.ushell.app.data.features.timetabel.dto.lesson.secondaryListLesson
+import ru.ushell.app.data.features.timetabel.dto.timetable.toLessonItem
 import ru.ushell.app.data.features.user.UserRepository
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DayOfWeek
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.ParityWeek

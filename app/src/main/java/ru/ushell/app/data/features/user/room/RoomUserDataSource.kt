@@ -4,7 +4,7 @@ import ru.ushell.app.data.features.user.UserLocalDataSource
 import ru.ushell.app.data.features.user.remote.auth.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.room.dao.UserDao
 import ru.ushell.app.data.features.user.room.dao.UserEntity
-import ru.ushell.app.data.features.user.room.dto.toUserEntity
+import ru.ushell.app.data.features.user.dto.toUserEntity
 
 class RoomUserDataSource(val userDao: UserDao): UserLocalDataSource {
 
