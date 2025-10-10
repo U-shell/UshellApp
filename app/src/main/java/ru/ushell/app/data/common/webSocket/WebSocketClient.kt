@@ -40,10 +40,6 @@ open class WebSocketClient(
         return null
     }
 
-    fun getWebSocket(): WebSocket? {
-        return webSocket
-    }
-
     fun connect(address: String){
         val client: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(0, TimeUnit.MICROSECONDS)
