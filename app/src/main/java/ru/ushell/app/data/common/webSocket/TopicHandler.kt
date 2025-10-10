@@ -5,11 +5,19 @@ import ru.ushell.app.data.common.webSocket.stomp.StompMessageListener
 
 data class TopicHandler(
     val topic: String,
-    val listeners: Set<StompMessageListener> = HashSet()
+    val listeners: MutableSet<StompMessageListener> = mutableSetOf()
 ){
     fun onMessage(message: StompMessage){
         for (listener:StompMessageListener in this.listeners){
             listener.onMessage(message)
         }
+    }
+
+    fun addListener(listener: StompMessageListener){
+        this.listeners.add(listener)
+    }
+
+    fun removeListener(listener: StompMessageListener){
+        this.listeners.remove(listener)
     }
 }
