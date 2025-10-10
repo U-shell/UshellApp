@@ -19,6 +19,7 @@ public class StompMessage {
     public String getHeader(String name){
         return headers.get(name);
     }
+
     public Map<String, String> getHeaders() {
         return headers;
     }
@@ -27,6 +28,7 @@ public class StompMessage {
         headers.put(name, value);
         return null;
     }
+
     public StompMessage setContent(String body){
         this.body = body;
         return null;
@@ -35,6 +37,7 @@ public class StompMessage {
     public String getContent() {
         return body;
     }
+
     public String getCommand() {
         return command;
     }
