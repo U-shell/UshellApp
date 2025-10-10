@@ -12,6 +12,7 @@ data class UserEntity(
 
     val username: String,
     val active: Boolean = true,
+    val chatId: String = "1",
 
     val firstName: String,
     val lastName: String,

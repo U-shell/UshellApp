@@ -32,4 +32,7 @@ class UserRepository(
 
     suspend fun getGroupId(): Int = userLocalDataSource.getGroupId()
 
+    suspend fun setChatId(chatId: String) = userLocalDataSource.setChatId(chatId)
+
+    suspend fun getChatId(): String = userLocalDataSource.getChaId()
 }

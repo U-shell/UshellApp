@@ -14,4 +14,9 @@ interface UserLocalDataSource{
     suspend fun getUsername(): String
 
     suspend fun getGroupId(): Int
+
+    suspend fun setChatId(chatId: String)
+
+    suspend fun getChaId(): String
+
 }

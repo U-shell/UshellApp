@@ -20,4 +20,8 @@ class RoomUserDataSource(val userDao: UserDao): UserLocalDataSource {
 
     override suspend fun getGroupId(): Int = userDao.getGroupId()
 
+    override suspend fun setChatId(chatId: String) = userDao.setChatId(chatId)
+
+    override suspend fun getChaId(): String = userDao.getChatId()
+
 }

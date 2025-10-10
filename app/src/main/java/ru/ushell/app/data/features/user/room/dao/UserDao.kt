@@ -31,4 +31,11 @@ interface UserDao {
 
     @Query("SELECT groupId FROM $TABLE_NAME WHERE active = 1")
     suspend fun getGroupId(): Int
+
+    @Query("SELECT chatId FROM $TABLE_NAME WHERE active = 1")
+    suspend fun getChatId(): String
+
+    @Query("UPDATE $TABLE_NAME SET chatId = :chatId WHERE active = 1")
+    suspend fun setChatId(chatId: String)
+
 }
