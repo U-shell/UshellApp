@@ -1,8 +1,8 @@
-package ru.ushell.app.data.features.timetabel.room.dto.timetable
+package ru.ushell.app.data.features.timetabel.dto.timetable
 
+import ru.ushell.app.data.features.timetabel.dto.lesson.Lesson
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetabel.room.dao.secondary.TimetableSecondaryEntity
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.Lesson
 
 fun TimetableEntity.toLessonItem(week: Int, dayOfWeek: String): Lesson {
     return Lesson(

@@ -4,7 +4,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.Query
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceGroupRequest
+import ru.ushell.app.data.features.attendance.dto.AttendanceGroupRequest
 
 interface AttendanceApi {
 

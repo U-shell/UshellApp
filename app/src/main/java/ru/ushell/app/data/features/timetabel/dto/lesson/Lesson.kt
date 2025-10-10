@@ -1,4 +1,4 @@
-package ru.ushell.app.data.features.timetabel.room.dto.lesson
+package ru.ushell.app.data.features.timetabel.dto.lesson
 
 import ru.ushell.app.data.features.timetabel.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetabel.room.dao.secondary.TimetableSecondaryEntity

@@ -2,7 +2,7 @@ package ru.ushell.app.data.features.attendance
 
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceGroupDayResponse
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceResponse
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceGroupRequest
+import ru.ushell.app.data.features.attendance.dto.AttendanceGroupRequest
 
 interface AttendanceRemoteDataSource {
 

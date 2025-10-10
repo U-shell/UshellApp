@@ -1,4 +1,4 @@
-package ru.ushell.app.data.features.attendance.room.dto
+package ru.ushell.app.data.features.attendance.dto
 
 import ru.ushell.app.data.features.attendance.remote.attendance.Status
 
