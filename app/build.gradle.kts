@@ -1,10 +1,16 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp") version "2.2.10-2.0.2"
-    id("org.jetbrains.kotlin.plugin.compose") version "2.2.20"
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.core)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.room)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
     id("kotlin-kapt")
 }
+
 
 android {
     namespace = "ru.ushell.app"
@@ -14,14 +20,10 @@ android {
         applicationId = "ru.ushell.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 6
-        versionName = "5.0.1"
+        versionCode = 7
+        versionName = "5.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-
     }
 
     buildTypes {
@@ -34,81 +36,69 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlin {
-        jvmToolchain(17)
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose = true
     }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildToolsVersion = "36.0.0"
-//    buildToolsVersion '33.0.0'
-    ksp {
-        arg("room.schemaLocation", "$projectDir/schemas")
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.1"
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+    }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+
 dependencies {
-
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.core.splashscreen)
-    implementation(libs.constraintlayout.compose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.drawerlayout)
-    implementation(libs.accompanist.themeadapter.material3)
-    implementation(libs.kotlinx.datetime)
-
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    implementation (libs.androidx.runtime.livedata)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    ksp(libs.androidx.room.room.compiler)
-    ksp(libs.dagger.compiler)
-    testImplementation(libs.androidx.room.testing)
-    implementation(libs.androidx.room.paging)
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.gson)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.compose.materialWindow)
+    testImplementation(libs.junit)
 
+    implementation(libs.constraintlayout.compose)
     implementation(libs.accompanist.swiperefresh)
-    implementation(libs.androidx.constraintlayout.core)
+
+    implementation(libs.material3)
+    implementation(libs.androidx.material3.window.size.class1)
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
+
+    implementation(libs.androidx.navigation.compose)
+
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.core)
-
-    implementation(libs.core)
     implementation(libs.androidx.camera.view)
-    implementation(libs.androidx.espresso.core)
 
-    testImplementation(libs.junit)
+    implementation(libs.room.runtime)
+    implementation(libs.room.sqlite)
+    implementation(libs.room.sqlite.bundled)
+    ksp(libs.room.compiler)
+
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.dagger)
+//    ksp(libs.dagger.compiler)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.hilt.compiler)
+
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
 
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
-    implementation(libs.logging.interceptor)
-    implementation(libs.hilt.android)
 }
