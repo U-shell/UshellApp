@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens.chatScreen.message
+package ru.ushell.app.screens.messenger
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -13,7 +13,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
-import androidx.core.graphics.toColor
 
 
 // Regex containing the syntax tokens
@@ -143,7 +142,7 @@ private fun getSymbolAnnotation(
                 spanStyle = SpanStyle(
                     fontFamily = FontFamily.Monospace,
                     fontSize = 12.sp,
-//                    background = androidx.compose.ui.graphics.Color.White,
+                    background = Color.White,
                     baselineShift = BaselineShift(0.2f)
                 )
             ),

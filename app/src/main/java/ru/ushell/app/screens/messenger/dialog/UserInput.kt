@@ -51,6 +51,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -342,7 +343,7 @@ private fun UserInputText(
     onMessageSent: (String) -> Unit,
     focusState: Boolean
 ) {
-    val swipeOffset = remember { mutableStateOf(0f) }
+    val swipeOffset = remember { mutableFloatStateOf(0f) }
     val isRecordingMessage by remember { mutableStateOf(false) }
     val a11ylabel = "stringResource(id = R.string.textfield_desc)"
     Row(

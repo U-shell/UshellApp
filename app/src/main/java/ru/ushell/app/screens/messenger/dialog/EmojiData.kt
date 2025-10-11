@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens.chatScreen.dialog
+package ru.ushell.app.screens.drawer
 
 
 val dataColored = arrayOf(

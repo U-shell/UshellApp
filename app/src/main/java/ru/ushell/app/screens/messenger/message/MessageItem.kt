@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens.chatScreen.message
+package ru.ushell.app.screens.messenger
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,7 +22,7 @@ import ru.ushell.app.data.features.messanger.dto.Message
 import java.time.OffsetDateTime
 
 @Composable
-fun Message(
+fun MessageItem(
     msg: Message,
     isFirstMessageByAuthor: Boolean,
     isLastMessageByAuthor: Boolean,

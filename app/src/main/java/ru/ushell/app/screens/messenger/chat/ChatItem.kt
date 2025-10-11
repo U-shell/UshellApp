@@ -43,13 +43,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.ushell.app.R
-import ru.ushell.app.old.ui.screens.chatScreen.RoutesChat
+import ru.ushell.app.screens.messenger.RoutesChat
+import ru.ushell.app.screens.messenger.view.MessengerViewModel
 import ru.ushell.app.ui.theme.ChatNotingBackground
 import ru.ushell.app.ui.theme.NameChatDes
 import ru.ushell.app.ui.theme.NameChatElected
@@ -179,7 +181,9 @@ fun ChatItemList(
     lastUser: String = "User",
     lastMessage: String = "MessageMessageMessageMessag",
     noise: String = "88",
-    statusNoise: Boolean = true
+    statusNoise: Boolean = true,
+    viewModule: MessengerViewModel = hiltViewModel()
+
 ){
     var status by remember { mutableStateOf(false) }
 
@@ -213,7 +217,7 @@ fun ChatItemList(
         }
 
         navController.navigate(RoutesChat.ScreenDialog.route)
-        nameSenderUser.value = titleChat
+        nameSenderUser.value = lastMessage
         status = false
     }
 }

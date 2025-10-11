@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens.chatScreen.chat
+package ru.ushell.app.screens.messenger.chat
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -38,8 +38,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
 import ru.ushell.app.data.features.messanger.dto.getChatPopulation
-import ru.ushell.app.screens.messenger.chat.ChatItemElected
-import ru.ushell.app.screens.messenger.chat.ChatItemList
 import ru.ushell.app.ui.theme.ChatIFBackground
 import ru.ushell.app.ui.theme.UshellBackground
 
@@ -225,7 +223,7 @@ fun ListChats(
                         titleChat = chats[index].name,
                         noise = chats[index].countNewMessage.toString(),
                         statusNoise = chats[index].countNewMessage != 0,
-                        lastMessage = chats[index].recipientId
+                        lastMessage = chats[index].recipientId,
                     )
                 }
             }

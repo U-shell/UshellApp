@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,6 +31,10 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,14 +45,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
 import ru.ushell.app.data.features.messanger.dto.Message
-import ru.ushell.app.data.features.messanger.dto.MessageList
-import ru.ushell.app.old.ui.screens.chatScreen.RoutesChat
-import ru.ushell.app.old.ui.screens.chatScreen.message.Messages
+import ru.ushell.app.screens.messenger.RoutesChat
+import ru.ushell.app.screens.messenger.message.Messages
+import ru.ushell.app.screens.messenger.view.MessengerUiState
+import ru.ushell.app.screens.messenger.view.MessengerViewModel
 import ru.ushell.app.ui.theme.BrefDialog
 import ru.ushell.app.ui.theme.TitleDialog
 import ru.ushell.app.ui.theme.UshellBackground
@@ -59,11 +66,9 @@ fun DialogScreen(
     navController: NavHostController,
     nameSenderUser: String,
 ) {
-    val message = MessageList()
 
     DialogScreenContext(
         navController=navController,
-        messageList=message,
         nameSenderUser=nameSenderUser
     )
 }
@@ -72,16 +77,36 @@ fun DialogScreen(
 @Composable
 fun DialogScreenContext(
     navController: NavHostController,
-    messageList: MessageList,
     nameSenderUser: String,
+    viewModel: MessengerViewModel = hiltViewModel()
 ){
 
     val scope = rememberCoroutineScope()
+
     val timeNow = OffsetDateTime.now();
 
     val scrollState = rememberLazyListState()
     val topBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topBarState)
+
+    LaunchedEffect(nameSenderUser) {
+        viewModel.loadChat(nameSenderUser)
+    }
+
+    // Подключаемся при открытии экрана
+    LaunchedEffect(Unit) {
+        viewModel.connect()
+    }
+
+    // Отключаемся при закрытии
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.disconnect()
+        }
+    }
+
+    val uiState by viewModel.uiState.collectAsState()
+
 
     Scaffold(
         modifier = Modifier
@@ -99,47 +124,51 @@ fun DialogScreenContext(
             .exclude(WindowInsets.navigationBars)
             .exclude(WindowInsets.ime)
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            Messages(
-                messages = messageList.messageList,
-                scrollState = scrollState,
-                modifier = Modifier
-                    .weight(1f)
-                    .align(alignment = Alignment.End)
-            )
-            UserInput(
-                onMessageSent = { content ->
-                    messageList.addMessage(
-                        Message(
-                            true,
-                            content,
-                            timeNow
-                        )
+        when(uiState){
+            is MessengerUiState.Empty -> {
+                Box(modifier = Modifier.fillMaxSize().padding(paddingValues), contentAlignment = Alignment.Center) {
+                    Text("Нет данных")
+                }
+            }
+            is MessengerUiState.Loading -> {
+                Box(modifier = Modifier.fillMaxSize().padding(paddingValues), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            }
+            is MessengerUiState.Error -> {
+                Box(modifier = Modifier.fillMaxSize().padding(paddingValues), contentAlignment = Alignment.Center) {
+                    Text("Ошибка: ${(uiState as MessengerUiState.Error).message}")
+                }
+            }
+            is MessengerUiState.Success -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                ) {
+                    Messages(
+                        messages = (uiState as MessengerUiState.Success).messageList,
+                        scrollState = scrollState,
+                        modifier = Modifier.weight(1f)
                     )
-
-//                    val chatDeliver =
-//                        ChatDeliver(
-//                            getKeyIdUserChat(),
-//                            messageList.channelName,
-//                            content
-//                        )
-//                    chatDeliver.connect(webSocketAddress)
-//                    chatDeliver.disconnect()
-                },
-
-                resetScroll = {
-                    scope.launch {
-                        scrollState.scrollToItem(0)
-                    }
-                },
-                modifier = Modifier
-                    .navigationBarsPadding()
-//                    .imePadding()
-            )
+                    UserInput(
+                        onMessageSent = { content ->
+                            viewModel.sendMessage(recipientId = nameSenderUser, message = content)
+                            scope.launch {
+                                if (scrollState.firstVisibleItemIndex > 0) {
+                                    scrollState.scrollToItem(0)
+                                }
+                            }
+                        },
+                        resetScroll = {
+                            scope.launch {
+                                scrollState.scrollToItem(0)
+                            }
+                        },
+                        modifier = Modifier.navigationBarsPadding()
+                    )
+                }
+            }
         }
     }
 }
