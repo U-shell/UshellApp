@@ -2,46 +2,56 @@ package ru.ushell.app.data.features.messanger.remote.webSocket
 
 import org.json.JSONObject
 import ru.ushell.app.data.common.webSocket.TopicHandler
-import ru.ushell.app.data.common.webSocket.WebSocket
-import ru.ushell.app.data.common.webSocket.stomp.StompMessage
-import ru.ushell.app.data.common.webSocket.stomp.StompMessageListener
+import ru.ushell.app.data.common.webSocket.WebSocketConnect
+import ru.ushell.app.data.features.messanger.dto.Message
+import ru.ushell.app.data.features.messanger.dto.MessageList
+import java.time.OffsetDateTime
 
-class Connect: WebSocket {
+class Connect(
+    private val userChatId: String,
+    override val url: String = "ws://192.168.1.78:8082/ws/websocket",
+    private val onMessageReceived: (Message) -> Unit
+) : WebSocketConnect {
 
     private var deliver: Deliver? = null
 
     override fun connect() {
-        deliver = Deliver()
+        // Создаём Deliver только один раз
+        if (deliver == null) {
+            deliver = Deliver(userChatId)
+        }
 
-        val topicHandler: TopicHandler = deliver?.subscribe(
-            "/user/$/queue/messages"
-        ) ?: throw IllegalArgumentException("TopicHandler is null Error in messenger")
-
-        topicHandler.addListener { message ->
+        // Подписываемся на очередь сообщений ДО подключения
+        val topic = "/user/$userChatId/queue/messages"
+        val topicHandler: TopicHandler = deliver!!.subscribe(topic)
+        topicHandler.addListener { stompMessage ->
             try {
-                val jsonObject = JSONObject(message.content)
-                val msg = jsonObject.getString("message")
-//                val isAuth = jsonObject.getString("senderId") == User.keyIdUserChat
-
-//                MessageList.addMessages(
-//                    Message(
-//                        auth = isAuth,
-//                        message = msg,
-//                        time = OffsetDateTime.now()
-//                    )
-//                )
+                // stompMessage.content — это JSON от сервера
+                val json = JSONObject(stompMessage.content)
+                val message = Message(
+                    author = json.getString("senderId") == userChatId,
+                    content = json.getString("message"),
+                    timestamp = OffsetDateTime.now()
+                )
+//                MessageList.addMessages(message)
+                onMessageReceived(message)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
 
-        deliver!!.connect("Config.webSocketAddress")
+        // Подключаемся
+        deliver!!.connect(url)
     }
 
+    fun sendChatMessage(recipientId: String, message: String) {
+        deliver?.sendChatMessage(recipientId, message)
+    }
 
     override fun disconnect() {
         deliver?.disconnect()
         deliver = null
     }
 
+    fun isConnected(): Boolean = deliver?.isConnect() == true
 }

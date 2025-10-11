@@ -7,30 +7,18 @@ import ru.ushell.app.data.common.webSocket.CloseHandler
 import ru.ushell.app.data.common.webSocket.WebSocketClient
 import ru.ushell.app.data.features.messanger.dto.MessageRequest
 
-class Deliver(
-    val senderId: String,
-    val recipientId: String,
-    val message: String,
-): WebSocketClient() {
+class Deliver(private val senderId: String) : WebSocketClient() {
 
-    constructor() : this("", "", "")
+    fun sendChatMessage(recipientId: String, message: String) {
+        webSocket?.let { ws ->
+            val request = MessageRequest(senderId, recipientId, message)
+            sendMessage(ws, "/app/chat", Gson().toJson(request))
+        }
+    }
+
 
     override fun onOpen(webSocket: WebSocket, response: Response) {
         super.onOpen(webSocket, response)
-
-        val topic = "/app/chat"
-
-        sendMessage(
-            webSocket,
-            topic,
-            Gson().toJson(
-                MessageRequest(
-                    senderId = senderId,
-                    recipientId = recipientId,
-                    message = message
-                )
-            )
-        )
 
         closeHandler = CloseHandler(webSocket)
     }
