@@ -2,7 +2,7 @@ package ru.ushell.app.data.features.attendance.retrofit
 
 import ru.ushell.app.data.features.attendance.AttendanceRemoteDataSource
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceApi
-import ru.ushell.app.data.features.attendance.dto.AttendanceGroupRequest
+import ru.ushell.app.data.features.attendance.mappers.AttendanceGroupRequest
 
 class RetrofitAttendanceDataSource(
     val attendanceApi: AttendanceApi,

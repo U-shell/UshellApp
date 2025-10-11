@@ -1,7 +1,7 @@
 package ru.ushell.app.data.features.attendance
 
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceResponse
-import ru.ushell.app.data.features.attendance.dto.Attendance
+import ru.ushell.app.data.features.attendance.mappers.Attendance
 
 interface AttendanceLocalDataSource {
 

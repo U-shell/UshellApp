@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.ushell.app.data.features.attendance.AttendanceLocalDataSource
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceResponse
-import ru.ushell.app.data.features.attendance.dto.Attendance
+import ru.ushell.app.data.features.attendance.mappers.Attendance
 import ru.ushell.app.data.features.attendance.room.dao.AttendanceDao
 import ru.ushell.app.data.features.attendance.room.dao.AttendanceEntity
 
@@ -25,6 +25,8 @@ class RoomAttendanceDataSource(
 
     override suspend fun getAttendance(username: String, date: String): List<Attendance>{
         val entity = attendanceDao.getAttendance(username)
+
+        if(entity.attendance == null) return emptyList()
 
         val attendanceMap: Map<String, Map<String, String>> = try {
             gson.fromJson(entity.attendance, object : TypeToken<Map<String, Map<String, String>>>() {}.type)

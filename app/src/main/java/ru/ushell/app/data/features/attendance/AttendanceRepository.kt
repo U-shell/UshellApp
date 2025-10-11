@@ -1,9 +1,9 @@
 package ru.ushell.app.data.features.attendance
 
-import ru.ushell.app.data.features.attendance.dto.Attendance
-import ru.ushell.app.data.features.attendance.dto.AttendanceGroup
-import ru.ushell.app.data.features.attendance.dto.AttendanceGroupRequest
-import ru.ushell.app.data.features.attendance.dto.AttendanceStudentGroup
+import ru.ushell.app.data.features.attendance.mappers.Attendance
+import ru.ushell.app.data.features.attendance.mappers.AttendanceGroup
+import ru.ushell.app.data.features.attendance.mappers.AttendanceGroupRequest
+import ru.ushell.app.data.features.attendance.mappers.AttendanceStudentGroup
 import ru.ushell.app.data.features.user.UserRepository
 
 class AttendanceRepository(

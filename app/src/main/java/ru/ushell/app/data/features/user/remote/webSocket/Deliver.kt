@@ -4,7 +4,6 @@ import com.google.gson.Gson
 import okhttp3.Response
 import org.json.JSONObject
 import ru.ushell.app.data.common.webSocket.CloseHandler
-import ru.ushell.app.data.common.webSocket.WebSocket
 import ru.ushell.app.data.common.webSocket.WebSocketClient
 
 class Deliver(

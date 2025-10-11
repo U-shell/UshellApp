@@ -2,10 +2,11 @@ package ru.ushell.app.data.features.user.remote.webSocket
 
 import org.json.JSONObject
 import ru.ushell.app.data.common.webSocket.TopicHandler
-import ru.ushell.app.data.common.webSocket.WebSocket
-import ru.ushell.app.data.features.messanger.remote.webSocket.Deliver
+import ru.ushell.app.data.common.webSocket.WebSocketConnect
 
-class Connect: WebSocket {
+class Connect(
+    override val url: String
+) : WebSocketConnect {
 
     private var deliver: Deliver? = null
 
@@ -16,10 +17,10 @@ class Connect: WebSocket {
         ) ?: throw IllegalArgumentException("TopicHandler is null Error in messenger")
 
         topicHandler.addListener { message ->
-            val jsonObject = JSONObject(message.content)
-
+            JSONObject(message.content)
         }
-        deliver!!.connect("")
+
+        deliver!!.connect(url)
     }
 
     override fun disconnect() {
