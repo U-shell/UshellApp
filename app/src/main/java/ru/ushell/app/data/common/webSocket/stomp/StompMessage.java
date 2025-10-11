@@ -26,12 +26,12 @@ public class StompMessage {
 
     public StompMessage put(String name, String value){
         headers.put(name, value);
-        return null;
+        return this;
     }
 
     public StompMessage setContent(String body){
         this.body = body;
-        return null;
+        return this;
     }
 
     public String getContent() {
@@ -42,5 +42,11 @@ public class StompMessage {
         return command;
     }
 
+    static class Body{
+        private String id;
+        private String senderId;
+        private String senderName;
+        private String message;
+    }
 }
 

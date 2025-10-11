@@ -8,9 +8,7 @@ data class TopicHandler(
     val listeners: MutableSet<StompMessageListener> = mutableSetOf()
 ){
     fun onMessage(message: StompMessage){
-        for (listener:StompMessageListener in this.listeners){
-            listener.onMessage(message)
-        }
+        this.listeners.forEach { it.onMessage(message) }
     }
 
     fun addListener(listener: StompMessageListener){

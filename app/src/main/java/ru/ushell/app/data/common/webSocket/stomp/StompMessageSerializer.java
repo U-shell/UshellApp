@@ -22,39 +22,59 @@ public class StompMessageSerializer {
         return buffer.toString();
     }
 
-    public static StompMessage deserialize(String message) {
-        String[] lines = message.split("\n");
+    public static StompMessage deserialize(String rawMessage) {
+        if (rawMessage == null || rawMessage.isEmpty()) {
+            throw new IllegalArgumentException("Raw message is empty");
+        }
 
-        String command = lines[0].trim();
+        // Удаляем завершающий нулевой байт, если есть
+        if (rawMessage.charAt(rawMessage.length() - 1) == '\0') {
+            rawMessage = rawMessage.substring(0, rawMessage.length() - 1);
+        }
 
+        // Находим позицию тела: после первой пустой строки
+        int bodyStart = rawMessage.indexOf("\n\n");
+        String headersPart;
+        String body;
+
+        if (bodyStart != -1) {
+            headersPart = rawMessage.substring(0, bodyStart);
+            body = rawMessage.substring(bodyStart + 2); // +2 для пропуска \n\n
+        } else {
+            // Резерв: если нет \n\n, ищем начало JSON
+            int jsonStart = rawMessage.indexOf('{');
+            if (jsonStart == -1) jsonStart = rawMessage.indexOf('[');
+            if (jsonStart != -1) {
+                headersPart = rawMessage.substring(0, jsonStart).trim();
+                body = rawMessage.substring(jsonStart);
+            } else {
+                headersPart = rawMessage;
+                body = "";
+            }
+        }
+
+        String[] headerLines = headersPart.split("\n");
+        if (headerLines.length == 0) {
+            throw new IllegalArgumentException("Invalid STOMP frame");
+        }
+
+        String command = headerLines[0].trim();
         StompMessage result = new StompMessage(command);
 
+        // Парсим заголовки (начиная со 2-й строки)
+        for (int i = 1; i < headerLines.length; i++) {
+            String line = headerLines[i].trim();
+            if (line.isEmpty()) continue;
 
-        for (int i = 1; i < lines.length; ++i) {
-            String line = lines[i].trim();
-            if (line.isEmpty()) {
-                break;
+            int colonIndex = line.indexOf(':');
+            if (colonIndex > 0) {
+                String key = line.substring(0, colonIndex);
+                String value = line.substring(colonIndex + 1);
+                result.put(key, value);
             }
-            String[] parts = line.split(":");
-            String name = parts[0].trim();
-            String value = "";
-
-            if (parts.length == 2) {
-                value = parts[1].trim();
-            }
-
-            result.put(name, value);
         }
 
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 1; i < lines.length; ++i) {
-            sb.append(lines[i]);
-        }
-
-        String body = sb.toString().trim();
-        result.setContent(body);
-
+        result.setContent(body.trim());
         return result;
     }
 

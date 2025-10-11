@@ -19,7 +19,7 @@ open class WebSocketClient(
     private val send: String = "SEND"
 
 
-    val topics =  mutableMapOf<String, TopicHandler>()
+    val topics = mutableMapOf<String, TopicHandler>()
     var closeHandler: CloseHandler? = null
     var webSocket: WebSocket? = null
 
@@ -29,18 +29,18 @@ open class WebSocketClient(
         return handler
     }
 
-    fun unSubscribe(topic: String){
+    fun unSubscribe(topic: String) {
         topics.remove(topic)
     }
 
     fun getTopicHandler(topic: String): TopicHandler? {
-        if(topics.contains(topic)){
+        if (topics.contains(topic)) {
             return topics[topic]
         }
         return null
     }
 
-    fun connect(address: String){
+    fun connect(address: String) {
         val client: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(0, TimeUnit.MICROSECONDS)
             .build()
@@ -49,16 +49,16 @@ open class WebSocketClient(
             .url(address)
             .build()
 
-        client.newWebSocket(request,this)
+        client.newWebSocket(request, this)
         client.dispatcher.executorService.shutdown()
     }
 
-    override fun onOpen(webSocket: WebSocket, response: Response){
+    override fun onOpen(webSocket: WebSocket, response: Response) {
         this.webSocket = webSocket
         sendConnectMessage(webSocket)
 
-        for(topic in topics.keys){
-            sendSubscribeMessage(webSocket,topic)
+        for (topic in topics.keys) {
+            sendSubscribeMessage(webSocket, topic)
         }
 
         closeHandler = CloseHandler(webSocket)
@@ -83,8 +83,8 @@ open class WebSocketClient(
             )
         )
 
-    fun disconnect(){
-        if(webSocket != null){
+    fun disconnect() {
+        if (webSocket != null) {
             closeHandler?.close()
             webSocket = null
             closeHandler = null
@@ -97,13 +97,12 @@ open class WebSocketClient(
     override fun onMessage(webSocket: WebSocket, text: String) {
         val message: StompMessage = StompMessageSerializer.deserialize(text)
         val topic = message.getHeader(destination)
-        if(topics.contains(topic)) {
-            topics[topic]
-        }
+        topics[topic]?.onMessage(message)
+
     }
 
     override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
-        webSocket.close(1000,null)
+        webSocket.close(1000, null)
     }
 
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
@@ -118,5 +117,4 @@ open class WebSocketClient(
                     .setContent(context)
             )
         )
-
 }

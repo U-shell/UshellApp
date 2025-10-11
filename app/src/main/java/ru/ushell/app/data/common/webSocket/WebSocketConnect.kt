@@ -1,6 +1,8 @@
 package ru.ushell.app.data.common.webSocket
 
-interface WebSocket {
+interface WebSocketConnect {
+
+    val url: String
 
     fun connect()
 
