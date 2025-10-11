@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens.drawer
+package ru.ushell.app.screens.profile.drawer
 
 import ru.ushell.app.R
 

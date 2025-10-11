@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens.drawer
+package ru.ushell.app.screens.profile.drawer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
