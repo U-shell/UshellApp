@@ -15,7 +15,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.navigation.DrawerRoutes
-import ru.ushell.app.old.ui.screens.drawer.models.TopNavPanel
+import  ru.ushell.app.screens.profile.drawer.models.device.TopNavPanel
 
 @Composable
 fun QRScannerScreen(

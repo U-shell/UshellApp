@@ -22,8 +22,9 @@ class ProfileViewModel @Inject constructor(
 
     fun getNameUser(){
         viewModelScope.launch {
+            _uiState.value = ProfileUiState.Loading
+
             try {
-                _uiState.value = ProfileUiState.Loading
 
                 val user = userRepository.getInfoUser()
                 val name = "${user.firstName} ${user.lastName} ${user.patronymic}"
@@ -31,11 +32,12 @@ class ProfileViewModel @Inject constructor(
 
                 val presentAttendance = attendanceRepository.getStatisticAttendance()
                 _uiState.value = ProfileUiState.Success(name, brief, presentAttendance)
+
             } catch (e: Exception) {
                 _uiState.value = ProfileUiState.Error(e.message ?: "Unknown error")
             }
         }
     }
-    // TODO: добаить загушку
+
 
 }

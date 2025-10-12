@@ -6,13 +6,31 @@ data class Progress(
     val name: String,
     val allClasses: Int,
     val finishedClasses: Int,
-    val level: Level,
     val colorMain: Color,
     val progressColor: Color = Color.Gray,
-    val baseColor: Color = Color.Green,
-    val isLightColor: Boolean = false,
 )
 
-enum class Level {
-    Easy, Medium, Hard,
-}
+fun allLearnedProgress(presentAttendance: Int) = listOf(
+    Progress(
+        name = "Просмотренные\nлекций",
+        allClasses = 20,
+        finishedClasses = 0,
+        colorMain = Color(0xFF6650a4),
+        progressColor = Color(0xFF6650a4),
+    ),
+    Progress(
+        name = "Посещаемость\nзанятий",
+        allClasses = 100,
+        finishedClasses = presentAttendance,
+        colorMain = Color(0xFFFFF6EB),
+        progressColor = Color(0xFFF76400),
+    ),
+
+    Progress(
+        name = "Рейтинг\n ",
+        allClasses = 20,
+        finishedClasses = 0,
+        colorMain = Color(0xFF051774),
+        progressColor = Color(0xFF2295F8),
+    ),
+)

@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -32,7 +30,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -41,8 +38,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -50,11 +45,12 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
-import ru.ushell.app.screens.profile.diagram.DataSources
 import ru.ushell.app.screens.profile.diagram.ProgressItem
+import ru.ushell.app.screens.profile.diagram.allLearnedProgress
 import ru.ushell.app.screens.profile.view.ProfileUiState
 import ru.ushell.app.screens.profile.view.ProfileViewModel
 import ru.ushell.app.screens.utils.backgroundImagesSmall
+import ru.ushell.app.ui.theme.ContextBackground
 import ru.ushell.app.ui.theme.DrawerBorderColor
 import ru.ushell.app.ui.theme.ProfileTextUserInfo
 
@@ -62,14 +58,13 @@ import ru.ushell.app.ui.theme.ProfileTextUserInfo
 @Composable
 fun ProfileScreen(
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
-    viewModel: ProfileViewModel  = hiltViewModel()
-
+    viewModel: ProfileViewModel = hiltViewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
     var name by rememberSaveable { mutableStateOf("") }
     var brief by rememberSaveable { mutableStateOf("") }
     var presentAttendance by rememberSaveable { mutableIntStateOf(0) }
-
-    val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.getNameUser()
@@ -80,29 +75,30 @@ fun ProfileScreen(
         brief = (uiState as ProfileUiState.Success).brief
         presentAttendance = (uiState as ProfileUiState.Success).presentAttendance
     }
+
     ProfileContent(
-        drawerState = drawerState,
         name = name,
         brief = brief,
+        drawerState = drawerState,
         presentAttendance = presentAttendance
     )
 }
 
+
 @Composable
 fun ProfileContent(
-    drawerState: DrawerState,
     name: String,
     brief: String,
+    drawerState: DrawerState,
     presentAttendance: Int
 ) {
-
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .clip(RoundedCornerShape(0.dp))
             .navigationBarsPadding()
-            .background(color = Color(0xFFE7E7E7)),
+            .background(color = ContextBackground),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ConstraintLayout(
@@ -111,6 +107,7 @@ fun ProfileContent(
                 .padding(bottom = 70.dp)
                 .navigationBarsPadding()
         ) {
+
             val (topPanel, profile, backgroundImage) = createRefs()
 
             Box(
@@ -130,7 +127,11 @@ fun ProfileContent(
                         start.linkTo(parent.start)
                     }
             ) {
-                TopPanel(drawerState = drawerState, name = name, brief = brief)
+                TopPanel(
+                    name = name,
+                    brief = brief,
+                    drawerState = drawerState
+                )
             }
 
             Box(
@@ -141,7 +142,7 @@ fun ProfileContent(
                         end.linkTo(parent.end)
                     }
             ) {
-                InfoPanel(presentAttendance)
+                InfoPanel(presentAttendance=presentAttendance)
             }
         }
     }
@@ -149,153 +150,118 @@ fun ProfileContent(
 
 @Composable
 fun TopPanel(
-    drawerState: DrawerState,
     name: String,
     brief: String,
+    drawerState: DrawerState,
+    modifier: Modifier = Modifier
 ) {
     val scope = rememberCoroutineScope()
 
-
     Column(
-        modifier = Modifier
+        modifier = modifier
             .padding(
-                top = 10.dp,
-            ),
-        verticalArrangement = Arrangement.Center,
+            top = 25.dp,
+        ),
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
+        // Header row
         Row(
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     start = 10.dp,
                     end = 20.dp,
                     top = 30.dp
-                )
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+                ),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(
-                onClick = {
-                    scope.launch { drawerState.open() }
-                }
-            ){
+            IconButton(onClick = { scope.launch { drawerState.open() } }) {
                 Icon(
-                    painterResource(id = R.drawable.profile_drawer),
-                    contentDescription =null,
+                    painter = painterResource(R.drawable.profile_drawer),
+                    contentDescription = "Open drawer",
                     tint = Color.White
                 )
             }
             Icon(
-                painterResource(id = R.drawable.timetable_mini_logo),
-                contentDescription = null,
+                painter = painterResource(R.drawable.timetable_mini_logo),
+                contentDescription = "App logo",
                 tint = Color.White
             )
         }
 
-        Box(modifier =  Modifier){
-            val border = 2.dp
-            Image(
-                painter = painterResource(id = R.drawable.bottom_ic_profile),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(color = Color.White),
-                modifier = Modifier
-                    .size(70.dp)
-                    .border(
-                        BorderStroke(border, DrawerBorderColor),
-                        CircleShape
-                    )
-                    .padding(border)
-                    .clip(CircleShape)
-            )
-        }
+        // Avatar
+        Image(
+            painter = painterResource(R.drawable.bottom_ic_profile),
+            contentDescription = "User avatar",
+            colorFilter = ColorFilter.tint(Color.White),
+            modifier = Modifier
+                .size(70.dp)
+                .border(
+                    BorderStroke(2.dp, DrawerBorderColor),
+                    CircleShape
+                )
+                .padding(2.dp)
+                .clip(CircleShape)
+        )
 
-        Box(modifier = Modifier
-            .padding(top = 10.dp)
-        ){
-
-            Text(
-                text = name,
-                style = ProfileTextUserInfo,
-                modifier = Modifier
-                    .height(30.dp),
-            )
-        }
-
-        Box{
-            Text(
-                text = brief,
-                style = ProfileTextUserInfo,
-                modifier = Modifier
-                    .height(30.dp),
-            )
-        }
+        // Name & group
+        Text(
+            text = name,
+            style = ProfileTextUserInfo,
+            modifier = Modifier.padding(top = 10.dp)
+        )
+        Text(
+            text = brief,
+            style = ProfileTextUserInfo,
+            modifier = Modifier.padding(top = 4.dp)
+        )
     }
 }
 
-@Composable
-fun InfoPanel(
-    presentAttendance: Int
-) {
-    val loc = LocalDensity.current
-    var col by remember { mutableStateOf(0.dp) }
 
-    Box(
+@Composable
+fun InfoPanel(presentAttendance: Int) {
+    Column(
         modifier = Modifier
-            .padding(
-                start = 7.dp,
-                end = 30.dp,
-                bottom = 17.dp
-            )
             .fillMaxWidth()
+            .padding(horizontal = 16.dp)
             .offset(y = (-15).dp)
-            .height(col)
             .background(
                 color = Color.White.copy(alpha = 0.3f),
                 shape = RoundedCornerShape(10.dp)
             )
-    )
-    Box(
-        modifier = Modifier
-            .padding(start = 15.dp, end = 18.dp)
-            .background(
-                color = Color.White,
-                shape = RoundedCornerShape(10.dp)
-            )
+            .padding(8.dp) // внутренний отступ
     ) {
         Column(
             modifier = Modifier
-                .heightIn(min = 525.dp)
-                .onGloballyPositioned { coordinate ->
-                    col = with(loc) { coordinate.size.height.toDp() }
-                },
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth()
+                .background(
+                    color = Color.White,
+                    shape = RoundedCornerShape(10.dp)
+                )
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            ProgressUI(presentAttendance)
-            Spacer(modifier = Modifier.height(10.dp))
+            Diagram(presentAttendance = presentAttendance)
+
             InfoPerson()
         }
     }
 }
 
 @Composable
-fun ProgressUI(
-    presentAttendance:Int
-) {
-    // TODO переделать на функцию
-    val courses = DataSources(presentAttendance).allLearnedProgresss
+fun Diagram(presentAttendance: Int) {
+    val courses = allLearnedProgress(presentAttendance)
 
     LazyRow(
-        modifier = Modifier
-            .padding(
-                top = 15.dp
-            ),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         items(courses.size) { index ->
             ProgressItem(
-                course = courses[index],
+                progress = courses[index],
                 modifier = Modifier
                     .padding(horizontal = 5.dp)
             )
@@ -377,13 +343,38 @@ fun InfoPersonItem(){
 @Preview
 @Composable
 fun ProfileScreenPreview() {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-
-    ProfileContent(drawerState,"Мешков Роман Константинович","ШМС-311",1)
+    ProfileContent(
+        name = "Мешков Роман Константинович",
+        brief = "ШМС-311",
+        presentAttendance = 30,
+        drawerState = rememberDrawerState(DrawerValue.Closed)
+    )
 }
 
 @Preview
 @Composable
-fun ProfileUIPreview() {
-    ProgressUI(89)
+fun TopPanelPreview(){
+    TopPanel(
+        name = "Мешков Роман Константинович",
+        brief = "ШМС-311",
+        drawerState = rememberDrawerState(DrawerValue.Closed),
+    )
+}
+
+@Preview
+@Composable
+fun InfoPanelPreview(){
+    InfoPanel(presentAttendance = 20)
+}
+
+@Preview
+@Composable
+fun DiagramPreview() {
+    Diagram(presentAttendance = 80)
+}
+
+@Preview
+@Composable
+fun InfoPersonPreview() {
+    InfoPerson()
 }

@@ -1,4 +1,4 @@
-package ru.ushell.app.old.ui.screens.drawer.models
+package ru.ushell.app.screens.profile.drawer.models.device
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,7 +29,6 @@ fun TopNavPanel(
 ) {
     Box(
         modifier = modifier
-//            .background(Color.Black)
             .padding(
                 top = 5.dp,
                 bottom = 5.dp

@@ -34,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
+import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.condition.session.Session
 import ru.ushell.app.ui.theme.LightBackgroundColor
 
@@ -112,7 +113,7 @@ fun ElevateWindowContext(
         exit.value=false
     }
 }
-// TODO(переделать)
+
 @Composable
 fun Exit() {
     Session.userLogout(LocalContext.current)
