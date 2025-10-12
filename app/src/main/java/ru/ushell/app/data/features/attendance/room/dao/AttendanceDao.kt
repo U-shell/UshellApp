@@ -9,7 +9,7 @@ import ru.ushell.app.data.features.attendance.room.dao.AttendanceEntity.Companio
 @Dao
 interface AttendanceDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAttendance(attendanceEntity: AttendanceEntity)
 
     @Query("SELECT * FROM $TABLE_NAME WHERE username =:username")
