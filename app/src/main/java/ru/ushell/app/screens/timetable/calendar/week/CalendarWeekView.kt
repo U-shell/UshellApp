@@ -169,7 +169,7 @@ fun CalendarDataWeekViewPreview(){
             selectedDate = date,
             visibleDates = data.visibleDates.map{
                 it.copy(
-                    isSelected = it.date.isEqual(date.date)
+                    isSelected = it.date.isEqual(date.date),
                 )
             }
         )

@@ -643,6 +643,7 @@ fun <T : SelectionState> DayItem(
     if (isSelected) {
         selectionState.onDateSelected(date)
     }
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -664,7 +665,7 @@ fun <T : SelectionState> DayItem(
 
 internal const val DefaultCalendarPagerRange = 10_000L
 
-internal infix fun DayOfWeek.daysUntil(other: DayOfWeek) = (7 + (value - other.value)) % CalendarUtils.DaysInAWeek
+internal infix fun DayOfWeek.daysUntil(other: DayOfWeek) = (7 + (value - other.value)) % DaysInAWeek
 
 internal fun <T> Array<T>.rotateRight(n: Int): List<T> = takeLast(n) + dropLast(n)
 

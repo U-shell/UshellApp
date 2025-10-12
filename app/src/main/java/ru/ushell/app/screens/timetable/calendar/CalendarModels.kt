@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,7 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.ushell.app.ui.theme.DayCellItemStyle
 import ru.ushell.app.screens.timetable.calendar.week.CalendarDate
+import ru.ushell.app.screens.timetable.calendar.week.CalendarDateSource
 import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
 
@@ -87,7 +90,7 @@ fun DayCellItem(
                 style = DayCellItemStyle,
                 color = when {
                     data.isLesson -> Color.White
-                    isToday -> Color.Yellow
+                    isToday -> Color.LightGray
                     else -> Color.Gray
                 }
             )
@@ -115,6 +118,12 @@ fun NameDayCellPreview(){
 @Preview
 @Composable
 fun DayPreview(){
+    val dataSource = CalendarDateSource()
+    var data by remember { mutableStateOf(dataSource.getDataWeek(selectedDate = LocalDate.now())) }
 
+    DayCellItem(
+        data.selectedDate,
+        false
+    )
 
 }
