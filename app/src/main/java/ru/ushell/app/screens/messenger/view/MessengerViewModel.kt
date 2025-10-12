@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import ru.ushell.app.data.features.messanger.MessengerRepository
-import ru.ushell.app.data.features.messanger.dto.Message
+import ru.ushell.app.data.features.messenger.MessengerRepository
+import ru.ushell.app.data.features.messenger.mappers.Message
 import java.time.OffsetDateTime
 
 @HiltViewModel

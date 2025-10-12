@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import ru.ushell.app.data.features.messanger.dto.Message
+import ru.ushell.app.data.features.messenger.mappers.Message
 import java.time.OffsetDateTime
 
 @Composable

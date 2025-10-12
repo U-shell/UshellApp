@@ -50,12 +50,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
-import ru.ushell.app.data.features.messanger.dto.Message
 import ru.ushell.app.screens.messenger.RoutesChat
 import ru.ushell.app.screens.messenger.message.Messages
 import ru.ushell.app.screens.messenger.view.MessengerUiState
 import ru.ushell.app.screens.messenger.view.MessengerViewModel
-import ru.ushell.app.ui.theme.BrefDialog
+import ru.ushell.app.ui.theme.BreifDialog
 import ru.ushell.app.ui.theme.TitleDialog
 import ru.ushell.app.ui.theme.UshellBackground
 import java.time.OffsetDateTime
@@ -263,7 +262,7 @@ fun TopPanelDialog(
                             Row {
                                 Text(
                                     text = "lastUser",
-                                    style = BrefDialog
+                                    style = BreifDialog
                                 )
                             }
 

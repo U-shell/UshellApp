@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import ru.ushell.app.data.features.messanger.dto.Message
+import ru.ushell.app.data.features.messenger.mappers.Message
 import ru.ushell.app.screens.messenger.MessageItem
 import ru.ushell.app.screens.messenger.dialog.JumpToBottom
 

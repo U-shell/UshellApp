@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
-import ru.ushell.app.data.features.messanger.dto.getChatPopulation
+import ru.ushell.app.data.features.messenger.mappers.getChatPopulation
 import ru.ushell.app.ui.theme.ChatIFBackground
 import ru.ushell.app.ui.theme.UshellBackground
 

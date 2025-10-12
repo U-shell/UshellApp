@@ -1,6 +1,6 @@
 package ru.ushell.app.screens.messenger.view
 
-import ru.ushell.app.data.features.messanger.dto.Message
+import ru.ushell.app.data.features.messenger.mappers.Message
 
 
 sealed interface MessengerUiState {

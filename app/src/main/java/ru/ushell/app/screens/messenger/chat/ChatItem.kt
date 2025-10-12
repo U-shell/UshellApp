@@ -58,7 +58,6 @@ import ru.ushell.app.ui.theme.NameChatElected
 import ru.ushell.app.ui.theme.NameChatTitle
 import ru.ushell.app.ui.theme.UshellBackground
 
-//TODO:переделать в card
 @Composable
 fun ChatItemElected(
     nameChat: String = "Name",
