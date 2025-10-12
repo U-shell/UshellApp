@@ -6,9 +6,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -30,24 +32,28 @@ import ru.ushell.app.ui.theme.ListColorButton
 import ru.ushell.app.ui.theme.StartScreenButtonText
 import ru.ushell.app.ui.theme.StartScreenTitleText
 
-
 @Composable
 fun FirstScreen(
     onAuthClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     StyleScreenBackground(modifier) {
-        Box(modifier = Modifier) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 25.dp)
+                .navigationBarsPadding(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.start_activity_image),
                 contentDescription = null,
                 alignment = Alignment.Center,
             )
-        }
-        Box(
-            modifier = Modifier
-                .padding(bottom = 91.dp)
-        ) {
+
+            Spacer(modifier = Modifier.height(35.dp))
+
             ButtonAuth(
                 text = R.string.start_auth,
                 onClick = onAuthClick
@@ -65,7 +71,7 @@ fun StyleScreenBackground(
     Box(modifier = Modifier.backgroundImage())
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -77,7 +83,9 @@ fun StyleScreenBackground(
         ) {
             WelcomeText(text = R.string.start_welcome_text)
         }
+    }
 
+    Box(modifier = modifier) {
         content()
     }
 }

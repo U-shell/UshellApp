@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import ru.ushell.app.R
 import ru.ushell.app.ui.theme.SplashScreenBackground
@@ -37,7 +36,7 @@ fun SplashScreen(
     ) {
         Image(
             painter = painterResource(id = R.drawable.splash_screen_logo),
-            contentDescription = "App logo",
+            contentDescription = R.string.logo_app.toString(),
             modifier = Modifier.size(158.dp)
         )
     }

@@ -14,8 +14,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ushell.app.data.condition.session.Session
-import ru.ushell.app.data.features.LoadDataService
-import ru.ushell.app.screens.navigation.ScreenNav
+import ru.ushell.app.data.common.service.LoadDataService
+import ru.ushell.app.navigation.ScreenNav
 import ru.ushell.app.ui.theme.NoNavigationBarColorTheme
 import ru.ushell.app.ui.theme.UshellAppTheme
 
@@ -92,33 +92,3 @@ sealed class Routes(val route: String) {
         data object Auth : Routes("start_auth")
         data object Main : Routes("nav_screen")
 }
-//    override fun onStart() {
-//        super.onStart()
-//        User.getInstance(this)
-//        _root_ide_package_.ru.ushell.app.old.api.Service(this).updateData()
-//        _root_ide_package_.ru.ushell.app.old.api.Service(this).updateToken()
-//        _root_ide_package_.ru.ushell.app.old.api.websocket.chat.ChatConnect().connect()
-//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-//        val existingChannel = notificationManager.getNotificationChannel("CHANNEL_ID")
-//
-//        if (existingChannel == null) {
-//            PushNotifications.createNotificationChannel(this)
-//        }
-
-
-//        TODO:"подумать какие функции необходимо вызывать при первом заходе пользователя "
-//        TODO: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/screens/chatScreen/message/MessageItem.kt:172:5 '@Deprecated(...) @Composable() @ComposableTarget(...) fun ClickableText(text: AnnotatedString, modifier: Modifier = ..., style: TextStyle = ..., softWrap: Boolean = ..., overflow: TextOverflow = ..., maxLines: Int = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., onClick: (Int) -> Unit): Unit' is deprecated. Use Text or BasicText and pass an AnnotatedString that contains a LinkAnnotation.
-// w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/screens/drawer/models/device/qrscanner/CameraScreen.kt:61:26 '@property:Deprecated(...) val LocalLifecycleOwner: ProvidableCompositionLocal<LifecycleOwner>' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.
-//w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:56:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
-//w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:57:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
-//w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:92:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
-//w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:125:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
-//w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:126:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
-//w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:159:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
-//w: file:///D:/Ushell/UshellApp/app/src/main/java/ru/ushell/app/ui/theme/Theme.kt:160:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        _root_ide_package_.ru.ushell.app.old.api.websocket.chat.ChatConnect().disconnect()
-//        TODO("какие функции надо вызвать при выходе их приложения")
-//    }
-//}
