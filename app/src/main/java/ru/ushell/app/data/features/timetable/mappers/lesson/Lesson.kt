@@ -21,7 +21,6 @@ data class Lesson(
     val subgroup: Int
 )
 
-// TODO: убрать колхоз
 val primaryListLesson: ArrayList<TimetableEntity> = ArrayList()
 val secondaryListLesson: ArrayList<TimetableSecondaryEntity> = ArrayList()
 
@@ -30,13 +29,10 @@ fun lessonExistDate(date: LocalDate): Boolean{
     val dayOfWeek = DayOfWeek(date).lowercase()
     val dateLesson = formattedDateToDbWeek(date)
 
-
-    // Проверяем Secondary
     if (secondaryListLesson.any { parseDate(it.dateLesson) == dateLesson }) {
         return true
     }
 
-    // Проверяем LessonsList
     return primaryListLesson.any { lesson ->
         lesson.week == week && lesson.dayOfWeek.lowercase() == dayOfWeek
     }
