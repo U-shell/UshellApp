@@ -1,6 +1,6 @@
 package ru.ushell.app.screens.timetable.calendar.week
 
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.lessonExistDate
+import ru.ushell.app.data.features.timetable.mappers.lesson.lessonExistDate
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils
 import java.time.LocalDate
 

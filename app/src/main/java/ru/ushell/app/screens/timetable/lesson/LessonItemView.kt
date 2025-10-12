@@ -2,11 +2,14 @@ package ru.ushell.app.screens.timetable.lesson
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -19,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -27,13 +29,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.Lesson
+import ru.ushell.app.data.features.timetable.mappers.lesson.Lesson
 import ru.ushell.app.screens.timetable.attendance.AttendanceDialog
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
 import ru.ushell.app.ui.theme.ColorItemGray
 import ru.ushell.app.ui.theme.ColorItemGreen
 import ru.ushell.app.ui.theme.ColorItemRad
-import ru.ushell.app.ui.theme.Darkteam
+import ru.ushell.app.ui.theme.DarkTeam
 import ru.ushell.app.ui.theme.TimeTableTextLessonItem
 import ru.ushell.app.ui.theme.TimeTableTextLessonItemBold
 import ru.ushell.app.ui.theme.UshellBackground
@@ -50,9 +52,9 @@ fun LessonItem(
     Card(
         modifier = Modifier
             .wrapContentSize()
-//            .clickable {
+            .clickable {
 //                showAttendance.value = AccessControl()
-//            }
+            }
         ,
         shape = RoundedCornerShape(0.dp),
         colors = CardDefaults.cardColors(
@@ -78,15 +80,8 @@ fun LessonItem(
             mutableStateOf(false)
         }
 
-//        Service(LocalContext.current).getAttendanceGroup(
-//            date,
-//            idGroup
-//        ) {
-//            status.value = true
-//        }
-
         if(status.value){
-            Darkteam {
+            DarkTeam {
                 AttendanceDialog(
                     lesson = lesson,
                     date = date,
@@ -103,18 +98,24 @@ fun LessonItem(
 @Composable
 fun LessonItemContext(
     lesson: Lesson,
-    attendance: Int
-){
-    val status = mapOf(0 to ColorItemRad, 1 to ColorItemGreen, 2 to ColorItemGray)
-
+    attendance: Int,
+    modifier: Modifier = Modifier
+) {
+    val statusColor = when (attendance) {
+        0 -> ColorItemRad
+        1 -> ColorItemGreen
+        2 -> ColorItemGray
+        else -> Color.Gray
+    }
     ConstraintLayout(
-        modifier = Modifier
+        modifier = modifier
             .padding(
                 top = 5.dp,
                 bottom = 5.dp
             )
     ){
         val (favicon) = createRefs()
+
         Box(
             modifier = Modifier
                 .constrainAs(favicon) {
@@ -130,10 +131,11 @@ fun LessonItemContext(
                     shape = CircleShape
                 )
                 .background(
-                    color = status[attendance]!!,
+                    color = statusColor,
                     shape = CircleShape
                 ),
         )
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -149,89 +151,54 @@ fun LessonItemContext(
                 )
         ){
             Surface(
-                modifier = Modifier
-                    .padding(
-                        start = 25.dp,
-                        end = 25.dp,
-                        bottom = 10.dp
-                    ),
-                color = Color.Transparent,
-                contentColor = Color.White,
+                shape = RoundedCornerShape(10.dp),
+                color = UshellBackground,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.Start
-                ) {
-
-                    Box(modifier = Modifier
-                        .paddingText()
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ){
-                            Text(
-                                text = lesson.type,
-                                style = TimeTableTextLessonItem
-                            )
-                            Text(
-                                text = lesson.classroom,
-                                style = TimeTableTextLessonItem
-                            )
-                        }
-                    }
-                    Box(modifier = Modifier
-                        .paddingText()
-                    ) {
-                        Text(
-                            text = lesson.subject,
-                            style = TimeTableTextLessonItemBold,
+                        .padding(
+                            start = 25.dp,
+                            end = 25.dp,
+                            top = 12.dp,
+                            bottom = 10.dp
                         )
-                    }
-                    Box(modifier = Modifier
-                        .paddingText()
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ){
-                            Text(
-                                text = lesson.withWhom,
-                                style = TimeTableTextLessonItem
-                            )
-                            Text(
-                                text = lesson.time,
-                                style = TimeTableTextLessonItem
-                            )
-                        }
+                        Text(lesson.type, style = TimeTableTextLessonItem)
+                        Text(lesson.classroom, style = TimeTableTextLessonItem)
                     }
-                    if(lesson.subgroup != 0) {
-                        Box(
-                            modifier = Modifier
-                                .paddingText()
-                        ) {
-                            Text(
-                                text = "Подгруппа ${lesson.subgroup}",
-                                style = TimeTableTextLessonItem
-                            )
-                        }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(lesson.subject, style = TimeTableTextLessonItemBold)
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(lesson.withWhom, style = TimeTableTextLessonItem)
+                        Text(lesson.time, style = TimeTableTextLessonItem)
+                    }
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    if (lesson.subgroup != 0) {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "Подгруппа ${lesson.subgroup}",
+                            style = TimeTableTextLessonItem
+                        )
                     }
                 }
             }
         }
     }
 }
-
-@Composable
-fun Modifier.paddingText() = this then
-    Modifier
-        .padding(
-            top = 10.dp
-        )
 
 @Preview
 @Composable
@@ -244,7 +211,7 @@ fun LessonItemPreview(){
         "typeLesson",
         "teacher",
         "09:08",
-        "923",
+        "2123",
         1,
         )
     LessonItem(

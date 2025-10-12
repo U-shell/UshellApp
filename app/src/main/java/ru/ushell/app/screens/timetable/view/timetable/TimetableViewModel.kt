@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.ushell.app.data.features.attendance.AttendanceRepository
-import ru.ushell.app.data.features.timetabel.TimetableRepository
+import ru.ushell.app.data.features.timetable.TimetableRepository
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
 
 import java.time.LocalDate
@@ -25,12 +25,19 @@ class TimetableViewModel @Inject constructor(
 
     fun loadTimetable(date: LocalDate) {
         viewModelScope.launch {
+            _uiState.value = TimetableUiState.Loading
             try {
 
-                _uiState.value = TimetableUiState.Success(
-                    timetableRepository.getTimetable(date),
+                val timetable = timetableRepository.getTimetable(date)
+
+                // Безопасно получаем посещаемость: если ошибка — null
+                val attendance = try {
                     attendanceRepository.getAttendance(formattedDateDayAttendance(date))
-                )
+                } catch (e: Exception) {
+                    null
+                }
+
+                _uiState.value = TimetableUiState.Success(timetable, attendance)
 
             } catch (e: Exception) {
                 _uiState.value = TimetableUiState.Error(e.message ?: "Unknown error")

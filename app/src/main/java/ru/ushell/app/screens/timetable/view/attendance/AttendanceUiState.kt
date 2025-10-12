@@ -1,6 +1,6 @@
 package ru.ushell.app.screens.timetable.view.attendance
 
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceGroup
+import ru.ushell.app.data.features.attendance.mappers.AttendanceGroup
 
 sealed interface AttendanceUiState {
     object Empty : AttendanceUiState

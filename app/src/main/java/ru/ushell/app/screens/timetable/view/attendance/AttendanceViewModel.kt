@@ -9,8 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.ushell.app.data.features.attendance.AttendanceRepository
-import ru.ushell.app.data.features.attendance.remote.attendance.Status
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceStudentGroup
+import ru.ushell.app.data.features.attendance.mappers.AttendanceStudentGroup
 
 @HiltViewModel
 class AttendanceViewModel  @Inject constructor(

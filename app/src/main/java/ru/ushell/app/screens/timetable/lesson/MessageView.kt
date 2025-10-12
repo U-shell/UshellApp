@@ -18,7 +18,6 @@ import ru.ushell.app.R
 import ru.ushell.app.ui.theme.TimeTableTextMessage
 import ru.ushell.app.ui.theme.UshellBackground
 
-
 @Composable
 fun MessageView() {
     Box(

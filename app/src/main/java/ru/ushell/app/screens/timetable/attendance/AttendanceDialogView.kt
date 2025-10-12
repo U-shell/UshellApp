@@ -39,9 +39,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import ru.ushell.app.R
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceGroup
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceStudentGroup
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.Lesson
+import ru.ushell.app.data.features.attendance.mappers.AttendanceGroup
+import ru.ushell.app.data.features.attendance.mappers.AttendanceStudentGroup
+import ru.ushell.app.data.features.timetable.mappers.lesson.Lesson
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
 import ru.ushell.app.screens.timetable.view.attendance.AttendanceUiState

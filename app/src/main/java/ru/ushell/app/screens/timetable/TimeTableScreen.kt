@@ -1,5 +1,6 @@
 package ru.ushell.app.screens.timetable
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
@@ -16,10 +18,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,234 +32,149 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import kotlinx.coroutines.delay
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import ru.ushell.app.R
 import ru.ushell.app.ui.theme.BottomBackgroundAlfa
 import ru.ushell.app.ui.theme.ListColorButton
-import ru.ushell.app.ui.theme.TimeTableText
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedMonthYear
 import ru.ushell.app.screens.timetable.calendar.month.CalendarMonthDialog
 import ru.ushell.app.screens.timetable.calendar.week.CalendarDate
 import ru.ushell.app.screens.timetable.calendar.week.CalendarDateSource
 import ru.ushell.app.screens.timetable.calendar.week.CalendarWeek
 import ru.ushell.app.screens.timetable.lesson.ListLesson
+import ru.ushell.app.screens.timetable.view.timetable.TimetableUiState
+import ru.ushell.app.screens.timetable.view.timetable.TimetableViewModel
 import ru.ushell.app.screens.utils.TopPanelScreen
 import ru.ushell.app.screens.utils.backgroundImagesSmall
-import java.time.temporal.ChronoUnit
+import java.time.LocalDate
 
-//Когда использовать каждый из эффектов
-//
-//Примеры использования DisposableEffect
-//
-    //Добавление и удаление слушателей событий
-    //Запуск и остановка анимации
-    //Привязка и отвязка ресурсов сенсоров, таких как Camera, LocationManager и т.д.
-    //Управление соединениями с базой данных
-    //
-//Примеры использования LaunchedEffect
-//
-    //Получение данных из сети
-    //Выполнение обработки изображений
-    //Обновление базы данных
-    //
-//Примеры использования SideEffect
-//
-    //Ведение логов и аналитика
-    //Выполнение однократной инициализации, например, установка соединения с Bluetooth-устройством, загрузка данных из файла или инициализация библиотеки.
-    //
-//Приведем пример использования SideEffect для однократной инициализации:
-
-//@Composable
-//fun MyComposable() {
-//    val isInitialized = remember { mutableStateOf(false) }
-//
-//    SideEffect {
-//        if (!isInitialized.value) {
-//             Execute one-time initialization tasks here
-//            initializeBluetooth()
-//            loadDataFromFile()
-//            initializeLibrary()
-//
-//            isInitialized.value = true
-//        }
-//    }
-//
-//     UI code here
-//}
 @Composable
-fun TimeTableScreen() {
-    var isRefreshing by remember { mutableStateOf(false) }
-
-    val context = LocalContext.current
+fun TimeTableScreen(
+) {
     val dataSource = CalendarDateSource()
     var currantData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today)) }
 
-    LaunchedEffect(isRefreshing){
-        if (isRefreshing) {
-
-//            Service(context).updateData()
-            delay(2000)
-            currantData = dataSource.getDataWeek(selectedDate = currantData.selectedDate.date)
-
-            isRefreshing = false
-        }
-    }
-
-    SwipeRefresh(
-
-        state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
-        refreshTriggerDistance=100.dp,
-        onRefresh = {
-            isRefreshing = true
+    TimeTableContent(
+        currentData = currantData,
+        onDateChange = { newDate ->
+            currantData = dataSource.getDataWeek(selectedDate = newDate.date)
         },
-        modifier = Modifier
-//            .statusBarsPadding()
-            .navigationBarsPadding()
-
-    ) {
-        TimeTableContext(dataSource, currantData)
-    }
+        onWeekNavigate = { weeksToAdd ->
+            currantData = dataSource.getDataWeek(
+                selectedDate = currantData.selectedDate.weeks(weeksToAdd.toLong())
+            )
+        }
+    )
 }
 
-
 @Composable
-fun TimeTableContext(dataSource: CalendarDateSource, initialData: CalendarDate) {
+fun TimeTableContent(
+    currentData: CalendarDate,
+    onDateChange: (CalendarDate.Date) -> Unit,
+    onWeekNavigate: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
 
-    var currantData by remember { mutableStateOf(initialData) }
-    var pastData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate = dataSource.today)) }
-
-    Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
+    ConstraintLayout(
+        modifier = modifier
+            .fillMaxSize()
             .navigationBarsPadding()
             .background(color = Color(0xFFE7E7E7)),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ConstraintLayout(
+        val (topPanel, lesson, backgroundImage) = createRefs()
+        val barrier = createBottomBarrier(lesson)
+
+        Box(
             modifier = Modifier
-        ) {
-            val (topPanel, lesson, backgroundImage) = createRefs()
-            val barrier = createBottomBarrier(lesson)
-            val height = 250.dp
-            Box(
-                modifier = Modifier
-                    .constrainAs(backgroundImage) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-                    .backgroundImagesSmall(height = height)
-            )
-            Box(
-                modifier = Modifier
-                    .constrainAs(topPanel) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-            ) {
-
-                TopPanelCalendar(
-                    data = currantData,
-                    onDataMonth = {
-                        pastData = dataSource.getDataWeek(currantData.selectedDate.date)
-                        currantData = dataSource.getDataWeek(
-                            currantData.selectedDate.plusWeeks(
-                                ChronoUnit.WEEKS.between(
-                                    currantData.selectedDate.date, pastData.selectedDate.date
-                                )
-                            )
-                        )
-
-                    },
-                    onNavigatePrevious = {
-                        currantData = dataSource.getDataWeek(currantData.selectedDate.minusWeeks())
-                    },
-                    onNavigateNext = {
-                        currantData = dataSource.getDataWeek(currantData.selectedDate.plusWeeks())
-                    },
-                ) { date ->
-                    currantData = currantData.copy(
-                        selectedDate = date,
-                        visibleDates = currantData.visibleDates.map {
-                            it.copy(
-                                isSelected = it.date.isEqual(date.date)
-                            )
-                        })
+                .constrainAs(backgroundImage) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
                 }
-            }
-            Box(
-                modifier = Modifier
-                    .zIndex(-1f)
-                    .constrainAs(lesson) {
-                        top.linkTo(backgroundImage.bottom)
-//                        top.linkTo(backgroundImage.bottom, margin = ((-20).dp))
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(barrier)
-                    }
-                    .padding(bottom = height + 70.dp)
-                    .fillMaxHeight()
-                    .navigationBarsPadding()
-            ) {
-               ListLesson(
-                    modifier = Modifier.offset(y=20.dp),
-                    date = currantData.selectedDate.date
+                .backgroundImagesSmall(height = 250.dp)
+        )
+        Box(
+            modifier = Modifier
+                .constrainAs(topPanel) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+        ) {
+
+            TopPanelCalendar(
+                data = currentData,
+                onMonthClick = { /* опционально */ },
+                onNavigatePrevious = { onWeekNavigate(-1) },
+                onNavigateNext = { onWeekNavigate(1) },
+                onDateClick = onDateChange
+            )
+        }
+        Box(
+            modifier = Modifier
+                .zIndex(-1f)
+                .constrainAs(lesson) {
+                    top.linkTo(backgroundImage.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(barrier)
+                }
+                .padding(bottom = 300.dp)
+                .fillMaxSize()
+                .navigationBarsPadding()
+        ) {
+                ListLesson(
+                    date = currentData.selectedDate.date,
                 )
-            }
         }
     }
 }
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun TopPanelCalendar(
-    data:CalendarDate,
-    onDataMonth: () -> Unit,
+    data: CalendarDate,
+    onMonthClick: () -> Unit,
     onNavigatePrevious: () -> Unit,
     onNavigateNext: () -> Unit,
-    onDateClickListener: (CalendarDate.Date) -> Unit,
+    onDateClick: (CalendarDate.Date) -> Unit,
 ) {
-    val showCalendar = remember { mutableStateOf(false) }
+    var showCalendar by remember { mutableStateOf(false) }
+
     TopPanelScreen(
-        titleContext = { TimetableTitle(data = data, showCalendar) }
+        titleContext = {
+            TimetableTitle(
+                monthYear = formattedMonthYear(data.selectedDate.date),
+                onMonthClick = { showCalendar = true }
+            )
+        }
     ) {
         Box(
             modifier = Modifier
-                .padding(
-                    start = 15.dp,
-                    end = 15.dp,
-                    top = 20.dp,
-                )
+                .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
             CalendarWeek(
                 data = data,
                 onNavigatePrevious = onNavigatePrevious,
                 onNavigateNext = onNavigateNext,
-                onDateClickListener
+                onDateClickListener = onDateClick
             )
         }
 
-        if (showCalendar.value) {
+        if (showCalendar) {
             CalendarMonthDialog(
                 today = data.selectedDate.date,
                 data = data,
-                onDismiss = {
-                    showCalendar.value = false
-                },
-                onDataMonth = onDataMonth,
-                showCalendar = showCalendar,
-                onDateClickListener = onDateClickListener
+                onDismiss = { showCalendar = false },
+                onDataMonth = onMonthClick,
+                showCalendar = mutableStateOf(showCalendar), // или передайте обратно
+                onDateClickListener = onDateClick
             )
         }
     }
@@ -264,46 +182,33 @@ fun TopPanelCalendar(
 
 @Composable
 fun TimetableTitle(
-    data: CalendarDate,
-    showCalendar: MutableState<Boolean>,
+    monthYear: String,
+    onMonthClick: () -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
-            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.Start
         ) {
-            Box {
-                Text(
-                    text = stringResource(id = R.string.timetable),
-                    style = TimeTableText
-                )
-            }
-            Box(
-                modifier = Modifier
-                    .padding(
-                        top = 10.dp
-                    )
-            ) {
-                CalendarButton(
-                    text = formattedMonthYear(data.selectedDate.date),
-                    onClick = {
-                        showCalendar.value = true
-                    } // Открываем календарь при нажатии на кнопку
-                )
-            }
-        }
-
-        Box {
-            Icon(
-                painterResource(id = R.drawable.timetable_mini_logo),
-                contentDescription = null,
-                tint = Color.White
+            Text(
+                text = "Расписание",
+                style = MaterialTheme.typography.headlineSmall,
+                color = Color.White
+            )
+            CalendarButton(
+                text = monthYear,
+                onClick = onMonthClick
             )
         }
+
+        Icon(
+            painter = painterResource(id = R.drawable.timetable_mini_logo),
+            contentDescription = "App logo",
+            tint = Color.White
+        )
     }
 }
 
@@ -358,7 +263,20 @@ fun CalendarButton(
 @Preview
 @Composable
 fun TopPanelCalendarPreview(){
-    val dataSource = CalendarDateSource()
-    val currantData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today)) }
-    TimeTableContext(dataSource=dataSource,initialData=currantData)
+    val dateSource = remember { CalendarDateSource() }
+    val today = remember { dateSource.today }
+
+    var currentData by remember { mutableStateOf(dateSource.getDataWeek(selectedDate = today)) }
+
+    TimeTableContent(
+        currentData = currentData,
+        onDateChange = { newDate ->
+            currentData = dateSource.getDataWeek(selectedDate = newDate.date)
+        },
+        onWeekNavigate = { weeksToAdd ->
+            currentData = dateSource.getDataWeek(
+                selectedDate = currentData.selectedDate.weeks(weeksToAdd.toLong())
+            )
+        }
+    )
 }

@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import ru.ushell.app.data.features.attendance.room.dto.Attendance
+import ru.ushell.app.data.features.attendance.mappers.Attendance
 import ru.ushell.app.screens.timetable.view.timetable.TimetableUiState
 import ru.ushell.app.screens.timetable.view.timetable.TimetableViewModel
 
@@ -90,22 +90,21 @@ fun ListLesson(
 
 fun attendanceStatus(
     numLesson: Int,
-    attendance: List<Attendance>
+    attendance: List<Attendance>?
 ): Int {
     var status = 2
 
-    /*TODO*/
-    // пересмотреть второе условие
-    if(attendance.isEmpty()){
+    if(attendance?.isEmpty() ?: false){
         return status
     }
 
-    for(attendance in attendance){
-        if(attendance.numLesson == numLesson && !attendance.status){
-            status = 0
-        }
-        else if (attendance.numLesson == numLesson){
-            status = 1
+    if (attendance != null) {
+        for(attendance in attendance){
+            if(attendance.numLesson == numLesson && !attendance.status){
+                status = 0
+            } else if (attendance.numLesson == numLesson){
+                status = 1
+            }
         }
     }
 

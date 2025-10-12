@@ -11,8 +11,6 @@ data class CalendarDate(
         val isSelected: Boolean,
         val isLesson: Boolean
     ){
-        fun minusWeeks(): LocalDate = copy(date = date.minusWeeks(1)).date
-        fun plusWeeks(): LocalDate = copy(date = date.plusWeeks(1)).date
-        fun plusWeeks(plus: Long): LocalDate = copy(date = date.plusWeeks(plus)).date
+        fun weeks(plus: Long): LocalDate = copy(date = date.plusWeeks(plus)).date
     }
 }

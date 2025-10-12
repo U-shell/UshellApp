@@ -25,8 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import ru.ushell.app.data.features.attendance.remote.attendance.Status
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceGroup
-import ru.ushell.app.data.features.attendance.room.dto.AttendanceStudentGroup
+import ru.ushell.app.data.features.attendance.mappers.AttendanceGroup
+import ru.ushell.app.data.features.attendance.mappers.AttendanceStudentGroup
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance

@@ -50,7 +50,7 @@ import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 
 import ru.ushell.app.R
-import ru.ushell.app.data.features.timetabel.room.dto.lesson.lessonExistDate
+import ru.ushell.app.data.features.timetable.mappers.lesson.lessonExistDate
 import ru.ushell.app.screens.timetable.calendar.CalendarUtils
 import ru.ushell.app.screens.timetable.calendar.DayCellItem
 import ru.ushell.app.screens.timetable.calendar.NameDayCell
