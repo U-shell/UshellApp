@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.navigation
+package ru.ushell.app.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -27,8 +27,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import ru.ushell.app.old.ui.navigation.BottomNavGraph
-import ru.ushell.app.old.ui.navigation.DrawerNavController
 import ru.ushell.app.ui.theme.UshellBackground
 
 

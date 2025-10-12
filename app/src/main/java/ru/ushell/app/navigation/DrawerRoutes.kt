@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.navigation
+package ru.ushell.app.navigation
 
 sealed class DrawerRoutes(
     val route: String,

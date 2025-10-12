@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.navigation
+package ru.ushell.app.navigation
 
 import ru.ushell.app.R
 
