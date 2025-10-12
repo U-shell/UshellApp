@@ -35,9 +35,8 @@ import ru.ushell.app.ui.theme.StartScreenTitleText
 @Composable
 fun FirstScreen(
     onAuthClick: () -> Unit,
-    modifier: Modifier = Modifier
 ) {
-    StyleScreenBackground(modifier) {
+    StyleScreenBackground {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -65,7 +64,6 @@ fun FirstScreen(
 
 @Composable
 fun StyleScreenBackground(
-    modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
     Box(modifier = Modifier.backgroundImage())
@@ -85,9 +83,8 @@ fun StyleScreenBackground(
         }
     }
 
-    Box(modifier = modifier) {
-        content()
-    }
+    content()
+
 }
 
 @Composable

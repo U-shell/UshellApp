@@ -56,7 +56,6 @@ fun AuthorizeScreen(
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
 
-
     if (uiState is AuthUiState.Success) {
         LaunchedEffect(Unit) {
             navController.navigate(Routes.Main.route) {
@@ -77,10 +76,6 @@ fun AuthorizeScreen(
         }
     }
 
-    LaunchedEffect(email,password) {
-        viewModel.login(email, password, context)
-    }
-
     AuthorizeScreenContent(
         email = email,
         onEmailChange = { email = it },
@@ -89,8 +84,7 @@ fun AuthorizeScreen(
         uiState = uiState,
         onLoginClick = {
             viewModel.login(email, password, context)
-        },
-        modifier = Modifier.fillMaxSize()
+        }
     )
 }
 
@@ -102,10 +96,9 @@ fun AuthorizeScreenContent(
     onPasswordChange: (String) -> Unit,
     uiState: AuthUiState,
     onLoginClick: () -> Unit,
-    modifier: Modifier = Modifier
 ){
 
-    StyleScreenBackground(modifier){
+    StyleScreenBackground{
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -217,5 +210,16 @@ fun AuthorizeScreenPreview() {
         onPasswordChange = {},
         uiState = AuthUiState.Empty,
         onLoginClick = {}
+    )
+}
+
+@Preview
+@Composable
+fun SignInWindowPreview(){
+    SignInWindow(
+        email = "user@example.com",
+        onEmailChange = {},
+        password = "123456",
+        onPasswordChange = {},
     )
 }
