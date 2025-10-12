@@ -32,12 +32,15 @@ class TimetableRepository(
 
     suspend fun getTimetable(date: LocalDate): List<Lesson> {
 
-        primaryListLesson.addAll(timetableLocalDataSource.getPrimaryTimetable())
-        secondaryListLesson.addAll(timetableLocalDataSource.getSecondaryTimetable())
+        val primaryTimetable: List<TimetableEntity> =  timetableLocalDataSource.getPrimaryTimetable()
+        val secondaryTimetable: List<TimetableSecondaryEntity> =  timetableLocalDataSource.getSecondaryTimetable()
+
+        primaryListLesson.addAll(primaryTimetable)
+        secondaryListLesson.addAll(secondaryTimetable)
 
         return getListLesson(
-            timetableLocalDataSource.getPrimaryTimetable(),
-            timetableLocalDataSource.getSecondaryTimetable(),
+            primaryTimetable,
+            secondaryTimetable,
             date
         )
     }
