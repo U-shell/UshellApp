@@ -16,7 +16,7 @@ import kotlinx.coroutines.delay
 import ru.ushell.app.R
 import ru.ushell.app.ui.theme.SplashScreenBackground
 
-private const val SPLASH_DELAY_MS = 1000L
+private const val SPLASH_DELAY_MS = 1L
 
 @Composable
 fun SplashScreen(

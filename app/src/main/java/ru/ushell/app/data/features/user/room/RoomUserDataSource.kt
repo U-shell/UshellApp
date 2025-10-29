@@ -10,6 +10,10 @@ class RoomUserDataSource(val userDao: UserDao): UserLocalDataSource {
 
     override suspend fun activeUser(): Boolean = userDao.activeUser()
 
+    override suspend fun logoutUser(username: String) = userDao.setStatusNoActive(username)
+
+    override suspend fun getAccessToken(): String = userDao.getAccessToken()
+
     override suspend fun saveRemoteResponse(userEntity: AuthInfoUserResponse) {
         return userDao.saveUser(userEntity.toUserEntity())
     }

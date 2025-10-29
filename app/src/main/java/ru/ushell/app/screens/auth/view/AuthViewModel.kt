@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.ushell.app.data.common.service.condition.session.Session
 import ru.ushell.app.data.features.user.UserRepository
 import ru.ushell.app.screens.error.getErrorInternetMessage
 
@@ -21,6 +22,7 @@ open class AuthViewModel @Inject constructor(
     val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
 
     fun login(email: String, password: String, context: Context) {
+
         if (email.isBlank() || password.isBlank() ) {
             _uiState.value = AuthUiState.Error("Введите логин и пароль")
             return
@@ -30,9 +32,10 @@ open class AuthViewModel @Inject constructor(
             _uiState.value = AuthUiState.Loading
             try {
 
-                userRepository.loginUser(email, password, context)
+                userRepository.loginUser(email, password)
                 _uiState.value = AuthUiState.Success
 
+                Session.setLogin(context)
             } catch (e: Exception) {
                 _uiState.value = AuthUiState.Error(getErrorInternetMessage(e))
             }

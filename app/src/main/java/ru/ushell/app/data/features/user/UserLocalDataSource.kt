@@ -7,6 +7,10 @@ interface UserLocalDataSource{
 
     suspend fun activeUser(): Boolean
 
+    suspend fun logoutUser(username: String)
+
+    suspend fun getAccessToken(): String
+
     suspend fun saveRemoteResponse(userEntity: AuthInfoUserResponse)
 
     suspend fun getInfoUser(): UserEntity

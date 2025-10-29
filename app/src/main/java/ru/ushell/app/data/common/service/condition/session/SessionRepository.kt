@@ -1,11 +1,10 @@
-package ru.ushell.app.data.condition.session
+package ru.ushell.app.data.common.service.condition.session
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
 class SessionRepository {
-
     companion object {
 
         private const val CONDITION = "condition"
