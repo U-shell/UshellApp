@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import ru.ushell.app.data.features.messenger.mappers.Message
 import ru.ushell.app.screens.messenger.MessageItem
-import ru.ushell.app.screens.messenger.dialog.JumpToBottom
+import ru.ushell.app.screens.messenger.dialog.button.JumpToBottom
 
 private val JumpToBottomThreshold = 56.dp
 

@@ -181,8 +181,6 @@ fun ChatItemList(
     lastMessage: String = "MessageMessageMessageMessag",
     noise: String = "88",
     statusNoise: Boolean = true,
-    viewModule: MessengerViewModel = hiltViewModel()
-
 ){
     var status by remember { mutableStateOf(false) }
 
@@ -217,7 +215,6 @@ fun ChatItemList(
 
         navController.navigate(RoutesChat.ScreenDialog.route)
         nameSenderUser.value = lastMessage
-        status = false
     }
 }
 

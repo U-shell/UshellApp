@@ -1,7 +1,7 @@
 package ru.ushell.app.screens.drawer
 
 
-val dataColored = arrayOf(
+val emojiList = arrayOf(
     arrayOf(
         "😀",
         "😃",
