@@ -30,4 +30,11 @@
     <string name="channel_name">channel_name</string>
     <string name="channel_description">channel_description</string>
     <string name="message">Сообщение</string>
+    <string name="scannerQR">Сканировать QR-code</string>
+    <string name="device">Устройства</string>
+    <string name="addDevice">Подключить устройство</string>
+    <string name="qrBrief">Вы можете зайти в приложение\n Ushell для браузера\n с помшью Qr-кода.</string>
+    <string name="deviceThis">Это устройство</string>
+    <string name="deviceОther">Aктивные сеансы</string>
+    <string name="deviceClousSession">Завершить все другие сеансы</string>
 </resources>

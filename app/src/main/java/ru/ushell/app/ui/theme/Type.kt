@@ -43,11 +43,6 @@ val AuthScreenBodyTitle = TextStyle(
     fontFamily = medium
 )
 
-val AuthHelpTextButton = TextStyle(
-    color = Color.White,
-    fontSize = 15.sp,
-    fontFamily = regular
-)
 val DrawerInfoUserText = TextStyle(
     color = Color.Black,
     fontSize = 16.sp,
@@ -148,8 +143,32 @@ val TitleDialog = TextStyle(
     color = Color.White,
     fontFamily = medium
 )
-val BrefDialog  = TextStyle(
+val BriefDialog  = TextStyle(
     fontSize = 12.sp,
     color = Color.White.copy(alpha = 0.50f),
     fontFamily = medium
+)
+
+val DeviceThisDevice = TextStyle(
+    fontSize = 20.sp,
+    color = Color.White,
+    fontFamily = medium
+)
+
+val DeviceNameTitle = TextStyle(
+    fontSize = 20.sp,
+    color = Color.White,
+    fontFamily = bold
+)
+
+val DeviceVersionApp = TextStyle(
+    fontSize = 15.sp,
+    color = Color.White,
+    fontFamily = medium
+)
+
+val DeviceLocation = TextStyle(
+    fontSize = 10.sp,
+    color = Color.Gray,
+    fontFamily = semibold
 )
