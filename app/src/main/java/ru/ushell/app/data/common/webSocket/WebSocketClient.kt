@@ -5,6 +5,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
+import ru.ushell.app.di.RetrofitSetting.Companion.baseUrl
 import ru.ushell.app.data.common.webSocket.stomp.StompMessage
 import ru.ushell.app.data.common.webSocket.stomp.StompMessageSerializer
 import java.util.concurrent.TimeUnit
@@ -17,7 +18,6 @@ open class WebSocketClient(
     private val connect: String = "CONNECT"
     private val subscribe: String = "SUBSCRIBE"
     private val send: String = "SEND"
-
 
     val topics = mutableMapOf<String, TopicHandler>()
     var closeHandler: CloseHandler? = null
@@ -40,13 +40,13 @@ open class WebSocketClient(
         return null
     }
 
-    fun connect(address: String) {
+    fun connect(url: String) {
         val client: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(0, TimeUnit.MICROSECONDS)
             .build()
 
         val request: Request = Request.Builder()
-            .url(address)
+            .url(baseUrl+url)
             .build()
 
         client.newWebSocket(request, this)

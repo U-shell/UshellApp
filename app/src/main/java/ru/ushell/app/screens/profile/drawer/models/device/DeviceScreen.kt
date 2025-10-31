@@ -7,18 +7,15 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.exclude
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.ime
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,13 +25,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScaffoldDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,17 +40,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.graphics.shapes.circle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
-import ru.ushell.app.navigation.DrawerRoutes
+import ru.ushell.app.screens.profile.drawer.Drawer
+import ru.ushell.app.screens.profile.drawer.models.TopNavDrawerPanel
 import ru.ushell.app.screens.profile.drawer.models.device.qrscanner.QRScannerScreen
 import ru.ushell.app.ui.theme.ChatIFBackground
+import ru.ushell.app.ui.theme.DeviceLocation
+import ru.ushell.app.ui.theme.DeviceNameTitle
+import ru.ushell.app.ui.theme.DeviceThisDevice
+import ru.ushell.app.ui.theme.DeviceVersionApp
 import ru.ushell.app.ui.theme.DrawerBorderColor
 
 
@@ -75,7 +81,7 @@ fun DeviceScreen(
         startDestination = RoutesDevice.ScreenDevice.route
     ) {
         composable(RoutesDevice.ScreenDevice.route) {
-            DeviceMainScreen(
+            DeviceContext(
                 parentNavController = navController,
                 deviceNavController = deviceNavController
             )
@@ -85,115 +91,259 @@ fun DeviceScreen(
         }
     }
 }
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun DeviceMainScreen(
+fun DeviceContext(
     parentNavController: NavHostController,
     deviceNavController: NavHostController,
-    modifier: Modifier = Modifier
-) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Устройства") },
-                navigationIcon = {
-                    IconButton(onClick = { parentNavController.popBackStack() }) {
-                        Icon(
-                            painter = painterResource(R.drawable.drawer_icon_arrow_exit),
-                            contentDescription = "Back"
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Black,
-                    titleContentColor = Color.White
-                )
-            )
-        },
-        containerColor = Color.White
-    ) { paddingValues ->
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            verticalArrangement = Arrangement.spacedBy(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            QRPanel(deviceNavController = deviceNavController)
-            MePanel()
-        }
+){
+    val backgroundColorItem = Color(0xFF181818)
+    Column (
+        modifier = Modifier
+            .fillMaxSize()
+                .background(Color(0xFF000000))
+    ){
+        TopNavDrawerPanel(
+            text = stringResource(R.string.device),
+            route = Drawer.Device.route,
+            navController = parentNavController,
+            modifier = Modifier
+                .background(Color(0xFF232325))
+
+        )
+
+        QrScannerPanel(
+            deviceNavController = deviceNavController,
+            modifier = Modifier
+                .background(backgroundColorItem)
+
+        )
+        Spacer(modifier = Modifier.height(15.dp))
+
+        ThisDevicePanel(
+            modifier = Modifier
+                .background(backgroundColorItem)
+        )
+        Spacer(modifier = Modifier.height(15.dp))
+
+        OtherDevicePanel(
+            modifier = Modifier
+                .background(backgroundColorItem)
+        )
     }
+
 }
 
 @Composable
-fun QRPanel(deviceNavController: NavHostController) {
+fun QrScannerPanel(
+    deviceNavController: NavHostController,
+    modifier: Modifier = Modifier
+) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .background(Color.DarkGray)
-            .padding(vertical = 24.dp)
-    ) {
+            .padding(
+                top = 10.dp
+            )
+        ,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+
         Image(
-            painter = painterResource(id = R.drawable.splash_screen_logo),
-            contentDescription = "App logo",
+            painter = painterResource(id = R.drawable.qr_laptop),
+            contentDescription = null,
             modifier = Modifier.size(158.dp)
         )
 
         Text(
-            text = "Можно добавить устройство",
+            text = stringResource(R.string.qrBrief),
+            fontSize = 15.sp,
             color = Color.White,
-            modifier = Modifier.padding(top = 12.dp)
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(
+                    start = 30.dp,
+                    end = 30.dp,
+                    top = 10.dp,
+                    bottom = 10.dp
+                )
         )
 
         Button(
             onClick = { deviceNavController.navigate(RoutesDevice.ScreenQR.route) },
-            shape = RoundedCornerShape(5.dp),
             colors = ButtonDefaults.buttonColors(containerColor = ChatIFBackground),
-            modifier = Modifier.padding(top = 12.dp)
+            shape = RoundedCornerShape(5.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.drawer_icon_qr),
-                contentDescription = null,
-                tint = Color.White
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Подключить устройство", color = Color.White)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(4.dp)
+                ,
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ){
+
+                Icon(
+                    painter = painterResource(id = R.drawable.drawer_icon_qr),
+                    contentDescription = null,
+                    tint = Color.White
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = stringResource(R.string.addDevice),
+                    fontSize = 15.sp,
+                    color = Color.White,
+                )
+            }
         }
     }
 }
 
 @Composable
-fun MePanel() {
+fun DeviceItem(
+    nameDevice: String,
+    versionApp: String,
+    locationDevice: String,
+){
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 10.dp),
+            .padding(5.dp)
+        ,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.bottom_ic_profile),
-            contentDescription = "This device",
+        horizontalArrangement = Arrangement.Start
+    ){
+        Icon(
+            painter = painterResource(id = R.drawable.drawer_gadget),
+            contentDescription = null,
             modifier = Modifier
-                .size(70.dp)
-                .border(BorderStroke(2.dp, DrawerBorderColor), CircleShape)
-                .padding(2.dp)
+                .size(60.dp)
                 .clip(CircleShape)
-                .background(Color.Black)
         )
-
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 10.dp
+                )
+            ,
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.Start
         ) {
-            Text("ThisDevice")
-            Text("Version")
-            Text("Location")
+            Text(
+                text = nameDevice,
+                style = DeviceNameTitle
+            )
+            Text(
+                text = versionApp,
+                style = DeviceVersionApp
+            )
+            Text(
+                text = locationDevice,
+                style = DeviceLocation
+            )
         }
     }
 }
 
+@Composable
+fun ThisDevicePanel(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        Box(
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
+            Text(
+                text = stringResource(id = R.string.deviceThis),
+                style = DeviceThisDevice
+            )
+        }
+
+        DeviceItem(
+            nameDevice = "d",
+            versionApp = "d",
+            locationDevice = "d"
+        )
+
+        Button(
+            onClick = {},
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Transparent,
+                contentColor = Color(0xFFB72E2E),
+            ),
+            shape = RoundedCornerShape(0.dp),
+            contentPadding = PaddingValues(0.dp),
+
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+
+                Icon(
+                    painter = painterResource(id = R.drawable.device_exit),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(
+                            width = 60.dp,
+                            height = 30.dp)
+                )
+                Box(
+                    modifier = Modifier
+                        .padding(start = 10.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.deviceClousSession),
+                        fontSize = 15.sp
+                    )
+                }
+            }
+        }
+    }
+
+
+}
+
+@Composable
+fun OtherDevicePanel(
+    modifier: Modifier = Modifier
+){
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+    ){
+        Box(
+            modifier = Modifier
+                .padding(10.dp)
+        ){
+            Text(
+                text = stringResource(id = R.string.deviceОther),
+                style = DeviceThisDevice
+            )
+        }
+
+        DeviceItem(
+            nameDevice = "d",
+            versionApp = "d",
+            locationDevice = "d"
+        )
+    }
+}
 
 
 sealed class RoutesDevice(val route: String) {
@@ -210,4 +360,26 @@ fun DeviceScreenPreview(){
         navController=navController,
         onBottomBarVisibilityChange= { bottomBarEnabled }
     )
+}
+
+@Preview
+@Composable
+fun QrScannerPanelPreview(){
+    QrScannerPanel(rememberNavController())
+}
+
+@Preview
+@Composable
+fun DeviceItemPreview(){
+    DeviceItem(
+        nameDevice = "nameDevice",
+        versionApp = "versionApp",
+        locationDevice = "LocationDevice"
+    )
+}
+
+@Preview
+@Composable
+fun ThisDevicePanelPreview(){
+    ThisDevicePanel()
 }

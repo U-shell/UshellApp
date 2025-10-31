@@ -1,10 +1,12 @@
-package ru.ushell.app.screens.profile.drawer.models.device
+package ru.ushell.app.screens.profile.drawer.models
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -21,9 +23,9 @@ import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
 
 @Composable
-fun TopNavPanel(
+fun TopNavDrawerPanel(
     text: String,
-    screen: String,
+    route: String,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -31,36 +33,38 @@ fun TopNavPanel(
         modifier = modifier
             .padding(
                 top = 5.dp,
-                bottom = 5.dp
+                bottom = 10.dp
             )
             .fillMaxWidth()
     ){
         Row(
             modifier = Modifier
+                .statusBarsPadding()
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             Box(
                 modifier = Modifier
-                    .padding(start = 35.dp)
+                    .padding(start = 10.dp)
             ){
                 IconButton(
                    onClick = {
-                       navController.navigate(screen)
-                   }
+                       navController.navigate(route)
+                   },
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.drawer_icon_arrow_exit),
                         contentDescription = null,
-                        modifier = Modifier,
-                        tint = Color.White
+                        tint = Color.White,
+                        modifier = Modifier
+                            .fillMaxSize()
                     )
                 }
             }
             Box(
                 modifier = Modifier
-                    .padding(start = 10.dp)
+                    .padding(start = 20.dp)
                     .weight(1f)
             ){
                 Text(
@@ -78,9 +82,9 @@ fun TopNavPanel(
 fun TopNavPanelPreview() {
     val navController = rememberNavController()
 
-    TopNavPanel(
+    TopNavDrawerPanel(
         text = "Title",
-        screen = "Drawer.Device",
+        route = "Drawer.Device",
         navController=navController,
         modifier = Modifier
     )

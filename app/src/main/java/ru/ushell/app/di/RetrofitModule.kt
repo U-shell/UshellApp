@@ -14,17 +14,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.ushell.app.R
 import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceApi
-import ru.ushell.app.data.features.messanger.remote.MessengerApi
-import ru.ushell.app.data.features.timetabel.remote.timetable.TimetableApi
+import ru.ushell.app.data.features.messenger.remote.MessengerApi
+import ru.ushell.app.data.features.timetable.remote.timetable.TimetableApi
 import ru.ushell.app.data.features.user.remote.auth.AuthApi
+import ru.ushell.app.di.RetrofitSetting.Companion.baseUrl
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class RetrofitModule {
-
-//    private val url = "https://api.ushell.ru"
-    private val baseUrl =  "http://192.168.1.78:8082/"
 
     @Provides
     @Singleton

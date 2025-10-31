@@ -6,9 +6,7 @@ import org.json.JSONObject
 import ru.ushell.app.data.common.webSocket.TopicHandler
 import ru.ushell.app.data.common.webSocket.WebSocketConnect
 
-class Connect(
-    override val url: String = "ws://192.168.1.78:8082/qr",
-) : WebSocketConnect {
+class Connect() : WebSocketConnect {
     private val connectionReady = CompletableDeferred<Boolean>()
 
     private var deliver: Deliver? = null
@@ -34,7 +32,7 @@ class Connect(
         }
 
         // Подключаемся
-        deliver!!.connect(url)
+        deliver!!.connect(url = "/qr")
     }
 
     override fun disconnect() {

@@ -9,13 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import ru.ushell.app.R
 import ru.ushell.app.navigation.DrawerRoutes
-import  ru.ushell.app.screens.profile.drawer.models.device.TopNavPanel
+import ru.ushell.app.screens.profile.drawer.models.TopNavDrawerPanel
 
 @Composable
 fun QRScannerScreen(
@@ -32,14 +34,13 @@ fun QRScannerContext(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color(0xFFE7E7E7)),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ConstraintLayout(
             modifier = Modifier.fillMaxSize()
         ) {
-            val (topPanel, scanner) = createRefs()
+            val (topPanel) = createRefs()
 
             Box(
                 modifier = Modifier
@@ -50,9 +51,9 @@ fun QRScannerContext(
                         start.linkTo(parent.start)
                     }
             ) {
-                TopNavPanel(
-                    text = "QR",
-                    screen = DrawerRoutes.StartScreen.route,
+                TopNavDrawerPanel(
+                    text = stringResource(R.string.scannerQR),
+                    route = DrawerRoutes.StartScreen.route,
                     navController = navController,
                     modifier = Modifier.background(Color.Transparent)
                 )
@@ -60,10 +61,6 @@ fun QRScannerContext(
 
             Box(
                 modifier = Modifier
-                    .constrainAs(scanner) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
                     .fillMaxSize()
             ) {
                 CameraScreen(
