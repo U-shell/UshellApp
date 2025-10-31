@@ -1,7 +1,7 @@
 package ru.ushell.app.data.features.user.room
 
 import ru.ushell.app.data.features.user.UserLocalDataSource
-import ru.ushell.app.data.features.user.remote.auth.AuthInfoUserResponse
+import ru.ushell.app.data.features.user.remote.dto.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.room.dao.UserDao
 import ru.ushell.app.data.features.user.room.dao.UserEntity
 import ru.ushell.app.data.features.user.mappers.toUserEntity
@@ -12,7 +12,13 @@ class RoomUserDataSource(val userDao: UserDao): UserLocalDataSource {
 
     override suspend fun logoutUser(username: String) = userDao.setStatusNoActive(username)
 
+    override suspend fun saveAccessToken(token: String) {
+        userDao.saveAccessToken(token)
+    }
+
     override suspend fun getAccessToken(): String = userDao.getAccessToken()
+
+    override suspend fun getRefreshToken(): String = userDao.getRefreshToken()
 
     override suspend fun saveRemoteResponse(userEntity: AuthInfoUserResponse) {
         return userDao.saveUser(userEntity.toUserEntity())

@@ -12,9 +12,19 @@ interface UserDao {
     @Query("SELECT EXISTS(SELECT active FROM $TABLE_NAME WHERE active = 1)")
     suspend fun activeUser(): Boolean
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    //    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert
     @JvmSuppressWildcards
     suspend fun saveUser(userEntity: UserEntity)
+
+    @Query("UPDATE $TABLE_NAME SET accessToken = :token WHERE active = 1")
+    suspend fun saveAccessToken(token: String)
+
+    @Query("SELECT accessToken FROM $TABLE_NAME WHERE active = 1 ")
+    suspend fun getAccessToken(): String
+
+    @Query("SELECT refreshToken FROM $TABLE_NAME WHERE active = 1 ")
+    suspend fun getRefreshToken(): String
 
     @Query("UPDATE $TABLE_NAME SET active = 1 WHERE username =:username")
     suspend fun setStatusActive(username: String)
@@ -27,7 +37,6 @@ interface UserDao {
 
     @Query("SELECT username FROM $TABLE_NAME WHERE active = 1")
     suspend fun getUsername(): String
-
 
     @Query("SELECT groupId FROM $TABLE_NAME WHERE active = 1")
     suspend fun getGroupId(): Int

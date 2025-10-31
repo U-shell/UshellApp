@@ -5,21 +5,25 @@ import androidx.core.content.edit
 import jakarta.inject.Inject
 
 class TokenService @Inject constructor(
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences,
 ) {
-    fun saveAccessToken(token: String) {
+    private val token: String = "ACCESS"
+    private val ttl: String = "TTL_ACCESS"
+
+    fun saveAccessToken(token: String, time: Long) {
         sharedPreferences.edit {
-            putString("API_KEY", token)
+            putString(token, token)
+            putLong(ttl,time )
         }
     }
 
-    fun getAccessToken(): String? {
-        return sharedPreferences.getString("API_KEY", null)
+    fun getAccessToken(): String? =  sharedPreferences.getString(token, null)
+
+    fun isTokenValid(): Boolean {
+        val expiresAt = sharedPreferences.getLong(ttl, 0)
+        return expiresAt > System.currentTimeMillis()
     }
 
-    fun clearToken() {
-        sharedPreferences.edit {
-            remove("API_KEY")
-        }
-    }
+    fun getTimeToken(): Long = sharedPreferences.getLong(ttl,0)
+
 }

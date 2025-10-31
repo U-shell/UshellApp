@@ -2,7 +2,6 @@ package ru.ushell.app.data.features.user.room.dao
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.ushell.app.data.features.user.remote.auth.UserGroup
 import ru.ushell.app.data.features.user.room.dao.UserEntity.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)

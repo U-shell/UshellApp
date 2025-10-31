@@ -1,6 +1,6 @@
 package ru.ushell.app.data.features.user
 
-import ru.ushell.app.data.features.user.remote.auth.AuthInfoUserResponse
+import ru.ushell.app.data.features.user.remote.dto.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.room.dao.UserEntity
 
 interface UserLocalDataSource{
@@ -9,7 +9,11 @@ interface UserLocalDataSource{
 
     suspend fun logoutUser(username: String)
 
+    suspend fun saveAccessToken(token: String)
+
     suspend fun getAccessToken(): String
+
+    suspend fun getRefreshToken(): String
 
     suspend fun saveRemoteResponse(userEntity: AuthInfoUserResponse)
 
@@ -22,5 +26,4 @@ interface UserLocalDataSource{
     suspend fun setChatId(chatId: String)
 
     suspend fun getChaId(): String
-
 }

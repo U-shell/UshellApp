@@ -1,4 +1,4 @@
-package ru.ushell.app.data.features.user.remote.auth
+package ru.ushell.app.data.features.user.remote.dto
 
 data class AuthInfoUserResponse(
     val username: String,
@@ -8,6 +8,7 @@ data class AuthInfoUserResponse(
     val group: UserGroup,
     val roles: MutableList<String?>,
     val accessToken: String,
+    val accessValid: Long,
     val refreshToken: String,
 )
 

@@ -5,10 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.common.service.condition.session.Session
 import ru.ushell.app.data.features.attendance.AttendanceRepository
 import ru.ushell.app.data.features.messenger.MessengerRepository
@@ -17,6 +19,7 @@ import ru.ushell.app.data.features.user.UserRepository
 
 @HiltViewModel
 class LoadDataService @Inject constructor(
+    private val tokenService: TokenService,
     private val userRepository: UserRepository,
     private val timetableRepository: TimetableRepository,
     private val attendanceRepository: AttendanceRepository,
@@ -54,11 +57,15 @@ class LoadDataService @Inject constructor(
             try {
                 if (!userRepository.activeUser()) return@launch
 
+                if (!validToken()) return@launch
+
                 timetableRepository.saveTimetable()
                 attendanceRepository.saveAttendance()
 
                 messengerRepository.getInfoUserMessenger()
                 messengerRepository.getAllUser()
+
+                scheduleTokenRefresh(tokenService.getTimeToken())
 
             } catch (e: Exception) {
                 println("Error loading timetable: $e")
@@ -79,4 +86,35 @@ class LoadDataService @Inject constructor(
         }
     }
 
+    private fun scheduleTokenRefresh(delay: Long) {
+
+        viewModelScope.launch {
+            delay(delay)
+            if (tokenService.isTokenValid().not()) {
+                validToken()
+            }
+        }
+    }
+
+    private suspend fun validToken(): Boolean {
+        try {
+
+            return if (tokenService.isTokenValid()) {
+                updateToken()
+            } else {
+                false
+            }
+
+        } catch (e: Exception) {
+            println("Error loading timetable: $e")
+            e.message
+            return false
+        }
+    }
+
+    private suspend fun updateToken(): Boolean {
+        val token = userRepository.refreshAccessToken()
+        tokenService.saveAccessToken(token.accessToken,token.validationAccess)
+        return true
+    }
 }

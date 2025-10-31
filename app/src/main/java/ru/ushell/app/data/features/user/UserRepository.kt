@@ -2,8 +2,8 @@ package ru.ushell.app.data.features.user
 
 import okhttp3.Credentials
 import ru.ushell.app.data.common.service.TokenService
+import ru.ushell.app.data.features.user.remote.dto.RefreshAccessTokenResponse
 import ru.ushell.app.data.features.user.remote.webSocket.Connect
-import ru.ushell.app.data.features.user.remote.auth.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.room.dao.UserEntity
 
 class UserRepository(
@@ -21,13 +21,10 @@ class UserRepository(
         userRemoteDataSource.getLoginUser(basic = Credentials.basic(email, password))
             .also {
                 userLocalDataSource.saveRemoteResponse(it)
-                tokenService.saveAccessToken(it.accessToken)
+                tokenService.saveAccessToken(it.accessToken, it.accessValid)
             }
 
-
     suspend fun logoutUser() =  userLocalDataSource.logoutUser(username = getUsername())
-
-    suspend fun getAccessToke() = userLocalDataSource.getAccessToken()
 
     suspend fun getInfoUser(): UserEntity = userLocalDataSource.getInfoUser()
 
@@ -38,6 +35,18 @@ class UserRepository(
     suspend fun setChatId(chatId: String) = userLocalDataSource.setChatId(chatId)
 
     suspend fun getChatId(): String = userLocalDataSource.getChaId()
+
+    private suspend fun saveAccessToken(token: String) = userLocalDataSource.saveAccessToken(token)
+
+    private suspend fun getAccessToken() = userLocalDataSource.getAccessToken()
+
+    private suspend fun getRefreshToken() = userLocalDataSource.getRefreshToken()
+
+    suspend fun refreshAccessToken(): RefreshAccessTokenResponse {
+        val tokens: RefreshAccessTokenResponse = userRemoteDataSource.refreshAccessToken(getRefreshToken())
+        saveAccessToken(tokens.accessToken)
+        return tokens
+    }
 
     suspend fun connectWebSocket() {
         if (connect?.isConnected() == true) return
@@ -56,7 +65,7 @@ class UserRepository(
 
     suspend fun sendMessage(code: String) {
         // isConnected проверка уже не нужна, если connectWebSocket гарантирует подключение
-        connect?.sendQrMessage(code, getAccessToke())
+        connect?.sendQrMessage(code, getAccessToken())
     }
 
 
