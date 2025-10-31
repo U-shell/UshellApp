@@ -1,6 +1,6 @@
 package ru.ushell.app.data.features.user.mappers
 
-import ru.ushell.app.data.features.user.remote.auth.AuthInfoUserResponse
+import ru.ushell.app.data.features.user.remote.dto.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.room.dao.UserEntity
 
 fun AuthInfoUserResponse.toUserEntity(): UserEntity {
