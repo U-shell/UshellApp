@@ -2,21 +2,18 @@ package ru.ushell.app.screens.messenger.dialog.button
 
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-
-private enum class Visibility {
-    VISIBLE,
-    GONE
-}
+import ru.ushell.app.R
 
 @Composable
 fun JumpToBottom(
@@ -24,11 +21,12 @@ fun JumpToBottom(
     onClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // Show Jump to Bottom button
+
     val transition = updateTransition(
         if (enabled) Visibility.VISIBLE else Visibility.GONE,
         label = "JumpToBottom visibility animation"
     )
+
     val bottomOffset by transition.animateDp(label = "JumpToBottom offset animation") {
         if (it == Visibility.GONE) {
             (-32).dp
@@ -36,26 +34,30 @@ fun JumpToBottom(
             32.dp
         }
     }
+
     if (bottomOffset > 0.dp) {
-        ExtendedFloatingActionButton(
-            icon = {
-//                Icon(
-//                    imageVector = Icons.Filled.ArrowDropDown,
-//                    modifier = Modifier.height(18.dp),
-//                    contentDescription = null
-//                )
-            },
-            text = {
-                Text(text = "ss")
-            },
+        FloatingActionButton(
             onClick = onClicked,
-            containerColor = MaterialTheme.colorScheme.surface,
-            contentColor = MaterialTheme.colorScheme.primary,
+            containerColor = Color(0xFFD7D7D7),
+            shape = CircleShape,
             modifier = modifier
-                .offset(x = 0.dp, y = -bottomOffset)
-                .height(36.dp)
-        )
+                .size(45.dp)
+        ) {
+            Icon(
+                painterResource(id = R.drawable.calendar_month_arrow_botton),
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier
+                    .size(25.dp)
+                ,
+            )
+        }
     }
+}
+
+private enum class Visibility {
+    VISIBLE,
+    GONE
 }
 
 @Preview

@@ -79,6 +79,4 @@ class MessengerViewModel  @Inject constructor(
             // Обработка ошибки
         }
     }
-
-
 }

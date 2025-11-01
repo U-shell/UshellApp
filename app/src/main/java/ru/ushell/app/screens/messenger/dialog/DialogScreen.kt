@@ -48,8 +48,8 @@ import kotlinx.coroutines.launch
 import ru.ushell.app.R
 import ru.ushell.app.data.features.messenger.mappers.Message
 import ru.ushell.app.screens.messenger.RoutesChat
+import ru.ushell.app.screens.messenger.dialog.message.MessageList
 import ru.ushell.app.screens.messenger.dialog.panel.InputPanel
-import ru.ushell.app.screens.messenger.message.Messages
 import ru.ushell.app.screens.messenger.view.MessengerUiState
 import ru.ushell.app.screens.messenger.view.MessengerViewModel
 import ru.ushell.app.ui.theme.BriefDialog
@@ -121,7 +121,6 @@ fun DialogContext(
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TitlePanel(
@@ -162,10 +161,12 @@ fun DialogContext(
                         .fillMaxSize()
                         .padding(paddingValues)
                 ) {
-                    Messages(
-                        messages = uiState.messageList,
+
+                    MessageList(
+                        list = uiState.messageList,
                         scrollState = scrollState,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier
+                            .weight(1f)
                     )
                     InputPanel(
                         onMessageSent = onMessageSent,
@@ -196,7 +197,13 @@ fun TitlePanel(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp)
+                .systemBarsPadding()
+                .padding(
+                    start = 20.dp,
+                    end = 20.dp,
+                    top = 10.dp,
+                    bottom = 10.dp
+                )
             ,
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween

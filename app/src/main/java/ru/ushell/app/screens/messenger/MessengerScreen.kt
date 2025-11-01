@@ -86,8 +86,8 @@ fun ChatNav(
 
             SystemBarColorTheme {
                 DialogScreen(
-                    navController = navController,
-                    nameSenderUser = nameSenderUser.value
+                    nameSenderUser = nameSenderUser.value,
+                    navController = navController
                 )
             }
         }
@@ -193,7 +193,7 @@ fun TitleChat() {
         Box(modifier = Modifier
             .padding(top = 5.dp)
         ) {
-            SearchPanel()
+//            SearchPanel()
         }
     }
 }
