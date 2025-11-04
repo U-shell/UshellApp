@@ -58,9 +58,9 @@ class LoadDataService @Inject constructor(
                 if (!userRepository.activeUser()) return@launch
 
                 if (!validToken()) return@launch
-
-                timetableRepository.saveTimetable()
-                attendanceRepository.saveAttendance()
+//TODO: игнорировать сервисы которые недоступны чтобы те не блокировали загрузку остальных
+//                timetableRepository.saveTimetable()
+//                attendanceRepository.saveAttendance()
 
                 messengerRepository.getInfoUserMessenger()
                 messengerRepository.getAllUser()
@@ -98,11 +98,10 @@ class LoadDataService @Inject constructor(
 
     private suspend fun validToken(): Boolean {
         try {
-
-            return if (tokenService.isTokenValid()) {
-                updateToken()
+            return if (tokenService.isTokenValid() &&  tokenService.getAccessToken() != null) {
+                true
             } else {
-                false
+                updateToken()
             }
 
         } catch (e: Exception) {

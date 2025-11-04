@@ -7,17 +7,17 @@ import jakarta.inject.Inject
 class TokenService @Inject constructor(
     private val sharedPreferences: SharedPreferences,
 ) {
-    private val token: String = "ACCESS"
+    private val accessToken: String = "ACCESS"
     private val ttl: String = "TTL_ACCESS"
 
     fun saveAccessToken(token: String, time: Long) {
         sharedPreferences.edit {
-            putString(token, token)
+            putString(accessToken, token)
             putLong(ttl,time )
         }
     }
 
-    fun getAccessToken(): String? =  sharedPreferences.getString(token, null)
+    fun getAccessToken(): String? =  sharedPreferences.getString(accessToken, null)
 
     fun isTokenValid(): Boolean {
         val expiresAt = sharedPreferences.getLong(ttl, 0)
