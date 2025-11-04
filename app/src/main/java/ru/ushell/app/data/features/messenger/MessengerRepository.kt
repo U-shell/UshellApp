@@ -49,11 +49,11 @@ class MessengerRepository(
             )
         }
         messages.reverse()
-        println(messages)
         return messages
     }
 
     suspend fun getAllUser() = messengerRemoteDataSource.getAllUsers().listUsers?.forEach {
+        println(it)
         ChatList.add(
             Chat(
                 it.username,
@@ -83,7 +83,7 @@ class MessengerRepository(
         connect?.connect()
     }
 
-    suspend fun disconnectWebSocket() {
+    fun disconnectWebSocket() {
         connect?.disconnect()
         connect = null
     }

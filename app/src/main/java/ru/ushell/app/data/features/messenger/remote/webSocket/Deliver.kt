@@ -9,7 +9,7 @@ import ru.ushell.app.data.features.messenger.mappers.MessageRequest
 
 class Deliver(private val senderId: String) : WebSocketClient() {
 
-    fun sendChatMessage(recipientId: String, message: String) {
+    fun sendMessage(recipientId: String, message: String) {
         webSocket?.let { ws ->
             val request = MessageRequest(senderId, recipientId, message)
             sendMessage(ws, "/app/chat", Gson().toJson(request))

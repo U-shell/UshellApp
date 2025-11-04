@@ -7,12 +7,13 @@ data class Chat(
     val countNewMessage: Int,
 )
 
+// TODO: убрать и переделать
 val ChatList: ArrayList<Chat> = mutableListOf<Chat>() as ArrayList<Chat>
 
 fun getChatPopulation(): ArrayList<Chat>{
     val population = ArrayList<Chat>()
     val someChat = ArrayList<Chat>()
-    print(ChatList+"ChatList")
+
     for (chat in ChatList){
         if(chat.countNewMessage>0){
             population.add(chat)

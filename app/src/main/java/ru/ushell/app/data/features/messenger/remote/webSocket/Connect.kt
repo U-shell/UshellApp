@@ -8,14 +8,13 @@ import java.time.OffsetDateTime
 
 class Connect(
     private val userChatId: String,
-    override val url: String = "ws://192.168.1.78:8082/ws/websocket",
     private val onMessageReceived: (Message) -> Unit
 ) : WebSocketConnect {
 
     private var deliver: Deliver? = null
 
     override fun connect() {
-        // Создаём Deliver только один раз
+
         if (deliver == null) {
             deliver = Deliver(userChatId)
         }
@@ -40,16 +39,16 @@ class Connect(
         }
 
         // Подключаемся
-        deliver!!.connect(url)
-    }
-
-    fun sendChatMessage(recipientId: String, message: String) {
-        deliver?.sendChatMessage(recipientId, message)
+        deliver!!.connect(url = "/messenger")
     }
 
     override fun disconnect() {
         deliver?.disconnect()
         deliver = null
+    }
+
+    fun sendChatMessage(recipientId: String, message: String) {
+        deliver?.sendMessage(recipientId, message)
     }
 
     fun isConnected(): Boolean = deliver?.isConnect() == true
