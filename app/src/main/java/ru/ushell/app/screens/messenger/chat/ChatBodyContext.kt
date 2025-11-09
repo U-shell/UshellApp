@@ -38,6 +38,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
 import ru.ushell.app.data.features.messenger.mappers.getChatPopulation
+import ru.ushell.app.screens.messenger.chat.components.ChatItemElected
+import ru.ushell.app.screens.messenger.chat.components.ChatItemList
 import ru.ushell.app.ui.theme.ChatIFBackground
 import ru.ushell.app.ui.theme.UshellBackground
 
@@ -191,7 +193,7 @@ fun BodyContext(
 //            TODO: сделать pin
             items(0) {
                 index ->
-                    ChatItemElected()
+                ChatItemElected()
             }
         }
     }

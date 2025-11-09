@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.messenger.dialog.button.emoji
+package ru.ushell.app.screens.messenger.dialog.components.button.emoji
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height

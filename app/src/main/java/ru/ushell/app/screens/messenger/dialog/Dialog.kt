@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.messenger.dialog.message
+package ru.ushell.app.screens.messenger.dialog
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -23,15 +23,16 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import ru.ushell.app.data.features.messenger.dto.MessageType
 import ru.ushell.app.data.features.messenger.mappers.Message
 import ru.ushell.app.screens.messenger.MessageItem
-import ru.ushell.app.screens.messenger.dialog.button.JumpToBottom
+import ru.ushell.app.screens.messenger.dialog.components.button.JumpToBottom
 import java.time.OffsetDateTime
 
 private val JumpToBottomThreshold = 56.dp
 
 @Composable
-fun MessageList(
+fun Dialog(
     list: List<Message>,
     scrollState: LazyListState,
     modifier: Modifier = Modifier
@@ -60,7 +61,7 @@ fun MessageList(
                 .fillMaxSize()
         ) {
             for (index in list.indices) {
-                val content = list[index]
+                val message = list[index]
 
                 val date = list.getOrNull(index)?.timestamp
                 val preMessage = list.getOrNull(index - 1)?.timestamp
@@ -78,7 +79,7 @@ fun MessageList(
 
                 item {
                     MessageItem(
-                        message = content,
+                        messageComponent = message,
                     )
                 }
             }
@@ -129,37 +130,36 @@ private fun RowScope.DayHeaderLine() {
 
 @Preview
 @Composable
-fun MessageListPreview(){
+fun DialogPreview(){
 
     val mockMessages = listOf(
-//        Message(
-//            author = false,
-//            content = "Привет! Как дела?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-//            timestamp = OffsetDateTime.now().minusDays(1)
-//        ),
         Message(
             author = false,
-            content = "Привет! Как дела?",
+            message = "Привет! Как дела?",
+            type = MessageType.TEXT,
             timestamp = OffsetDateTime.now().minusDays(1)
         ),
         Message(
             author = false,
-            content = "Привет! Как дела?",
+            message = "Привет! Как дела?",
+            type = MessageType.TEXT,
             timestamp = OffsetDateTime.now().minusMinutes(3)
         ),
         Message(
             author = true,
-            content = "Всё отлично! А у тебя?",
+            message = "Всё отлично! А у тебя?",
+            type = MessageType.TEXT,
             timestamp = OffsetDateTime.now().minusMinutes(4)
         ),
         Message(
             author = false,
-            content = "Тоже нормально 😊",
+            message = "Тоже нормально 😊",
+            type = MessageType.TEXT,
             timestamp = OffsetDateTime.now().minusMinutes(5)
         )
     ).reversed()
 
-    MessageList(
+    Dialog(
         list = mockMessages,
         scrollState = rememberLazyListState()
     )

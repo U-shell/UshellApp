@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.messenger.dialog.button
+package ru.ushell.app.screens.messenger.dialog.components.button
 
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.RepeatMode

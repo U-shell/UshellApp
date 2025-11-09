@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,10 +47,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
+import ru.ushell.app.data.features.messenger.dto.MessageType
 import ru.ushell.app.data.features.messenger.mappers.Message
 import ru.ushell.app.screens.messenger.RoutesChat
-import ru.ushell.app.screens.messenger.dialog.message.MessageList
-import ru.ushell.app.screens.messenger.dialog.panel.InputPanel
+import ru.ushell.app.screens.messenger.dialog.components.panel.InputPanel
 import ru.ushell.app.screens.messenger.view.MessengerUiState
 import ru.ushell.app.screens.messenger.view.MessengerViewModel
 import ru.ushell.app.ui.theme.BriefDialog
@@ -62,17 +63,16 @@ fun DialogScreen(
     nameSenderUser: String,
     viewModel: MessengerViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
 
     LaunchedEffect(nameSenderUser) {
-        viewModel.loadChat(nameSenderUser)
+        viewModel.loadChat(nameSenderUser, context)
     }
 
-    // Подключаемся при открытии экрана
     LaunchedEffect(Unit) {
         viewModel.connect()
     }
 
-    // Отключаемся при закрытии
     DisposableEffect(Unit) {
         onDispose {
             viewModel.disconnect()
@@ -80,16 +80,21 @@ fun DialogScreen(
     }
 
     val scope = rememberCoroutineScope()
-    val uiState by viewModel.uiState.collectAsState()
     val scrollState = rememberLazyListState()
+    val uiState by viewModel.uiState.collectAsState()
 
-    DialogContext(
-        navController=navController,
+
+    DialogScreenContext(
         nameSenderUser=nameSenderUser,
-        uiState=uiState,
         scrollState=scrollState,
-        onMessageSent = { content ->
-            viewModel.sendMessage(recipientId = nameSenderUser, message = content)
+        uiState=uiState,
+        navController=navController,
+        onMessageSent = { message ->
+            viewModel.sendMessage(
+                recipientId = nameSenderUser,
+                messageContext = message,
+                context=context
+            )
             scope.launch {
                 if (scrollState.firstVisibleItemIndex > 0) {
                     scrollState.scrollToItem(0)
@@ -106,15 +111,14 @@ fun DialogScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DialogContext(
-    navController: NavHostController,
+fun DialogScreenContext(
     nameSenderUser: String,
-    uiState: MessengerUiState,
     scrollState: LazyListState,
-    onMessageSent: (String) -> Unit,
+    uiState: MessengerUiState,
+    navController: NavHostController,
+    onMessageSent: (Message) -> Unit,
     onResetScroll: () -> Unit,
 ){
-
     val topBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topBarState)
 
@@ -124,8 +128,8 @@ fun DialogContext(
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TitlePanel(
-                nameSenderUser,
-                navController
+                nameSenderUser = nameSenderUser,
+                navController = navController
             )
         },
         contentWindowInsets = ScaffoldDefaults
@@ -133,6 +137,7 @@ fun DialogContext(
             .exclude(WindowInsets.navigationBars)
             .exclude(WindowInsets.ime)
     ) { paddingValues ->
+
         when(uiState){
             is MessengerUiState.Empty -> {
                 Box(modifier = Modifier
@@ -162,12 +167,13 @@ fun DialogContext(
                         .padding(paddingValues)
                 ) {
 
-                    MessageList(
+                    Dialog(
                         list = uiState.messageList,
                         scrollState = scrollState,
                         modifier = Modifier
                             .weight(1f)
                     )
+
                     InputPanel(
                         onMessageSent = onMessageSent,
                         resetScroll = onResetScroll
@@ -300,31 +306,34 @@ fun DialogScreenPreview(){
     val mockMessages = listOf(
         Message(
             author = false,
-            content = "Привет! Как дела?",
+            message = "Привет! Как дела?",
+            type = MessageType.TEXT,
             timestamp = OffsetDateTime.now().minusMinutes(5)
         ),
         Message(
             author = true,
-            content = "Всё отлично! А у тебя?",
+            message = "Всё отлично! А у тебя?",
+            type = MessageType.TEXT,
             timestamp = OffsetDateTime.now().minusMinutes(4)
         ),
         Message(
             author = false,
-            content = "Тоже нормально 😊",
+            message = "Тоже нормально 😊",
+            type = MessageType.TEXT,
             timestamp = OffsetDateTime.now().minusMinutes(3)
         )
     )
 
     val mockUiState = MessengerUiState.Success(mockMessages)
-
-    DialogContext(
-        navController=navController,
-        nameSenderUser ="titel",
-        uiState = mockUiState,
-        scrollState = rememberLazyListState(),
-        onMessageSent = {},
-        onResetScroll = {}
-    )
+//
+//    DialogContext(
+//        navController=navController,
+//        nameSenderUser ="titel",
+//        uiState = mockUiState,
+//        scrollState = rememberLazyListState(),
+//        onMessageSent = {},
+//        onResetScroll = {},
+//    )
 }
 
 @Preview

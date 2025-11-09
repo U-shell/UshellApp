@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.messenger.chat
+package ru.ushell.app.screens.messenger.chat.components
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -43,7 +43,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
@@ -51,7 +50,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.ushell.app.R
 import ru.ushell.app.screens.messenger.RoutesChat
-import ru.ushell.app.screens.messenger.view.MessengerViewModel
 import ru.ushell.app.ui.theme.ChatNotingBackground
 import ru.ushell.app.ui.theme.NameChatDes
 import ru.ushell.app.ui.theme.NameChatElected
