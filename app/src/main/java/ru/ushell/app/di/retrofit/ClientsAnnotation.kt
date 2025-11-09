@@ -1,4 +1,4 @@
-package ru.ushell.app.di
+package ru.ushell.app.di.retrofit
 
 import javax.inject.Qualifier
 

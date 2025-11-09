@@ -1,8 +1,8 @@
-package ru.ushell.app.data.features.user.remote.auth
+package ru.ushell.app.data.features.user.remote
 
 import retrofit2.http.GET
-import retrofit2.http.PUT
 import retrofit2.http.Header
+import retrofit2.http.PUT
 import ru.ushell.app.data.features.user.remote.dto.AuthInfoUserResponse
 import ru.ushell.app.data.features.user.remote.dto.RefreshAccessTokenResponse
 
@@ -18,9 +18,8 @@ interface AuthApi {
     fun logoutUser()
 
 
-    @PUT("./refresh/access")
+    @PUT("./auth/refresh/access")
     suspend fun refreshAccessToken(
         @Header("Authorization") refreshToken: String
     ): RefreshAccessTokenResponse
 }
-

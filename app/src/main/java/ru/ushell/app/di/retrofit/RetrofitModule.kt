@@ -1,4 +1,4 @@
-package ru.ushell.app.di
+package ru.ushell.app.di.retrofit
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -12,12 +12,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.ushell.app.R
-import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceApi
 import ru.ushell.app.data.features.messenger.remote.MessengerApi
 import ru.ushell.app.data.features.timetable.remote.timetable.TimetableApi
-import ru.ushell.app.data.features.user.remote.auth.AuthApi
-import ru.ushell.app.di.RetrofitSetting.Companion.baseUrl
+import ru.ushell.app.data.features.user.remote.AuthApi
+import ru.ushell.app.domain.service.loadData.TokenService
 import javax.inject.Singleton
 
 @Module

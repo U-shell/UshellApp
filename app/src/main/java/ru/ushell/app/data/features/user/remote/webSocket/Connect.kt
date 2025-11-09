@@ -6,7 +6,9 @@ import org.json.JSONObject
 import ru.ushell.app.data.common.webSocket.TopicHandler
 import ru.ushell.app.data.common.webSocket.WebSocketConnect
 
-class Connect() : WebSocketConnect {
+class Connect(
+    val username: String
+) : WebSocketConnect {
     private val connectionReady = CompletableDeferred<Boolean>()
 
     private var deliver: Deliver? = null
@@ -19,7 +21,7 @@ class Connect() : WebSocketConnect {
             }
         }
         // добавть username в топик
-        val topic = "/topic/qr/1290902"
+        val topic = "/topic/qr/${username}"
 
         val topicHandler: TopicHandler = deliver!!.subscribe(topic)
         topicHandler.addListener { stompMessage ->

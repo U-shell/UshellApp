@@ -1,10 +1,10 @@
 package ru.ushell.app.data.features.user
 
 import okhttp3.Credentials
-import ru.ushell.app.data.common.service.TokenService
 import ru.ushell.app.data.features.user.remote.dto.RefreshAccessTokenResponse
 import ru.ushell.app.data.features.user.remote.webSocket.Connect
 import ru.ushell.app.data.features.user.room.dao.UserEntity
+import ru.ushell.app.domain.service.loadData.TokenService
 
 class UserRepository(
     private val userLocalDataSource: UserLocalDataSource,
@@ -50,7 +50,7 @@ class UserRepository(
 
     suspend fun connectWebSocket() {
         if (connect?.isConnected() == true) return
-        connect = Connect()
+        connect = Connect(username = getUsername())
         connect?.connect()
         val isConnected = connect?.awaitConnection() == true
         if (!isConnected) {
