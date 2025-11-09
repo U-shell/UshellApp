@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
 }
 
@@ -58,9 +58,11 @@ room {
 }
 
 
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.compose.animation)
     testImplementation(libs.junit)
 
     implementation(libs.constraintlayout.compose)
@@ -85,7 +87,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.dagger)
-//    ksp(libs.dagger.compiler)
+
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
 
@@ -93,6 +95,11 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.gson)
     implementation(libs.converter.gson)
+
+    implementation(libs.zxing.android.embedded)
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.ui.test.junit4)
