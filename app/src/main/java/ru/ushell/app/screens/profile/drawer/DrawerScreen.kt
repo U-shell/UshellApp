@@ -34,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
 import ru.ushell.app.navigation.DrawerRoutes
+import ru.ushell.app.screens.profile.drawer.models.exit.Exit
 import ru.ushell.app.screens.profile.view.ProfileUiState
 import ru.ushell.app.screens.profile.view.ProfileViewModel
 import ru.ushell.app.ui.theme.DrawerBorderColor

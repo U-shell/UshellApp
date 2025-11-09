@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.profile.drawer
+package ru.ushell.app.screens.profile.drawer.models.exit
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,13 +29,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import ru.ushell.app.R
-import ru.ushell.app.data.common.service.TokenService
-import ru.ushell.app.data.condition.session.Session
+import ru.ushell.app.domain.service.loadData.LoadDataService
 import ru.ushell.app.ui.theme.LightBackgroundColor
 
 
@@ -115,8 +115,10 @@ fun ElevateWindowContext(
 }
 
 @Composable
-fun Exit() {
-    Session.userLogout(LocalContext.current)
+fun Exit(
+    loadDataService: LoadDataService = hiltViewModel()
+) {
+    loadDataService.logout(LocalContext.current)
 }
 
 @Preview

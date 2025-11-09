@@ -78,7 +78,7 @@ fun CameraScreen(
         if (code.isNotEmpty()) {
             //TODO: дождаться ответа и только тогда перехожить
             viewModel.sendMessage(code)
-            navController.navigate(RoutesDevice.ScreenDevice) {
+            navController.navigate(RoutesDevice.ScreenDevice.route) {
                 popUpTo(RoutesDevice.ScreenQR) { inclusive = true }
             }
         }
