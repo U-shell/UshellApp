@@ -1,4 +1,4 @@
-package ru.ushell.app.data.common.service.condition.loadData
+package ru.ushell.app.domain.service.loadData
 
 sealed interface LoadDataState {
 

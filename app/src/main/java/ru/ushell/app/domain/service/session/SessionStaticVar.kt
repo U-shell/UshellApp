@@ -1,4 +1,4 @@
-package ru.ushell.app.data.common.service.condition.session
+package ru.ushell.app.domain.service.session
 
 class SessionStaticVar {
 

@@ -1,4 +1,4 @@
-package ru.ushell.app.data.common.service
+package ru.ushell.app.domain.service.loadData
 
 import android.content.SharedPreferences
 import androidx.core.content.edit

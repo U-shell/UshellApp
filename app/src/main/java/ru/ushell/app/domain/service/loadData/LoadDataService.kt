@@ -1,4 +1,4 @@
-package ru.ushell.app.data.common.service.condition.loadData
+package ru.ushell.app.domain.service.loadData
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -10,12 +10,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.ushell.app.data.common.service.TokenService
-import ru.ushell.app.data.common.service.condition.session.Session
 import ru.ushell.app.data.features.attendance.AttendanceRepository
 import ru.ushell.app.data.features.messenger.MessengerRepository
 import ru.ushell.app.data.features.timetable.TimetableRepository
 import ru.ushell.app.data.features.user.UserRepository
+import ru.ushell.app.domain.service.session.Session
 
 @HiltViewModel
 class LoadDataService @Inject constructor(
@@ -59,8 +58,8 @@ class LoadDataService @Inject constructor(
 
                 if (!validToken()) return@launch
 //TODO: игнорировать сервисы которые недоступны чтобы те не блокировали загрузку остальных
-//                timetableRepository.saveTimetable()
-//                attendanceRepository.saveAttendance()
+                timetableRepository.saveTimetable()
+                attendanceRepository.saveAttendance()
 
                 messengerRepository.getInfoUserMessenger()
                 messengerRepository.getAllUser()
@@ -105,7 +104,6 @@ class LoadDataService @Inject constructor(
             }
 
         } catch (e: Exception) {
-            println("Error loading timetable: $e")
             e.message
             return false
         }
