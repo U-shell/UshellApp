@@ -9,18 +9,12 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,75 +27,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
 import ru.ushell.app.R
-import ru.ushell.app.screens.LogsState
-import ru.ushell.app.screens.rememberLogsUser
 import ru.ushell.app.ui.theme.BottomBackgroundAlfa
 import ru.ushell.app.ui.theme.ListColorButtonBig
-
-@Composable
-fun Further(){
-    Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
-            .navigationBarsPadding()
-            .background(color = Color(0xFFE7E7E7))
-        ,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        ConstraintLayout {
-            val (topPanel, lesson, backgroundImage) = createRefs()
-            val barrier = createBottomBarrier(lesson)
-            Box(
-                modifier = Modifier
-                    .constrainAs(backgroundImage) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-                    .backgroundImagesSmall()
-            )
-            Box(
-                modifier = Modifier
-                    .constrainAs(topPanel) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-            ) {
-                Column(
-                    Modifier
-                        .fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "Скоро тут все будет",
-                        fontSize = 40.sp,
-                        color = Color.Black)
-                }
-            }
-            Box(
-                modifier = Modifier
-                    .constrainAs(lesson) {
-                        top.linkTo(backgroundImage.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(barrier, margin = 10.dp)
-                    }
-
-            )
-        }
-    }
-}
 
 @Composable
 fun Modifier.backgroundImage() = this then
@@ -186,7 +117,7 @@ fun TopPanelScreen(
 
 @Composable
 fun SearchPanel(
-    logsState: LogsState = rememberLogsUser(),
+//    logsState: LogsState = rememberLogsUser(),
 ){
     Box(modifier = Modifier
         .fillMaxWidth()
@@ -227,31 +158,31 @@ fun SearchPanel(
                 modifier = Modifier
                     .weight(1f)
             ){
-                TextField(
-                    value = logsState.email.value,
-                    onValueChange = {logsState.email.value = it},
-                    placeholder = {
-                        Text(
-                            text = stringResource(R.string.Search)
-                        )
-                    },
-                    singleLine = true,
-                    colors = TextFieldDefaults.colors(
-                        focusedPlaceholderColor = Color.Transparent,
-                        focusedContainerColor = Color.Transparent,
-                        disabledContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedLabelColor = Color.DarkGray,
-                        cursorColor = Color.White,
-                        focusedTextColor = Color.White,
-                        unfocusedTextColor = Color.White.copy(alpha = 0.8f)
-                    ),
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Email
-                    ),
-                )
+//                TextField(
+////                    value = logsState.email.value,
+////                    onValueChange = {logsState.email.value = it},
+//                    placeholder = {
+//                        Text(
+//                            text = stringResource(R.string.Search)
+//                        )
+//                    },
+//                    singleLine = true,
+//                    colors = TextFieldDefaults.colors(
+//                        focusedPlaceholderColor = Color.Transparent,
+//                        focusedContainerColor = Color.Transparent,
+//                        disabledContainerColor = Color.Transparent,
+//                        unfocusedContainerColor = Color.Transparent,
+//                        focusedIndicatorColor = Color.Transparent,
+//                        unfocusedIndicatorColor = Color.Transparent,
+//                        focusedLabelColor = Color.DarkGray,
+//                        cursorColor = Color.White,
+//                        focusedTextColor = Color.White,
+//                        unfocusedTextColor = Color.White.copy(alpha = 0.8f)
+//                    ),
+//                    keyboardOptions = KeyboardOptions(
+//                        keyboardType = KeyboardType.Email
+//                    ),
+//                )
             }
         }
     }

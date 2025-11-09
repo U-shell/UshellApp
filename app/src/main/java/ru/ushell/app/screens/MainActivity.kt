@@ -17,8 +17,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import ru.ushell.app.data.common.service.condition.loadData.LoadDataService
-import ru.ushell.app.data.common.service.condition.loadData.LoadDataState
+import ru.ushell.app.domain.service.loadData.LoadDataService
+import ru.ushell.app.domain.service.loadData.LoadDataState
 import ru.ushell.app.navigation.ScreenNav
 import ru.ushell.app.ui.theme.NoNavigationBarColorTheme
 import ru.ushell.app.ui.theme.UshellAppTheme
@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
+
         loadDataService.loadData()
     }
 }
@@ -68,7 +69,7 @@ fun MainApp(
             SplashScreen{}
         }
         is LoadDataState.Success -> {
-            val isLoggedIn = (state as? LoadDataState.Success)?.isLogin ?: false
+            val isLoggedIn = (state as? LoadDataState.Success)?.status ?: false
             Navigation(isLoggedIn)
         }
 

@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.ushell.app.data.common.service.condition.session.Session
 import ru.ushell.app.data.features.user.UserRepository
+import ru.ushell.app.domain.service.session.Session
 import ru.ushell.app.screens.error.getErrorInternetMessage
 
 @HiltViewModel
