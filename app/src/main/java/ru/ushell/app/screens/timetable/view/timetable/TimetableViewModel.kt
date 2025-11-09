@@ -28,7 +28,7 @@ class TimetableViewModel @Inject constructor(
             _uiState.value = TimetableUiState.Loading
             try {
 
-                val timetable = timetableRepository.getTimetable(date)
+                val lessons = timetableRepository.getTimetable(date)
 
                 // Безопасно получаем посещаемость: если ошибка — null
                 val attendance = try {
@@ -37,7 +37,7 @@ class TimetableViewModel @Inject constructor(
                     null
                 }
 
-                _uiState.value = TimetableUiState.Success(timetable, attendance)
+                _uiState.value = TimetableUiState.Success(lessons, attendance)
 
             } catch (e: Exception) {
                 _uiState.value = TimetableUiState.Error(e.message ?: "Unknown error")
