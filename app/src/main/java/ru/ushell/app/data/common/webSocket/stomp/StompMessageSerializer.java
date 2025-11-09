@@ -1,6 +1,5 @@
 package ru.ushell.app.data.common.webSocket.stomp;
 
-
 import java.util.Map;
 
 public class StompMessageSerializer {

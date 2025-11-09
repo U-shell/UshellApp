@@ -5,9 +5,9 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
-import ru.ushell.app.di.RetrofitSetting.Companion.baseUrl
 import ru.ushell.app.data.common.webSocket.stomp.StompMessage
 import ru.ushell.app.data.common.webSocket.stomp.StompMessageSerializer
+import ru.ushell.app.di.retrofit.baseUrl
 import java.util.concurrent.TimeUnit
 
 open class WebSocketClient(
@@ -25,7 +25,7 @@ open class WebSocketClient(
 
     fun subscribe(topic: String): TopicHandler {
         val handler = TopicHandler(topic)
-        topics.put(topic, handler)
+        topics[topic] = handler
         return handler
     }
 
