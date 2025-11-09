@@ -5,13 +5,21 @@ import okhttp3.Response
 import okhttp3.WebSocket
 import ru.ushell.app.data.common.webSocket.CloseHandler
 import ru.ushell.app.data.common.webSocket.WebSocketClient
+import ru.ushell.app.data.features.messenger.mappers.Message
 import ru.ushell.app.data.features.messenger.mappers.MessageRequest
 
 class Deliver(private val senderId: String) : WebSocketClient() {
 
-    fun sendMessage(recipientId: String, message: String) {
+    fun sendMessage(recipientId: String, message: Message) {
+
         webSocket?.let { ws ->
-            val request = MessageRequest(senderId, recipientId, message)
+            val request = MessageRequest(
+                    senderId = senderId,
+                    recipientId = recipientId,
+                    type = message.type,
+                    message = message.message,
+                    fileName = message.fileName
+                )
             sendMessage(ws, "/app/chat", Gson().toJson(request))
         }
     }

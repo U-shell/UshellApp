@@ -1,4 +1,4 @@
-package ru.ushell.app.data.features.messenger.remote
+package ru.ushell.app.data.features.messenger.dto
 
 data class InfoUserMessengerResponse(
     val id: String,
@@ -18,6 +18,8 @@ data class BodyRequestMessageChat (
 data class MessageChatResponse(
     val messageId: String,
     val senderId: String,
+    val type: MessageType,
+    val fileName: String,
     val message: String,
     val status: String,
     val timestamp: String,

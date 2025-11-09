@@ -14,6 +14,17 @@ fun getChatPopulation(): ArrayList<Chat>{
     val population = ArrayList<Chat>()
     val someChat = ArrayList<Chat>()
 
+    if (ChatList.isEmpty()){
+        ChatList.add(
+            Chat(
+                username = "username",
+                name = "name",
+                recipientId = "id",
+                countNewMessage = 0
+            )
+        )
+    }
+
     for (chat in ChatList){
         if(chat.countNewMessage>0){
             population.add(chat)

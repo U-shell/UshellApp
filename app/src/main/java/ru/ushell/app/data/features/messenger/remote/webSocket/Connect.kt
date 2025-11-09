@@ -3,6 +3,7 @@ package ru.ushell.app.data.features.messenger.remote.webSocket
 import org.json.JSONObject
 import ru.ushell.app.data.common.webSocket.TopicHandler
 import ru.ushell.app.data.common.webSocket.WebSocketConnect
+import ru.ushell.app.data.features.messenger.dto.MessageType
 import ru.ushell.app.data.features.messenger.mappers.Message
 import java.time.OffsetDateTime
 
@@ -25,10 +26,13 @@ class Connect(
         topicHandler.addListener { stompMessage ->
             try {
                 // stompMessage.content — это JSON от сервера
+                // TODO переделать
                 val json = JSONObject(stompMessage.content)
                 val message = Message(
                     author = json.getString("senderId") == userChatId,
-                    content = json.getString("message"),
+                    message = json.getString("message"),
+                    type = MessageType.valueOf(json.getString("type")),
+                    fileName = json.getString("fileName"),
                     timestamp = OffsetDateTime.now()
                 )
 //                MessageList.addMessages(message)
@@ -47,7 +51,7 @@ class Connect(
         deliver = null
     }
 
-    fun sendChatMessage(recipientId: String, message: String) {
+    fun sendChatMessage(recipientId: String, message: Message) {
         deliver?.sendMessage(recipientId, message)
     }
 
