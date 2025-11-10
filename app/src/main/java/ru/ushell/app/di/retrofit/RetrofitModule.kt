@@ -16,7 +16,7 @@ import ru.ushell.app.data.features.attendance.remote.attendance.AttendanceApi
 import ru.ushell.app.data.features.messenger.remote.MessengerApi
 import ru.ushell.app.data.features.timetable.remote.timetable.TimetableApi
 import ru.ushell.app.data.features.user.remote.AuthApi
-import ru.ushell.app.domain.service.loadData.TokenService
+import ru.ushell.app.domain.service.token.TokenService
 import javax.inject.Singleton
 
 @Module

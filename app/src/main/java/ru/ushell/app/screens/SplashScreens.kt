@@ -21,11 +21,11 @@ private const val SPLASH_DELAY_MS = 1L
 @Composable
 fun SplashScreen(
     modifier: Modifier = Modifier,
-    onTimeout: () -> Unit
+    onTimeout: (() -> Unit)? = null // Опциональный параметр
 ) {
     LaunchedEffect(Unit) {
         delay(SPLASH_DELAY_MS)
-        onTimeout()
+        onTimeout?.invoke()
     }
 
     Box(
