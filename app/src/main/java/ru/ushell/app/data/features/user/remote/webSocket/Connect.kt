@@ -54,7 +54,20 @@ class Connect(
                 message = token,
                 "MOBILE")
         )
+    }
 
+    fun  sendFileMessage(qrCode:String, senderId:String, resenderId:String, fileName:String){
+        val jsonObject = JSONObject(qrCode)
+        val room = jsonObject.getString("room")
+        val code = jsonObject.getString("code")
+
+        deliver?.sendMessage(
+            QRCodeRequest(
+                room = room,
+                code = code,
+                message = "$senderId,$resenderId,$fileName",
+                "FILE")
+        )
     }
 
     fun isConnected(): Boolean = deliver?.isConnect() == true
