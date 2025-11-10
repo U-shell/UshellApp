@@ -4,7 +4,7 @@ import okhttp3.Credentials
 import ru.ushell.app.data.features.user.remote.dto.RefreshAccessTokenResponse
 import ru.ushell.app.data.features.user.remote.webSocket.Connect
 import ru.ushell.app.data.features.user.room.dao.UserEntity
-import ru.ushell.app.domain.service.loadData.TokenService
+import ru.ushell.app.domain.service.token.TokenService
 
 class UserRepository(
     private val userLocalDataSource: UserLocalDataSource,
@@ -58,14 +58,22 @@ class UserRepository(
         }
     }
 
-    suspend fun disconnectWebSocket() {
+    fun disconnectWebSocket() {
         connect?.disconnect()
         connect = null
     }
 
     suspend fun sendMessage(code: String) {
-        // isConnected проверка уже не нужна, если connectWebSocket гарантирует подключение
         connect?.sendQrMessage(code, getAccessToken())
+    }
+
+    suspend fun sendFile(code: String, resenderId:String, fileName:String) {
+        connect?.sendFileMessage(
+            qrCode = code,
+            senderId = userLocalDataSource.getChaId(),
+            resenderId = resenderId,
+            fileName = fileName
+        )
     }
 
 

@@ -8,7 +8,7 @@ import ru.ushell.app.base.UserDatabase
 import ru.ushell.app.data.features.user.remote.AuthApi
 import ru.ushell.app.data.features.user.retrofit.RetrofitAuthDataSource
 import ru.ushell.app.data.features.user.room.RoomUserDataSource
-import ru.ushell.app.domain.service.loadData.TokenService
+import ru.ushell.app.domain.service.token.TokenService
 import javax.inject.Singleton
 
 @Module
