@@ -13,6 +13,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -22,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ru.ushell.app.data.features.messenger.dto.MessageType
 import ru.ushell.app.data.features.messenger.mappers.Message
@@ -35,6 +38,7 @@ private val JumpToBottomThreshold = 56.dp
 fun Dialog(
     list: List<Message>,
     scrollState: LazyListState,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     val scope = rememberCoroutineScope()
@@ -80,6 +84,7 @@ fun Dialog(
                 item {
                     MessageItem(
                         messageComponent = message,
+                        navController=navController
                     )
                 }
             }
@@ -159,10 +164,11 @@ fun DialogPreview(){
         )
     ).reversed()
 
-    Dialog(
-        list = mockMessages,
-        scrollState = rememberLazyListState()
-    )
+//    Dialog(
+//        list = mockMessages,
+//        scrollState = rememberLazyListState(),
+//        rememberNavController()
+//    )
 }
 
 @Preview(showSystemUi = false, showBackground = true)

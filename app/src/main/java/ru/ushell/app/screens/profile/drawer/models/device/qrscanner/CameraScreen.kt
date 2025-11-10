@@ -34,12 +34,18 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.navigation.NavHostController
 import com.google.zxing.ResultPoint
+import ru.ushell.app.navigation.DrawerRoutes
+import ru.ushell.app.screens.messenger.RoutesChat
+import ru.ushell.app.screens.messenger.util.fileNameShare
+import ru.ushell.app.screens.messenger.util.recipientIdShare
 import ru.ushell.app.screens.profile.drawer.models.device.RoutesDevice
 import ru.ushell.app.screens.profile.drawer.models.device.view.DeviceVewModel
+import ru.ushell.app.screens.utils.TypeScanner
 
 @Composable
 fun CameraScreen(
     navController: NavHostController,
+    typeScanner: TypeScanner,
     viewModel: DeviceVewModel = hiltViewModel()
 ) {
     var code by remember { mutableStateOf("") }
@@ -74,12 +80,22 @@ fun CameraScreen(
     }
 
     LaunchedEffect(code) {
-
         if (code.isNotEmpty()) {
-            //TODO: дождаться ответа и только тогда перехожить
-            viewModel.sendMessage(code)
-            navController.navigate(RoutesDevice.ScreenDevice.route) {
-                popUpTo(RoutesDevice.ScreenQR) { inclusive = true }
+            when(typeScanner){
+                TypeScanner.LOGIN -> {
+                    //TODO: дождаться ответа и только тогда перехожить
+                    viewModel.sendMessage(code)
+                    navController.navigate(RoutesDevice.ScreenDevice.route) {
+                        popUpTo(RoutesDevice.ScreenQR) { inclusive = true }
+                    }
+                }
+                TypeScanner.SEND_FILE -> {
+
+                    if (recipientIdShare.length>1 && fileNameShare.length > 1)
+
+                        viewModel.sendFile(code = code, resenderId = recipientIdShare, fileName = fileNameShare)
+                        navController.navigate(RoutesChat.ScreenDialog.route)
+                }
             }
         }
     }

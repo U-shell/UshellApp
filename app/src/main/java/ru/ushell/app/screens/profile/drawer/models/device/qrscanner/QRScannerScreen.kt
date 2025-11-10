@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,19 +19,23 @@ import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
 import ru.ushell.app.navigation.DrawerRoutes
 import ru.ushell.app.screens.profile.drawer.models.TopNavDrawerPanel
+import ru.ushell.app.screens.utils.TypeScanner
 
 @Composable
 fun QRScannerScreen(
     navControllerDevice: NavHostController,
+    typeScanner: TypeScanner,
 ) {
     QRScannerContext(
-        navController=navControllerDevice
+        navController=navControllerDevice,
+        typeScanner=typeScanner,
     )
 }
 
 @Composable
 fun QRScannerContext(
     navController: NavHostController,
+    typeScanner: TypeScanner,
 ) {
     Column(
         modifier = Modifier
@@ -65,18 +70,19 @@ fun QRScannerContext(
             ) {
                 CameraScreen(
                     navController = navController,
+                    typeScanner = typeScanner,
                 )
             }
         }
     }
 }
 
-
-@Preview
-@Composable
-fun QRScannerPreview() {
-    val navController = rememberNavController()
-    QRScannerScreen(
-        navControllerDevice=navController
-    )
-}
+//
+//@Preview
+//@Composable
+//fun QRScannerPreview() {
+//    val navController = rememberNavController()
+//    QRScannerScreen(
+//        navControllerDevice=navController,
+//    )
+//}

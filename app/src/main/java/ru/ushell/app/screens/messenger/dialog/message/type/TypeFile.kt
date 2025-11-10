@@ -1,5 +1,6 @@
 package ru.ushell.app.screens.messenger.dialog.message.type
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,6 +21,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,7 +29,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
+import ru.ushell.app.screens.messenger.RoutesChat
+import ru.ushell.app.screens.messenger.util.fileNameShare
 import ru.ushell.app.screens.messenger.util.parameterFile
 
 @Composable
@@ -35,7 +41,8 @@ fun FileMessage(
     timeMessage: String,
     fileUri: Uri,
     message: String = "",
-    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
 ){
     if(fileUri ==  Uri.EMPTY) return
 
@@ -114,7 +121,11 @@ fun FileMessage(
                 }
             }
             IconButton(
-                onClick = {},
+                onClick = {
+                    fileNameShare = fileName
+
+                    navController.navigate(RoutesChat.ScreenQRShare.route)
+                },
                 modifier = Modifier
                     .size(25.dp)
                     .align(Alignment.Top)
@@ -133,11 +144,12 @@ fun FileMessage(
 }
 
 
-@Preview
-@Composable
-fun FileMessagePreview(){
-    FileMessage(
-        timeMessage = "12:30",
-        fileUri =  Uri.EMPTY
-    )
-}
+//@Preview
+//@Composable
+//fun FileMessagePreview(){
+//    FileMessage(
+//        timeMessage = "12:30",
+//        fileUri =  Uri.EMPTY,
+//        navController = rememberNavController()
+//    )
+//}

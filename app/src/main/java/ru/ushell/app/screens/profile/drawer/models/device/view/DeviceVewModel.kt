@@ -23,4 +23,20 @@ class DeviceVewModel @Inject constructor(
             }
         }
     }
+
+    fun sendFile(code: String,resenderId: String, fileName: String){
+        viewModelScope.launch {
+            try {
+                userRepository.connectWebSocket()
+                userRepository.sendFile(
+                    code = code,
+                    resenderId = resenderId,
+                    fileName = fileName
+                )
+                userRepository.disconnectWebSocket()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 }

@@ -115,7 +115,6 @@ fun BodyContext(
     navController: NavHostController,
     nameSenderUser: MutableState<String>,
 ) {
-    val scope = rememberCoroutineScope()
     val scaffoldState = rememberBottomSheetScaffoldState()
     val density = LocalDensity.current
     var sheetPeekHeight by remember { mutableStateOf(0.dp) }

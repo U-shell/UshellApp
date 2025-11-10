@@ -6,11 +6,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 import ru.ushell.app.data.features.messenger.dto.MessageType
 import ru.ushell.app.data.features.messenger.mappers.Message
@@ -24,6 +27,7 @@ import kotlin.toString
 @Composable
 fun MessageItem(
     messageComponent: Message,
+    navController: NavHostController,
 ) {
     Row(
         modifier = Modifier
@@ -52,6 +56,7 @@ fun MessageItem(
     ) {
         MessageItemContent(
             messageComponent = messageComponent,
+            navController=navController
         )
     }
 }
@@ -59,6 +64,7 @@ fun MessageItem(
 @Composable
 private fun MessageItemContent(
     messageComponent: Message,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     val message = messageComponent.message
@@ -96,7 +102,8 @@ private fun MessageItemContent(
                 FileMessage(
                     timeMessage = timeMessage,
                     fileUri = messageComponent.uri ?: Uri.EMPTY,
-                    message = message
+                    message = message,
+                    navController=navController
                 )
             }
             MessageType.VIDEO -> TODO()
@@ -111,41 +118,42 @@ fun OffsetDateTime.formatAsTime(): String {
 }
 
 
-@Preview
-@Composable
-fun MessageItemTextPreview(){
-    MessageItem(
-        messageComponent = Message(
-            author = true,
-            message = "Привет",
-            type = MessageType.TEXT,
-            timestamp = OffsetDateTime.now()
-        ),
-    )
-}
-
-@Preview
-@Composable
-fun MessageItemImagePreview(){
-    MessageItem(
-        messageComponent = Message(
-            author = true,
-            message = "Привет",
-            type = MessageType.IMAGE,
-            timestamp = OffsetDateTime.now()
-        ),
-    )
-}
-
-@Preview
-@Composable
-fun MessageItemFilePreview(){
-    MessageItem(
-        messageComponent = Message(
-            author = true,
-            message = "Привет",
-            type = MessageType.FILE,
-            timestamp = OffsetDateTime.now()
-        ),
-    )
-}
+//@Preview
+//@Composable
+//fun MessageItemTextPreview(){
+//    MessageItem(
+//        messageComponent = Message(
+//            author = true,
+//            message = "Привет",
+//            type = MessageType.TEXT,
+//            timestamp = OffsetDateTime.now()
+//        ),rememberNavController()
+//    )
+//}
+//
+//@Preview
+//@Composable
+//fun MessageItemImagePreview(){
+//    MessageItem(
+//        messageComponent = Message(
+//            author = true,
+//            message = "Привет",
+//            type = MessageType.IMAGE,
+//            timestamp = OffsetDateTime.now()
+//        ),
+//        rememberNavController()
+//    )
+//}
+//
+//@Preview
+//@Composable
+//fun MessageItemFilePreview(){
+//    MessageItem(
+//        messageComponent = Message(
+//            author = true,
+//            message = "Привет",
+//            type = MessageType.FILE,
+//            timestamp = OffsetDateTime.now()
+//        ),rememberNavController()
+//    )
+//}

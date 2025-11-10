@@ -1,9 +1,7 @@
 package ru.ushell.app.screens.profile.drawer.models.device
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,21 +13,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -45,7 +35,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.graphics.shapes.circle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -55,12 +44,12 @@ import ru.ushell.app.R
 import ru.ushell.app.screens.profile.drawer.Drawer
 import ru.ushell.app.screens.profile.drawer.models.TopNavDrawerPanel
 import ru.ushell.app.screens.profile.drawer.models.device.qrscanner.QRScannerScreen
+import ru.ushell.app.screens.utils.TypeScanner
 import ru.ushell.app.ui.theme.ChatIFBackground
 import ru.ushell.app.ui.theme.DeviceLocation
 import ru.ushell.app.ui.theme.DeviceNameTitle
 import ru.ushell.app.ui.theme.DeviceThisDevice
 import ru.ushell.app.ui.theme.DeviceVersionApp
-import ru.ushell.app.ui.theme.DrawerBorderColor
 
 
 @Composable
@@ -87,7 +76,7 @@ fun DeviceScreen(
             )
         }
         composable(RoutesDevice.ScreenQR.route) {
-            QRScannerScreen(navControllerDevice = deviceNavController)
+            QRScannerScreen(navControllerDevice = deviceNavController, typeScanner = TypeScanner.LOGIN)
         }
     }
 }

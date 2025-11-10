@@ -34,8 +34,10 @@ import kotlinx.coroutines.delay
 import ru.ushell.app.R
 import ru.ushell.app.screens.messenger.chat.MessengerBodyContext
 import ru.ushell.app.screens.messenger.dialog.DialogScreen
-import ru.ushell.app.screens.utils.SearchPanel
+import ru.ushell.app.screens.messenger.util.recipientIdShare
+import ru.ushell.app.screens.profile.drawer.models.device.qrscanner.QRScannerScreen
 import ru.ushell.app.screens.utils.TopPanelScreen
+import ru.ushell.app.screens.utils.TypeScanner
 import ru.ushell.app.screens.utils.backgroundImagesSmall
 import ru.ushell.app.ui.theme.SystemBarColorTheme
 import ru.ushell.app.ui.theme.TimeTableText
@@ -68,6 +70,7 @@ fun ChatNav(
     bottomBarEnabled: MutableState<Boolean>,
     nameSenderUser: MutableState<String>,
 ){
+
     NavHost(
         navController = navController,
         startDestination = RoutesChat.ScreenChat.route
@@ -90,6 +93,14 @@ fun ChatNav(
                     navController = navController
                 )
             }
+        }
+        composable(RoutesChat.ScreenQRShare.route) {
+            bottomBarEnabled.value = false
+            recipientIdShare = nameSenderUser.value
+            QRScannerScreen(
+                navControllerDevice = navController,
+                typeScanner = TypeScanner.SEND_FILE,
+            )
         }
     }
 }
@@ -203,6 +214,7 @@ sealed class RoutesChat(
 ) {
     data object ScreenChat : RoutesChat("chat_chat")
     data object ScreenDialog : RoutesChat("chat_dialog")
+    data object ScreenQRShare : RoutesChat("qrshare")
 }
 
 @Preview

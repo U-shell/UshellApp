@@ -1,5 +1,6 @@
 package ru.ushell.app.screens.messenger.dialog.message.type
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -26,7 +27,7 @@ import androidx.compose.ui.unit.sp
 fun TextMessage(
     timeMessage: String,
     message: String = "",
-    modifier: Modifier = Modifier,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
     content: @Composable (() -> Unit)? = null,
 ) {
     var layoutResult by remember { mutableStateOf<TextLayoutResult?>(null) }
@@ -55,7 +56,10 @@ fun TextMessage(
                     .then(
                         if (contextPlaceable != null) {
                             Modifier
-                                .padding(end = 5.dp, bottom = 8.dp)
+                                .padding(
+                                    end = 5.dp,
+                                    bottom = 8.dp
+                                )
                         } else {
                             Modifier.padding(end = 5.dp)
                         }
