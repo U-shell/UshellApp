@@ -169,7 +169,7 @@ fun SystemBarColorTheme(
     )
 }
 @Composable
-fun Darkteam(
+fun DarkTeam(
 //    darkTheme: Boolean = isSystemInDarkTheme(),
     darkTheme: Boolean = false,
     dynamicColor: Boolean = true,

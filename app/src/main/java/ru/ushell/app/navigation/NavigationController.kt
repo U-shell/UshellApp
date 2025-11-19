@@ -12,6 +12,7 @@ import ru.ushell.app.screens.messenger.ChatScreen
 import ru.ushell.app.screens.profile.ProfileScreen
 import ru.ushell.app.screens.profile.drawer.Drawer
 import ru.ushell.app.screens.profile.drawer.DrawerScreen
+import ru.ushell.app.screens.profile.drawer.models.device.DeviceScreen
 import ru.ushell.app.screens.timetable.TimeTableScreen
 import ru.ushell.app.ui.theme.UshellAppTheme
 
@@ -86,10 +87,10 @@ fun DrawerNavController(
         }
 
         composable(route = Drawer.Device.route ) {
-//            DeviceScreen(
-//                navController = navController,
-//                bottomBarEnabled = bottomBarEnabled
-//            )
+            DeviceScreen(
+                navController = navController,
+                onBottomBarVisibilityChange = {bottomBarEnabled}
+            )
         }
     }
 }

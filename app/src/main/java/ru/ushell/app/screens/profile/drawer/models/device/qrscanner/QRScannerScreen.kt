@@ -37,6 +37,7 @@ fun QRScannerContext(
     navController: NavHostController,
     typeScanner: TypeScanner,
 ) {
+    println("QRScannerContext")
     Column(
         modifier = Modifier
             .fillMaxSize(),

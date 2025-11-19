@@ -76,7 +76,10 @@ fun DeviceScreen(
             )
         }
         composable(RoutesDevice.ScreenQR.route) {
-            QRScannerScreen(navControllerDevice = deviceNavController, typeScanner = TypeScanner.LOGIN)
+            QRScannerScreen(
+                navControllerDevice = deviceNavController,
+                typeScanner = TypeScanner.LOGIN
+            )
         }
     }
 }

@@ -3,6 +3,7 @@ package ru.ushell.app.ui.theme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
+val ContextBackground = Color(0xFFE7E7E7)
 
 val DiagramBaseColor = Color(0xFFA6A1AA)
 val DiagramBackgroundColor = Color(0xFFF1F1F1)

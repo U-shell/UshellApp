@@ -52,7 +52,6 @@ fun CameraScreen(
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
-
     var qrCodeCoordinates by remember { mutableStateOf<Array<ResultPoint>?>(null) }
     var previewViewSize by remember { mutableStateOf(IntSize.Zero) }
     var imageSize by remember { mutableStateOf(Size.Zero) }
@@ -72,6 +71,7 @@ fun CameraScreen(
     ) { granted ->
         hasCameraPermission = granted
     }
+    println("CameraScreen")
 
     LaunchedEffect(Unit) {
         if (!hasCameraPermission) {
@@ -83,10 +83,9 @@ fun CameraScreen(
         if (code.isNotEmpty()) {
             when(typeScanner){
                 TypeScanner.LOGIN -> {
-                    //TODO: дождаться ответа и только тогда перехожить
                     viewModel.sendMessage(code)
                     navController.navigate(RoutesDevice.ScreenDevice.route) {
-                        popUpTo(RoutesDevice.ScreenQR) { inclusive = true }
+                        popUpTo(RoutesDevice.ScreenQR.route) { inclusive = true }
                     }
                 }
                 TypeScanner.SEND_FILE -> {
