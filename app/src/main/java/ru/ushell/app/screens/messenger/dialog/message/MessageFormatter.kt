@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.messenger
+package ru.ushell.app.screens.messenger.dialog.message
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme

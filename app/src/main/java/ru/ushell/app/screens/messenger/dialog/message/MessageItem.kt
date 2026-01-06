@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.messenger
+package ru.ushell.app.screens.messenger.dialog.message
 
 import android.net.Uri
 import androidx.compose.foundation.layout.*
@@ -6,14 +6,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 
 import ru.ushell.app.data.features.messenger.dto.MessageType
 import ru.ushell.app.data.features.messenger.mappers.Message
@@ -22,7 +19,6 @@ import ru.ushell.app.screens.messenger.dialog.message.type.ImageMessage
 import ru.ushell.app.screens.messenger.dialog.message.type.TextMessage
 
 import java.time.OffsetDateTime
-import kotlin.toString
 
 @Composable
 fun MessageItem(
