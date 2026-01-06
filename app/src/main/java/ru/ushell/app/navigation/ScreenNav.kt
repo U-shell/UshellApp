@@ -1,15 +1,12 @@
 package ru.ushell.app.navigation
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,62 +26,45 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.ui.theme.UshellBackground
 
-
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ScreenNav() {
     val navController = rememberNavController()
-
-    val navControllerDrawer = rememberNavController()
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
     val gesturesEnabled = remember { mutableStateOf(false) }
     val bottomBarEnabled = remember { mutableStateOf(true) }
-//TODO: сделать переход по свайту в стороны
-    DrawerNavController(
-        navController = navControllerDrawer,
-        drawerState = drawerState,
-        gesturesEnabled = gesturesEnabled,
-        bottomBarEnabled = bottomBarEnabled
-    ) {
-        Scaffold(
-            modifier = Modifier
-                .navigationBarsPadding(),
-            bottomBar = {
-                if (bottomBarEnabled.value) {
-                    BottomBar(
-                        navController = navController
-                    )
-                }
-            },
-            content = {
-                Box {
-                    BottomNavGraph(
-                        navController = navController,
-                        drawerState = drawerState,
-                        gesturesEnabled = gesturesEnabled,
-                        bottomBarEnabled = bottomBarEnabled
-                    )
-                }
-            }
-        )
-    }
-}
 
-@Composable
-fun BottomBar(
-    navController: NavHostController
-) {
-    val screens = listOf(
-        NavigationBottomBar.Profile,
-        NavigationBottomBar.Room,
-        NavigationBottomBar.TimeTable,
-        NavigationBottomBar.Chat,
-        NavigationBottomBar.Analytic
+    Scaffold(
+        modifier = Modifier
+            .navigationBarsPadding(),
+        bottomBar = {
+            if (bottomBarEnabled.value) {
+                BottomNavBar(
+                    navController = navController
+                )
+            }
+        },
+        content = {
+            Box {
+                AppNavHost(
+                    gesturesEnabled = gesturesEnabled,
+                    bottomBarEnabled = bottomBarEnabled,
+                    navController = navController
+                )
+            }
+        }
     )
 
+}
+
+
+@Composable
+fun BottomNavBar(
+    navController: NavHostController
+){
     val navStackBackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navStackBackEntry?.destination
+
     val shapes = 10.dp
+    val screens = ScreenDestination.listScreenDestination
 
     Row(
         modifier = Modifier
@@ -110,7 +90,7 @@ fun BottomBar(
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         screens.forEach { screen ->
-            AddItem(
+            ItemScreen(
                 screen = screen,
                 currentDestination = currentDestination,
                 navController = navController
@@ -119,26 +99,18 @@ fun BottomBar(
     }
 }
 
-
 @Composable
-fun AddItem(
-    screen: NavigationBottomBar,
+fun ItemScreen(
+    screen: ScreenDestination,
     currentDestination: NavDestination?,
     navController: NavHostController
 ) {
     val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
-
-    val background = UshellBackground
-//  цвет у выделиных вкладках
-//        if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.6f) else Color.Transparent
-
-    val contentColor = Color.White
-//        if (selected) Color.White else Color.Black //смена цвета на неактивых сценах
+    val icon = if (selected) screen.iconFocused else screen.icon
 
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(10.dp))
-            .background(background)
             .clickable(
                 onClick = {
                     navController.navigate(screen.route) {
@@ -155,41 +127,32 @@ fun AddItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            if(screen.title == "Report"){
-//                BadgedBox(badge = { Badge { Text("6") } }) {
-                    Icon(
-                        painter = painterResource(id = if (selected) screen.iconFocused else screen.icon),
-                        contentDescription = "icon",
-                        tint = contentColor
-                    )
-//                }
-            }else{
-                Icon(
-                    painter = painterResource(id = if (selected) screen.iconFocused else screen.icon),
-                    contentDescription = "icon",
-                    tint = contentColor
-                )
-            }
-            // появление текста рядом с иконкой
-//            AnimatedVisibility(visible = selected) {
-//                Text(
-//                    text = screen.title,
-//                    color = contentColor
-//                )
-//            }
+            Icon(
+                painter = painterResource(id = icon),
+                contentDescription = "icon",
+                tint = Color.White
+            )
         }
     }
 }
 
 @Composable
 @Preview
-fun ScreenNavPreview() {
-    ScreenNav()
+fun ItemScreenPreview() {
+
+    val navController = rememberNavController()
+    val navStackBackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navStackBackEntry?.destination
+
+    ItemScreen(
+        screen = ScreenDestination.Schedule,
+        currentDestination = currentDestination,
+        navController = navController
+    )
 }
 
 @Composable
 @Preview
-fun BottomNavPreview() {
-    val navController = rememberNavController()
-    BottomBar(navController = navController)
+fun ScreenNavPreview(){
+    ScreenNav()
 }
