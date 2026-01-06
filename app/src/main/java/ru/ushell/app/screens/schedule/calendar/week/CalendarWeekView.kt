@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.calendar.week
+package ru.ushell.app.screens.schedule.calendar.week
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -23,9 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.ushell.app.R
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils
-import ru.ushell.app.screens.timetable.calendar.DayCellItem
-import ru.ushell.app.screens.timetable.calendar.NameDayCell
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils
+import ru.ushell.app.screens.schedule.calendar.DayCellItem
+import ru.ushell.app.screens.schedule.calendar.NameDayCell
 import java.time.LocalDate
 
 @Composable

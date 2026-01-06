@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.lesson
+package ru.ushell.app.screens.schedule.lesson
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -30,12 +30,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 import ru.ushell.app.data.features.timetable.mappers.lesson.Lesson
-import ru.ushell.app.screens.timetable.attendance.AttendanceDialog
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
+import ru.ushell.app.screens.schedule.attendance.AttendanceDialog
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.DataNow
 import ru.ushell.app.ui.theme.ColorItemGray
 import ru.ushell.app.ui.theme.ColorItemGreen
 import ru.ushell.app.ui.theme.ColorItemRad
-import ru.ushell.app.ui.theme.DarkTeam
 import ru.ushell.app.ui.theme.TimeTableTextLessonItem
 import ru.ushell.app.ui.theme.TimeTableTextLessonItemBold
 import ru.ushell.app.ui.theme.UshellBackground
@@ -81,16 +80,15 @@ fun LessonItem(
         }
 
         if(status.value){
-            DarkTeam {
-                AttendanceDialog(
-                    lesson = lesson,
-                    date = date,
-                    status = showAttendance,
-                    onDismiss = {
-                        showAttendance.value = false
-                    },
-                )
-            }
+            AttendanceDialog(
+                lesson = lesson,
+                date = date,
+                status = showAttendance,
+                onDismiss = {
+                    showAttendance.value = false
+                },
+            )
+
         }
     }
 }

@@ -1,7 +1,6 @@
-package ru.ushell.app.screens.timetable.calendar.month
+package ru.ushell.app.screens.schedule.calendar.month
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
@@ -20,7 +19,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -51,14 +49,13 @@ import androidx.constraintlayout.compose.ConstraintLayout
 
 import ru.ushell.app.R
 import ru.ushell.app.data.features.timetable.mappers.lesson.lessonExistDate
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils
-import ru.ushell.app.screens.timetable.calendar.DayCellItem
-import ru.ushell.app.screens.timetable.calendar.NameDayCell
-import ru.ushell.app.screens.timetable.calendar.week.CalendarDate
-import ru.ushell.app.screens.timetable.calendar.week.CalendarDateSource
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DaysInAWeek
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils
+import ru.ushell.app.screens.schedule.calendar.DayCellItem
+import ru.ushell.app.screens.schedule.calendar.NameDayCell
+import ru.ushell.app.screens.schedule.calendar.week.CalendarDate
+import ru.ushell.app.screens.schedule.calendar.week.CalendarDateSource
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.DaysInAWeek
 import ru.ushell.app.ui.theme.CalendarMonthText
-import ru.ushell.app.ui.theme.LightBackgroundColor
 
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -130,10 +127,10 @@ fun CalendarMonthContent(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(
-                color = LightBackgroundColor,
-                shape = RoundedCornerShape(10.dp)
-            )
+//            .background(
+//                color = LightBackgroundColor,
+//                shape = RoundedCornerShape(10.dp)
+//            )
             .padding(
                 top = 5.dp,
                 bottom = 5.dp

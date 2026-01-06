@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.lesson
+package ru.ushell.app.screens.schedule.lesson
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable
+package ru.ushell.app.screens.schedule
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
@@ -37,22 +37,22 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import ru.ushell.app.R
 import ru.ushell.app.ui.theme.BottomBackgroundAlfa
 import ru.ushell.app.ui.theme.ListColorButton
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedMonthYear
-import ru.ushell.app.screens.timetable.calendar.month.CalendarMonthDialog
-import ru.ushell.app.screens.timetable.calendar.week.CalendarDate
-import ru.ushell.app.screens.timetable.calendar.week.CalendarDateSource
-import ru.ushell.app.screens.timetable.calendar.week.CalendarWeek
-import ru.ushell.app.screens.timetable.lesson.ListLesson
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.formattedMonthYear
+import ru.ushell.app.screens.schedule.calendar.month.CalendarMonthDialog
+import ru.ushell.app.screens.schedule.calendar.week.CalendarDate
+import ru.ushell.app.screens.schedule.calendar.week.CalendarDateSource
+import ru.ushell.app.screens.schedule.calendar.week.CalendarWeek
+import ru.ushell.app.screens.schedule.lesson.ListLesson
 import ru.ushell.app.screens.utils.TopPanelScreen
 import ru.ushell.app.screens.utils.backgroundImagesSmall
 
 @Composable
-fun TimeTableScreen(
+fun ScheduleScreen(
 ) {
     val dataSource = CalendarDateSource()
     var currantData by remember { mutableStateOf(dataSource.getDataWeek(selectedDate=dataSource.today)) }
 
-    TimeTableContent(
+    ScheduleContent(
         currentData = currantData,
         onDateChange = { newDate ->
             currantData = dataSource.getDataWeek(selectedDate = newDate.date)
@@ -66,7 +66,7 @@ fun TimeTableScreen(
 }
 
 @Composable
-fun TimeTableContent(
+fun ScheduleContent(
     currentData: CalendarDate,
     onDateChange: (CalendarDate.Date) -> Unit,
     onWeekNavigate: (Int) -> Unit,
@@ -260,7 +260,7 @@ fun TopPanelCalendarPreview(){
 
     var currentData by remember { mutableStateOf(dateSource.getDataWeek(selectedDate = today)) }
 
-    TimeTableContent(
+    ScheduleContent(
         currentData = currentData,
         onDateChange = { newDate ->
             currentData = dateSource.getDataWeek(selectedDate = newDate.date)

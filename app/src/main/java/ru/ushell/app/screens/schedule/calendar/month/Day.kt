@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.calendar.month
+package ru.ushell.app.screens.schedule.calendar.month
 
 import java.time.LocalDate
 

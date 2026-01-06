@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.calendar.week
+package ru.ushell.app.screens.schedule.calendar.week
 
 import java.time.LocalDate
 

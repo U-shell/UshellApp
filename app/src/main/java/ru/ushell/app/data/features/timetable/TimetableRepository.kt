@@ -10,9 +10,9 @@ import ru.ushell.app.data.features.timetable.remote.timetable.TimetableResponse
 import ru.ushell.app.data.features.timetable.room.dao.main.TimetableEntity
 import ru.ushell.app.data.features.timetable.room.dao.secondary.TimetableSecondaryEntity
 import ru.ushell.app.data.features.user.UserRepository
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DayOfWeek
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.ParityWeek
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateToDbWeek
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.DayOfWeek
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.ParityWeek
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.formattedDateToDbWeek
 import java.time.LocalDate
 
 

@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.view.timetable
+package ru.ushell.app.screens.schedule.view.timetable
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.ushell.app.data.features.attendance.AttendanceRepository
 import ru.ushell.app.data.features.timetable.TimetableRepository
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.formattedDateDayAttendance
 
 import java.time.LocalDate
 

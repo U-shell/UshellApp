@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.view.attendance
+package ru.ushell.app.screens.schedule.view.attendance
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.attendance
+package ru.ushell.app.screens.schedule.attendance
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -42,10 +42,10 @@ import ru.ushell.app.R
 import ru.ushell.app.data.features.attendance.mappers.AttendanceGroup
 import ru.ushell.app.data.features.attendance.mappers.AttendanceStudentGroup
 import ru.ushell.app.data.features.timetable.mappers.lesson.Lesson
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
-import ru.ushell.app.screens.timetable.view.attendance.AttendanceUiState
-import ru.ushell.app.screens.timetable.view.attendance.AttendanceViewModel
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.DataNow
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.formattedDateDayAttendance
+import ru.ushell.app.screens.schedule.view.attendance.AttendanceUiState
+import ru.ushell.app.screens.schedule.view.attendance.AttendanceViewModel
 import ru.ushell.app.ui.theme.AttendanceDialogBrief
 import ru.ushell.app.ui.theme.AttendanceDialogDes
 import ru.ushell.app.ui.theme.AttendanceDialogTitle

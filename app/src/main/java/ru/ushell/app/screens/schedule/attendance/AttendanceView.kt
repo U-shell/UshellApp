@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.timetable.attendance
+package ru.ushell.app.screens.schedule.attendance
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -27,10 +27,10 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import ru.ushell.app.data.features.attendance.remote.attendance.Status
 import ru.ushell.app.data.features.attendance.mappers.AttendanceGroup
 import ru.ushell.app.data.features.attendance.mappers.AttendanceStudentGroup
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.DataNow
-import ru.ushell.app.screens.timetable.calendar.CalendarUtils.formattedDateDayAttendance
-import ru.ushell.app.screens.timetable.view.attendance.AttendanceViewModel
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.DataNow
+import ru.ushell.app.screens.schedule.calendar.CalendarUtils.formattedDateDayAttendance
+import ru.ushell.app.screens.schedule.view.attendance.AttendanceViewModel
 import ru.ushell.app.ui.theme.AttendanceStudentGroupText
 import ru.ushell.app.ui.theme.UshellBackground
 
