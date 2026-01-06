@@ -16,7 +16,7 @@ private val medium = FontFamily(Font(R.font.montserrat_medium))
 private val semibold = FontFamily(Font(R.font.montserrat_semibold))
 private val bold = FontFamily(Font(R.font.montserrat_bold))
 
-val ushellTypography = Typography(
+val UshellTypography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
