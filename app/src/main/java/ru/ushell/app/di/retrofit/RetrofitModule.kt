@@ -51,7 +51,7 @@ class RetrofitModule {
                 val token = tokenService.getAccessToken()
                 val request = chain.request().newBuilder()
                     .apply {
-                        if (!token.isNullOrBlank()) {
+                        if (!token.isNullOrBlank() && chain.request().url.toString() != "https://api.ushell.ru/auth/refresh/access") {
                             addHeader("Authorization", "Bearer $token")
                         }
                     }
