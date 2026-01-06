@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.profile.drawer.models
+package ru.ushell.app.screens.setting.items
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

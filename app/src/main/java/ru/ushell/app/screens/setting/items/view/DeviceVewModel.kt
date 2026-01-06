@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.profile.drawer.models.device.view
+package ru.ushell.app.screens.setting.items.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

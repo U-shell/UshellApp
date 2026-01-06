@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.profile.drawer.models.device.qrscanner
+package ru.ushell.app.screens.setting.items.device.qrscanner
 
 import android.graphics.ImageFormat
 import androidx.camera.core.ImageAnalysis

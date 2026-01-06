@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.profile.drawer.models.device.qrscanner
+package ru.ushell.app.screens.setting.items.device.qrscanner
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -6,19 +6,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
-import ru.ushell.app.navigation.DrawerRoutes
-import ru.ushell.app.screens.profile.drawer.models.TopNavDrawerPanel
+import ru.ushell.app.screens.setting.items.TopNavDrawerPanel
+import ru.ushell.app.screens.setting.items.device.RoutesDevice
 import ru.ushell.app.screens.utils.TypeScanner
 
 @Composable
@@ -59,7 +56,7 @@ fun QRScannerContext(
             ) {
                 TopNavDrawerPanel(
                     text = stringResource(R.string.scannerQR),
-                    route = DrawerRoutes.StartScreen.route,
+                    route = RoutesDevice.ScreenDevice.route,
                     navController = navController,
                     modifier = Modifier.background(Color.Transparent)
                 )

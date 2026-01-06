@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.profile.drawer.models.device.qrscanner
+package ru.ushell.app.screens.setting.items.device.qrscanner
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -34,12 +34,12 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.navigation.NavHostController
 import com.google.zxing.ResultPoint
-import ru.ushell.app.navigation.DrawerRoutes
 import ru.ushell.app.screens.messenger.RoutesChat
 import ru.ushell.app.screens.messenger.util.fileNameShare
 import ru.ushell.app.screens.messenger.util.recipientIdShare
-import ru.ushell.app.screens.profile.drawer.models.device.RoutesDevice
-import ru.ushell.app.screens.profile.drawer.models.device.view.DeviceVewModel
+import ru.ushell.app.screens.setting.items.device.RoutesDevice
+import ru.ushell.app.screens.setting.items.view.DeviceVewModel
+
 import ru.ushell.app.screens.utils.TypeScanner
 
 @Composable

@@ -1,4 +1,4 @@
-package ru.ushell.app.screens.profile.drawer.models.device
+package ru.ushell.app.screens.setting.items.device
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,8 +21,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,14 +36,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
-import ru.ushell.app.screens.profile.drawer.Drawer
-import ru.ushell.app.screens.profile.drawer.models.TopNavDrawerPanel
-import ru.ushell.app.screens.profile.drawer.models.device.qrscanner.QRScannerScreen
+import ru.ushell.app.navigation.screen.SettingScreenDestination
+import ru.ushell.app.screens.setting.items.TopNavDrawerPanel
+import ru.ushell.app.screens.setting.items.device.qrscanner.QRScannerScreen
 import ru.ushell.app.screens.utils.TypeScanner
-import ru.ushell.app.ui.theme.ChatIFBackground
 import ru.ushell.app.ui.theme.DeviceLocation
 import ru.ushell.app.ui.theme.DeviceNameTitle
 import ru.ushell.app.ui.theme.DeviceThisDevice
@@ -55,15 +51,8 @@ import ru.ushell.app.ui.theme.DeviceVersionApp
 @Composable
 fun DeviceScreen(
     navController: NavHostController,
-    onBottomBarVisibilityChange: (Boolean) -> Unit,
 ) {
     val deviceNavController = rememberNavController()
-    val currentRoute by deviceNavController.currentBackStackEntryAsState()
-
-    LaunchedEffect(currentRoute?.destination?.route) {
-        val showBottomBar = currentRoute?.destination?.route == RoutesDevice.ScreenDevice.route
-        onBottomBarVisibilityChange(showBottomBar)
-    }
 
     NavHost(
         navController = deviceNavController,
@@ -97,7 +86,7 @@ fun DeviceContext(
     ){
         TopNavDrawerPanel(
             text = stringResource(R.string.device),
-            route = Drawer.Device.route,
+            route = SettingScreenDestination.Setting.route,
             navController = parentNavController,
             modifier = Modifier
                 .background(Color(0xFF232325))
@@ -163,7 +152,7 @@ fun QrScannerPanel(
 
         Button(
             onClick = { deviceNavController.navigate(RoutesDevice.ScreenQR.route) },
-            colors = ButtonDefaults.buttonColors(containerColor = ChatIFBackground),
+//            colors = ButtonDefaults.buttonColors(containerColor = ChatIFBackground),
             shape = RoundedCornerShape(5.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -347,10 +336,8 @@ sealed class RoutesDevice(val route: String) {
 @Composable
 fun DeviceScreenPreview(){
     val navController = rememberNavController()
-    val bottomBarEnabled = remember { mutableStateOf(true) }
     DeviceScreen(
         navController=navController,
-        onBottomBarVisibilityChange= { bottomBarEnabled }
     )
 }
 
