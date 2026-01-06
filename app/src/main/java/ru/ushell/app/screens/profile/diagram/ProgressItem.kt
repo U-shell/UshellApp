@@ -38,6 +38,7 @@ import ru.ushell.app.ui.theme.DiagramBackgroundColor
 import ru.ushell.app.ui.theme.DiagramBaseColor
 import ru.ushell.app.ui.theme.ListColorRing
 
+
 @Composable
 fun ProgressItem(
     progress: Progress,
@@ -83,7 +84,6 @@ fun ProgressItem(
     }
 }
 
-@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 internal fun CircleProgressCustom(
     allSteps: Int,

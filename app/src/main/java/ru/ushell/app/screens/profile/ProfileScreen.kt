@@ -18,12 +18,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -57,7 +53,6 @@ import ru.ushell.app.ui.theme.ProfileTextUserInfo
 
 @Composable
 fun ProfileScreen(
-    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -79,7 +74,6 @@ fun ProfileScreen(
     ProfileContent(
         name = name,
         brief = brief,
-        drawerState = drawerState,
         presentAttendance = presentAttendance
     )
 }
@@ -89,7 +83,6 @@ fun ProfileScreen(
 fun ProfileContent(
     name: String,
     brief: String,
-    drawerState: DrawerState,
     presentAttendance: Int
 ) {
 
@@ -130,7 +123,6 @@ fun ProfileContent(
                 TopPanel(
                     name = name,
                     brief = brief,
-                    drawerState = drawerState
                 )
             }
 
@@ -152,7 +144,6 @@ fun ProfileContent(
 fun TopPanel(
     name: String,
     brief: String,
-    drawerState: DrawerState,
     modifier: Modifier = Modifier
 ) {
     val scope = rememberCoroutineScope()
@@ -173,16 +164,9 @@ fun TopPanel(
                     end = 20.dp,
                     top = 30.dp
                 ),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
         ) {
-            IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                Icon(
-                    painter = painterResource(R.drawable.profile_drawer),
-                    contentDescription = "Open drawer",
-                    tint = Color.White
-                )
-            }
             Icon(
                 painter = painterResource(R.drawable.timetable_mini_logo),
                 contentDescription = "App logo",
@@ -347,7 +331,6 @@ fun ProfileScreenPreview() {
         name = "Мешков Роман Константинович",
         brief = "ШМС-311",
         presentAttendance = 30,
-        drawerState = rememberDrawerState(DrawerValue.Closed)
     )
 }
 
@@ -357,7 +340,6 @@ fun TopPanelPreview(){
     TopPanel(
         name = "Мешков Роман Константинович",
         brief = "ШМС-311",
-        drawerState = rememberDrawerState(DrawerValue.Closed),
     )
 }
 
