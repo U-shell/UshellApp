@@ -39,7 +39,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import kotlinx.coroutines.launch
 import ru.ushell.app.R
 import ru.ushell.app.screens.profile.diagram.ProgressItem
 import ru.ushell.app.screens.profile.diagram.allLearnedProgress
@@ -240,6 +239,7 @@ fun Diagram(presentAttendance: Int) {
 
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
+        userScrollEnabled = false,
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
