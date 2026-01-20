@@ -8,9 +8,7 @@ plugins {
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    id("kotlin-kapt")
 }
-
 
 android {
     namespace = "ru.ushell.app"
@@ -22,7 +20,6 @@ android {
         targetSdk = 36
         versionCode = 7
         versionName = "5.0.6"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -39,9 +36,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.4"
     }
@@ -57,12 +56,11 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
-
-
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.foundation)
     testImplementation(libs.junit)
 
     implementation(libs.constraintlayout.compose)
@@ -88,8 +86,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.dagger)
 
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.androidx.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
 
     implementation(libs.retrofit)
     implementation(libs.logging.interceptor)

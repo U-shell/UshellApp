@@ -2,46 +2,48 @@
 # Plugins
 coilCompose = "3.3.0"
 coilNetworkOkhttp = "3.3.0"
-dagger = "2.57.2"
-daggerCompiler = "2.57.2"
-hiltAndroidCompiler = "2.57.2"
-hiltCompiler = "2.57.2"
+dagger = "2.58"
+daggerCompiler = "2.58"
+hiltAndroidCompiler = "2.58"
+hiltCompiler = "2.58"
 hiltCompilerVersion = "1.3.0"
 hiltNavigationCompose = "1.3.0"
 
 #UI
 material3 = "1.4.0"
-material3AdaptiveNavigationSuite = "1.5.0-alpha08"
+material3AdaptiveNavigationSuite = "1.5.0-alpha12"
 material3WindowSizeClass = "1.4.0"
 swiperefresh = "0.36.0"
-plugin-compose = "1.9.3"
+plugin-compose = "1.10.0"
 constraintlayoutComposeVersion = "1.1.1"
-composeBom = "2025.11.00"
+composeBom = "2026.01.00"
 
 
-agp = "8.13.0"
-kotlin = "2.2.10"
+agp = "8.13.2"
+kotlin = "2.3.0"
+ksp = "2.3.2"
 coreKtx = "1.17.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
 navigation = "2.9.6"
-cameraLifecycle = "1.5.1"
-cameraView = "1.5.1"
+cameraLifecycle = "1.5.2"
+cameraView = "1.5.2"
 
 # Libraries
-room = "2.8.3"
-sqlite = "2.6.1"
+room = "2.8.4"
+sqlite = "2.6.2"
 gson = "2.13.2"
 converterGson = "3.0.0"
 
 #Network
 retrofit = "3.0.0"
-loggingInterceptor = "5.3.0"
+loggingInterceptor = "5.3.2"
 
 zxingAndroidEmbedded = "4.3.0"
-animation = "1.9.4"
+animation = "1.10.1"
+foundation = "1.10.1"
 
 
 [libraries]
@@ -91,6 +93,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
 androidx-compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "animation" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -98,5 +101,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-core = { id = "org.jetbrains.compose", version.ref = "plugin-compose" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "room" }
-ksp = { id ="com.google.devtools.ksp", version = "2.2.10-2.0.2" }
+ksp = { id ="com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerCompiler" }
