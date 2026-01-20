@@ -17,12 +17,12 @@ class UserRepository(
         return userLocalDataSource.activeUser()
     }
 
-    suspend fun loginUser(email: String, password: String) =
+    suspend fun loginUser(email: String, password: String): Boolean =
         userRemoteDataSource.getLoginUser(basic = Credentials.basic(email, password))
             .also {
                 userLocalDataSource.saveRemoteResponse(it)
                 tokenService.saveAccessToken(it.accessToken, it.accessValid)
-            }
+            }.username.isNotEmpty()
 
     suspend fun logoutUser() =  userLocalDataSource.logoutUser(username = getUsername())
 

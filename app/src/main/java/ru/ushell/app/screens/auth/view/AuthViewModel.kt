@@ -32,8 +32,8 @@ open class AuthViewModel @Inject constructor(
             _uiState.value = AuthUiState.Loading
             try {
 
-                userRepository.loginUser(email, password)
-                _uiState.value = AuthUiState.Success
+
+                _uiState.value = AuthUiState.Success(userRepository.loginUser(email, password))
 
                 Session.setLogin(context)
             } catch (e: Exception) {

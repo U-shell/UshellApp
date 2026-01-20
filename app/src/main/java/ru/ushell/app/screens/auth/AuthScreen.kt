@@ -15,15 +15,25 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.TextObfuscationMode
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.SecureTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TooltipAnchorPosition
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -39,8 +49,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -65,15 +73,17 @@ fun AuthorizeScreen(
     val context = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
 
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
+    val emailState = rememberTextFieldState()
+    val passwordState = rememberTextFieldState()
 
     when(uiState){
-        is AuthUiState.Empty,
+        is AuthUiState.Empty -> {}
 
         is AuthUiState.Success -> {
-            LaunchedEffect(Unit) {
-                navController.navigate(Destination.Inside.route)
+            if((uiState as AuthUiState.Success).status) {
+                LaunchedEffect(Unit) {
+                    navController.navigate(Destination.Inside.route)
+                }
             }
         }
 
@@ -93,23 +103,19 @@ fun AuthorizeScreen(
     }
 
     AuthorizeContent(
-        email = email,
-        onEmailChange = { email = it },
-        password = password,
-        onPasswordChange = { password = it },
+        emailState = emailState,
+        passwordState = passwordState,
         uiState = uiState,
         onLoginClick = {
-            viewModel.login(email, password, context)
+            viewModel.login(emailState.text.toString(), passwordState.text.toString(), context)
         }
     )
 }
 
 @Composable
 fun AuthorizeContent(
-    email: String,
-    onEmailChange: (String) -> Unit,
-    password: String,
-    onPasswordChange: (String) -> Unit,
+    emailState: TextFieldState,
+    passwordState: TextFieldState,
     uiState: AuthUiState,
     onLoginClick: () -> Unit,
 ){
@@ -123,10 +129,8 @@ fun AuthorizeContent(
             verticalArrangement = Arrangement.Center
         ) {
             SignInWindow(
-                email = email,
-                onEmailChange = onEmailChange,
-                password = password,
-                onPasswordChange = onPasswordChange,
+                emailState = emailState,
+                passwordState = passwordState,
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -135,7 +139,7 @@ fun AuthorizeContent(
             ButtonAuth(
                 text = R.string.auth_enter,
                 onClick = onLoginClick,
-                enabled = uiState !is AuthUiState.Loading && email.isNotBlank() && password.isNotBlank()
+                enabled = uiState !is AuthUiState.Loading && emailState.text.isNotBlank() && passwordState.text.isNotBlank()
             )
         }
 
@@ -152,16 +156,14 @@ fun AuthorizeContent(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInWindow(
-    email: String,
-    onEmailChange: (String) -> Unit,
-    password: String,
-    onPasswordChange: (String) -> Unit,
+    emailState: TextFieldState,
+    passwordState: TextFieldState,
     modifier: Modifier = Modifier
 ) {
-    var passwordVisible by rememberSaveable { mutableStateOf(false) }
-
+    var passwordVisible by rememberSaveable { mutableStateOf(true) }
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -172,32 +174,38 @@ fun SignInWindow(
         Text(stringResource(R.string.auth_set_data), style = AuthScreenBodyTitle)
 
         TextField(
-            value = email,
-            onValueChange = onEmailChange,
+            state = emailState,
             label = { Text(stringResource(R.string.auth_email)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             colors = textFieldColors(),
-            singleLine = true
         )
 
-        TextField(
-            value = password,
-            onValueChange = onPasswordChange,
+        SecureTextField(
+            state = passwordState,
             label = { Text(stringResource(R.string.auth_password)) },
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            textObfuscationMode =
+                if (passwordVisible) TextObfuscationMode.RevealLastTyped
+                else TextObfuscationMode.Visible,
             trailingIcon = {
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(
-                        painter = painterResource(
-                            if (passwordVisible) R.drawable.auth_eye_close else R.drawable.auth_eye
-                        ),
-                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
-                    )
+                val description = if (passwordVisible) "Show password" else "Hide password"
+                TooltipBox(
+                    positionProvider =
+                        TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Above),
+                    tooltip = { PlainTooltip { Text(description) } },
+                    state = rememberTooltipState(),
+                ) {
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            painter = painterResource(
+                                if (passwordVisible) R.drawable.auth_eye_close else R.drawable.auth_eye
+                            ),
+                            contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                        )
+                    }
                 }
             },
             colors = textFieldColors(),
-            singleLine = true
+
         )
     }
 }
@@ -260,7 +268,7 @@ fun ButtonAuth(
         ),
         border = BorderStroke(
             width = 1.dp,
-            brush = Brush.Companion.horizontalGradient(
+            brush = Brush.horizontalGradient(
                 ListColorButton
             )
         ),
@@ -302,10 +310,8 @@ private fun textFieldColors() = TextFieldDefaults.colors(
 @Composable
 fun AuthorizePreview() {
     AuthorizeContent(
-        email = "user@example.com",
-        onEmailChange = {},
-        password = "123456",
-        onPasswordChange = {},
+        emailState = rememberTextFieldState("user@example.com"),
+        passwordState = rememberTextFieldState("123456"),
         uiState = AuthUiState.Empty,
         onLoginClick = {}
     )
@@ -315,9 +321,7 @@ fun AuthorizePreview() {
 @Composable
 fun SignInWindowPreview(){
     SignInWindow(
-        email = "user@example.com",
-        onEmailChange = {},
-        password = "123456",
-        onPasswordChange = {},
+        emailState = rememberTextFieldState("user@example.com"),
+        passwordState = rememberTextFieldState("123456"),
     )
 }
