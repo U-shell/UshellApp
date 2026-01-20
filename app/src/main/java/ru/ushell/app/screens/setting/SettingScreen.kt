@@ -30,6 +30,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.R
 import ru.ushell.app.navigation.screen.SettingScreenDestination
+import ru.ushell.app.screens.setting.items.ExitButton
 
 @Composable
 fun SettingScreen(
@@ -66,7 +67,9 @@ fun ListElement(
                 navController = navController
             )
         }
+
     }
+    ExitButton(navController)
 }
 
 @Composable
