@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.ushell.app.R
+import ru.ushell.app.navigation.Destination
+import ru.ushell.app.screens.auth.AuthorizeScreen
 import ru.ushell.app.screens.setting.SettingScreen
 import ru.ushell.app.screens.setting.items.device.DeviceScreen
 
@@ -38,8 +40,9 @@ sealed class SettingScreenDestination(
 
 @Composable
 fun SettingNavHost(
-    navController: NavHostController,
     bottomBarEnabled: MutableState<Boolean>,
+    navControllerMain: NavHostController,
+    navController: NavHostController,
 ){
     NavHost(
         navController = navController,
@@ -53,6 +56,13 @@ fun SettingNavHost(
         composable(SettingScreenDestination.Gadget.route) {
             bottomBarEnabled.value = false
             DeviceScreen(navController = navController)
+        }
+
+        composable(Destination.Auth.route) {
+            bottomBarEnabled.value = false
+            AuthorizeScreen(
+                navController = navControllerMain
+            )
         }
     }
 }

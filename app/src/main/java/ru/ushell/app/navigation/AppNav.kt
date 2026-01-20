@@ -11,7 +11,6 @@ import ru.ushell.app.navigation.screen.SettingNavHost
 import ru.ushell.app.screens.messenger.ChatScreen
 import ru.ushell.app.screens.profile.ProfileScreen
 import ru.ushell.app.screens.schedule.ScheduleScreen
-import ru.ushell.app.screens.setting.SettingScreen
 
 sealed class ScreenDestination(
     val route: String,
@@ -63,6 +62,7 @@ sealed class ScreenDestination(
 fun AppNavHost(
     gesturesEnabled: MutableState<Boolean>,
     bottomBarEnabled: MutableState<Boolean>,
+    navControllerMain: NavHostController,
     navController: NavHostController,
 ){
     gesturesEnabled.value = false
@@ -86,7 +86,9 @@ fun AppNavHost(
 
         composable(ScreenDestination.Setting.route) {
             val navController = rememberNavController()
+
             SettingNavHost(
+                navControllerMain=navControllerMain,
                 navController=navController,
                 bottomBarEnabled=bottomBarEnabled
             )

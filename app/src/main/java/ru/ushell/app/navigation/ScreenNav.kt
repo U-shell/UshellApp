@@ -1,5 +1,6 @@
 package ru.ushell.app.navigation
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -26,8 +27,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import ru.ushell.app.ui.theme.UshellBackground
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ScreenNav() {
+fun ScreenNav(
+    navControllerMain: NavHostController
+) {
     val navController = rememberNavController()
     val gesturesEnabled = remember { mutableStateOf(false) }
     val bottomBarEnabled = remember { mutableStateOf(true) }
@@ -47,6 +51,7 @@ fun ScreenNav() {
                 AppNavHost(
                     gesturesEnabled = gesturesEnabled,
                     bottomBarEnabled = bottomBarEnabled,
+                    navControllerMain=navControllerMain,
                     navController = navController
                 )
             }
@@ -154,5 +159,5 @@ fun ItemScreenPreview() {
 @Composable
 @Preview
 fun ScreenNavPreview(){
-    ScreenNav()
+    ScreenNav(rememberNavController())
 }

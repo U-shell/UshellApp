@@ -51,7 +51,9 @@ fun MainNavHost(
         }
 
         composable(Destination.Inside.route) {
-            ScreenNav()
+            ScreenNav(
+                navControllerMain=navController
+            )
         }
     }
 }
