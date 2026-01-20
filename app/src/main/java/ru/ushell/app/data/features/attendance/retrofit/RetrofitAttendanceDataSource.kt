@@ -6,7 +6,6 @@ import ru.ushell.app.data.features.attendance.mappers.AttendanceGroupRequest
 
 class RetrofitAttendanceDataSource(
     val attendanceApi: AttendanceApi,
-//    val statisticAttendanceApi: StatisticAttendanceApi
 ): AttendanceRemoteDataSource {
 
     override suspend fun getAttendanceStudent() = attendanceApi.getAttendanceStudent()

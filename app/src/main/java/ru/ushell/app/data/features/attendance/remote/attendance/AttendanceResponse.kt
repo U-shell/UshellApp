@@ -3,8 +3,12 @@ package ru.ushell.app.data.features.attendance.remote.attendance
 import com.google.gson.annotations.SerializedName
 
 data class AttendanceResponse(
-    val statistic: Int,
+    val statistic: StatisticResponse,
     val attendance: AttendanceJsonResponse
+)
+
+data class StatisticResponse(
+    val present: Int
 )
 
 data class AttendanceGroupDayResponse(

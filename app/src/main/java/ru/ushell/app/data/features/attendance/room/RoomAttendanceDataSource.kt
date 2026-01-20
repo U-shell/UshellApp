@@ -18,15 +18,13 @@ class RoomAttendanceDataSource(
         attendanceDao.saveAttendance(
             AttendanceEntity(
                 username = username,
-                statistic = attendanceResponse.statistic,
+                statistic = attendanceResponse.statistic.present,
                 attendance = gson.toJson(attendanceResponse.attendance)
             )
         )
 
     override suspend fun getAttendance(username: String, date: String): List<Attendance>{
         val entity = attendanceDao.getAttendance(username)
-
-        if(entity.attendance == null) return emptyList()
 
         val attendanceMap: Map<String, Map<String, String>> = try {
             gson.fromJson(entity.attendance, object : TypeToken<Map<String, Map<String, String>>>() {}.type)

@@ -15,5 +15,4 @@ interface AttendanceRemoteDataSource {
     ): AttendanceGroupDayResponse
 
     suspend fun putAttendanceGroup(groupId: Int, attendance: AttendanceGroupRequest)
-
 }
