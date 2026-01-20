@@ -215,17 +215,11 @@ fun ListChats(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             items(chats.size) { index ->
-                Box() {
-                    //TODO: написать функцию нажатия на элемент
-                    ChatItemList(
-                        navController = navController,
-                        nameSenderUser = nameSenderUser,
-                        titleChat = chats[index].name,
-                        noise = chats[index].countNewMessage.toString(),
-                        statusNoise = chats[index].countNewMessage != 0,
-                        lastMessage = chats[index].recipientId,
-                    )
-                }
+                ChatItemList(
+                    chat = chats[index],
+                    nameSenderUser = nameSenderUser,
+                    navController = navController,
+                )
             }
         }
     }

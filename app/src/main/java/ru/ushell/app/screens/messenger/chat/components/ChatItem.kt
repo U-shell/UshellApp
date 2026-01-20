@@ -22,7 +22,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,7 +37,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
@@ -48,8 +46,9 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import ru.ushell.app.R
+import ru.ushell.app.data.features.messenger.mappers.Chat
 import ru.ushell.app.screens.messenger.RoutesChat
+import ru.ushell.app.screens.messenger.util.DefaultAvatar
 import ru.ushell.app.ui.theme.ChatNotingBackground
 import ru.ushell.app.ui.theme.NameChatDes
 import ru.ushell.app.ui.theme.NameChatElected
@@ -94,8 +93,9 @@ fun ChatItemElected(
             )
         ) {
             ImageItem(
-                noise,
-                status
+                nameUser = nameChat,
+                noise = noise,
+                statusNoise = status
             )
         }
         Text(
@@ -106,6 +106,7 @@ fun ChatItemElected(
 }
 @Composable
 fun ImageItem(
+    nameUser:String,
     noise:String,
     statusNoise: Int
 ){
@@ -116,7 +117,6 @@ fun ImageItem(
             .padding(
                 start = 5.dp,
                 end = 5.dp,
-                top = 5.dp,
                 bottom = 5.dp
             )
     ){
@@ -152,33 +152,19 @@ fun ImageItem(
                 )
             }
         }
-        Row(
+        DefaultAvatar(
+            nameUser = nameUser,
             modifier = Modifier
-                .clip(RoundedCornerShape(10.dp))
-                .size(60.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ){
-            Icon(
-                painter = painterResource(R.drawable.bottom_ic_profile_focused),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(66.dp)
-                    .background(color = Color.White)
-            )
-        }
+                .size(65.dp)
+        )
     }
 }
 
 @Composable
 fun ChatItemList(
-    navController: NavHostController,
+    chat: Chat,
     nameSenderUser: MutableState<String>,
-    titleChat: String = "ChatTitle",
-    lastUser: String = "User",
-    lastMessage: String = "MessageMessageMessageMessag",
-    noise: String = "88",
-    statusNoise: Boolean = true,
+    navController: NavHostController,
 ){
     var status by remember { mutableStateOf(false) }
 
@@ -194,11 +180,7 @@ fun ChatItemList(
         )
     ){
         ChatItemListContext(
-            titleChat = titleChat,
-            lastUser = lastUser,
-            lastMessage = lastMessage,
-            noise = noise,
-            statusNoise = statusNoise
+            chat = chat
         )
     }
     if(status){
@@ -212,19 +194,17 @@ fun ChatItemList(
         }
 
         navController.navigate(RoutesChat.ScreenDialog.route)
-        nameSenderUser.value = lastMessage
+        // TODO:
+        nameSenderUser.value = chat.recipientId
     }
 }
 
 @Composable
 fun ChatItemListContext(
-    titleChat: String,
-    lastUser: String,
-    lastMessage: String,
-    noise: String,
-    statusNoise: Boolean
+    chat: Chat,
 ){
     val status = mapOf(false to Color.Transparent, true to ChatNotingBackground)
+    val statusNoise = chat.countNewMessage != 0
     //TODO: переделать в card как в LessonItemView в LessonItem
     Box(
         modifier = Modifier
@@ -248,15 +228,8 @@ fun ChatItemListContext(
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ){
-                    Icon(
-                        painter = painterResource(R.drawable.bottom_ic_profile_focused),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(55.dp)
-                            .background(
-                                color = Color.White,
-                                shape = RoundedCornerShape(10.dp)
-                            )
+                    DefaultAvatar(
+                        nameUser = chat.name
                     )
                     Box(
                         modifier = Modifier
@@ -271,13 +244,13 @@ fun ChatItemListContext(
                             Box(
                             ) {
                                 Text(
-                                    text = titleChat,
+                                    text = chat.name,
                                     style = NameChatTitle
                                 )
                             }
                             Row {
                                 Text(
-                                    text = lastUser,
+                                    text = chat.name,
                                     style = NameChatDes
                                 )
                                 Text(
@@ -285,7 +258,7 @@ fun ChatItemListContext(
                                     style = NameChatDes
                                 )
                                 Text(
-                                    text = lastMessage,
+                                    text = chat.recipientId,
                                     style = NameChatDes,
                                     maxLines = 1
                                 )
@@ -311,7 +284,7 @@ fun ChatItemListContext(
                             horizontalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = noise,
+                                text = chat.countNewMessage.toString(),
                                 fontSize = 18.sp,
                                 color = Color.White
                             )
@@ -319,14 +292,6 @@ fun ChatItemListContext(
                     }
                 }
             }
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 5.dp)
-                    .height(2.dp)
-                    .background(Color.LightGray)
-            )
         }
     }
 }
@@ -370,6 +335,12 @@ fun Modifier.timedClick(
 fun ChatItemListPreview(){
     val navController = rememberNavController()
     ChatItemList(
+        chat = Chat(
+            name = "name",
+            username = "username",
+            recipientId = "recipientId",
+            countNewMessage = 1
+        ),
         navController = navController,
         nameSenderUser = remember { mutableStateOf("") }
     )
