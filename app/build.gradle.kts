@@ -1,5 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.core)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.room)
@@ -10,11 +13,7 @@ plugins {
 android {
     namespace = "ru.ushell.app"
 
-    compileSdk {
-        version = release(36)
-    }
-
-    enableKotlin = false
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ru.ushell.app"
@@ -44,6 +43,16 @@ android {
     buildFeatures {
         compose = true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+    }
 }
 
 room {
@@ -53,7 +62,7 @@ room {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(libs.constraintlayout.compose)
     implementation(libs.accompanist.swiperefresh)
@@ -62,7 +71,6 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material3.window.size.class1)
     implementation(libs.androidx.material3.adaptive.navigation.suite)
-
 
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.view)
